@@ -1,0 +1,2672 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700");
+/* line 2, /Users/tiagoallenoliveira/bp1/binew/src/scss/principles/_typo.scss */
+*,
+html,
+body {
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.2em;
+}
+
+/* line 10, /Users/tiagoallenoliveira/bp1/binew/src/scss/principles/_typo.scss */
+h1 {
+  font-size: 2.2857142857142856em;
+  font-weight: 300;
+  color: #181f1c;
+  letter-spacing: 0;
+  line-height: 2.2857142857142856em;
+}
+
+/* line 18, /Users/tiagoallenoliveira/bp1/binew/src/scss/principles/_typo.scss */
+h2 {
+  font-weight: 400;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+@font-face {
+  font-family: 'bpone_bi';
+  src: url("fonts/bpone_bi.eot?a85ibl");
+  src: url("fonts/bpone_bi.eot?a85ibl#iefix") format("embedded-opentype"), url("fonts/bpone_bi.ttf?a85ibl") format("truetype"), url("fonts/bpone_bi.woff?a85ibl") format("woff"), url("fonts/bpone_bi.svg?a85ibl#bpone_bi") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* line 13, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+i {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'bpone_bi' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* line 28, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-arrow-up:before {
+  content: "";
+}
+
+/* line 34, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-arrow-down:before {
+  content: "";
+}
+
+/* line 40, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-arrow-left:before {
+  content: "";
+}
+
+/* line 46, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-arrow-right:before {
+  content: "";
+}
+
+/* line 52, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-chart--funel:before {
+  content: "";
+}
+
+/* line 58, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-chart--grid:before {
+  content: "";
+}
+
+/* line 64, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-chart--area:before {
+  content: "";
+}
+
+/* line 70, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-chart--bar:before {
+  content: "";
+}
+
+/* line 76, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-chart--colum_line:before {
+  content: "";
+}
+
+/* line 82, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-chart--colum:before {
+  content: "";
+}
+
+/* line 88, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-chart--donut:before {
+  content: "";
+}
+
+/* line 94, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-chart--kpi:before {
+  content: "";
+}
+
+/* line 100, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-chart--line:before {
+  content: "";
+}
+
+/* line 106, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-chart--pie:before {
+  content: "";
+}
+
+/* line 112, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-plus:before {
+  content: "";
+}
+
+/* line 118, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-plus--circle:before {
+  content: "";
+}
+
+/* line 124, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-close--circle-o:before {
+  content: "";
+}
+
+/* line 130, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-close:before {
+  content: "";
+}
+
+/* line 136, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-calendar:before {
+  content: "";
+}
+
+/* line 142, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-Folder--open:before {
+  content: "";
+}
+
+/* line 148, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-Folder:before {
+  content: "";
+}
+
+/* line 154, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-chart-type:before {
+  content: "";
+}
+
+/* line 160, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-data-grid:before {
+  content: "";
+}
+
+/* line 166, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-formula:before {
+  content: "";
+}
+
+/* line 172, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-location:before {
+  content: "";
+}
+
+/* line 178, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-edit:before {
+  content: "";
+}
+
+/* line 184, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-gridStrucutre--1:before {
+  content: "";
+}
+
+/* line 190, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-gridStrucutre--3:before {
+  content: "";
+}
+
+/* line 196, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-gridStrucutre--SPLIT2:before {
+  content: "";
+}
+
+/* line 202, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-file:before {
+  content: "";
+}
+
+/* line 208, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-filter--plus:before {
+  content: "";
+}
+
+/* line 214, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-filter:before {
+  content: "";
+}
+
+/* line 220, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-print:before {
+  content: "";
+}
+
+/* line 226, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-link:before {
+  content: "";
+}
+
+/* line 232, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-share:before {
+  content: "";
+}
+
+/* line 238, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-config-gear:before {
+  content: "";
+}
+
+/* line 244, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-consulta--new:before {
+  content: "";
+}
+
+/* line 250, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-consulta:before {
+  content: "";
+}
+
+/* line 256, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-painel:before {
+  content: "";
+}
+
+/* line 262, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-search:before {
+  content: "";
+}
+
+/* line 268, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-menu-dots:before {
+  content: "";
+}
+
+/* line 274, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-arrow_left--circle:before {
+  content: "";
+}
+
+/* line 280, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-arrow_right--circle:before {
+  content: "";
+}
+
+/* line 286, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-notify:before {
+  content: "";
+}
+
+/* line 292, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-notify--badge:before {
+  content: "";
+}
+
+/* line 298, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-badge:before {
+  content: "";
+}
+
+/* line 304, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_font-icon.scss */
+.bp-exclamation-circle:before {
+  content: "";
+}
+
+/* line 1, /Users/tiagoallenoliveira/bp1/binew/src/scss/principles/_basics.scss */
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 9, /Users/tiagoallenoliveira/bp1/binew/src/scss/principles/_basics.scss */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+@keyframes spinning180 {
+  0% {
+    /* Safari */
+    -webkit-transform: rotate(0deg);
+    /* Firefox */
+    -moz-transform: rotate(0deg);
+    /* IE */
+    -ms-transform: rotate(0deg);
+    /* Opera */
+    -o-transform: rotate(0deg);
+    /* Internet Explorer */
+    filter: 'progid: DXImageTransform.Microsoft.BasicImage(rotation=1)';
+  }
+  100% {
+    /* Safari */
+    -webkit-transform: rotate(180deg);
+    /* Firefox */
+    -moz-transform: rotate(180deg);
+    /* IE */
+    -ms-transform: rotate(180deg);
+    /* Opera */
+    -o-transform: rotate(180deg);
+    /* Internet Explorer */
+    filter: 'progid: DXImageTransform.Microsoft.BasicImage(rotation=4)';
+  }
+}
+
+/* line 1, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_buttons.scss */
+.btn {
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  line-height: 1em;
+}
+
+/* line 6, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_buttons.scss */
+.btn-primary {
+  border-radius: 2px;
+  background-color: #227584;
+  border-color: #227584;
+  letter-spacing: .2em;
+}
+
+/* line 11, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_buttons.scss */
+.btn-primary:hover {
+  background-color: #4e919d;
+  border-color: #4e919d;
+}
+
+/* line 15, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_buttons.scss */
+.btn-primary:visited, .btn-primary:active, .btn-primary:focus {
+  background-color: #7aacb5;
+  border-color: #7aacb5;
+  color: #ffffff;
+}
+
+/* line 24, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_buttons.scss */
+.btn-outline-primary {
+  border-color: #227584;
+  color: #227584;
+}
+
+/* line 27, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_buttons.scss */
+.btn-outline-primary:hover {
+  background-color: #4e919d;
+  border-color: #4e919d;
+}
+
+/* line 33, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_buttons.scss */
+.btn-secondary {
+  border-radius: 2px;
+  background-color: #274156;
+  border-color: #274156;
+  letter-spacing: .2em;
+  color: #ffffff;
+}
+
+/* line 39, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_buttons.scss */
+.btn-secondary:hover {
+  background-color: #526778;
+  border-color: #526778;
+  color: #ffffff;
+}
+
+/* line 46, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_buttons.scss */
+.btn-outline-secondary {
+  border-color: #274156;
+  color: #274156;
+}
+
+/* line 49, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_buttons.scss */
+.btn-outline-secondary:hover {
+  background-color: #526778;
+  border-color: #526778;
+}
+
+/* line 55, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_buttons.scss */
+.btn-outline-light {
+  border-color: #fbfcff;
+  color: #fbfcff;
+  background-color: transparent;
+}
+
+/* line 59, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_buttons.scss */
+.btn-outline-light:hover {
+  background-color: #fbfcff;
+  border-color: #fbfcff;
+  color: #181f1c;
+}
+
+/* line 66, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_buttons.scss */
+.btn-link {
+  color: #4e919d;
+}
+
+/* line 68, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_buttons.scss */
+.btn-link:hover {
+  color: #20646f;
+}
+
+/* line 73, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_buttons.scss */
+.btn-link--inverse {
+  color: #ffffff;
+  background-color: transparent;
+}
+
+/* line 76, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_buttons.scss */
+.btn-link--inverse:hover {
+  color: #20646f;
+}
+
+/* line 81, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_buttons.scss */
+.btn--noborder {
+  border: none;
+  color: #ffffff;
+  border-radius: 0px;
+  padding: .5rem .645rem;
+}
+
+/* line 86, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_buttons.scss */
+.btn--noborder:hover {
+  background: #243a4a;
+}
+
+/* line 91, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_buttons.scss */
+.btn__rounded {
+  padding-right: 0.7857rem;
+  padding-left: 0.7857rem;
+  -moz-border-radius: 100px;
+  -webkit-border-radius: 100px;
+  oborder-radius: 100px;
+  -ms-border-radius: 100px;
+  border-radius: 100px;
+}
+
+/* line 2, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_alerts.scss */
+.alert-danger {
+  background-color: #f2deda;
+  border-color: #a72608;
+  color: #181f1c;
+}
+
+/* line 6, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_alerts.scss */
+.alert-danger i {
+  color: #a72608;
+}
+
+/* line 9, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_alerts.scss */
+.alert-danger .alert-link {
+  text-decoration: underline;
+  color: #181f1c;
+  font-weight: 300;
+}
+
+/* line 13, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_alerts.scss */
+.alert-danger .alert-link:hover {
+  color: #a72608;
+  text-decoration: none;
+}
+
+/* line 19, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_alerts.scss */
+.alert-succes {
+  background-color: #e7f3e3;
+  border-color: #5fad41;
+  color: #181f1c;
+}
+
+/* line 23, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_alerts.scss */
+.alert-succes i {
+  color: #5fad41;
+}
+
+/* line 26, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_alerts.scss */
+.alert-succes .alert-link {
+  text-decoration: underline;
+  color: #181f1c;
+  font-weight: 300;
+}
+
+/* line 30, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_alerts.scss */
+.alert-succes .alert-link:hover {
+  color: #5fad41;
+  text-decoration: none;
+}
+
+/* line 36, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_alerts.scss */
+.alert-warning {
+  background-color: #fff1d9;
+  border-color: #ffa400;
+  color: #181f1c;
+}
+
+/* line 40, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_alerts.scss */
+.alert-warning i {
+  color: #ffa400;
+}
+
+/* line 43, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_alerts.scss */
+.alert-warning .alert-link {
+  text-decoration: underline;
+  color: #181f1c;
+  font-weight: 300;
+}
+
+/* line 47, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_alerts.scss */
+.alert-warning .alert-link:hover {
+  color: #ffa400;
+  text-decoration: none;
+}
+
+/* line 67, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_spinner.scss */
+.bb-r-spinner {
+  height: 102px;
+  width: 102px;
+  position: relative;
+}
+
+/* line 17, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_spinner.scss */
+.bb-r-spinner > div {
+  border-width: 3.4px;
+}
+
+/* line 19, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_spinner.scss */
+.bb-r-spinner > div.bb-r-spinner-circle-transparent {
+  border-radius: 102px;
+}
+
+/* line 22, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_spinner.scss */
+.bb-r-spinner > div.bb-r-spinner-circle {
+  border-top-left-radius: 102px;
+  border-bottom-left-radius: 102px;
+}
+
+/* line 8, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_spinner.scss */
+.bb-r-spinner > div {
+  border-color: #227584;
+}
+
+/* line 33, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_spinner.scss */
+.bb-r-spinner > div {
+  border-style: solid;
+  height: 100%;
+}
+
+/* line 36, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_spinner.scss */
+.bb-r-spinner > div.bb-r-spinner-circle-transparent {
+  width: 100%;
+  opacity: 0.2;
+}
+
+/* line 40, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_spinner.scss */
+.bb-r-spinner > div.bb-r-spinner-circle {
+  position: absolute;
+  width: 50%;
+  border-right: 0;
+  top: 0;
+  left: 0;
+  transform-origin: right;
+  animation: rotator 1s linear infinite;
+}
+
+/* line 50, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_spinner.scss */
+.bb-r-spinner.bb-r-spinner-small {
+  height: 20px;
+  width: 20px;
+}
+
+/* line 17, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_spinner.scss */
+.bb-r-spinner.bb-r-spinner-small > div {
+  border-width: 0.66667px;
+}
+
+/* line 19, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_spinner.scss */
+.bb-r-spinner.bb-r-spinner-small > div.bb-r-spinner-circle-transparent {
+  border-radius: 20px;
+}
+
+/* line 22, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_spinner.scss */
+.bb-r-spinner.bb-r-spinner-small > div.bb-r-spinner-circle {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+/* line 53, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_spinner.scss */
+.bb-r-spinner.bb-r-spinner-large {
+  height: 32px;
+  width: 32px;
+}
+
+/* line 17, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_spinner.scss */
+.bb-r-spinner.bb-r-spinner-large > div {
+  border-width: 1.06667px;
+}
+
+/* line 19, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_spinner.scss */
+.bb-r-spinner.bb-r-spinner-large > div.bb-r-spinner-circle-transparent {
+  border-radius: 32px;
+}
+
+/* line 22, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_spinner.scss */
+.bb-r-spinner.bb-r-spinner-large > div.bb-r-spinner-circle {
+  border-top-left-radius: 32px;
+  border-bottom-left-radius: 32px;
+}
+
+/* line 56, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_spinner.scss */
+.bb-r-spinner.bb-r-spinner-larger {
+  height: 48px;
+  width: 48px;
+}
+
+/* line 17, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_spinner.scss */
+.bb-r-spinner.bb-r-spinner-larger > div {
+  border-width: 1.6px;
+}
+
+/* line 19, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_spinner.scss */
+.bb-r-spinner.bb-r-spinner-larger > div.bb-r-spinner-circle-transparent {
+  border-radius: 48px;
+}
+
+/* line 22, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_spinner.scss */
+.bb-r-spinner.bb-r-spinner-larger > div.bb-r-spinner-circle {
+  border-top-left-radius: 48px;
+  border-bottom-left-radius: 48px;
+}
+
+/* line 8, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_spinner.scss */
+.bb-r-spinner.bb-r-spinner-opaque > div {
+  border-color: #ffffff;
+}
+
+/* line 8, /Users/tiagoallenoliveira/bp1/binew/src/scss/basics/_spinner.scss */
+.bb-r-spinner.bb-r-spinner-secondary > div {
+  border-color: #d0ccd0;
+}
+
+@keyframes rotator {
+  0% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(450deg);
+  }
+}
+
+/* line 2, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_form.scss */
+.input-group-addon.form-control-lg,
+.input-group-lg > .input-group-addon,
+.input-group-lg > .input-group-btn > .input-group-addon.btn,
+.form-control-lg,
+.input-group-lg > .form-control,
+.input-group-lg > .input-group-addon,
+.input-group-lg > .input-group-btn > .btn {
+  padding: 0.9286rem 0.9286rem;
+  font-size: 0.9286rem;
+  border-radius: 0;
+  text-align: left;
+  background-color: transparent;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+}
+
+/* line 17, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_form.scss */
+.input-group-addon.form-control-lg:focus,
+.input-group-lg > .input-group-addon:focus,
+.input-group-lg > .input-group-btn > .input-group-addon.btn:focus,
+.form-control-lg:focus,
+.input-group-lg > .form-control:focus,
+.input-group-lg > .input-group-addon:focus,
+.input-group-lg > .input-group-btn > .btn:focus {
+  border-bottom-color: #227584;
+}
+
+/* line 22, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_form.scss */
+.input-group-addon {
+  color: #d0ccd0;
+}
+
+/* line 30, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_form.scss */
+.painel__title--edit {
+  /* Defina um nome para: */
+}
+
+/* line 31, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_form.scss */
+.painel__title--edit .form-control {
+  font-size: 1.714rem;
+  font-weight: 300;
+  line-height: 2.286rem;
+  color: #227584;
+  border-radius: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1.95px dashed #d0ccd0;
+}
+
+/* line 41, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_form.scss */
+.painel__title--edit .form-control::-webkit-input-placeholder, .painel__title--edit .form-control::-moz-placeholder, .painel__title--edit .form-control:-ms-input-placeholder, .painel__title--edit .form-control:-moz-placeholder {
+  color: #d0ccd0;
+}
+
+/* line 47, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_form.scss */
+.painel__title--edit .form-control:focus {
+  border-bottom-color: #227584;
+}
+
+/* line 54, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_form.scss */
+.filterform input {
+  padding: 0.9286rem 0.9286rem;
+  font-size: 0.9286rem;
+  border-radius: 0;
+  text-align: left;
+  background-color: transparent;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+  border-bottom-color: #d0ccd0;
+}
+
+/* line 65, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_form.scss */
+.filterform input::-webkit-input-placeholder, .filterform input::-moz-placeholder, .filterform input:-ms-input-placeholder, .filterform input:-moz-placeholder {
+  color: #d0ccd0;
+}
+
+/* line 71, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_form.scss */
+.filterform input:focus {
+  border-bottom-color: #227584;
+}
+
+/* line 1, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_dropdown.scss */
+.dropdown-menu {
+  border-color: rgba(39, 65, 86, 0.2);
+}
+
+/* line 6, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_dropdown.scss */
+.dropdown-item {
+  padding: 0.5714rem 1rem;
+}
+
+/* line 8, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_dropdown.scss */
+.dropdown-item:hover, .dropdown-item:focus {
+  background-color: #227584;
+  color: #ffffff;
+}
+
+/* line 15, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_dropdown.scss */
+.dropdown-item.disabled,
+.dropdown-item:disabled {
+  color: #d0ccd0;
+  cursor: not-allowed;
+  background-color: transparent;
+}
+
+/* line 20, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_dropdown.scss */
+.dropdown-item.disabled:hover,
+.dropdown-item:disabled:hover {
+  color: #d0ccd0;
+  background-color: transparent;
+}
+
+/* line 1, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1 {
+  border: solid 1px #d0ccd0;
+  height: 36px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  oborder-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+}
+
+/* line 6, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1 .select2-selection--single .select2-selection__rendered {
+  float: left;
+  padding-right: 30px;
+}
+
+/* line 10, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1 .select2-selection--single .select2-selection__arrow {
+  position: absolute;
+  float: right;
+  width: 1rem;
+  height: 1rem;
+  margin-top: .8rem;
+  margin-right: .6rem;
+  right: 0px;
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'bpone_bi' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* line 29, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1 .select2-selection--single .select2-selection__arrow:before {
+  content: "";
+}
+
+/* line 33, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1 .select2-selection--single .select2-selection__clear {
+  position: relative;
+  float: right;
+  margin-top: 1.2rem;
+  margin-left: .5rem;
+}
+
+/* line 40, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1 .select2-selection__rendered {
+  line-height: 36px;
+  font-family: inherit;
+}
+
+/* line 44, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1 .select2-dropdown {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-top: 1px solid #d0ccd0;
+}
+
+/* line 49, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1 .select2-dropdown .select2-results .select2-results__options {
+  max-height: calc(100vh - 380px) !important;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+/* line 61, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1 .select2-dropdown .select2-results .select2-results__options .select2-results__option--highlighted {
+  color: #227584;
+  background-color: #f9fafd;
+}
+
+/* line 65, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1 .select2-dropdown .select2-results .select2-results__options .select2-results__options--nested {
+  overflow-y: hidden;
+}
+
+/* line 68, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1 .select2-dropdown .select2-results .select2-results__options .select2-results__options--nested .select2-results__option:hover {
+  color: #227584;
+  background-color: #fafbfe;
+}
+
+/* line 77, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1 .select2-search--dropdown {
+  padding: 1rem auto;
+}
+
+/* line 80, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1 .select2-search--dropdown input {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 2.286rem;
+  color: #227584;
+  border-radius: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1.95px solid #d0ccd0;
+  background-color: transparent;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+
+/* line 93, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1 .select2-search--dropdown input::-webkit-input-placeholder, .select2-container--bp1 .select2-search--dropdown input::-moz-placeholder, .select2-container--bp1 .select2-search--dropdown input:-ms-input-placeholder, .select2-container--bp1 .select2-search--dropdown input:-moz-placeholder {
+  color: #d0ccd0;
+}
+
+/* line 99, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1 .select2-search--dropdown input:focus {
+  border-bottom-color: #227584;
+  outline: 0;
+}
+
+/* line 108, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1.select2-container--open .select2-selection--single .select2-selection__arrow:before {
+  content: "";
+}
+
+/* line 116, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1-inline {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: solid 1px #d0ccd0;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  oborder-radius: 0px;
+  -ms-border-radius: 0px;
+  border-radius: 0px;
+}
+
+/* line 123, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1-inline .select2-selection--single .select2-selection__rendered {
+  float: left;
+  padding-right: 30px;
+}
+
+/* line 127, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1-inline .select2-selection--single .select2-selection__arrow {
+  position: absolute;
+  float: right;
+  width: 1rem;
+  height: 1rem;
+  margin-top: 1.2rem;
+  margin-right: .6rem;
+  right: 0px;
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'bpone_bi' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* line 146, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1-inline .select2-selection--single .select2-selection__arrow:before {
+  content: "";
+}
+
+/* line 152, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1-inline .select2-selection--single .select2-selection__clear {
+  position: relative;
+  float: right;
+  margin-top: 1.2rem;
+  margin-left: .5rem;
+}
+
+/* line 159, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1-inline .select2-selection__rendered {
+  line-height: 48px;
+  font-family: inherit;
+}
+
+/* line 163, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1-inline .select2-dropdown {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-top: 1px solid #d0ccd0;
+}
+
+/* line 168, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1-inline .select2-dropdown .select2-results .select2-results__options {
+  max-height: calc(100vh - 380px) !important;
+  overflow-y: scroll;
+  overflow-x: none;
+}
+
+/* line 172, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1-inline .select2-dropdown .select2-results .select2-results__options .select2-results__option {
+  padding-top: .8rem;
+  padding-bottom: .8rem;
+}
+
+/* line 175, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1-inline .select2-dropdown .select2-results .select2-results__options .select2-results__option:hover {
+  color: #227584;
+  background-color: #f9fafd;
+}
+
+/* line 183, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1-inline .select2-search--dropdown {
+  padding: 1rem auto;
+}
+
+/* line 186, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1-inline .select2-search--dropdown input {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 2.286rem;
+  color: #227584;
+  border-radius: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1.95px solid #d0ccd0;
+  background-color: transparent;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+
+/* line 199, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1-inline .select2-search--dropdown input::-webkit-input-placeholder, .select2-container--bp1-inline .select2-search--dropdown input::-moz-placeholder, .select2-container--bp1-inline .select2-search--dropdown input:-ms-input-placeholder, .select2-container--bp1-inline .select2-search--dropdown input:-moz-placeholder {
+  color: #d0ccd0;
+}
+
+/* line 205, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1-inline .select2-search--dropdown input:focus {
+  border-bottom-color: #227584;
+  outline: 0;
+}
+
+/* line 214, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select2-container--bp1-inline.select2-container--open .select2-selection--single .select2-selection__arrow:before {
+  content: "";
+}
+
+/* line 222, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select--plus {
+  width: 64px;
+  height: 64px;
+  padding: 0px;
+  margin: 0 0 0rem 0px;
+  letter-spacing: 0px;
+  text-align: center;
+}
+
+/* line 229, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select--plus i {
+  font-size: 24px;
+}
+
+/* line 232, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_select2.scss */
+.select--plus:focus {
+  outline: 0;
+}
+
+/* line 2, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta {
+  height: auto;
+  margin-top: 1.714em;
+  background-color: #ffffff;
+}
+
+/* line 6, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta .card-header {
+  background-color: transparent;
+  border-bottom: none;
+  padding: 0 0 0 .75rem;
+  height: 36px;
+}
+
+/* line 13, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta .card-header h4 {
+  color: #227584;
+  font-size: 0.8571rem;
+  margin-bottom: 0;
+  line-height: 1em;
+  height: 1em;
+}
+
+/* line 19, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta .card-header h4 span {
+  color: #227584;
+  font-size: 0.8571rem;
+  margin-bottom: 0;
+  line-height: 1em;
+  height: 1em;
+}
+
+/* line 27, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta .card-header .btn-outline-secondary {
+  color: #d0ccd0;
+  border-bottom-left-radius: 25%;
+  height: 32px;
+  width: 32px;
+}
+
+/* line 33, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta .card-header .btn-outline-secondary:hover {
+  color: #227584;
+  background-color: rgba(34, 117, 132, 0.5);
+}
+
+/* line 38, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta .card-header .btn-outline-secondary:focus {
+  border: none;
+}
+
+/* line 41, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta .card-header .btn-outline-secondary.breadcrum {
+  border-bottom-left-radius: 0%;
+  border-bottom-right-radius: 25%;
+  margin-left: -0.75rem;
+  padding-top: 10px;
+  padding-left: 13px;
+  padding-right: 13px;
+  margin-right: 4px;
+  height: auto;
+  width: auto;
+}
+
+/* line 54, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta .card-block {
+  height: calc(100% - 86px);
+  padding: 0.7rem;
+}
+
+/* line 58, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta .card-block .dataTables_wrapper {
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin: 0px;
+  padding: 0px;
+}
+
+/* line 66, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta .card-footer {
+  background-color: transparent;
+  padding: .5rem;
+}
+
+/* line 69, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta .card-footer label {
+  font-size: 0.5714rem;
+  color: #181f1c;
+  font-weight: 300;
+  width: 100%;
+  margin-bottom: 0px;
+  text-transform: uppercase;
+}
+
+/* line 77, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta .card-footer span {
+  font-size: 0.7857rem;
+  color: #227584;
+  width: 100%;
+}
+
+/* line 83, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta .card-label {
+  font-size: 0.7857rem;
+  color: #181f1c;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+/* line 89, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta .card-value {
+  font-size: 2.5rem;
+  color: #227584;
+  margin-bottom: .25rem;
+}
+
+/* line 94, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta.card--chart {
+  height: 320px;
+}
+
+/* line 98, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta.card--kpi {
+  height: 125px;
+}
+
+/* line 101, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta.card--empty {
+  min-height: calc(33.33333vh - 68px);
+  border-style: dashed;
+  border-width: 1.95px;
+}
+
+/* line 106, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta.card--empty .bnt-painel-new-consulta img {
+  transition: transform .2s ease-in-out;
+}
+
+/* line 110, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta.card--empty .bnt-painel-new-consulta:hover img {
+  transform: scale(1.2);
+}
+
+/* line 116, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta .card-img-overlay {
+  background-color: rgba(39, 65, 86, 0.8);
+  z-index: 100;
+}
+
+/* line 119, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta .card-img-overlay .btn-link,
+.card.card-consulta .card-img-overlay .btn-outline-secondary {
+  color: #ffffff;
+}
+
+/* line 124, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta.card--gouge {
+  height: 320px;
+}
+
+/* line 129, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta.card--consuta__full {
+  height: calc(100vh - 100px);
+}
+
+/* line 133, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta.card--consuta__full .card-footer span {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* line 139, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.card.card-consulta:hover, .card.card-consulta.active {
+  border-color: #227584;
+}
+
+/* line 146, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.filter-list__atribute {
+  width: 100%;
+  height: auto;
+  position: relative;
+  margin-top: 3rem;
+  z-index: 10;
+  border: 1px solid #227584;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  oborder-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+}
+
+/* line 158, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.filter-list__atribute .list-group-item {
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+/* line 165, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.filter-list__atribute .remove-atribute {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  border: none;
+  height: auto;
+  width: auto;
+  padding: 0px;
+  margin: 0px;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  background-color: transparent;
+}
+
+/* line 177, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.filter-list__atribute .remove-atribute i {
+  color: #d0ccd0;
+}
+
+/* line 181, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.filter-list__atribute .remove-atribute:hover i {
+  color: #a72608;
+}
+
+/* line 188, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.bnt-add__and {
+  position: relative;
+  bottom: -2.1rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: auto;
+  width: 130px;
+  border: none;
+  background-color: #d0ccd0;
+  color: white;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  padding: .5rem;
+}
+
+/* line 204, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+.bnt-add__and:hover {
+  background-color: #227584;
+}
+
+/* line 210, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+#chartdata {
+  width: 900px;
+  max-width: 100%;
+  border: 2px solid #eee;
+}
+
+/* line 216, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+#chartdata table {
+  width: 100%;
+}
+
+/* line 220, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+#chartdata table th,
+#chartdata table td {
+  text-align: center;
+  padding: 5px 7px;
+}
+
+/* line 226, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+#chartdata table th {
+  background: #999;
+  color: #fff;
+}
+
+/* line 231, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+#chartdata table td {
+  border-bottom: 1px solid #eee;
+}
+
+/* line 235, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_card.scss */
+#chartdata table td.row-title {
+  font-weight: bold;
+}
+
+/* line 1, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_charts.scss */
+.chart-box {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 1, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_datagrid.scss */
+.table.dataTable {
+  margin-top: 0 !important;
+}
+
+/* line 6, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_datagrid.scss */
+.dataTables_filter input {
+  padding: 0.4286rem;
+  font-size: 0.9286rem;
+  border-radius: 0;
+  text-align: left;
+  background-color: transparent;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+}
+
+/* line 15, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_datagrid.scss */
+.dataTables_filter input:focus {
+  border-bottom-color: #227584;
+}
+
+/* line 19, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_datagrid.scss */
+.dataTables_filter label {
+  text-transform: uppercase;
+  font-size: 0.8571rem;
+}
+
+/* line 25, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_datagrid.scss */
+.thead-default th {
+  font-size: 0.7857rem;
+  background-color: #fbfcff;
+  border-bottom: 1px solid #d0ccd0;
+}
+
+/* line 31, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_datagrid.scss */
+.table td,
+.table th {
+  font-size: 0.7857rem;
+}
+
+/* line 1, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_navbar.scss */
+.pageContent--nav {
+  background-color: #227584;
+  height: 3.429em;
+}
+
+/* line 4, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_navbar.scss */
+.pageContent--nav .navbar-text {
+  font-size: 1rem;
+  font-weight: 300;
+  border-bottom: 0;
+  color: #ffffff;
+  margin-left: 1em;
+}
+
+/* line 11, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_navbar.scss */
+.pageContent--nav .nav-link {
+  color: #ffffff;
+  padding-top: 0.7857rem;
+  padding-bottom: 0.7857rem;
+}
+
+/* line 15, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_navbar.scss */
+.pageContent--nav .nav-link i {
+  font-size: 1.857rem;
+  color: #ffffff;
+}
+
+/* line 19, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_navbar.scss */
+.pageContent--nav .nav-link:hover {
+  background-color: #4e919d;
+}
+
+/* line 23, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_navbar.scss */
+.pageContent--nav .nav-link.disabled i {
+  color: #274156;
+}
+
+/* line 1, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_table--funnel.scss */
+.table--funnel {
+  margin-bottom: 0;
+}
+
+/* line 5, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_table--funnel.scss */
+.table-bordered td.table--footer {
+  border-bottom: none !important;
+}
+
+/* line 9, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_table--funnel.scss */
+.table-success {
+  background-color: #227584;
+  color: #ffffff;
+}
+
+/* line 14, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_table--funnel.scss */
+.table-danger {
+  background-color: #a72608;
+  color: #ffffff;
+}
+
+/* line 2, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_modal.scss */
+.iziModal .iziModal__header {
+  background-color: #274156;
+  color: #ffffff;
+  border-bottom: none;
+  height: 3.429em;
+}
+
+/* line 1, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_datepicker.scss */
+.input-daterange {
+  padding-top: 7.5px;
+  width: 250px;
+  margin-right: 15px;
+}
+
+/* line 5, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_datepicker.scss */
+.input-daterange .input-group-addon {
+  background-color: transparent;
+  color: #ffffff;
+  border-left-color: none;
+  border-right-color: none;
+  border-top-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+/* line 13, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_datepicker.scss */
+.input-daterange .form-control {
+  padding: 0.6rem 0.2rem 0.6rem 0.7143rem;
+  font-size: 1rem;
+  line-height: 1rem;
+  color: #ffffff;
+  border-radius: 0;
+  text-align: left;
+  background-color: transparent;
+  border-color: #ffffff;
+  text-align: center;
+}
+
+/* line 24, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_datepicker.scss */
+.input-daterange .form-control:focus {
+  border-bottom-color: #227584;
+}
+
+/* line 27, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_datepicker.scss */
+.input-daterange .form-control:first-child {
+  border-top-left-radius: 3rem;
+  border-bottom-left-radius: 3rem;
+}
+
+/* line 31, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_datepicker.scss */
+.input-daterange .form-control:last-child {
+  border-top-right-radius: 3rem;
+  border-bottom-right-radius: 3rem;
+  padding-right: 0.7143rem;
+}
+
+/* line 36, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_datepicker.scss */
+.input-daterange .form-control::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: #ffffff;
+}
+
+/* line 40, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_datepicker.scss */
+.input-daterange .form-control::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #ffffff;
+}
+
+/* line 44, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_datepicker.scss */
+.input-daterange .form-control:-ms-input-placeholder {
+  /* IE 10+ */
+  color: #ffffff;
+}
+
+/* line 48, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_datepicker.scss */
+.input-daterange .form-control:-moz-placeholder {
+  /* Firefox 18- */
+  color: #ffffff;
+}
+
+/* line 55, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_datepicker.scss */
+.datepicker {
+  padding: 0px;
+}
+
+/* line 59, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_datepicker.scss */
+.datepicker td,
+.datepicker th {
+  width: 24px;
+  height: 28px;
+  padding: 0.7143rem;
+  border-radius: 3rem;
+}
+
+/* line 67, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_datepicker.scss */
+.selected.range-end.range-start {
+  border-radius: 3rem;
+}
+
+/* line 71, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_datepicker.scss */
+.selected.range-start {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* line 76, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_datepicker.scss */
+.selected.range-end {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* line 1, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree {
+  list-style: none outside;
+  margin-left: 1.5rem;
+  margin-bottom: 0;
+  padding: 0;
+  margin-top: .25rem;
+}
+
+/* line 7, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree ul.jqtree_common {
+  list-style: none outside;
+  margin-left: 12px;
+  margin-right: 0;
+  margin-bottom: 0;
+  padding: 0;
+  display: block;
+}
+
+/* line 15, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree li.jqtree-closed > ul.jqtree_common {
+  display: none;
+}
+
+/* line 18, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree li.jqtree_common {
+  clear: both;
+  list-style-type: none;
+  padding: 4px 8px;
+}
+
+/* line 23, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree .jqtree-toggler {
+  border-bottom: none;
+  color: #ffffff;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+/* line 28, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree .jqtree-toggler:hover {
+  color: #3fb8cd;
+  text-decoration: none;
+}
+
+/* line 32, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree .jqtree-toggler.jqtree-closed {
+  background-position: 0 0;
+}
+
+/* line 35, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree .jqtree-toggler.jqtree-toggler-left {
+  margin-right: 0.5em;
+}
+
+/* line 38, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree .jqtree-toggler.jqtree-toggler-right {
+  margin-left: 0.5em;
+}
+
+/* line 42, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree .jqtree-element {
+  cursor: pointer;
+  position: relative;
+  padding: 4px 8px;
+}
+
+/* line 47, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree .jqtree-title {
+  color: #ffffff;
+  vertical-align: middle;
+  margin-left: 1.5em;
+}
+
+/* line 51, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree .jqtree-title.jqtree-title-folder {
+  margin-left: 0;
+}
+
+/* line 55, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree li.jqtree-folder {
+  margin-bottom: 4px;
+}
+
+/* line 57, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree li.jqtree-folder.jqtree-closed {
+  margin-bottom: 1px;
+}
+
+/* line 61, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree li.jqtree-ghost {
+  position: relative;
+  z-index: 10;
+  margin-right: 10px;
+  /* todo: add classes to span? */
+}
+
+/* line 66, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree li.jqtree-ghost span {
+  display: block;
+}
+
+/* line 69, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree li.jqtree-ghost span.jqtree-circle {
+  border: solid 2px #3fb8cd;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+  height: 8px;
+  width: 8px;
+  position: absolute;
+  top: -4px;
+  left: -6px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 83, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree li.jqtree-ghost span.jqtree-line {
+  background-color: #3fb8cd;
+  height: 2px;
+  padding: 0;
+  position: absolute;
+  top: -1px;
+  left: 2px;
+  width: 100%;
+}
+
+/* line 92, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree li.jqtree-ghost.jqtree-inside {
+  margin-left: 48px;
+}
+
+/* line 96, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree span.jqtree-border {
+  position: absolute;
+  display: block;
+  left: -2px;
+  top: 0;
+  border: solid 2px #3fb8cd;
+  border-radius: 6px;
+  margin: 0;
+  box-sizing: content-box;
+}
+
+/* line 106, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree li.jqtree-selected > .jqtree-element,
+ul.jqtree-tree li.jqtree-selected > .jqtree-element:hover {
+  background-color: #526778;
+  -moz-border-radius: 100px;
+  -webkit-border-radius: 100px;
+  oborder-radius: 100px;
+  -ms-border-radius: 100px;
+  border-radius: 100px;
+}
+
+/* line 110, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree li.jqtree-selected > .jqtree-element:hover,
+ul.jqtree-tree li.jqtree-selected > .jqtree-element:hover:hover {
+  background-color: #4e919d;
+}
+
+/* line 121, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree li.jqtree-selected > .jqtree-element .jqtree-moving > .jqtree-element .jqtree-title,
+ul.jqtree-tree li.jqtree-selected > .jqtree-element:hover .jqtree-moving > .jqtree-element .jqtree-title {
+  outline: dashed 1px #3fb8cd;
+  padding: 2px 4px;
+}
+
+/* line 126, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree ul.jqtree-tree.jqtree-rtl {
+  direction: rtl;
+}
+
+/* line 128, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree ul.jqtree-tree.jqtree-rtl ul.jqtree_common {
+  margin-left: 0;
+  margin-right: 12px;
+}
+
+/* line 132, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree ul.jqtree-tree.jqtree-rtl .jqtree-toggler {
+  margin-left: 0.5em;
+  margin-right: 0;
+}
+
+/* line 136, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree ul.jqtree-tree.jqtree-rtl .jqtree-title {
+  margin-left: 0;
+  margin-right: 1.5em;
+}
+
+/* line 139, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree ul.jqtree-tree.jqtree-rtl .jqtree-title.jqtree-title-folder {
+  margin-right: 0;
+}
+
+/* line 143, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree ul.jqtree-tree.jqtree-rtl li.jqtree-ghost {
+  margin-right: 0;
+  margin-left: 10px;
+}
+
+/* line 146, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree ul.jqtree-tree.jqtree-rtl li.jqtree-ghost span.jqtree-circle {
+  right: -6px;
+}
+
+/* line 149, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree ul.jqtree-tree.jqtree-rtl li.jqtree-ghost span.jqtree-line {
+  right: 2px;
+}
+
+/* line 152, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree ul.jqtree-tree.jqtree-rtl li.jqtree-ghost.jqtree-inside {
+  margin-left: 0;
+  margin-right: 48px;
+}
+
+/* line 157, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree ul.jqtree-tree.jqtree-rtl span.jqtree-border {
+  right: -2px;
+}
+
+/* line 161, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_jqtree.scss */
+ul.jqtree-tree span.jqtree-dragging {
+  color: #ffffff;
+  background: #227584;
+  opacity: 0.6;
+  cursor: pointer;
+  padding: 4px 14px;
+  -moz-border-radius: 100em;
+  -webkit-border-radius: 100em;
+  oborder-radius: 100em;
+  -ms-border-radius: 100em;
+  border-radius: 100em;
+}
+
+/* line 1, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_listgroup.scss */
+.bp--accordion {
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+/* line 6, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_listgroup.scss */
+.bp--accordion .card-header a {
+  color: #227584;
+  text-decoration: none;
+}
+
+/* line 9, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_listgroup.scss */
+.bp--accordion .card-header a i {
+  color: #227584;
+}
+
+/* line 14, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_listgroup.scss */
+.bp--accordion .card-block {
+  padding: 0px;
+}
+
+/* line 17, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_listgroup.scss */
+.bp--accordion .card-block .list-group-item:first-child {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+}
+
+/* line 21, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_listgroup.scss */
+.bp--accordion .card-block .list-group-item.active {
+  background-color: #227584;
+  border-left: 1px solid rgba(0, 0, 0, 0.125);
+  border-right: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+/* line 26, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_listgroup.scss */
+.bp--accordion .card-block .list-group-item .badge-default {
+  background-color: #ffffff;
+  color: #227584;
+}
+
+/* line 38, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.sidebar-nav {
+  display: block;
+  width: 408px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 48, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+#menu-toggle {
+  background-color: #233745;
+  height: 3.429em;
+  line-height: 3.429em;
+  display: block;
+}
+
+/* line 55, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+#main_icon {
+  border: none;
+  background-color: transparent;
+  border-radius: 0px;
+  height: 3.429em;
+  width: 3.429em;
+  margin-right: -.5rem;
+  cursor: pointer;
+  transition: transform 1s ease-in-out;
+}
+
+/* line 65, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+#main_icon i {
+  font-size: 1.286rem;
+  line-height: 1.286rem;
+  color: #ffffff;
+}
+
+/* line 71, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+#main_icon:hover i {
+  color: #216c7a;
+}
+
+/* line 75, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+#main_icon:hover, #main_icon:focus {
+  border: none !important;
+  text-decoration: none !important;
+  outline: 0;
+}
+
+/* line 81, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+#main_icon.collapsed {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+/* line 87, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.search__block {
+  padding-left: 1.286rem;
+  padding-right: 1.286rem;
+}
+
+/* line 92, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.title__block {
+  padding-left: 1.286rem;
+  padding-right: 1.286rem;
+  margin-top: 1.814em;
+}
+
+/* line 96, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.title__block h3,
+.title__block span i {
+  font-size: 1.714rem;
+  color: #ffffff;
+  margin-bottom: 0px;
+}
+
+/* line 102, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.title__block h3 {
+  margin-left: 0.429em;
+}
+
+/* line 107, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.sidebarfooter__block {
+  position: absolute;
+  display: block;
+  margin: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  height: 48px;
+  padding-left: 1.286rem;
+  padding-right: 1.286rem;
+  z-index: 100;
+}
+
+/* line 119, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.sidebarfooter__block img {
+  width: 1.714rem;
+  height: 1.764rem;
+  margin-right: 1em;
+  padding: 0;
+}
+
+/* line 125, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.sidebarfooter__block span {
+  color: #ffffff;
+  font-size: 0.8571rem;
+}
+
+/* line 129, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.sidebarfooter__block .dropup i {
+  font-size: 1.25em;
+}
+
+/* line 132, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.sidebarfooter__block.collapsed {
+  padding-right: 0px;
+}
+
+/* line 134, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.sidebarfooter__block.collapsed .dropup,
+.sidebarfooter__block.collapsed .btn {
+  width: 64px;
+  height: 48px;
+}
+
+/* line 142, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.sidebar--menu__contracted {
+  position: relative;
+  display: block;
+  float: right;
+  width: 64px;
+  height: auto;
+  margin-top: 0;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  padding: 0px;
+  color: #ffffff;
+  list-style-type: none;
+}
+
+/* line 155, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.sidebar--menu__contracted li {
+  width: 64px;
+  height: 64px;
+}
+
+/* line 158, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.sidebar--menu__contracted li a {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  text-align: center;
+  transition: all .5s ease-in-out;
+}
+
+/* line 164, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.sidebar--menu__contracted li a.active, .sidebar--menu__contracted li a:hover {
+  background-color: #21333f;
+}
+
+/* line 167, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.sidebar--menu__contracted li a.active i, .sidebar--menu__contracted li a:hover i {
+  font-size: 2.286rem;
+}
+
+/* line 171, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.sidebar--menu__contracted li a i {
+  font-size: 2rem;
+}
+
+/* line 174, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.sidebar--menu__contracted li a .badge {
+  position: absolute;
+  right: .5em;
+  top: .8em;
+  z-index: 2;
+}
+
+/* line 184, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.block__hide {
+  display: none !important;
+  float: left;
+}
+
+/* line 189, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.block__slide {
+  transform: translateX(-430px);
+  transition: all .5s ease-in-out;
+}
+
+/* line 194, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.tab-pane--title {
+  margin: 0px;
+}
+
+/* line 196, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.tab-pane--title h3 {
+  color: #181f1c;
+  font-weight: 300;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* line 202, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.tab-pane--title p {
+  color: #d0ccd0;
+  line-height: 1.2em;
+  font-size: 0.8571rem;
+}
+
+/* line 209, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.nav-tabs-sections {
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-top: -15px;
+  height: 95px;
+}
+
+/* line 214, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.nav-tabs-sections .nav-link {
+  height: 95px;
+  border-radius: 0;
+  border-top: none;
+}
+
+/* line 218, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.nav-tabs-sections .nav-link span,
+.nav-tabs-sections .nav-link i {
+  color: #d0ccd0;
+}
+
+/* line 222, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.nav-tabs-sections .nav-link span {
+  font-size: 0.7143rem;
+}
+
+/* line 225, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.nav-tabs-sections .nav-link i {
+  font-size: 1.857rem;
+  margin-bottom: 0.8571rem;
+}
+
+/* line 230, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.nav-tabs-sections .nav-link.active span,
+.nav-tabs-sections .nav-link.active i {
+  color: #227584;
+}
+
+/* line 234, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.nav-tabs-sections .nav-link.active:hover {
+  background-color: #91bac2;
+}
+
+/* line 238, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.nav-tabs-sections .nav-link:hover {
+  background-color: #4e919d;
+}
+
+/* line 240, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.nav-tabs-sections .nav-link:hover span,
+.nav-tabs-sections .nav-link:hover i {
+  color: #ffffff;
+}
+
+/* line 250, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+#visualizacao .block--chart {
+  height: auto;
+  width: auto;
+  margin-top: 20px;
+}
+
+/* line 256, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+#visualizacao .block--chart .btn {
+  border: none;
+  animation: all 1s ease-in-out;
+  padding: 1.2rem 1em;
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+}
+
+/* line 266, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+#visualizacao .block--chart .btn i {
+  font-size: 3rem;
+}
+
+/* line 269, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+#visualizacao .block--chart .btn span {
+  margin-top: 1rem;
+  font-size: .784rem;
+}
+
+/* line 273, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+#visualizacao .block--chart .btn.btn-outline-primary {
+  color: #7d8d9a;
+}
+
+/* line 276, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+#visualizacao .block--chart .btn:hover {
+  background-color: #227584;
+  border-color: #227584;
+  color: #ffffff;
+}
+
+/* line 285, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+#visualizacao .block--chart .btn.not-available, #visualizacao .block--chart .btn:disabled {
+  opacity: .5;
+  color: #d0ccd0;
+  cursor: not-allowed;
+}
+
+/* line 290, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+#visualizacao .block--chart .btn.not-available:hover, #visualizacao .block--chart .btn:disabled:hover {
+  background-color: transparent;
+  border-color: transparent;
+  color: #d0ccd0;
+}
+
+/* line 296, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+#visualizacao .block--chart .btn.active {
+  border-color: #227584;
+  border-style: dashed;
+  background-color: transparent;
+  color: #227584;
+  border-width: 1px;
+}
+
+/* line 305, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+#visualizacao .block--chart .btn.active:hover {
+  border-style: solid;
+}
+
+/* line 313, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.sidebar--painelHeader {
+  height: 48px;
+  border-bottom: solid 1px #f9fafd;
+  background-color: #f9fafd;
+}
+
+/* line 317, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.sidebar--painelHeader h5 {
+  font-size: 1rem;
+}
+
+/* line 322, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.sidebar--painel {
+  background-color: #ffffff;
+  box-shadow: 0px -10px 15px #d0ccd0;
+  z-index: 1000;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transition: all .4s ease .5s;
+}
+
+/* line 330, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+.sidebar--painel.sidebar--painel__closed {
+  -ms-transform: translate(-438px, 0px);
+  /* IE 9 */
+  -webkit-transform: translate(-438px, 0px);
+  /* Safari */
+  transform: translate(-438px, 0px);
+  transition: all .4s ease .5s;
+}
+
+/* line 340, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+#sidebar--nav-tabs {
+  height: 95px;
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  background-color: #f9fafd;
+}
+
+/* line 346, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+#sidebar--nav-tabs .nav-link {
+  border-bottom-color: #ddd;
+}
+
+/* line 347, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+#sidebar--nav-tabs .nav-link.active {
+  border-top: #ddd 1px solid;
+  border-bottom-color: white;
+}
+
+/* line 364, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_sidebar.scss */
+#sidebar--tab-pane .tab-pane {
+  height: calc(100vh - 150px);
+  background-color: #ffffff;
+  width: 408px;
+  overflow-y: auto;
+}
+
+/* line 1, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_typeahead.scss */
+.typeahead__field input {
+  padding: 0.9286rem 0.9286rem;
+  font-size: 0.9286rem;
+  border-radius: 0;
+  text-align: left;
+  background-color: transparent;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+}
+
+/* line 11, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_typeahead.scss */
+.typeahead__field input:focus {
+  border-bottom-color: #227584;
+}
+
+/* line 18, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_typeahead.scss */
+.typeahead__list .typeahead__item a {
+  padding: 0.6429rem 0.857em;
+}
+
+/* line 24, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_typeahead.scss */
+.typeahead__list > li:first-child a {
+  padding: 0.2143rem 0.857em 0.6429rem 0.857em;
+}
+
+/* line 31, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_typeahead.scss */
+.typeahead__dropdown > li > a,
+.typeahead__list > li > a {
+  color: #181f1c;
+}
+
+/* line 38, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_typeahead.scss */
+.typeahead__field .js-typeahead-sidebar {
+  color: #d0ccd0;
+}
+
+/* line 43, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_typeahead.scss */
+.typeahead__cancel-button {
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDEyIDEyIj4gIDxwYXRoIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTguNjAyNTU4MjgsMTAgTDQuOTIwMTExNjksMTMuNjgyNDQ2NiBDNC42MDYwOTM2MiwxMy45OTY0NjQ3IDQuODU0OTkwMzksMTQuNzU0NDg1MyA1LjA1MDI1MjUzLDE0Ljk0OTc0NzUgQzUuMjQ1NTE0NjgsMTUuMTQ1MDA5NiA2LjAwMzUzNTMzLDE1LjM5MzkwNjQgNi4zMTc1NTM0MSwxNS4wNzk4ODgzIEwxMCwxMS4zOTc0NDE3IEwxMy42ODI0NDY2LDE1LjA3OTg4ODMgQzEzLjk5NjQ2NDcsMTUuMzkzOTA2NCAxNC43NTQ0ODUzLDE1LjE0NTAwOTYgMTQuOTQ5NzQ3NSwxNC45NDk3NDc1IEMxNS4xNDUwMDk2LDE0Ljc1NDQ4NTMgMTUuMzkzOTA2NCwxMy45OTY0NjQ3IDE1LjA3OTg4ODMsMTMuNjgyNDQ2NiBMMTEuMzk3NDQxNywxMCBMMTUuMDc5ODg4Myw2LjMxNzU1MzQxIEMxNS4zOTM5MDY0LDYuMDAzNTM1MzMgMTUuMTQ1MDA5Niw1LjI0NTUxNDY4IDE0Ljk0OTc0NzUsNS4wNTAyNTI1MyBDMTQuNzU0NDg1Myw0Ljg1NDk5MDM5IDEzLjk5NjQ2NDcsNC42MDYwOTM2MiAxMy42ODI0NDY2LDQuOTIwMTExNjkgTDEwLDguNjAyNTU4MjggTDYuMzE3NTUzNDEsNC45MjAxMTE2OSBDNi4wMDM1MzUzMyw0LjYwNjA5MzYyIDUuMjQ1NTE0NjgsNC44NTQ5OTAzOSA1LjA1MDI1MjUzLDUuMDUwMjUyNTMgQzQuODU0OTkwMzksNS4yNDU1MTQ2OCA0LjYwNjA5MzYyLDYuMDAzNTM1MzMgNC45MjAxMTE2OSw2LjMxNzU1MzQxIEw4LjYwMjU1ODI4LDEwIFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00IC00KSIvPjwvc3ZnPg==") no-repeat scroll 50% transparent;
+}
+
+/* line 47, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_typeahead.scss */
+.typeahead__container.cancel:not(.loading) .typeahead__cancel-button {
+  opacity: .50;
+}
+
+/* line 52, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_typeahead.scss */
+.typeahead__button button {
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  border-radius: 0;
+  padding: 0px 5px 8px 9px;
+}
+
+/* line 61, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_typeahead.scss */
+.typeahead__button button:hover {
+  background: transparent;
+}
+
+/* line 63, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_typeahead.scss */
+.typeahead__button button:hover i {
+  color: #227584;
+}
+
+/* line 67, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_typeahead.scss */
+.typeahead__button button i {
+  font-size: 1.571rem;
+}
+
+/* line 1, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_treeview.scss */
+.tree,
+.tree ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* line 8, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_treeview.scss */
+.tree ul {
+  margin-left: 1em;
+  position: relative;
+}
+
+/* line 13, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_treeview.scss */
+.tree ul ul {
+  margin-left: .5em;
+}
+
+/* line 17, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_treeview.scss */
+.tree ul:before {
+  content: "";
+  display: block;
+  width: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-left: 1px solid;
+}
+
+/* line 28, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_treeview.scss */
+.tree li {
+  margin: 0;
+  padding: 0 1.286rem;
+  line-height: 2em;
+  color: #ffffff;
+  font-weight: 300;
+  position: relative;
+  cursor: pointer;
+}
+
+/* line 38, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_treeview.scss */
+.tree ul li:before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 0;
+  border-top: 1px solid;
+  margin-top: -1px;
+  position: absolute;
+  top: 1em;
+  left: 0;
+}
+
+/* line 50, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_treeview.scss */
+.tree ul li:last-child:before {
+  background: #274156;
+  height: auto;
+  top: 1em;
+  bottom: 0;
+}
+
+/* line 57, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_treeview.scss */
+.indicator {
+  margin-right: 5px;
+}
+
+/* line 61, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_treeview.scss */
+.tree li a {
+  text-decoration: none;
+  color: #ffffff;
+  padding: 0.3em 1rem;
+  border-radius: 100px;
+}
+
+/* line 66, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_treeview.scss */
+.tree li a:hover {
+  background-color: #4e919d;
+  animation: background-color 2s ease-in-out;
+}
+
+/* line 69, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_treeview.scss */
+.tree li a:hover .tree__badge--updated {
+  color: #ffffff;
+}
+
+/* line 73, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_treeview.scss */
+.tree li a.active {
+  background-color: #526778;
+}
+
+/* line 75, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_treeview.scss */
+.tree li a.active:hover {
+  background-color: #4e919d;
+}
+
+/* line 77, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_treeview.scss */
+.tree li a.active:hover .tree__badge--updated {
+  color: #ffffff;
+}
+
+/* line 84, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_treeview.scss */
+.tree li button,
+.tree li button:active,
+.tree li button:focus {
+  text-decoration: none;
+  color: #369;
+  border: none;
+  background: transparent;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  outline: 0;
+}
+
+/* line 96, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_treeview.scss */
+.tree__badge--updated {
+  color: #60af42;
+  font-size: 1.25rem;
+  margin-left: -1rem;
+  margin-right: .2em;
+}
+
+/* line 2, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_scrollPanel.scss */
+.page-content.scroll-pane {
+  height: calc(100vh - 188px);
+  width: auto;
+  overflow-x: none;
+  overflow-y: auto;
+  margin-top: 1.714em;
+}
+
+/* line 12, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_scrollPanel.scss */
+.page-content .jspVerticalBar,
+.page-content .jspTrack {
+  background: transparent;
+}
+
+/* line 16, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_scrollPanel.scss */
+.page-content .jspDrag {
+  border-radius: 100px;
+  margin: 0 0.150em;
+  background: #21333f;
+}
+
+/* line 26, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_scrollPanel.scss */
+#sidebar--overflowBar.scroll-pane {
+  height: calc(100vh - 188px);
+  width: auto;
+  overflow-x: none;
+  overflow-y: auto;
+  margin-top: 1.714em;
+}
+
+/* line 36, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_scrollPanel.scss */
+#sidebar--overflowBar .jspVerticalBar,
+#sidebar--overflowBar .jspTrack {
+  background: transparent;
+}
+
+/* line 40, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_scrollPanel.scss */
+#sidebar--overflowBar .jspDrag {
+  border-radius: 100px;
+  margin: 0 0.150em;
+  background: #21333f;
+}
+
+/* line 50, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_scrollPanel.scss */
+#sidebar--tab-pane.scroll-pane {
+  overflow-x: none;
+  overflow-y: auto;
+}
+
+/* line 53, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_scrollPanel.scss */
+#sidebar--tab-pane.scroll-pane .jspVerticalBar,
+#sidebar--tab-pane.scroll-pane .jspTrack {
+  background: transparent;
+}
+
+/* line 57, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_scrollPanel.scss */
+#sidebar--tab-pane.scroll-pane .jspDrag {
+  border-radius: 100px;
+  margin: 0.20em;
+  background: #a9b3bb;
+}
+
+/* line 65, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_scrollPanel.scss */
+#filter-list__container {
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* line 68, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_scrollPanel.scss */
+#filter-list__container::after {
+  border-left: 2px solid rgba(34, 117, 132, 0.5);
+  width: 2px;
+  height: 100%;
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0px;
+  z-index: 1;
+  -webkit-box-shadow: 0 12px 5px rgba(208, 204, 208, 0.5);
+  -moz-box-shadow: 0 12px 5px rgba(208, 204, 208, 0.5);
+  box-shadow: 0 12px 5px rgba(208, 204, 208, 0.5);
+}
+
+/* line 79, /Users/tiagoallenoliveira/bp1/binew/src/scss/components/_scrollPanel.scss */
+#filter-list__container .select--plus,
+#filter-list__container ul {
+  z-index: 10;
+}
+
+/* line 1, /Users/tiagoallenoliveira/bp1/binew/src/scss/layouts/_login.scss */
+.bp1-application {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  position: absolute;
+  overflow: hidden;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  background-color: #ffffff;
+}
+
+/* line 16, /Users/tiagoallenoliveira/bp1/binew/src/scss/layouts/_login.scss */
+.login--sidebar {
+  background-image: url("../img/login/cta-login.jpg");
+  background-position: top center;
+  background-size: cover;
+  color: #ffffff;
+  z-index: 1;
+  height: 100%;
+}
+
+/* line 23, /Users/tiagoallenoliveira/bp1/binew/src/scss/layouts/_login.scss */
+.login--sidebar::before {
+  background-color: #227584;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  z-index: 2;
+  opacity: .5;
+  content: "";
+}
+
+/* line 36, /Users/tiagoallenoliveira/bp1/binew/src/scss/layouts/_login.scss */
+.login--sidebar > div > div {
+  z-index: 10;
+}
+
+/* line 39, /Users/tiagoallenoliveira/bp1/binew/src/scss/layouts/_login.scss */
+.login--sidebar .logo {
+  background-image: url(../img/logo.svg);
+  background-repeat: no-repeat;
+  height: 88px;
+  width: auto;
+  background-position: left top;
+  background-size: contain;
+}
+
+/* line 50, /Users/tiagoallenoliveira/bp1/binew/src/scss/layouts/_login.scss */
+.login--content .logo {
+  background-image: url(../img/logo-color.svg);
+  background-repeat: no-repeat;
+  height: 88px;
+  width: 100%;
+  background-position: left top;
+  background-size: contain;
+}
+
+/* line 1, /Users/tiagoallenoliveira/bp1/binew/src/scss/layouts/_bi.scss */
+#wrapper {
+  padding-left: 64px;
+  transition: all .4s ease 0s;
+  overflow-y: hidden;
+}
+
+/* line 5, /Users/tiagoallenoliveira/bp1/binew/src/scss/layouts/_bi.scss */
+#wrapper.expanded {
+  padding-left: 408px;
+}
+
+/* line 7, /Users/tiagoallenoliveira/bp1/binew/src/scss/layouts/_bi.scss */
+#wrapper.expanded #sidebar-wrapper {
+  left: 408px;
+}
+
+/* line 9, /Users/tiagoallenoliveira/bp1/binew/src/scss/layouts/_bi.scss */
+#wrapper.expanded #sidebar-wrapper #sidebar--overflowBar {
+  display: block;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* line 14, /Users/tiagoallenoliveira/bp1/binew/src/scss/layouts/_bi.scss */
+#wrapper.expanded #sidebar-wrapper .search__block,
+#wrapper.expanded #sidebar-wrapper .sidebarfooter__block {
+  display: block;
+}
+
+/* line 18, /Users/tiagoallenoliveira/bp1/binew/src/scss/layouts/_bi.scss */
+#wrapper.expanded #sidebar-wrapper #sidebar--overflowBar {
+  height: calc(100vh - 110px);
+}
+
+/* line 24, /Users/tiagoallenoliveira/bp1/binew/src/scss/layouts/_bi.scss */
+#wrapper #sidebar-wrapper {
+  margin-left: -408px;
+  left: 64px;
+  width: 408px;
+  background: #274156;
+  position: fixed;
+  z-index: 10;
+  transition: all .4s ease 0s;
+}
+
+/* line 32, /Users/tiagoallenoliveira/bp1/binew/src/scss/layouts/_bi.scss */
+#wrapper #sidebar-wrapper .search__block,
+#wrapper #sidebar-wrapper #sidebar--overflowBar {
+  display: none;
+}
+
+/* line 36, /Users/tiagoallenoliveira/bp1/binew/src/scss/layouts/_bi.scss */
+#wrapper #sidebar-wrapper #menu-toogle {
+  margin-bottom: 0px;
+}
+
+/* line 42, /Users/tiagoallenoliveira/bp1/binew/src/scss/layouts/_bi.scss */
+#page-content-wrapper {
+  padding-left: 0;
+  margin-left: 0;
+  width: 100%;
+  height: auto;
+  overflow-y: none;
+}
+
+/* line 50, /Users/tiagoallenoliveira/bp1/binew/src/scss/layouts/_bi.scss */
+#filter-list__container {
+  height: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* line 56, /Users/tiagoallenoliveira/bp1/binew/src/scss/layouts/_bi.scss */
+.page-content {
+  background-color: #fbfcff;
+  overflow: none;
+}
+
+/* line 59, /Users/tiagoallenoliveira/bp1/binew/src/scss/layouts/_bi.scss */
+.page-content #content--container {
+  overflow-x: none;
+  overflow-y: auto;
+  padding-bottom: 60px;
+}
+
+/*# sourceMappingURL=../../../biphp/bi/web/css/main.map */
