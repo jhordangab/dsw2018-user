@@ -1,10 +1,12 @@
 <?php
 use yii\helpers\Html;
+use app\assets\AppAsset;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
 dmstr\web\AdminLteAsset::register($this);
+AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -16,7 +18,7 @@ dmstr\web\AdminLteAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body class="login-page">
+<body class="login-page" style="background-color: #6cbe0017">
 
 <?php $this->beginBody() ?>
 
