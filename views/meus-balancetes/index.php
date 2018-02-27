@@ -45,6 +45,13 @@ for($i = 2015; $i > 2022; $i++)
             'data-title' => 'Importação de Balancetes',
             'style' => 'cursor:pointer;'
         ]); ?>
+        
+        <?= Html::a('<i class="fa fa-download"></i> Arquivo Padrão', '/Balancete.ods', 
+        [
+            'title' => 'Download',
+            'class' => 'btn btn-default',
+            'style' => 'cursor:pointer;'
+        ]); ?>
 
     </p>
     
