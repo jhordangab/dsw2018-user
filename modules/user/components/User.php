@@ -28,5 +28,4 @@ class User extends \yii\web\User
     {
         parent::afterLogin($identity, $cookieBased, $duration);
     }
-
 }

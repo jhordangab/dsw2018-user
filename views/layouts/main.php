@@ -30,6 +30,16 @@ $css = <<<CSS
         background-color: #fff;
     }
         
+    .box
+    {
+        padding: 20px;
+    }
+        
+    .content
+    {
+        margin-top: 20px;
+    }
+        
 CSS;
 
 $this->registerCss($css);
@@ -59,6 +69,8 @@ if (Yii::$app->controller->action->id === 'login') {
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
         <?php $this->head() ?>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">

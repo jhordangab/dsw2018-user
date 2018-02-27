@@ -18,7 +18,8 @@ class AppAsset extends AssetBundle
     
     public $js = 
     [
-        'js/iziToast.min.js'
+        'js/iziToast.min.js',
+        'js/js_custom.js'
     ];
     
     public $depends = 

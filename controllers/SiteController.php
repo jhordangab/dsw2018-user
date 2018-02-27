@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use app\models\CategoriaPadrao;
 
 class SiteController extends Controller
 {
@@ -44,6 +45,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $this->layout = 'main';
+        
         return $this->render('index');
     }
 

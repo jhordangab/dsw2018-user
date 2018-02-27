@@ -12,6 +12,22 @@ use yii\helpers\Html;
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
             <span class="sr-only">Toggle navigation</span>
         </a>
+        
+        <?php if($this->title) : ?>
+        
+            <ul class="nav navbar-nav navbar-title hidden-xs">
+
+                <li>
+                    <a href="<?= Yii::$app->urlManager->createUrl(Yii::$app->requestedRoute) ?>">
+                        <span class="hidden-xs">
+                            <?= Html::encode($this->title) ?>
+                        </span>
+                    </a>
+                </li>
+
+            </ul>
+        
+        <?php endif; ?>
 
         <div class="navbar-custom-menu">
 

@@ -2,20 +2,33 @@
 
     <section class="sidebar">
 
-        <?= dmstr\widgets\Menu::widget(
-            [
-                'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
-                'items' => 
+        <?php if(Yii::$app->user->identity->nome == 'Cliente') : ?>
+        
+            <?= dmstr\widgets\Menu::widget(
                 [
-                    ['label' => 'Dashboard', 'icon' => 'dashboard', 'url' => ['/']],
-                    ['label' => 'Categorias', 'icon' => 'tags', 'url' => ['/']],
-                    ['label' => 'Balancetes', 'icon' => 'file-o', 'url' => ['/']],
-                    ['label' => 'Empresas', 'icon' => 'building', 'url' => ['/']],
-                    ['label' => 'Configurações', 'icon' => 'cogs', 'url' => ['/']]
-                ],
-            ]
-        ) ?>
-
+                    'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
+                    'items' => 
+                    [
+                        ['label' => 'Meus Balancetes', 'icon' => 'dashboard', 'url' => ['/meus-balancetes']],
+                    ],
+                ]
+            ) ?>
+        
+        <?php else : ?>
+        
+            <?= dmstr\widgets\Menu::widget(
+                [
+                    'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
+                    'items' => 
+                    [
+                        ['label' => 'Categorias Padrões', 'icon' => 'tags', 'url' => ['/categoria']],
+                        ['label' => 'Balancetes', 'icon' => 'dashboard', 'url' => ['/balancete']],
+                    ],
+                ]
+            ) ?>
+        
+        <?php endif; ?>
+        
     </section>
 
 </aside>

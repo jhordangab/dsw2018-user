@@ -3,8 +3,8 @@
 return 
 [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=bancobi.bp1.com.br;dbname=uau2',
+    'dsn' => 'mysql:host=localhost;dbname=agrocontar',
     'username' => 'root',
-    'password' => 'r44t',
+    'password' => 'root',
     'charset' => 'utf8'
 ];

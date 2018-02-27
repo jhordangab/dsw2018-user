@@ -18,11 +18,15 @@ class User extends Model implements IdentityInterface
     
     public $version;
     
+    public $is_admin;
+    
+    public $empresa_id;
+    
     public function rules()
     {
         $rules = 
         [
-            [['id', 'desc_uid', 'perfil_id', 'nome', 'version'], 'safe'],
+            [['id', 'desc_uid', 'perfil_id', 'nome', 'version', 'is_admin', 'empresa_id'], 'safe'],
         ];
 
         return $rules;
@@ -36,7 +40,9 @@ class User extends Model implements IdentityInterface
             'desc_uid' => 'UID',
             'perfil_id' => 'Perfil',
             'nome' => 'Nome',
-            'version' => 'Versão'
+            'version' => 'Versão',
+            'is_admin' => 'Administrador',
+            'empresa_id' => 'Empresa'
         ];
     }
 

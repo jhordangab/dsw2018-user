@@ -21,7 +21,13 @@
         "kartik-v/yii2-grid": "@dev",
         "kartik-v/yii2-builder": "@dev",
         "yiisoft/yii2-httpclient": "^2.0",
-        "dmstr/yii2-adminlte-asset": "^2.1"
+        "dmstr/yii2-adminlte-asset": "^2.1",
+        "kartik-v/yii2-tree-manager": "@dev",
+        "execut/yii2-widget-bootstraptreeview": "dev-master",
+        "yiisoft/yii2-jui": "^2.0",
+        "kartik-v/yii2-widget-fileinput": "@dev",
+        "moonlandsoft/yii2-phpexcel": "*",
+        "yii2mod/yii2-sweet-alert": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
