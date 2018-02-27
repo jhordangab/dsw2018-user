@@ -9,150 +9,77 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $sum = 0;
 
-$css = <<<CSS
+$js = <<<JS
         
-    .css-treeview ul,
-    .css-treeview li
+   
+    $(document).delegate('.body-balancete .open-children .fa-plus', 'click', function()
     {
-        padding: 0;
-        margin: 0;
-        list-style: none;
-    }
-
-    .css-treeview input
-    {
-        position: absolute;
-        opacity: 0;
-    }
-
-    .css-treeview
-    {
-        font: normal 11px "Segoe UI", Arial, Sans-serif;
-        -moz-user-select: none;
-        -webkit-user-select: none;
-        user-select: none;
-    }
-
-    .css-treeview a
-    {
-        color: #00f;
-        text-decoration: none;
-    }
-
-    .css-treeview a:hover
-    {
-        text-decoration: underline;
-    }
-
-    .css-treeview input + label + ul
-    {
-        margin: 0 0 0 22px;
-    }
-
-    .css-treeview input ~ ul
-    {
-        display: none;
-    }
-
-    .css-treeview label,
-    .css-treeview label::before
-    {
-        cursor: pointer;
-    }
-
-    .css-treeview input:disabled + label
-    {
-        cursor: default;
-        opacity: .6;
-    }
-
-    .css-treeview input:checked:not(:disabled) ~ ul
-    {
-        display: block;
-    }
-
-    .css-treeview label,
-    .css-treeview label::before
-    {
-        background: url("/img/icons.png") no-repeat;
-    }
-
-    .css-treeview label,
-    .css-treeview a,
-    .css-treeview label::before
-    {
-        display: inline-block;
-        height: 16px;
-        line-height: 16px;
-        vertical-align: middle;
-    }
-
-    .css-treeview label
-    {
-        background-position: 18px 0;
-        width: 100%;
-    }
+        var _id = $(this).parent().parent().data('id');
         
-    .css-treeview span
-    {
-        margin: 2px;
-        height: 16px;
-        line-height: 16px;
-        display: inline-block;
-        vertical-align: middle;
-    }
+        $('.open-children[data-pai_id="' + _id + '"]').show();
+
+        $(this).removeClass('fa-plus');
+        $(this).addClass('fa-minus');
+    });
         
-    .css-treeview span.span-right
+    $(document).delegate('.body-balancete .open-children .fa-minus', 'click', function()
     {
-        float: right;
-    }
+        var _id = $(this).parent().parent().data('id');
+        
+        $('.open-children[data-pai_id="' + _id + '"]').hide();
 
-    .css-treeview label::before
+        $(this).removeClass('fa-minus');
+        $(this).addClass('fa-plus');
+    });
+        
+    $('.i-alterar').click(function () 
     {
-        content: "";
-        width: 16px;
-        margin: 0 22px 0 0;
-        vertical-align: middle;
-        background-position: 0 -32px;
-    }
-
-    .css-treeview input:checked + label::before
+        var _id = $(this).data('id');
+        var url = '/balancete/update?id=' + _id;
+        $('#iframe_modal_balancete').attr('src', url);
+        $("[id^='modal_balancete']").modal("show");
+        $('.modal-backdrop').removeClass('modal-backdrop');
+        $('#modal_balancete .modal-header h3').text('Alterar Balancete');
+    });
+        
+    $('.i-excluir').click(function () 
     {
-        background-position: 0 -16px;
-    }
-
-    /* webkit adjacent element selector bugfix */
-    @media screen and (-webkit-min-device-pixel-ratio:0)
-    {
-        .css-treeview 
+        var _id = $(this).data('id');
+        
+        swal({
+            title: "Exclusão de Balancete",
+            text: "Deseja excluir o valor do balancete selecionado?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => 
         {
-            -webkit-animation: webkit-adjacent-element-selector-bugfix infinite 1s;
-        }
-
-        @-webkit-keyframes webkit-adjacent-element-selector-bugfix 
-        {
-            from 
-            { 
-                padding: 0;
-            } 
-            to 
-            { 
-                padding: 0;
+            if (willDelete) 
+            {
+                jQuery.ajax({
+                    url: '/balancete/delete?id=' + _id,
+                    success: function (data) 
+                    {
+                        window.location.reload();
+                    },
+                });
             }
-        }
-    }
+        });
+    });
         
-    .css-treeview li:hover,
-    .css-treeview li:focus
+    $("[id^='modal_balancete']").on('hidden.bs.modal', function () 
     {
-        background-color: #e2ede86e;
-    }
+        window.location.reload();
+    });
         
-CSS;
+        
+JS;
 
-$this->registerCss($css);
+$this->registerJs($js);
 
 ?>
+
+<?= $this->render('_wf_iframe_balancete') ?>
 
 <div class="balancete-view box">
 
@@ -160,180 +87,169 @@ $this->registerCss($css);
         <?= Html::a('Voltar', ['index'], ['class' => 'btn btn-default']) ?>
     </p>
     
-    <div class="css-treeview" style="margin: 10px;">
-
-        <ul>
-
+    <table class="table table-hover">
+        
+        <thead>
+            
+            <tr>
+                
+                <!-- <th scope="col"></th> -->
+                
+                <th scope="col">Categoria</th>
+                
+                <th scope="col">Descriçao</th>
+                
+                <th scope="col">Valor</th>
+                
+                <th scope="col"></th>
+            
+            </tr>
+        
+        </thead>
+        
+        <tbody class="body-balancete">
+            
             <?php foreach($balancetes as $ias => $bas): ?>
 
-                <li>
+                <tr class="open-children" data-id="<?= $bas["attributes"]["id"]; ?>">
 
-                    <input type="checkbox" id="item-<?= $ias; ?>" />
+                    <!-- <td><i class="fa fa-plus"></i></td> -->
+                    
+                    <td><?= $bas["attributes"]['desc_codigo']; ?></td>
 
-                    <label for="item-<?= $ias; ?>">
-                        <span class="span-left">
-                            <?= $bas["attributes"]['desc_codigo'] . ' - ' . $bas["attributes"]['descricao']; ?>
-                        </span>
+                    <td><?= $bas["attributes"]['descricao']; ?></td>
 
-                        <span class="span-right">
-                            <?php
-                                $fas = BalanceteValor::find()->andWhere(['is_ativo' => TRUE, 'is_excluido' => FALSE, 'balancete_id' => $model->id, 'categoria_id' => $bas["attributes"]['codigo']])->one(); 
+                    <td></td>
+                    
+                    <td></td>
 
-                                echo ($fas) ? 'R$ ' . number_format($fas->valor, 2, ',', '.') : 'R$ 0,00';
-                            ?>
-                        </span>
-                    </label>
+                </tr>
+                
+                <?php foreach($bas["children"] as $iba => $ba): ?>
 
-                    <ul>
+                    <tr class="open-children" data-id="<?= $ba["attributes"]["id"]; ?>" data-pai_id="<?= $ba["attributes"]["codigo_pai"]; ?>">
 
-                        <?php foreach($bas["children"] as $iba => $ba): ?>
+                        <!-- <td><i class="fa fa-plus"></i></td> -->
+                        
+                        <td><?= $ba["attributes"]['desc_codigo']; ?></td>
 
-                            <li>
+                        <td><?= $ba["attributes"]['descricao']; ?></td>
 
-                                <input type="checkbox" id="item-<?= $ias; ?>-<?= $iba; ?>" />
+                        <td></td>
+                        
+                        <td></td>
 
-                                <label for="item-<?= $ias; ?>-<?= $iba; ?>">
+                    </tr>
 
-                                    <span class="span-left">
-                                        <?= $ba["attributes"]['desc_codigo'] . ' - ' . $ba["attributes"]['descricao']; ?>
-                                    </span>
+                    <?php foreach($ba["children"] as $ibb =>  $bb): ?>
 
-                                    <span class="span-right">
-                                        <?php
-                                            $fa = BalanceteValor::find()->andWhere(['is_ativo' => TRUE, 'is_excluido' => FALSE, 'balancete_id' => $model->id, 'categoria_id' => $ba["attributes"]['codigo']])->one(); 
+                        <tr class="open-children" data-id="<?= $bb["attributes"]["id"]; ?>" data-pai_id="<?= $bb["attributes"]["codigo_pai"]; ?>">
 
-                                            echo ($fa) ? 'R$ ' . number_format($fa->valor, 2, ',', '.') : 'R$ 0,00';
-                                        ?>
-                                    </span>
+                            <!-- <td><i class="fa fa-plus"></i></td> -->
+                            
+                            <td><?= $bb["attributes"]['desc_codigo']; ?></td>
 
-                                </label>
+                            <td><?= $bb["attributes"]['descricao']; ?></td>
 
-                                <ul>
+                            <td></td>
+                            
+                            <td></td>
 
-                                    <?php foreach($ba["children"] as $ibb =>  $bb): ?>
+                        </tr>
 
-                                        <li>
+                        <?php foreach($bb["children"] as $ibc =>  $bc): ?>
 
-                                            <input type="checkbox" id="item-<?= $ias; ?>-<?= $iba; ?>-<?= $ibb; ?>" />
+                            <tr class="open-children" data-id="<?= $bc["attributes"]["id"]; ?>" data-pai_id="<?= $bc["attributes"]["codigo_pai"]; ?>">
 
-                                            <label for="item-<?= $ias; ?>-<?= $iba; ?>-<?= $ibb; ?>">
+                                <!-- <td><i class="fa fa-plus"></i></td> -->
+                                
+                                <td><?= $bc["attributes"]['desc_codigo']; ?></td>
 
-                                                <span class="span-left">
-                                                    <?= $bb["attributes"]['desc_codigo'] . ' - ' . $bb["attributes"]['descricao']; ?>
-                                                </span>
+                                <td><?= $bc["attributes"]['descricao']; ?></td>
 
-                                                <span class="span-right">
-                                                    <?php
-                                                        $fb = BalanceteValor::find()->andWhere(['is_ativo' => TRUE, 'is_excluido' => FALSE, 'balancete_id' => $model->id, 'categoria_id' => $bb["attributes"]['codigo']])->one(); 
+                                <td></td>
+                                
+                                <td></td>
 
-                                                        echo ($fb) ? 'R$ ' . number_format($fb->valor, 2, ',', '.') : 'R$ 0,00';
-                                                    ?>
-                                                </span>
+                            </tr>
 
-                                            </label>
+                            <?php foreach($bc["children"] as $ibd =>  $bd): ?>
 
-                                            <ul>
+                                <tr class="open-children" data-id="<?= $bd["attributes"]["id"]; ?>" data-pai_id="<?= $bd["attributes"]["codigo_pai"]; ?>">
 
-                                                <?php foreach($bb["children"] as $ibc =>  $bc): ?>
+                                    <!-- <td><i class="fa fa-plus"></i></td> -->
+                                    
+                                    <td><?= $bd["attributes"]['desc_codigo']; ?></td>
 
-                                                    <li>
+                                    <td><?= $bd["attributes"]['descricao']; ?></td>
 
-                                                        <input type="checkbox" id="item-<?= $ias; ?>-<?= $iba; ?>-<?= $ibb; ?>-<?= $ibc; ?>" />
+                                    <td></td>
+                                    
+                                    <td></td>
 
-                                                        <label for="item-<?= $ias; ?>-<?= $iba; ?>-<?= $ibb; ?>-<?= $ibc; ?>">
+                                </tr>
 
-                                                            <span class="span-left">
-                                                                <?= $bc["attributes"]['desc_codigo'] . ' - ' . $bc["attributes"]['descricao']; ?>
-                                                            </span>
+                                <?php foreach($bd["children"] as $ibe =>  $be): ?>
 
-                                                            <span class="span-right">
-                                                                <?php
-                                                                    $fc = BalanceteValor::find()->andWhere(['is_ativo' => TRUE, 'is_excluido' => FALSE, 'balancete_id' => $model->id, 'categoria_id' => $bc["attributes"]['codigo']])->one(); 
+                                    <tr class="open-children" data-id="<?= $be["attributes"]["id"]; ?>" data-pai_id="<?= $be["attributes"]["codigo_pai"]; ?>">
 
-                                                                    echo ($fc) ? 'R$ ' . number_format($fc->valor, 2, ',', '.') : 'R$ 0,00';
-                                                                ?>
-                                                            </span>
+                                        <!-- <td></td> -->
+                                        
+                                        <td><b><?= $be["attributes"]['desc_codigo']; ?></b></td>
 
-                                                        </label>
+                                        <td><b><?= $be["attributes"]['descricao']; ?></b></td>
 
-                                                        <ul>
+                                        <td><b>
+                                            
+                                            <?php
+                                                $fe = BalanceteValor::find()->andWhere(['is_ativo' => TRUE, 'is_excluido' => FALSE, 'balancete_id' => $model->id, 'categoria_id' => $be["attributes"]['codigo']])->one(); 
 
-                                                            <?php foreach($bc["children"] as $ibd =>  $bd): ?>
+                                                echo ($fe) ? 'R$ ' . number_format($fe->valor, 2, ',', '.') : '';
+                                                
+                                                $sum += ($fe) ? $fe->valor : 0;
+                                            ?>
+                                            
+                                        </b></td>
+                                        
+                                        <td>
+                                            <?php if($fe) : ?>
+                                            
+                                                <i class="fa i-alterar fa-edit" style="cursor: pointer;" data-id="<?= ($fe) ? $fe->id : ''; ?>"></i>
+                                                <i class="fa i-excluir fa-trash" style="cursor: pointer;" data-id="<?= ($fe) ? $fe->id : ''; ?>"></i>
+                                                
+                                            <?php endif; ?>
+                                        </td>
 
-                                                                <li>
+                                    </tr>
 
-                                                                    <input type="checkbox" id="item-<?= $ias; ?>-<?= $iba; ?>-<?= $ibb; ?>-<?= $ibc; ?>-<?= $ibd; ?>" />
+                                <?php endforeach; ?>
 
-                                                                    <label for="item-<?= $ias; ?>-<?= $iba; ?>-<?= $ibb; ?>-<?= $ibc; ?>-<?= $ibd; ?>">
-
-                                                                        <span class="span-left">
-                                                                            <?= $bd["attributes"]['desc_codigo'] . ' - ' . $bd["attributes"]['descricao']; ?>
-                                                                        </span>
-
-                                                                        <span class="span-right">
-                                                                            <?php
-                                                                                $fd = BalanceteValor::find()->andWhere(['is_ativo' => TRUE, 'is_excluido' => FALSE, 'balancete_id' => $model->id, 'categoria_id' => $bd["attributes"]['codigo']])->one(); 
-
-                                                                                echo ($fd) ? 'R$ ' . number_format($fd->valor, 2, ',', '.') : 'R$ 0,00';
-                                                                            ?>
-                                                                        </span>
-
-                                                                    </label>
-
-                                                                    <ul>
-
-                                                                        <?php foreach($bd["children"] as $ibe =>  $be): ?>
-
-                                                                            <li>
-
-                                                                                <span class="span-left">
-                                                                                    <i class="fa fa-tag"></i> <?= $be["attributes"]['desc_codigo'] . ' - ' . $be["attributes"]['descricao']; ?>
-                                                                                </span>
-
-                                                                                <span class="span-right">
-                                                                                    <?php
-                                                                                        $fe = BalanceteValor::find()->andWhere(['is_ativo' => TRUE, 'is_excluido' => FALSE, 'balancete_id' => $model->id, 'categoria_id' => $be["attributes"]['codigo']])->one(); 
-
-                                                                                        echo ($fe) ? 'R$ ' . number_format($fe->valor, 2, ',', '.') : 'R$ 0,00';
-                                                                                    ?>
-                                                                                </span>
-
-                                                                            </li>
-
-                                                                        <?php endforeach; ?>
-
-                                                                    </ul>
-
-                                                                </li>
-
-                                                            <?php endforeach; ?>
-
-                                                        </ul>
-
-                                                    </li>
-
-                                                <?php endforeach; ?>
-
-                                            </ul>
-
-                                        </li>
-
-                                    <?php endforeach; ?>
-
-                                </ul>
-
-                            </li>
+                            <?php endforeach; ?>
 
                         <?php endforeach; ?>
 
-                    </ul>
+                    <?php endforeach; ?>
 
-                </li>
+                <?php endforeach; ?>
 
             <?php endforeach; ?>
-
-        </ul>
-
-    </div>
+            
+            <tr>
+                
+                 <!--<td></td> -->
+                
+                <td></td>
+                
+                <td></td>
+                                
+                <td><b>R$ <?= number_format($sum, 2, ',', '.'); ?></b></td>
+                
+                <td></td>
+            
+            </tr>
+            
+        </tbody>
+        
+    </table>
 
 </div>

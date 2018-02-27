@@ -103,7 +103,6 @@ class CategoriaController extends Controller
         $model = $this->findModel($id);
         $model->is_excluido = 1;
         $model->save(FALSE, ['is_excluido']);
-        var_dump($model->getErrors());die;
     }
 
     protected function findModel($id)

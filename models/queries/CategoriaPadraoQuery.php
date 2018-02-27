@@ -146,7 +146,7 @@ class CategoriaPadraoQuery extends \yii\db\ActiveQuery
     public function getData($pai_id = null, $empresa_id = null)
     {
         $query1 = (new \yii\db\Query())
-            ->select("codigo_pai, codigo, desc_codigo, descricao, is_service")
+            ->select("id, codigo_pai, codigo, desc_codigo, descricao, is_service")
             ->from('categoria_padrao')
             ->andWhere(
             [
@@ -155,7 +155,7 @@ class CategoriaPadraoQuery extends \yii\db\ActiveQuery
             ]);
         
         $query2 = (new \yii\db\Query())
-            ->select("codigo_pai, codigo, desc_codigo, descricao, is_service")
+            ->select("id, codigo_pai, codigo, desc_codigo, descricao, is_service")
             ->from('categoria_empresa')
             ->andWhere(
             [

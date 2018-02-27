@@ -23,6 +23,12 @@ $config = [
     ],
     'components' => 
     [
+        'formatter' => 
+        [
+            'class' => 'yii\i18n\formatter',
+            'thousandSeparator' => '.',
+            'decimalSeparator' => ',',
+        ],
         'request' => 
         [
             'cookieValidationKey' => 'mlKdROOiahYA_57c3jx2D3SkysNb7Vm4',

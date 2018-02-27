@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use app\models\BalanceteValor;
 
-$this->title = $model->mes . '/' . $model->ano;
+$this->title = 'Meu Balancete: ' . $model->mes . '/' . $model->ano;
 $this->params['breadcrumbs'][] = ['label' => 'Meus Balancetes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
