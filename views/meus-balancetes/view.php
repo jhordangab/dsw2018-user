@@ -289,7 +289,7 @@ $this->registerCss($css);
                                                                             <li class="service">
 
                                                                                 <span class="span-left">
-                                                                                    <i class="fa fa-tag"></i> <?= $be["attributes"]['desc_codigo'] . ' - ' . $be["attributes"]['descricao']; ?>
+                                                                                    <i class="fa fa-arrow-right"></i> <?= $be["attributes"]['desc_codigo'] . ' - ' . $be["attributes"]['descricao']; ?>
                                                                                 </span>
 
                                                                                 <span class="span-right">

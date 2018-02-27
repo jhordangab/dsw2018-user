@@ -21,7 +21,7 @@
                     'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                     'items' => 
                     [
-                        ['label' => 'Categorias Padrões', 'icon' => 'tags', 'url' => ['/categoria']],
+                        ['label' => 'Planos Padrões', 'icon' => 'tags', 'url' => ['/categoria']],
                         ['label' => 'Balancetes', 'icon' => 'calculator', 'url' => ['/balancete']],
                     ],
                 ]

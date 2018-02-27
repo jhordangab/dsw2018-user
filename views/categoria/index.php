@@ -1,6 +1,6 @@
 <?php
 
-$this->title = 'Balancetes padrões';
+$this->title = 'Planos padrões';
 $this->params['breadcrumbs'][] = $this->title;
 
 $css = <<<CSS
@@ -333,7 +333,7 @@ $this->registerJs($js);
                                                                             <li class="service">
 
                                                                                 <span class="span-left">
-                                                                                    <i class="fa fa-tag"></i> <?= $be["attributes"]['desc_codigo'] . ' - ' . $be["attributes"]['descricao']; ?>
+                                                                                    <i class="fa fa-arrow-right"></i> <?= $be["attributes"]['desc_codigo'] . ' - ' . $be["attributes"]['descricao']; ?>
                                                                                 </span>
 
                                                                                 <span class="span-right">
