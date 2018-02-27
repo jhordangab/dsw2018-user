@@ -2,9 +2,6 @@
 use yii\helpers\Html;
 use app\assets\AppAsset;
 
-/* @var $this \yii\web\View */
-/* @var $content string */
-
 dmstr\web\AdminLteAsset::register($this);
 AppAsset::register($this);
 ?>
@@ -16,6 +13,7 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+    <link rel="shortcut icon" href="/favicon.ico" />
     <?php $this->head() ?>
 </head>
 <body class="login-page" style="background-color: #6cbe0017">

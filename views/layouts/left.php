@@ -9,7 +9,7 @@
                     'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                     'items' => 
                     [
-                        ['label' => 'Meus Balancetes', 'icon' => 'dashboard', 'url' => ['/meus-balancetes']],
+                        ['label' => 'Meus Balancetes', 'icon' => 'calculator', 'url' => ['/meus-balancetes']],
                     ],
                 ]
             ) ?>
@@ -22,7 +22,7 @@
                     'items' => 
                     [
                         ['label' => 'Categorias Padrões', 'icon' => 'tags', 'url' => ['/categoria']],
-                        ['label' => 'Balancetes', 'icon' => 'dashboard', 'url' => ['/balancete']],
+                        ['label' => 'Balancetes', 'icon' => 'calculator', 'url' => ['/balancete']],
                     ],
                 ]
             ) ?>

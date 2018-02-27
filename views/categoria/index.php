@@ -142,7 +142,9 @@ $css = <<<CSS
     }
         
     .css-treeview li:hover > label,
-    .css-treeview > li:focus > label
+    .css-treeview > li:focus > label,
+    .css-treeview li.service:hover,
+    .css-treeview > li.service:focus
     {
         background-color: #e2ede8e0;
     }
@@ -328,7 +330,7 @@ $this->registerJs($js);
                                     
                                                                         <?php foreach($bd["children"] as $ibe =>  $be): ?>
 
-                                                                            <li>
+                                                                            <li class="service">
 
                                                                                 <span class="span-left">
                                                                                     <i class="fa fa-tag"></i> <?= $be["attributes"]['desc_codigo'] . ' - ' . $be["attributes"]['descricao']; ?>

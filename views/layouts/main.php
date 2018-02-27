@@ -80,6 +80,7 @@ if (Yii::$app->controller->action->id === 'login') {
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <link rel="shortcut icon" href="/favicon.ico" />
 
         <?php $this->head() ?>
     </head>
