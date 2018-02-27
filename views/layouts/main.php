@@ -40,6 +40,16 @@ $css = <<<CSS
         margin-top: 20px;
     }
         
+    @media (max-width: 767px)
+    {
+        header .logo-lg img
+        {
+            width: 100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+    
 CSS;
 
 $this->registerCss($css);

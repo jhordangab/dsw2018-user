@@ -36,7 +36,7 @@ use yii\helpers\Html;
                 <li class="dropdown user user-menu">
                     
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="hidden-xs"><?= Yii::$app->user->identity->nome ?></span>
+                        <span><?= Yii::$app->user->identity->nome ?></span>
                     </a>
                     
                     <ul class="dropdown-menu">

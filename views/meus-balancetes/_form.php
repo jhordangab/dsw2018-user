@@ -132,7 +132,7 @@ for($i = 2015; $i <= 2022; $i++)
 
     <?= Html::submitButton('Importar', 
     [
-        'class' => 'btn btn-success',
+        'class' => 'btn btn-success pull-right',
     ]); ?>
 
     <?php ActiveForm::end(); ?>
