@@ -1,12 +1,27 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
-use yii\helpers\ArrayHelper;
-use app\models\Empresa;
+use kartik\grid\GridView;
+use app\magic\StatusBalanceteMagic;
 
 $this->title = 'Balancetes';
 $this->params['breadcrumbs'][] = $this->title;
+
+$css = <<<CSS
+        
+    .badge.badge-success
+    {
+        background-color: #1fbb6b;
+    }
+        
+    .badge.badge-warning
+    {
+        background-color: yellow;
+    }
+        
+CSS;
+
+$this->registerCss($css);
 
 $meses = 
 [
@@ -38,14 +53,24 @@ for($i = 2015; $i > 2022; $i++)
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'pjax' => TRUE,
         'columns' => 
         [
             [
-                'attribute' => 'empresa_id',
-                'filter' => ArrayHelper::map(Empresa::find()->andWhere(['is_ativo' => TRUE, 'is_excluido' => FALSE])->orderBy('razao_social ASC')->all(), 'id', 'razao_social'),
+                'attribute' => 'empresa_nome',
+            ],
+            [
+                'attribute' => 'status',
+                'filter' => StatusBalanceteMagic::$status,
+                'format' => 'raw',
+                'headerOptions' => ['style' => 'text-align: center;'],
+                'contentOptions' => ['style' => 'text-align: center;'],
                 'value' => function ($model)
                 {
-                    return $model->empresa->razao_social;
+                    $status = StatusBalanceteMagic::getStatus($model->status);
+                    $class = StatusBalanceteMagic::getClass($model->status);
+                    
+                    return "<span class='badge badge-{$class}' title='{$status}'>&nbsp;</span>";
                 }
             ],
             [

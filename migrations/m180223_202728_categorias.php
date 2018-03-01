@@ -14,25 +14,6 @@ class m180223_202728_categorias extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
         
-        $this->createTable('{{%empresa}}', 
-        [
-            'id' => Schema::TYPE_PK,
-            'codigo' => Schema::TYPE_INTEGER . ' not null',
-            'razao_social' => Schema::TYPE_STRING . ' not null',
-            'cnpj' => Schema::TYPE_STRING . ' not null',
-            'is_ativo' => Schema::TYPE_BOOLEAN . ' not null default TRUE',
-            'is_excluido' => Schema::TYPE_BOOLEAN . ' not null default FALSE',
-            'created_at' => Schema::TYPE_TIMESTAMP . ' null',
-            'updated_at' => Schema::TYPE_TIMESTAMP . ' null',
-            'created_by' => Schema::TYPE_INTEGER . ' null',
-            'updated_by' => Schema::TYPE_INTEGER . ' null',
-        ], $tableOptions);
-        
-        $this->batchInsert('{{%empresa}}', ['codigo', 'razao_social', 'cnpj'], 
-        [
-            [260, 'VEGETAL AGRONEGOCIOS LTDA', '05.429.994/0001-80']
-        ]);
-        
         $this->createTable('{{%categoria_padrao}}', 
         [
             'id' => Schema::TYPE_PK,
@@ -67,8 +48,6 @@ class m180223_202728_categorias extends Migration
             'created_by' => Schema::TYPE_INTEGER . ' null',
             'updated_by' => Schema::TYPE_INTEGER . ' null',
         ], $tableOptions);
-        
-        $this->addForeignKey('{{%caem_empr_fk}}', '{{%categoria_empresa}}', 'empresa_id', '{{%empresa}}', 'id');
         
         $this->batchInsert('{{%categoria_padrao}}', ['codigo', 'desc_codigo', 'descricao'], 
         [

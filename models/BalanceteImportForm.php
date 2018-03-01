@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use moonland\phpexcel\Excel;
+use app\magic\StatusBalanceteMagic;
 
 class BalanceteImportForm extends yii\base\Model
 {
@@ -66,10 +67,16 @@ class BalanceteImportForm extends yii\base\Model
         $empresa_id = Yii::$app->user->identity->empresa_id;
         
         $balancete = new Balancete();
+        $balancete->setScenario(Balancete::SCENARIO_IMPORTATION);
         $balancete->empresa_id = $empresa_id;
+        $balancete->empresa_nome = Yii::$app->user->identity->empresa_nome;
         $balancete->mes = $this->mes;
         $balancete->ano = $this->ano;
-        $balancete->save();
+        $balancete->status = StatusBalanceteMagic::STATUS_SENT;
+        if(!$balancete->save())
+        {
+            var_dump($balancete->getErrors());die;
+        }
         
         foreach($data[0] as $value)
         {

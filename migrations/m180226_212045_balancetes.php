@@ -18,6 +18,7 @@ class m180226_212045_balancetes extends Migration
         [
             'id' => Schema::TYPE_PK,
             'empresa_id' => Schema::TYPE_INTEGER . ' not null',
+            'empresa_nome' => Schema::TYPE_STRING . ' not null',
             'mes' => Schema::TYPE_INTEGER . ' not null',
             'ano' => Schema::TYPE_INTEGER . ' not null',
             'is_ativo' => Schema::TYPE_BOOLEAN . ' not null default TRUE',
@@ -27,8 +28,6 @@ class m180226_212045_balancetes extends Migration
             'created_by' => Schema::TYPE_INTEGER . ' null',
             'updated_by' => Schema::TYPE_INTEGER . ' null',
         ], $tableOptions);
-        
-        $this->addForeignKey('{{%bala_empr_fk}}', '{{%balancete}}', 'empresa_id', '{{%empresa}}', 'id');
         
         $this->createTable('{{%balancete_valor}}', 
         [

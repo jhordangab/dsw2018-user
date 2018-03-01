@@ -20,6 +20,9 @@ $config = [
         [
             'class' => 'app\modules\user\Module',
         ],
+        'gridview' => [
+            'class' => '\kartik\grid\Module'
+        ],
     ],
     'components' => 
     [

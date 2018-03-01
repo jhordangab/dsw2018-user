@@ -18,7 +18,6 @@ class CategoriaEmpresa extends \yii\db\ActiveRecord
             [['empresa_id', 'codigo_pai', 'codigo', 'is_service', 'is_ativo', 'is_excluido', 'created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['codigo_red', 'desc_codigo', 'descricao'], 'string', 'max' => 255],
-            [['empresa_id'], 'exist', 'skipOnError' => true, 'targetClass' => Empresa::className(), 'targetAttribute' => ['empresa_id' => 'id']],
         ];
     }
 
@@ -58,11 +57,6 @@ class CategoriaEmpresa extends \yii\db\ActiveRecord
                 'value' => new \yii\db\Expression('NOW()'),
             ],
         ];
-    }
-
-    public function getEmpresa()
-    {
-        return $this->hasOne(Empresa::className(), ['id' => 'empresa_id']);
     }
 
     public static function find()

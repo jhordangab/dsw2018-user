@@ -13,7 +13,7 @@ class BalanceteSearch extends Balancete
     {
         return [
             [['id', 'empresa_id', 'mes', 'ano', 'is_ativo', 'is_excluido', 'created_by', 'updated_by'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
+            [['created_at', 'updated_at', 'empresa_nome', 'status'], 'safe'],
         ];
     }
 
@@ -56,6 +56,9 @@ class BalanceteSearch extends Balancete
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,
         ]);
+        
+        $query->andFilterWhere(['like', 'status', $this->status])
+        ->andFilterWhere(['like', 'empresa_nome', $this->empresa_nome]);
 
         return $dataProvider;
     }

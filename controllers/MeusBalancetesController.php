@@ -29,7 +29,7 @@ class MeusBalancetesController extends Controller
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) 
                         {
-                            return !Yii::$app->user->identity->is_admin;
+                            return !in_array(Yii::$app->user->identity->perfil_id, ['1', '26']);
                         }
                     ],
                 ],

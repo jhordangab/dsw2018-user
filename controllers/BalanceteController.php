@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 use app\models\CategoriaPadrao;
 use app\models\BalanceteValor;
+use app\magic\StatusBalanceteMagic;
 
 class BalanceteController extends Controller
 {
@@ -23,12 +24,12 @@ class BalanceteController extends Controller
                 'rules' => 
                 [
                     [
-                        'actions' => ['index', 'view', 'update', 'delete'],
+                        'actions' => ['index', 'view', 'update', 'delete', 'validate'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) 
                         {
-                            return Yii::$app->user->identity->is_admin;
+                            return in_array(Yii::$app->user->identity->perfil_id, ['1', '26']);
                         }
                     ],
                 ],
@@ -56,6 +57,26 @@ class BalanceteController extends Controller
             'model' => $model,
             'balancetes' => $balancetes
         ]);
+    }
+    
+    public function actionValidate($id)
+    {
+        $this->layout = '//_layout_modal';
+        $model = $this->findModel($id);
+        $model->setScenario(Balancete::SCENARIO_VALIDATION);
+        $model->status = StatusBalanceteMagic::STATUS_VALIDATED;
+        
+        if ($model->load(Yii::$app->request->post()) && $model->save())
+        {
+            \Yii::$app->getSession()->setFlash('success','O balancete foi validado com sucesso.');
+            $this->refresh();
+        }
+        else 
+        {
+            return $this->render('_form-validate', [
+                'model' => $model,
+            ]);
+        }
     }
     
     public function actionUpdate($id)

@@ -14,19 +14,21 @@ class User extends Model implements IdentityInterface
     
     public $perfil_id;
     
+    public $perfil_nome;
+    
     public $nome;
     
-    public $version;
-    
-    public $is_admin;
-    
     public $empresa_id;
+    
+    public $empresa_nome;
+    
+    public $version;
     
     public function rules()
     {
         $rules = 
         [
-            [['id', 'desc_uid', 'perfil_id', 'nome', 'version', 'is_admin', 'empresa_id'], 'safe'],
+            [['id', 'desc_uid', 'perfil_id', 'perfil_nome', 'nome', 'empresa_id', 'empresa_nome', 'version'], 'safe'],
         ];
 
         return $rules;
@@ -39,10 +41,11 @@ class User extends Model implements IdentityInterface
             'id' => 'ID',
             'desc_uid' => 'UID',
             'perfil_id' => 'Perfil',
+            'perfil_nome' => 'Perfil',
             'nome' => 'Nome',
-            'version' => 'Versão',
-            'is_admin' => 'Administrador',
-            'empresa_id' => 'Empresa'
+            'empresa_id' => 'Empresa',
+            'empresa_nome' => 'Empresa',
+            'version' => 'Versão'
         ];
     }
 
