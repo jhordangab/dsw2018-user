@@ -33,13 +33,27 @@ use yii\helpers\Html;
 
             <ul class="nav navbar-nav">
 
-                <li class="dropdown user user-menu">
+                <li class="dropdown user user-menu open">
                     
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span><?= Yii::$app->user->identity->nome ?></span>
+                    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                    
+                        <span class="hidden-xs"><?= Yii::$app->user->identity->nome ?></span>
+                        
                     </a>
                     
                     <ul class="dropdown-menu">
+
+                        <li class="user-header">
+                            
+                            <?= Html::img('@web/img/bp1_logo.png') ?>
+
+                            <p>
+
+                                <small><?= Yii::$app->user->identity->perfil_nome ?></small>
+
+                            </p>
+                        
+                        </li>
 
                         <li class="user-footer">
                             <?= Html::a(
@@ -48,10 +62,15 @@ use yii\helpers\Html;
                                 ['data-method' => 'post']
                             ) ?>
                         </li>
+                        
                     </ul>
+                    
                 </li>
 
             </ul>
+            
         </div>
+        
     </nav>
+    
 </header>

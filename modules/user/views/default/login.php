@@ -85,5 +85,9 @@ $fieldOptions2 = [
         <?php ActiveForm::end(); ?>
         
     </div>
+    
+    <div class="login-logo" style="margin-top: 25px;">
+        <?= Html::img('@web/img/bp1_logo.png', ['alt' => Yii::$app->name, 'style' => 'width: 100px; margin-left: auto; margin-right: auto;', 'class' => 'img-responsive']) ?>
+    </div>
 
 </div>

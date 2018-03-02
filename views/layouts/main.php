@@ -13,11 +13,11 @@ $css = <<<CSS
         color: #056835;
     }
         
-    .navbar-nav>.user-menu>.dropdown-menu
+    .navbar-nav>.user-menu>.dropdown-menu>li.user-header>p 
     {
-        width: 100px;
+        color: rgb(5, 104, 53);
     }
-        
+
     .nav .open > a, .nav .open > a:hover, .nav .open > a:focus 
     {
         background-color: #fff;
