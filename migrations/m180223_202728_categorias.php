@@ -1124,7 +1124,6 @@ class m180223_202728_categorias extends Migration
     {
         $this->dropTable('{{%categoria_empresa}}');
         $this->dropTable('{{%categoria_padrao}}');
-        $this->dropTable('{{%empresa}}');
 
         return true;
     }
