@@ -15,6 +15,12 @@ $css = <<<CSS
         background-color: #227584;
         border-color: #227584;
     }
+        
+    .alert-success 
+    {
+        color: #FFF;
+        background-color: #247388;
+    }
     
 CSS;
 
