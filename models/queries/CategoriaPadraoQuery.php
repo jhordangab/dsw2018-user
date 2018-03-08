@@ -87,37 +87,37 @@ class CategoriaPadraoQuery extends \yii\db\ActiveQuery
     
     public function getEmpresaTree($db = null, $empresa_id = null)
     {
-        $pais = $this->getData();
+        $pais = $this->getData(null, $empresa_id);
         $data_pais = [];
         
         foreach($pais as $pai)
         {
             $data_pais[$pai->codigo]['attributes'] = $pai->attributes;
-            $filhos = $this->getData($pai->codigo);
+            $filhos = $this->getData($pai->codigo, $empresa_id);
             $data_filhos = [];
             
             foreach($filhos as $filho)
             {
                 $data_filhos[$filho->codigo]['attributes'] = $filho->attributes;
-                $netos = $this->getData($filho->codigo);
+                $netos = $this->getData($filho->codigo, $empresa_id);
                 $data_netos = [];
                 
                 foreach($netos as $neto)
                 {
                     $data_netos[$neto->codigo]['attributes'] = $neto->attributes;
-                    $bisnetos = $this->getData($neto->codigo);
+                    $bisnetos = $this->getData($neto->codigo, $empresa_id);
                     $data_bisnetos = [];
                     
                     foreach($bisnetos as $bisneto)
                     {
                         $data_bisnetos[$bisneto->codigo]['attributes'] = $bisneto->attributes;
-                        $taranetos = $this->getData($bisneto->codigo);
+                        $taranetos = $this->getData($bisneto->codigo, $empresa_id);
                         $data_taranetos = [];
                         
                         foreach($taranetos as $taraneto)
                         {
                             $data_taranetos[$taraneto->codigo]['attributes'] = $taraneto->attributes;
-                            $tataranetos = $this->getData($taraneto->codigo);
+                            $tataranetos = $this->getData($taraneto->codigo, $empresa_id);
                             $data_tataranetos = [];
                             
                             foreach($tataranetos as $tataraneto)
@@ -178,7 +178,7 @@ class CategoriaPadraoQuery extends \yii\db\ActiveQuery
         $query1->union($query2, true);
         $sql = $query1->createCommand()->getRawSql();
         $sql .= ' ORDER BY desc_codigo ASC';
-        
+
         return CategoriaPadrao::findBySql($sql)->all();
     }
 }

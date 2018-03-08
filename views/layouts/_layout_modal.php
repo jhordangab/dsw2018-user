@@ -6,6 +6,20 @@ use yii\helpers\Html;
 AppAsset::register($this);
 $this->beginPage();
 
+
+$css = <<<CSS
+     
+    .btn.btn-success 
+    {
+        color: #fff;
+        background-color: #227584;
+        border-color: #227584;
+    }
+    
+CSS;
+
+$this->registerCss($css);
+
 ?>
 <html>
     <head>

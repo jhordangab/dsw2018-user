@@ -3,7 +3,7 @@ use yii\widgets\Breadcrumbs;
 use dmstr\widgets\Alert;
 
 ?>
-<div class="content-wrapper">
+<div class="content-wrapper" style="background-color: #fbfcff;">
     
     <section class="content-header">
         <?=

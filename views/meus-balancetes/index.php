@@ -2,9 +2,27 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\magic\StatusBalanceteMagic;
 
 $this->title = 'Meus Balancetes';
 $this->params['breadcrumbs'][] = $this->title;
+
+
+$css = <<<CSS
+        
+    .badge.badge-success
+    {
+        background-color: #237486;
+    }
+        
+    .badge.badge-warning
+    {
+        background-color: #f44336;
+    }
+        
+CSS;
+
+$this->registerCss($css);
 
 $meses = 
 [
@@ -60,6 +78,20 @@ for($i = 2015; $i > 2022; $i++)
         'filterModel' => $searchModel,
         'columns' => 
         [
+            [
+                'attribute' => 'status',
+                'filter' => StatusBalanceteMagic::$status,
+                'format' => 'raw',
+                'headerOptions' => ['style' => 'width: 10%; text-align: center;'],
+                'contentOptions' => ['style' => 'text-align: center;'],
+                'value' => function ($model)
+                {
+                    $status = StatusBalanceteMagic::getStatus($model->status);
+                    $class = StatusBalanceteMagic::getClass($model->status);
+                    
+                    return "<span class='badge badge-{$class}' title='{$status}'>&nbsp;</span>";
+                }
+            ],
             [
                 'attribute' => 'mes',
                 'filter' => $meses,

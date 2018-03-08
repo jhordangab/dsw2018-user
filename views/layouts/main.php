@@ -5,29 +5,24 @@ $css = <<<CSS
     
     a 
     {
-        color: #727476;
+        color: #FFF;
     }
         
     a:hover, a:active, a:focus 
     {
-        color: #056835;
+        color: #FFF;
     }
         
-    .navbar-nav>.user-menu>.dropdown-menu>li.user-header>p 
+    .nav > li > a:hover, .nav > li > a:active, .nav > li > a:focus
     {
-        color: rgb(5, 104, 53);
+        color: #FFF;
+        background: #237486;
     }
-
+        
     .nav .open > a, .nav .open > a:hover, .nav .open > a:focus 
     {
-        background-color: #fff;
-        border-color: #ffffff;
-        color: #056835;
-    }
-        
-    .sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu>li:hover>a>span 
-    {
-        background-color: #fff;
+        background-color: #237486;
+        border-color: #237486;
     }
         
     .box
@@ -49,7 +44,48 @@ $css = <<<CSS
             margin-right: auto;
         }
     }
+        
+    .btn.btn-success 
+    {
+        color: #fff;
+        background-color: #227584;
+        border-color: #227584;
+    }
+        
+    .modal-header 
+    {
+        border-bottom-color: #237486;
+        background-color: #237486;
+        color: white;
+    }
+        
+    .close 
+    {
+        color: white;
+        opacity: 1;
+    }
+        
+    .glyphicon
+    {
+        color: #237486;
+    }
+        
+    .table-striped > tbody > tr:nth-of-type(odd) 
+    {
+        background-color: #2374861f;
+    }
     
+    .nav-tabs > li > a
+    {
+        color: #555;
+        background: #23748624;
+    }
+        
+    .alert-success 
+    {
+        color: #FFF;
+        background-color: #247388;
+    }
 CSS;
 
 $this->registerCss($css);

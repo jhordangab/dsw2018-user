@@ -11,6 +11,7 @@ use yii\filters\AccessControl;
 use app\models\CategoriaPadrao;
 use app\models\BalanceteValor;
 use app\magic\StatusBalanceteMagic;
+use yii\helpers\Json;
 
 class BalanceteController extends Controller
 {
@@ -24,7 +25,7 @@ class BalanceteController extends Controller
                 'rules' => 
                 [
                     [
-                        'actions' => ['index', 'view', 'update', 'delete', 'validate'],
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'validate', 'get-views'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) 
@@ -52,10 +53,21 @@ class BalanceteController extends Controller
     {
         $model = $this->findModel($id);
         $balancetes = CategoriaPadrao::find()->getEmpresaTree(null, $model->empresa_id);
-        
+
         return $this->render('view', [
             'model' => $model,
             'balancetes' => $balancetes
+        ]);
+    }
+    
+    public function actionGetViews($id)
+    {
+        $model = $this->findModel($id);
+        $balancetes = CategoriaPadrao::find()->getEmpresaTree(null, $model->empresa_id);
+        
+        return Json::encode([
+            'info' => $this->renderAjax('_partials/_info', compact('model')),
+            'table' => $this->renderAjax('_partials/_table', compact('model', 'balancetes')),
         ]);
     }
     
@@ -79,6 +91,40 @@ class BalanceteController extends Controller
         }
     }
     
+    public function actionCreate($balancete_id, $categoria_id)
+    {
+        $this->layout = '//_layout_modal';
+        $model = new BalanceteValor();
+        $model->balancete_id = $balancete_id;
+        $model->categoria_id = $categoria_id;
+        
+        $categoria = CategoriaPadrao::findOne(['codigo' => $categoria_id]);
+        
+        if(!$categoria)
+        {
+            $categoria = CategoriaEmpresa::findOne(['codigo' => $categoria_id]);
+            
+            if(!$categoria)
+            {
+                throw new NotFoundHttpException('The requested page does not exist.');
+            }
+        }    
+        
+        $model->categoria_nome = $categoria->desc_codigo . ' - ' . $categoria->descricao;
+
+        if ($model->load(Yii::$app->request->post()) && $model->save())
+        {
+            \Yii::$app->getSession()->setFlash('success','O valor do balancete foi salvo com sucesso.');
+            $this->refresh();
+        }
+        else 
+        {
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+    }
+
     public function actionUpdate($id)
     {
         $this->layout = '//_layout_modal';

@@ -69,13 +69,9 @@ class MeusBalancetesController extends Controller
         {
             $model->file = UploadedFile::getInstance($model, 'file');
             
-            if($model->save())
+            if($model->validate() && $model->save())
             {
                 \Yii::$app->getSession()->setFlash('success','O balancete foi importado com sucesso.');
-            }
-            else
-            {
-                \Yii::$app->getSession()->setFlash('danger','Ops, ocorreu um erro ao tentar importar o balancete.');
             }
         }
         

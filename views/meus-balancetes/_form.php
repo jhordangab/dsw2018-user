@@ -129,6 +129,29 @@ for($i = 2015; $i <= 2022; $i++)
             ]
         ]);
     ?>
+    
+    <?=
+        FormGrid::widget(
+        [
+            'model' => $model,
+            'form' => $form,
+            'columnSize' => Form::SIZE_TINY,
+            'autoGenerateColumns' => true,
+            'rows' => 
+            [
+                [
+                    'attributes' => 
+                    [
+                        'importar_saldo' => 
+                        [
+                            'label' => 'Importar saldo inicial?',
+                            'type' => Form::INPUT_CHECKBOX,
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    ?>
 
     <?= Html::submitButton('Importar', 
     [

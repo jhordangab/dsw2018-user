@@ -13,6 +13,8 @@ class BalanceteImportForm extends yii\base\Model
     public $ano;
     
     public $file;
+    
+    public $importar_saldo;
             
     public function rules()
     {
@@ -20,7 +22,9 @@ class BalanceteImportForm extends yii\base\Model
         [
             [['file', 'mes', 'ano'], 'required'],
             [['file'], 'file', 'extensions' => 'xls, xlsx, ods'],
-            ['ano', 'validateBalancete']
+            [['mes'], 'validateBalancete'],
+            [['importar_saldo'], 'validateSaldo'],
+            [['importar_saldo'], 'boolean']
         ];
     }
     
@@ -34,11 +38,13 @@ class BalanceteImportForm extends yii\base\Model
     
     public function validateBalancete($attribute, $params, $validator)
     {
+        $empresa_id = Yii::$app->user->identity->empresa_id;
+        
         $find = Balancete::find()->andWhere(
         [
             'mes' => $this->mes, 
             'ano' => $this->ano, 
-            'empresa_id' => Yii::$app->user->identity->empresa_id,
+            'empresa_id' => $empresa_id,
             'is_ativo' => TRUE, 
             'is_excluido' => FALSE
         ])->exists();
@@ -46,6 +52,26 @@ class BalanceteImportForm extends yii\base\Model
         if ($find) 
         {
             $this->addError('mes', 'O balancete já foi importado para o período selecionado.');
+            $this->addError('ano', 'O balancete já foi importado para o período selecionado.');
+        }
+    }
+    
+    public function validateSaldo($attribute, $params, $validator)
+    {
+        if($this->importar_saldo)
+        {
+            $empresa_id = Yii::$app->user->identity->empresa_id;
+
+            $saldoInicial = SaldoInicial::find()->andWhere([
+                'empresa_id' => $empresa_id,
+                'is_ativo' => TRUE, 
+                'is_excluido' => FALSE
+            ])->exists();
+
+            if ($saldoInicial) 
+            {
+                $this->addError($attribute, 'O saldo inicial dessa empresa já foi importado');
+            }
         }
     }
     
@@ -65,32 +91,33 @@ class BalanceteImportForm extends yii\base\Model
         $data = Excel::import($file_path . $file);
 
         $empresa_id = Yii::$app->user->identity->empresa_id;
+        $empresa_nome = Yii::$app->user->identity->empresa_nome;
         
         $balancete = new Balancete();
         $balancete->setScenario(Balancete::SCENARIO_IMPORTATION);
         $balancete->empresa_id = $empresa_id;
-        $balancete->empresa_nome = Yii::$app->user->identity->empresa_nome;
+        $balancete->empresa_nome = $empresa_nome;
         $balancete->mes = $this->mes;
         $balancete->ano = $this->ano;
         $balancete->status = StatusBalanceteMagic::STATUS_SENT;
-        if(!$balancete->save())
-        {
-            var_dump($balancete->getErrors());die;
-        }
+        $balancete->save();
         
         foreach($data[0] as $value)
         {
             $codigo = $this->alteraCategoria(str_replace([',', '.'], '', trim($value['Conta Contábil'])));
-            $categoria = $value['Nomenclatura da Conta'];
-            $valor = $value['Saldo do Mês'];
             
-            $this->salvarDados($balancete->id, $empresa_id, $codigo, $categoria, $valor);
+            $this->importarBalanceteMes($balancete->id, $empresa_id, $codigo, $value['Nomenclatura da Conta'], $value['Saldo do Mês']);
+        
+            if($this->importar_saldo)
+            {
+                $this->importarSaldoInicial($empresa_id, $empresa_nome, $codigo, $value['Saldo Anterior']);
+            }
         }
         
         return true;
     }
     
-    public function salvarDados($balancete_id, $empresa_id, $desc_codigo, $desc_categoria, $valor)
+    public function importarBalanceteMes($balancete_id, $empresa_id, $desc_codigo, $desc_categoria, $valor)
     {
         $categoria = CategoriaPadrao::findOne(['desc_codigo' => $desc_codigo]);
         $codigo = (integer) str_replace('.', '', $desc_codigo);
@@ -117,6 +144,18 @@ class BalanceteImportForm extends yii\base\Model
         $balancete_valor->categoria_id = $codigo;
         $balancete_valor->valor = $valor;
         $balancete_valor->save();
+    }
+    
+    public function importarSaldoInicial($empresa_id, $empresa_nome, $categoria_id, $valor)
+    {
+        $saldoInicial = new SaldoInicial();
+        $saldoInicial->empresa_id = $empresa_id;
+        $saldoInicial->empresa_nome = $empresa_nome;
+        $saldoInicial->ano = $this->ano;
+        $saldoInicial->mes = $this->mes;
+        $saldoInicial->categoria_id = (integer) str_replace('.', '', $categoria_id);
+        $saldoInicial->valor = $valor;
+        $saldoInicial->save();
     }
     
     public function alteraCategoria($codigo)

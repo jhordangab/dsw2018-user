@@ -11,12 +11,12 @@ $css = <<<CSS
         
     .badge.badge-success
     {
-        background-color: #1fbb6b;
+        background-color: #237486;
     }
         
     .badge.badge-warning
     {
-        background-color: yellow;
+        background-color: #f44336;
     }
         
 CSS;

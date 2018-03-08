@@ -42,52 +42,41 @@ JS;
     }
 }
 
-$fieldOptions1 = [
-    'options' => ['class' => 'form-group has-feedback'],
-    'inputTemplate' => "{input}<span class='glyphicon glyphicon-envelope form-control-feedback'></span>"
-];
-
-$fieldOptions2 = [
-    'options' => ['class' => 'form-group has-feedback'],
-    'inputTemplate' => "{input}<span class='glyphicon glyphicon-lock form-control-feedback'></span>"
-];
 ?>
+    
+<div class="row h-100 justify-content-center">
 
-<div class="login-box">
-    <div class="login-logo">
-        <?= Html::img('@web/img/logo.png', ['alt' => Yii::$app->name, 'style' => 'width: 200px; margin-left: auto; margin-right: auto;', 'class' => 'img-responsive']) ?>
-    </div>
+    <div class="col-md-10 col-lg-10 col-xl-8 align-self-center login--form">
 
-    <div class="login-box-body">
-        
-        <p class="login-box-msg">Login</p>
+        <div class="col-lg-10 push-lg-1 col-xl-8 push-xl-2">
+            
+            <h1 class="text-center "><?= Html::encode($this->title) ?></h1>
 
-        <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
+            <?php $form = ActiveForm::begin(['id' => 'form-login-bi', 'options' => ['class' => 'col-form'], 'enableClientValidation' => false]); ?>
 
-        <?= $form
-            ->field($model, 'email', $fieldOptions1)
-            ->label(false)
-            ->textInput(['placeholder' => 'Usuário']) ?>
+                <div class="form-group ">
 
-        <?= $form
-            ->field($model, 'password', $fieldOptions2)
-            ->label(false)
-            ->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>
+                    <?= $form->field($model, 'email', [
+                        'template' => '<div class="input-group input-group-lg"><span class="input-group-addon col-2" id="sizing-addon1 ">{label}</span>{input}</div>'
+                    ])->textInput(['aria-describedby' => 'sizing-addon1']); ?>
 
-        <div class="row">
+                </div>
 
-            <div class="col-xs-12">
-                <?= Html::submitButton('Entrar', ['class' => 'btn btn-block btn-flat', 'name' => 'login-button', 'style' => 'background-color: #6abd24; border-color: #6abd24; color: #fff;']) ?>
-            </div>
+                <div class="form-group">
 
+                    <?= $form->field($model, 'password', [
+                        'template' => '<div class="input-group input-group-lg"><span class="input-group-addon col-2" id="sizing-addon1 ">{label}</span>{input}</div>'
+                    ])->passwordInput(['placeholder' => "******", 'aria-describedby' => 'sizing-addon1']); ?>
+
+                </div>
+
+                <div>
+                    <?= Html::submitButton('Acessar', ['class' => 'btn btn-block btn-lg btn-primary text-uppercase p-4 btn-login', 'name' => 'login-button']) ?>
+                </div>
+
+            <?php ActiveForm::end(); ?>
         </div>
-        
-        <?php ActiveForm::end(); ?>
-        
+
     </div>
     
-    <div class="login-logo" style="margin-top: 25px;">
-        <?= Html::img('@web/img/bp1_logo.png', ['alt' => Yii::$app->name, 'style' => 'width: 100px; margin-left: auto; margin-right: auto;', 'class' => 'img-responsive']) ?>
-    </div>
-
 </div>
