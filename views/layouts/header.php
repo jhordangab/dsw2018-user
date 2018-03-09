@@ -33,25 +33,13 @@ use yii\helpers\Html;
 
             <ul class="nav navbar-nav">
 
-                <li class="dropdown user user-menu" style="cursor: pointer;">
+                <li class="dropdown user user-menu">
                     
                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                     
-                        <span><?= Html::img('@web/img/bp1_logo.png', ['width' => '40px', 'style' =>['margin-right' => '10px', 'background-color' => '#FFF']]) ?><?= Yii::$app->user->identity->nome ?></span>
+                        <span><?= Html::img('@web/img/bp1_logo_branco.png', ['width' => '40px', 'style' =>['margin-right' => '10px', 'margin-top' => '-10px']]) ?><?= Yii::$app->user->identity->nome ?></span>
                         
                     </a>
-                    
-                    <ul class="dropdown-menu" style="width: 80px;">
-
-                        <li class="user-footer">
-                            <?= Html::a(
-                                'Sair',
-                                ['/site/logout'],
-                                ['data-method' => 'post']
-                            ) ?>
-                        </li>
-                        
-                    </ul>
                     
                 </li>
 

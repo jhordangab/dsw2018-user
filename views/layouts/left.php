@@ -11,6 +11,7 @@
                     [
                         ['label' => 'Planos Padrões', 'icon' => 'tags', 'url' => ['/categoria']],
                         ['label' => 'Balancetes', 'icon' => 'calculator', 'url' => ['/balancete']],
+                        ['label' => 'Sair', 'icon' => 'sign-out', 'url' => ['/site/logout']],
                     ],
                 ]
             ) ?>
@@ -23,6 +24,7 @@
                     'items' => 
                     [
                         ['label' => 'Meus Balancetes', 'icon' => 'calculator', 'url' => ['/meus-balancetes']],
+                        ['label' => 'Sair', 'icon' => 'sign-out', 'url' => ['/site/logout']],
                     ],
                 ]
             ) ?>
