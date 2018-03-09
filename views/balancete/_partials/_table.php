@@ -86,13 +86,13 @@ $this->registerJs($js);
 
                 <td><?= $bas["attributes"]['descricao']; ?></td>
 
-                <td></td>
+                <td class="val-<?= $ias ?>"></td>
 
                 <td></td>
 
             </tr>
 
-            <?php foreach($bas["children"] as $iba => $ba): ?>
+            <?php $sumba = 0; foreach($bas["children"] as $iba => $ba): ?>
 
                 <tr class="open-children closed" style="background-color: #80808024" data-id="<?= $ba["attributes"]["codigo"]; ?>" data-pai_id="<?= $ba["attributes"]["codigo_pai"]; ?>">
 
@@ -102,13 +102,13 @@ $this->registerJs($js);
 
                     <td><?= $ba["attributes"]['descricao']; ?></td>
 
-                    <td></td>
+                    <td class="val-<?= $iba . '-' . $ias ?>"></td>
 
                     <td></td>
 
                 </tr>
 
-                <?php foreach($ba["children"] as $ibb =>  $bb): ?>
+                <?php $sumbb = 0; foreach($ba["children"] as $ibb =>  $bb): ?>
 
                     <tr class="open-children closed" style="background-color: #8080801c" data-id="<?= $bb["attributes"]["codigo"]; ?>" data-pai_id="<?= $bb["attributes"]["codigo_pai"]; ?>">
 
@@ -118,13 +118,13 @@ $this->registerJs($js);
 
                         <td><?= $bb["attributes"]['descricao']; ?></td>
 
-                        <td></td>
+                        <td class="val-<?= $ibb . '-' . $iba . '-' . $ias ?>"></td>
 
                         <td></td>
 
                     </tr>
 
-                    <?php foreach($bb["children"] as $ibc =>  $bc): ?>
+                    <?php $sumbc = 0; foreach($bb["children"] as $ibc =>  $bc): ?>
 
                         <tr class="open-children closed" style="background-color: #80808014" data-id="<?= $bc["attributes"]["codigo"]; ?>" data-pai_id="<?= $bc["attributes"]["codigo_pai"]; ?>">
 
@@ -134,13 +134,13 @@ $this->registerJs($js);
 
                             <td><?= $bc["attributes"]['descricao']; ?></td>
 
-                            <td></td>
+                            <td class="val-<?= $ibc . '-' . $ibb . '-' . $iba . '-' . $ias ?>"></td>
 
                             <td></td>
 
                         </tr>
 
-                        <?php foreach($bc["children"] as $ibd =>  $bd): ?>
+                        <?php $sumbd = 0; foreach($bc["children"] as $ibd =>  $bd): ?>
 
                             <tr class="open-children closed" style="background-color: #8080800a" data-id="<?= $bd["attributes"]["codigo"]; ?>" data-pai_id="<?= $bd["attributes"]["codigo_pai"]; ?>">
 
@@ -150,13 +150,13 @@ $this->registerJs($js);
 
                                 <td><?= $bd["attributes"]['descricao']; ?></td>
 
-                                <td></td>
+                                <td class="val-<?= $ibd . '-' . $ibc . '-' . $ibb . '-' . $iba . '-' . $ias ?>"></td>
 
                                 <td></td>
 
                             </tr>
 
-                            <?php foreach($bd["children"] as $ibe =>  $be): ?>
+                            <?php $sumbe = 0; foreach($bd["children"] as $ibe =>  $be): ?>
 
                                 <tr class="open-children closed" style="background-color: #80808000" data-id="<?= $be["attributes"]["codigo"]; ?>" data-pai_id="<?= $be["attributes"]["codigo_pai"]; ?>">
 
@@ -174,6 +174,11 @@ $this->registerJs($js);
                                             echo ($fe) ? 'R$ ' . number_format($fe->valor, 2, ',', '.') : 'R$ 0,00';
 
                                             $sum += ($fe) ? $fe->valor : 0;
+                                            $sumbe += ($fe) ? $fe->valor : 0;
+                                            $sumbd += ($fe) ? $fe->valor : 0;
+                                            $sumbc += ($fe) ? $fe->valor : 0;
+                                            $sumbb += ($fe) ? $fe->valor : 0;
+                                            $sumba += ($fe) ? $fe->valor : 0;
                                         ?>
 
                                     </b></td>
@@ -194,7 +199,27 @@ $this->registerJs($js);
 
                                 </tr>
 
-                            <?php endforeach; ?>
+                            <?php endforeach; 
+                            
+                            $valbe = 'R$ ' . number_format($sumbe, 2, ',', '.');    
+                            $valbd = 'R$ ' . number_format($sumbd, 2, ',', '.');   
+                            $valbc = 'R$ ' . number_format($sumbc, 2, ',', '.');    
+                            $valbb = 'R$ ' . number_format($sumbb, 2, ',', '.');    
+                            $valba = 'R$ ' . number_format($sumba, 2, ',', '.');    
+                            
+                            $js = <<<JS
+   
+   
+                                $('.val-{$ibd}-{$ibc}-{$ibb}-{$iba}-{$ias}').html('{$valbe}');
+                                $('.val-{$ibc}-{$ibb}-{$iba}-{$ias}').html('{$valbd}');
+                                $('.val-{$ibb}-{$iba}-{$ias}').html('{$valbc}');
+                                $('.val-{$iba}-{$ias}').html('{$valbb}');
+                                $('.val-{$ias}').html('{$valba}');
+                                    
+JS;
+                                $this->registerJs($js);
+                            
+                            ?>
 
                         <?php endforeach; ?>
 
