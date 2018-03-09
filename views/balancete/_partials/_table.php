@@ -171,7 +171,7 @@ $this->registerJs($js);
                                         <?php
                                             $fe = BalanceteValor::find()->andWhere(['is_ativo' => TRUE, 'is_excluido' => FALSE, 'balancete_id' => $model->id, 'categoria_id' => $be["attributes"]['codigo']])->one(); 
 
-                                            echo ($fe) ? 'R$ ' . number_format($fe->valor, 2, ',', '.') : '';
+                                            echo ($fe) ? 'R$ ' . number_format($fe->valor, 2, ',', '.') : 'R$ 0,00';
 
                                             $sum += ($fe) ? $fe->valor : 0;
                                         ?>
