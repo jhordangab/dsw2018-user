@@ -96,11 +96,6 @@ class Balancete extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getLogs()
-    {
-        return $this->hasMany(BalanceteLog::className(), ['balancete_id' => 'id']);
-    }
-
     public function getValores()
     {
         return $this->hasMany(BalanceteValor::className(), ['balancete_id' => 'id']);

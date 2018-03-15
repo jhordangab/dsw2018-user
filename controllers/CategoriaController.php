@@ -6,7 +6,6 @@ use Yii;
 use app\models\CategoriaPadrao;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
 class CategoriaController extends Controller

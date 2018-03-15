@@ -15,12 +15,17 @@ class BalanceteImportForm extends yii\base\Model
     public $file;
     
     public $importar_saldo;
+    
+    public $empresa_id;
+    
+    public $empresa_nome;
             
     public function rules()
     {
         return 
         [
-            [['file', 'mes', 'ano'], 'required'],
+            [['file', 'mes', 'ano', 'empresa_id'], 'required'],
+            [['empresa_nome'], 'safe'],
             [['file'], 'file', 'extensions' => 'xls, xlsx, ods'],
             [['mes'], 'validateBalancete'],
             [['importar_saldo'], 'validateSaldo'],
@@ -33,18 +38,18 @@ class BalanceteImportForm extends yii\base\Model
         return 
         [
             'file' => 'Arquivo',
+            'mes' => 'Mês',
+            'empresa_id' => 'Empresa'
         ];
     }
     
     public function validateBalancete($attribute, $params, $validator)
     {
-        $empresa_id = Yii::$app->user->identity->empresa_id;
-        
         $find = Balancete::find()->andWhere(
         [
             'mes' => $this->mes, 
             'ano' => $this->ano, 
-            'empresa_id' => $empresa_id,
+            'empresa_id' => $this->empresa_id,
             'is_ativo' => TRUE, 
             'is_excluido' => FALSE
         ])->exists();
@@ -60,10 +65,8 @@ class BalanceteImportForm extends yii\base\Model
     {
         if($this->importar_saldo)
         {
-            $empresa_id = Yii::$app->user->identity->empresa_id;
-
             $saldoInicial = SaldoInicial::find()->andWhere([
-                'empresa_id' => $empresa_id,
+                'empresa_id' => $this->empresa_id,
                 'is_ativo' => TRUE, 
                 'is_excluido' => FALSE
             ])->exists();
@@ -89,14 +92,14 @@ class BalanceteImportForm extends yii\base\Model
         $this->file->saveAs($file_path . $file);
 
         $data = Excel::import($file_path . $file);
-
-        $empresa_id = Yii::$app->user->identity->empresa_id;
-        $empresa_nome = Yii::$app->user->identity->empresa_nome;
+        $usuario_nome = Yii::$app->user->identity->nome;
         
+        $this->salvarLog($usuario_nome, 'Iniciando Importação');
+
         $balancete = new Balancete();
         $balancete->setScenario(Balancete::SCENARIO_IMPORTATION);
-        $balancete->empresa_id = $empresa_id;
-        $balancete->empresa_nome = $empresa_nome;
+        $balancete->empresa_id = $this->empresa_id;
+        $balancete->empresa_nome = $this->empresa_nome;
         $balancete->mes = $this->mes;
         $balancete->ano = $this->ano;
         $balancete->status = StatusBalanceteMagic::STATUS_SENT;
@@ -106,36 +109,51 @@ class BalanceteImportForm extends yii\base\Model
         {
             $codigo = $this->alteraCategoria(str_replace([',', '.'], '', trim($value['Conta Contábil'])));
             
-            $this->importarBalanceteMes($balancete->id, $empresa_id, $codigo, $value['Nomenclatura da Conta'], $value['Saldo do Mês']);
+            $this->importarBalanceteMes($balancete->id, $codigo, $value['Nomenclatura da Conta'], $value['Saldo do Mês'], $usuario_nome);
         
             if($this->importar_saldo)
             {
-                $this->importarSaldoInicial($empresa_id, $empresa_nome, $codigo, $value['Saldo Anterior']);
+                $this->importarSaldoInicial($codigo, $value['Saldo Anterior'], $usuario_nome);
             }
         }
+        
+        $this->salvarLog($usuario_nome, 'Finalizando Importação');
         
         return true;
     }
     
-    public function importarBalanceteMes($balancete_id, $empresa_id, $desc_codigo, $desc_categoria, $valor)
+    public function importarBalanceteMes($balancete_id, $desc_codigo, $desc_categoria, $valor, $usuario_nome)
     {
         $categoria = CategoriaPadrao::findOne(['desc_codigo' => $desc_codigo]);
         $codigo = (integer) str_replace('.', '', $desc_codigo);
         
         if(!$categoria)
         {
-            $categoria = CategoriaEmpresa::findOne(['desc_codigo' => $desc_codigo, 'empresa_id' => $empresa_id]);
+            $categoria = CategoriaEmpresa::findOne(['desc_codigo' => $desc_codigo, 'empresa_id' => $this->empresa_id]);
 
             if(!$categoria)
             {
                 $categoria = new CategoriaEmpresa();
-                $categoria->empresa_id = $empresa_id;
+                $categoria->empresa_id = $this->empresa_id;
                 $categoria->codigo = $codigo;
                 $categoria->desc_codigo = $desc_codigo;
                 $categoria->descricao = $desc_categoria;
                 $categoria->codigo_pai = $this->getCodigoPai($codigo);
-                $categoria->is_service = (strlen($codigo) > 6);
-                $categoria->save();
+                $categoria->is_service = (strlen($codigo) > 6) ? 1 : 0;
+                
+                if($categoria->save())
+                {
+                    $this->salvarLog($usuario_nome, 'Categoria ' . 
+                        $categoria->desc_codigo .  ' - ' . $categoria->descricao . ' salva com sucesso');
+                }
+                else 
+                {
+                    foreach($categoria->getErrors() as $error)
+                    {
+                        $this->salvarLog($usuario_nome, 'Erro ao salvar categoria ' . 
+                        $categoria->desc_codigo .  ' - ' . $categoria->descricao . ' -> ' . $error[0], 'E');
+                    }
+                }
             }
         }
         
@@ -143,19 +161,45 @@ class BalanceteImportForm extends yii\base\Model
         $balancete_valor->balancete_id = $balancete_id;
         $balancete_valor->categoria_id = $codigo;
         $balancete_valor->valor = $valor;
-        $balancete_valor->save();
+        
+        if($balancete_valor->save())
+        {
+            $this->salvarLog($usuario_nome, 'Valor R$ ' . number_format((float) $valor, 2, ',', '.')
+                . ' salvo para a categoria ' .  $categoria->desc_codigo .  ' - ' . $categoria->descricao);
+        }
+        else
+        {
+            foreach($balancete_valor->getErrors() as $error)
+            {
+                $this->salvarLog($usuario_nome, 'Erro ao salvar valor R$ ' . number_format((float) $valor, 2, ',', '.')
+                . ' para a categoria ' .  $categoria->desc_codigo .  ' - ' . $categoria->descricao  . ' -> ' . $error[0], 'E');
+            }
+        }
     }
     
-    public function importarSaldoInicial($empresa_id, $empresa_nome, $categoria_id, $valor)
+    public function importarSaldoInicial($categoria_id, $valor, $usuario_nome)
     {
         $saldoInicial = new SaldoInicial();
-        $saldoInicial->empresa_id = $empresa_id;
-        $saldoInicial->empresa_nome = $empresa_nome;
+        $saldoInicial->empresa_id = $this->empresa_id;
+        $saldoInicial->empresa_nome = $this->empresa_nome;
         $saldoInicial->ano = $this->ano;
         $saldoInicial->mes = $this->mes;
         $saldoInicial->categoria_id = (integer) str_replace('.', '', $categoria_id);
         $saldoInicial->valor = $valor;
-        $saldoInicial->save();
+        
+        if($saldoInicial->save())
+        {
+            $this->salvarLog($usuario_nome, 'Saldo inicial de R$ ' . number_format((float) $valor, 2, ',', '.')
+                . ' salvo para a categoria ' .  $categoria_id);
+        }
+        else
+        {
+            foreach($saldoInicial->getErrors() as $error)
+            {
+                $this->salvarLog($usuario_nome, 'Erro ao salvar saldo inicial de R$ ' . number_format((float) $valor, 2, ',', '.')
+                . ' para a categoria ' .  $categoria_id  . ' -> ' . $error[0], 'E');
+            }
+        }
     }
     
     public function alteraCategoria($codigo)
@@ -224,5 +268,17 @@ class BalanceteImportForm extends yii\base\Model
             default:
                 return null;
         }
+    }
+    
+    public function salvarLog($usuario, $log, $tipo = 'S')
+    {
+        $model = new LogImportacao();
+        $model->tipo = $tipo;
+        $model->empresa_nome = $this->empresa_nome;
+        $model->mes = $this->mes;
+        $model->ano = $this->ano;
+        $model->usuario = $usuario;
+        $model->log = $log;
+        $model->save();
     }
 }

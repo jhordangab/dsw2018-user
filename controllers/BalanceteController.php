@@ -12,6 +12,10 @@ use app\models\CategoriaPadrao;
 use app\models\BalanceteValor;
 use app\magic\StatusBalanceteMagic;
 use yii\helpers\Json;
+use app\models\BalanceteImportForm;
+use yii\web\UploadedFile;
+use app\models\AdminEmpresa;
+use app\models\LogImportacao;
 
 class BalanceteController extends Controller
 {
@@ -25,7 +29,10 @@ class BalanceteController extends Controller
                 'rules' => 
                 [
                     [
-                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'validate', 'get-views'],
+                        'actions' => 
+                        [
+                            'index', 'view', 'create', 'update', 'import',
+                            'delete', 'validate', 'get-views', 'delete-balancete'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) 
@@ -91,6 +98,29 @@ class BalanceteController extends Controller
         }
     }
     
+    public function actionImport()
+    {
+        $this->layout = '//_layout_modal';
+        
+        $model = new BalanceteImportForm();
+        
+        if ($model->load(Yii::$app->request->post())) 
+        {
+            $model->file = UploadedFile::getInstance($model, 'file');
+            $model->empresa_nome = AdminEmpresa::findOne($model->empresa_id)->nomeFantasia;
+            
+            if($model->validate() && $model->save())
+            {
+                \Yii::$app->getSession()->setFlash('success','O balancete foi importado com sucesso.');
+            }
+        }
+        
+        return $this->render('_import',
+        [
+            'model' => $model,
+        ]);
+    }
+    
     public function actionCreate($balancete_id, $categoria_id)
     {
         $this->layout = '//_layout_modal';
@@ -149,6 +179,29 @@ class BalanceteController extends Controller
         $model = BalanceteValor::findOne($id);
         $model->is_excluido = 1;
         $model->save(FALSE, ['is_excluido']);
+    }
+    
+    public function actionDeleteBalancete($id)
+    {
+        $model = $this->findModel($id);
+        $model->is_excluido = 1;
+        $model->save(FALSE, ['is_excluido']);
+        
+        $log = new LogImportacao();
+        $log->tipo = 'A';
+        $log->empresa_nome = $model->empresa_nome;
+        $log->mes = $model->mes;
+        $log->ano = $model->ano;
+        $log->usuario = Yii::$app->user->identity->nome;
+        $log->log = "Exclusão do balancete";
+        $log->save();
+        
+        Yii::$app->db->createCommand('UPDATE balancete_valor SET is_excluido = 1 WHERE balancete_id = ' . $model->id)->execute();
+        Yii::$app->db->createCommand("UPDATE saldo_inicial SET is_excluido = 1 WHERE empresa_id = {$model->empresa_id} AND ano = {$model->ano} AND mes = {$model->mes}")->execute();
+
+        \Yii::$app->getSession()->setFlash('success','O balancete foi removido com sucesso.');
+        
+        return $this->redirect(['index']);
     }
 
     protected function findModel($id)

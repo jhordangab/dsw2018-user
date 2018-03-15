@@ -41,15 +41,37 @@ $meses =
 
 $anos = [];
 
-for($i = 2015; $i > 2022; $i++)
+for($i = 2017; $i < 2022; $i++)
 {
     $anos[$i] = "{$i}";
 }
 
 ?>
 
+<?= $this->render('_wf_iframe_importacao') ?>
+
 <div class="balancete-index box">
     
+    <p>
+        
+        <?= Html::a('<i class="fa fa-upload"></i> Importar', FALSE, 
+        [
+            'title' => 'Importar',
+            'class' => 'btn btn-success modal_import_balancete',
+            'data-link' => '/balancete/import',
+            'data-title' => 'Importação de Balancetes',
+            'style' => 'cursor:pointer;'
+        ]); ?>
+        
+        <?= Html::a('<i class="fa fa-download"></i> Arquivo Padrão', '/Balancete.ods', 
+        [
+            'title' => 'Download',
+            'class' => 'btn btn-default',
+            'style' => 'cursor:pointer;'
+        ]); ?>
+
+    </p>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -57,13 +79,10 @@ for($i = 2015; $i > 2022; $i++)
         'columns' => 
         [
             [
-                'attribute' => 'empresa_nome',
-            ],
-            [
                 'attribute' => 'status',
                 'filter' => StatusBalanceteMagic::$status,
                 'format' => 'raw',
-                'headerOptions' => ['style' => 'text-align: center;'],
+                'headerOptions' => ['style' => 'width:10%; text-align: center;'],
                 'contentOptions' => ['style' => 'text-align: center;'],
                 'value' => function ($model)
                 {
@@ -74,7 +93,13 @@ for($i = 2015; $i > 2022; $i++)
                 }
             ],
             [
+                'attribute' => 'empresa_nome',
+            ],
+            
+            [
                 'attribute' => 'mes',
+                'headerOptions' => ['style' => 'width:10%; text-align: center;'],
+                'contentOptions' => ['style' => 'text-align: center;'],
                 'filter' => $meses,
                 'value' => function ($model) use ($meses)
                 {
@@ -83,7 +108,7 @@ for($i = 2015; $i > 2022; $i++)
             ],
             [
                 'attribute' => 'ano',
-                'headerOptions' => ['style' => 'text-align: center;'],
+                'headerOptions' => ['style' => 'width:10%; text-align: center;'],
                 'contentOptions' => ['style' => 'text-align: center;'],
                 'filter' => $anos,
             ],
@@ -95,12 +120,12 @@ for($i = 2015; $i > 2022; $i++)
                 'format' => 'raw',
                 'value' => function ($model)
                 {
-                    return Yii::$app->formatter->asDate($model->created_at, 'd/M/Y');
+                    return Yii::$app->formatter->asDate($model->created_at, 'd/M/Y H:m');
                 },
             ],
             [
-                'class' => 'yii\grid\ActionColumn',
-                'template' => '{view}',
+                'class' => 'kartik\grid\ActionColumn',
+                'template' => '{view} {delete}',
                 'headerOptions' => ['style' => 'width: 10%; text-align: center;'],
                 'contentOptions' => ['style' => 'text-align: center;'],
                 'buttons' =>
@@ -108,8 +133,15 @@ for($i = 2015; $i > 2022; $i++)
                     'create' => function ($url, $model) 
                     {     
                         return Html::a('<span class="fa fa-eye"></span>', $url, [
-                                'title' => Yii::t('yii', 'Visualizar'),
+                            'title' => Yii::t('yii', 'Visualizar'),
                         ]);                                
+                    },
+                    'delete' => function ($url, $model) 
+                    {     
+                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['/balancete/delete-balancete', 'id' => $model->id], [
+                            'title' => Yii::t('yii', 'Excluir'),
+                            'data-confirm' => Yii::t('yii', 'Tem certeza que deseja excluir esse balancete?'),
+                        ]);
                     }
                 ]        
             ]

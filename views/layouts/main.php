@@ -7,6 +7,11 @@ $css = <<<CSS
     {
         color: #FFF;
     }
+      
+    table a, table a:hover, table a:focus
+    {
+        color: #237486;
+    }
         
     a:hover, a:active, a:focus 
     {
@@ -79,6 +84,18 @@ $css = <<<CSS
     {
         color: #555;
         background: #23748624;
+    }
+        
+    .alert-success 
+    {
+        color: #FFF;
+        background-color: #247388;
+    }
+        
+    .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus 
+    {
+        background-color: #237486;
+        border-color: #237486;
     }
         
     .alert-success 

@@ -11,6 +11,7 @@
                     [
                         ['label' => 'Planos Padrões', 'icon' => 'tags', 'url' => ['/categoria']],
                         ['label' => 'Balancetes', 'icon' => 'calculator', 'url' => ['/balancete']],
+                        ['label' => 'Logs', 'icon' => 'eye', 'url' => ['/log']],
                         ['label' => 'Sair', 'icon' => 'sign-out', 'url' => ['/site/logout']],
                     ],
                 ]

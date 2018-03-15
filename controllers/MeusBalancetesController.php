@@ -64,6 +64,8 @@ class MeusBalancetesController extends Controller
         $this->layout = '//_layout_modal';
         
         $model = new BalanceteImportForm();
+        $model->empresa_id = Yii::$app->user->identity->empresa_id;
+        $model->empresa_nome = Yii::$app->user->identity->empresa_nome;
         
         if ($model->load(Yii::$app->request->post())) 
         {

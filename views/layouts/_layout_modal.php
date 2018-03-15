@@ -21,7 +21,32 @@ $css = <<<CSS
         color: #FFF;
         background-color: #247388;
     }
-    
+        
+    .div-loading
+    {
+        display:    none;
+        position:   fixed;
+        z-index:    1000;
+        top:        0;
+        left:       0;
+        height:     100%;
+        width:      100%;
+        background: rgba( 255, 255, 255, .8 ) 
+                    url('/img/loading.gif') 
+                    50% 50% 
+                    no-repeat;
+    }
+
+    .div-loading.loading 
+    {
+        overflow: hidden;   
+    }
+
+    .div-loading.loading
+    {
+        display: block;
+    }
+        
 CSS;
 
 $this->registerCss($css);
@@ -48,6 +73,8 @@ $this->registerCss($css);
                         <?php endforeach; ?>
                         
                     <?php else: ?>
+                            
+                        <div class="div-loading"></div>
 
                         <?= $content; ?>
                             

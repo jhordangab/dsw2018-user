@@ -109,7 +109,7 @@ $config = [
     'params' => $params,
 ];
 
-if (YII_ENV_DEV) 
+if (false) 
 {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = 
