@@ -121,7 +121,7 @@ for($i = 2017; $i < 2022; $i++)
                 'format' => 'raw',
                 'value' => function ($model)
                 {
-                    return Yii::$app->formatter->asDate($model->dt_log, 'd/M/Y H:m');
+                    return Yii::$app->formatter->asDate($model->dt_log, 'd/M/Y H:mm');
                 },
             ]
         ],

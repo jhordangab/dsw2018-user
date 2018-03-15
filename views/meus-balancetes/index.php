@@ -114,7 +114,7 @@ for($i = 2015; $i > 2022; $i++)
                 'format' => 'raw',
                 'value' => function ($model)
                 {
-                    return Yii::$app->formatter->asDate($model->created_at, 'd/M/Y');
+                    return Yii::$app->formatter->asDate($model->created_at, 'd/M/Y H:mm');
                 },
             ],
             [
