@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 
-$this->title = $name;
+$this->title = $code;
 
 ?>
 

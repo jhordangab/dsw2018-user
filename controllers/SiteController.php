@@ -30,17 +30,6 @@ class SiteController extends Controller
         ];
     }
     
-    public function actions()
-    {
-        return 
-        [
-            'error' => 
-            [
-                'class' => 'yii\web\ErrorAction',
-            ],
-        ];
-    }
-
     public function actionIndex()
     {
         $this->layout = 'main';
@@ -54,5 +43,21 @@ class SiteController extends Controller
         Yii::$app->user->logout();
         
         return $this->goHome();
+    }
+    
+    public function actionError()
+    {
+        $exception = Yii::$app->errorHandler->exception;
+        
+        $this->layout = (Yii::$app->user->isGuest) ? 'main-login' : 'main';
+
+        if ($exception !== null) 
+        {
+            return $this->render('error', 
+            [
+                'code' => $exception->statusCode,
+                'message' => $exception->getMessage(), 
+            ]);
+        }
     }
 }
