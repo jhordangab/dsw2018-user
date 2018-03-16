@@ -52,7 +52,7 @@ class m180223_202728_categorias extends Migration
         $this->batchInsert('{{%categoria_padrao}}', ['codigo', 'desc_codigo', 'descricao'], 
         [
             [1, '1' , 'ATIVO'],
-            [12, '1.2' , 'CIRCULANTE'],
+            [11, '1.1' , 'CIRCULANTE'],
             [111, '1.1.1' , 'DISPONIVEL'],
             [1111, '1.1.1.1' , 'BENS NUMERÁRIOS'],
             [111101, '1.1.1.1.01' , 'CAIXA GERAL'],

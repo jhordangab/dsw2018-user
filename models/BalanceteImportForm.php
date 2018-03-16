@@ -160,7 +160,7 @@ class BalanceteImportForm extends yii\base\Model
         $balancete_valor = new BalanceteValor();
         $balancete_valor->balancete_id = $balancete_id;
         $balancete_valor->categoria_id = $codigo;
-        $balancete_valor->valor = $valor;
+        $balancete_valor->valor = (float) $valor;
         
         if($balancete_valor->save())
         {
@@ -185,7 +185,7 @@ class BalanceteImportForm extends yii\base\Model
         $saldoInicial->ano = $this->ano;
         $saldoInicial->mes = $this->mes;
         $saldoInicial->categoria_id = (integer) str_replace('.', '', $categoria_id);
-        $saldoInicial->valor = $valor;
+        $saldoInicial->valor = (float) $valor;
         
         if($saldoInicial->save())
         {
