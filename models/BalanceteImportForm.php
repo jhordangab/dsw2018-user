@@ -54,7 +54,7 @@ class BalanceteImportForm extends yii\base\Model
             'is_excluido' => FALSE
         ])->exists();
         
-        if (false) 
+        if ($find) 
         {
             $this->addError('mes', 'O balancete já foi importado para o período selecionado.');
             $this->addError('ano', 'O balancete já foi importado para o período selecionado.');
