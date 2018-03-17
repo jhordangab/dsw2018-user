@@ -34,8 +34,9 @@ use yii\helpers\Html;
                 <div class="col-lg-4 col-xl-4 hidden-md-down login--sidebar">
                     <div class="row h-100 justify-content-center">
                         <div class="col-8 align-self-center">
-                            <h2></h2>
-                            <p></p>
+                            <h1 class="text-hide logo">Bpup Logo</h1>
+                            <h2>BP Upload</h2>
+                            <p>BPup a forma mais rápida e segura para receber informações padronizadas e garantir que tudo esteja dentro do planejado. Descomplicado e facilmente acessível, com o BPup você será capaz de agilizar significativamente o recebimento de arquivos, eliminar erros e facilitar a integração com outros softwares.</p>
                         </div>
                     </div>
                 </div>

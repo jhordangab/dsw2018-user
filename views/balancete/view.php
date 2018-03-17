@@ -59,9 +59,16 @@ $js = <<<JS
             success: function (data) 
             {
                 $('#div-balancete-info').html(data.info);
-                $('#div-balancete-table').html(data.table);
+                $('#div-balancete-valor').html(data.valor);
+                $('#div-balancete-saldo').html(data.saldo);
             },
         });
+    });
+            
+    $(document).on(
+    {
+        ajaxStart: function() { $('.div-loading').addClass("loading");},
+        ajaxStop: function() { setTimeout(function() { $('.div-loading').removeClass("loading");}, 300);}    
     });
         
 JS;
@@ -84,7 +91,7 @@ $this->registerJs($js);
             [
                 'title' => 'Validar',
                 'class' => 'btn btn-success modal_valid_balancete',
-                'data-link' => '/balancete/validate?id=' . $model->id,
+                'data-link' => '/balancete/validar-balancete?id=' . $model->id,
                 'data-title' => 'Validação de Balancete',
                 'style' => 'cursor:pointer;'
             ]); ?>
@@ -101,9 +108,19 @@ $this->registerJs($js);
         
         </li>
         
+        <?php if($saldos) : ?>
+        
+            <li class="nav-item">
+
+                <a class="nav-link" id="data-initial" data-toggle="tab" href="#initial" role="tab" aria-controls="initial" aria-selected="false">Saldo Inicial</a>
+
+            </li>
+            
+        <?php endif; ?>
+        
         <li class="nav-item">
           
-            <a class="nav-link" id="data-tab" data-toggle="tab" href="#data" role="tab" aria-controls="data" aria-selected="false">Dados</a>
+            <a class="nav-link" id="data-tab" data-toggle="tab" href="#data" role="tab" aria-controls="data" aria-selected="false">Valores</a>
         
         </li>
         
@@ -121,11 +138,25 @@ $this->registerJs($js);
             
         </div>
         
-        <div class="tab-pane fade" id="data" role="tabpanel" aria-labelledby="profile-tab" style="padding: 10px;">
+        <?php if($saldos) : ?>
+        
+            <div class="tab-pane fade" id="initial" role="tabpanel" aria-labelledby="initial-tab" style="padding: 10px;">
             
-            <div id="div-balancete-table">
+                <div id="div-balancete-saldo">
+
+                    <?= $this->render('_partials/_saldo-inicial', compact('model', 'categorias')); ?>
+
+                </div>  
+
+            </div>
+            
+        <?php endif; ?>
+        
+        <div class="tab-pane fade" id="data" role="tabpanel" aria-labelledby="data-tab" style="padding: 10px;">
+            
+            <div id="div-balancete-valor">
                 
-                <?= $this->render('_partials/_table', compact('model', 'balancetes')); ?>
+                <?= $this->render('_partials/_valor', compact('model', 'categorias')); ?>
                 
             </div>  
             

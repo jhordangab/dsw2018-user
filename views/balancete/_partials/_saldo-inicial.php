@@ -1,13 +1,12 @@
 <?php
 
-use app\models\BalanceteValor;
+use app\models\SaldoInicial;
 
 $sum = 0;
 
 $js = <<<JS
         
-   
-    $(document).delegate('.body-balancete .open-children .fa-plus', 'click', function()
+    $(document).delegate('.body-initial .open-children .fa-plus', 'click', function()
     {
         var _id = $(this).parent().parent().data('id');
         
@@ -17,7 +16,7 @@ $js = <<<JS
         $(this).addClass('fa-minus');
     });
         
-    $(document).delegate('.body-balancete .open-children .fa-minus', 'click', function()
+    $(document).delegate('.body-initial .open-children .fa-minus', 'click', function()
     {
         var _id = $(this).parent().parent().data('id');
         
@@ -27,25 +26,25 @@ $js = <<<JS
         $(this).addClass('fa-plus');
     });
         
-    $('.i-alterar').click(function () 
+    $('.body-initial .i-alterar').click(function () 
     {
         var _id = $(this).data('id');
-        var url = '/balancete/update?id=' + _id;
+        var url = '/balancete/alterar-saldo?id=' + _id;
         $('#iframe_modal_balancete').attr('src', url);
         $("[id^='modal_balancete']").modal("show");
         $('.modal-backdrop').removeClass('modal-backdrop');
-        $('#modal_balancete .modal-header h3').text('Alterar Balancete');
+        $('#modal_balancete .modal-header h3').text('Alterar saldo inicial');
     });
         
-    $('.i-inserir').click(function () 
+    $('.body-initial .i-inserir').click(function () 
     {
         var _balanceteid = $(this).data('balanceteid');
         var _categoriaid = $(this).data('categoriaid');
-        var url = '/balancete/create?balancete_id=' + _balanceteid + '&categoria_id=' + _categoriaid;
+        var url = '/balancete/inserir-saldo?balancete_id=' + _balanceteid + '&categoria_id=' + _categoriaid;
         $('#iframe_modal_balancete').attr('src', url);
         $("[id^='modal_balancete']").modal("show");
         $('.modal-backdrop').removeClass('modal-backdrop');
-        $('#modal_balancete .modal-header h3').text('Alterar Balancete');
+        $('#modal_balancete .modal-header h3').text('Alterar saldo inicial');
     });
         
 JS;
@@ -74,9 +73,9 @@ $this->registerJs($js);
 
     </thead>
 
-    <tbody class="body-balancete">
+    <tbody class="body-initial">
 
-        <?php foreach($balancetes as $ias => $bas): ?>
+        <?php foreach($categorias as $ias => $bas): ?>
 
             <tr class="open-children" style="background-color: #80808033" data-id="<?= $bas["attributes"]["codigo"]; ?>">
 
@@ -169,7 +168,7 @@ $this->registerJs($js);
                                     <td><b>
 
                                         <?php
-                                            $fe = BalanceteValor::find()->andWhere(['is_ativo' => TRUE, 'is_excluido' => FALSE, 'balancete_id' => $model->id, 'categoria_id' => $be["attributes"]['codigo']])->one(); 
+                                            $fe = SaldoInicial::find()->andWhere(['is_ativo' => TRUE, 'is_excluido' => FALSE, 'empresa_id' => $model->empresa_id, 'mes' => $model->mes, 'ano' => $model->ano, 'categoria_id' => $be["attributes"]['codigo']])->one(); 
 
                                             echo ($fe) ? 'R$ ' . number_format($fe->valor, 2, ',', '.') : 'R$ 0,00';
 
@@ -210,11 +209,11 @@ $this->registerJs($js);
                             $js = <<<JS
    
    
-                                $('.val-{$ibd}-{$ibc}-{$ibb}-{$iba}-{$ias}').html('{$valbe}');
-                                $('.val-{$ibc}-{$ibb}-{$iba}-{$ias}').html('{$valbd}');
-                                $('.val-{$ibb}-{$iba}-{$ias}').html('{$valbc}');
-                                $('.val-{$iba}-{$ias}').html('{$valbb}');
-                                $('.val-{$ias}').html('{$valba}');
+                                $('.body-initial .val-{$ibd}-{$ibc}-{$ibb}-{$iba}-{$ias}').html('{$valbe}');
+                                $('.body-initial .val-{$ibc}-{$ibb}-{$iba}-{$ias}').html('{$valbd}');
+                                $('.body-initial .val-{$ibb}-{$iba}-{$ias}').html('{$valbc}');
+                                $('.body-initial .val-{$iba}-{$ias}').html('{$valbb}');
+                                $('.body-initial .val-{$ias}').html('{$valba}');
                                     
 JS;
                                 $this->registerJs($js);

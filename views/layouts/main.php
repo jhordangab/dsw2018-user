@@ -98,10 +98,35 @@ $css = <<<CSS
         border-color: #237486;
     }
         
-    .alert-success 
+    .alert.alert-success 
     {
         color: #FFF;
-        background-color: #247388;
+        background-color: #247388 !important;
+    }
+        
+    .div-loading
+    {
+        display:    none;
+        position:   fixed;
+        z-index:    1000;
+        top:        0;
+        left:       0;
+        height:     100%;
+        width:      100%;
+        background: rgba( 255, 255, 255, .8 ) 
+                    url('/img/loading.gif') 
+                    50% 50% 
+                    no-repeat;
+    }
+
+    .div-loading.loading 
+    {
+        overflow: hidden;   
+    }
+
+    .div-loading.loading
+    {
+        display: block;
     }
 CSS;
 
@@ -151,6 +176,8 @@ if (Yii::$app->controller->action->id === 'login') {
             ['directoryAsset' => $directoryAsset]
         )
         ?>
+        
+        <div class="div-loading"></div>
 
         <?= $this->render(
             'content.php',

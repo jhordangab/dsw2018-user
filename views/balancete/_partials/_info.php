@@ -48,7 +48,7 @@ $this->registerJs($js);
     [
         'title' => 'Alterar',
         'class' => 'btn btn-default modal_update_balancete pull-right',
-        'data-link' => '/balancete/validate?id=' . $model->id,
+        'data-link' => '/balancete/validar-balancete?id=' . $model->id,
         'data-title' => 'Alteração de Balancete',
         'style' => 'cursor:pointer; margin-bottom: 10px;'
     ]); ?>

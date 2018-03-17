@@ -61,7 +61,7 @@ for($i = 2017; $i < 2022; $i++)
         [
             [
                 'attribute' => 'tipo',
-                'filter' => ['S' => 'Sucesso', 'E' => 'Erro', 'A' => 'Alerta'],
+                'filter' => ['S' => 'Sucesso', 'E' => 'Erro', 'A' => 'Exclusão'],
                 'format' => 'raw',
                 'headerOptions' => ['style' => 'width:10%; text-align: center;'],
                 'contentOptions' => ['style' => 'text-align: center;'],
@@ -81,7 +81,7 @@ for($i = 2017; $i < 2022; $i++)
                             $class = 'error';
                             break;
                         case 'A':
-                            $status = 'Alerta';
+                            $status = 'Exclusão';
                             $class = 'warning';
                     }
                     

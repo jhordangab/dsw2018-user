@@ -26,7 +26,7 @@ class BalanceteImportForm extends yii\base\Model
         [
             [['file', 'mes', 'ano', 'empresa_id'], 'required'],
             [['empresa_nome'], 'safe'],
-            [['file'], 'file', 'extensions' => 'xls, xlsx, ods'],
+            [['file'], 'file', 'extensions' => 'xls, xlsx, ods', 'checkExtensionByMimeType' => false],
             [['mes'], 'validateBalancete'],
             [['importar_saldo'], 'validateSaldo'],
             [['importar_saldo'], 'boolean']
@@ -54,7 +54,7 @@ class BalanceteImportForm extends yii\base\Model
             'is_excluido' => FALSE
         ])->exists();
         
-        if ($find) 
+        if (false) 
         {
             $this->addError('mes', 'O balancete já foi importado para o período selecionado.');
             $this->addError('ano', 'O balancete já foi importado para o período selecionado.');
@@ -69,11 +69,12 @@ class BalanceteImportForm extends yii\base\Model
                 'empresa_id' => $this->empresa_id,
                 'is_ativo' => TRUE, 
                 'is_excluido' => FALSE
-            ])->exists();
+            ])->one();
 
             if ($saldoInicial) 
             {
-                $this->addError($attribute, 'O saldo inicial dessa empresa já foi importado');
+                $this->addError($attribute, 'O saldo inicial dessa empresa já foi importado no período de ' . $saldoInicial->mes .
+                    '/' . $saldoInicial->ano);
             }
         }
     }
@@ -91,7 +92,11 @@ class BalanceteImportForm extends yii\base\Model
         
         $this->file->saveAs($file_path . $file);
 
-        $data = Excel::import($file_path . $file);
+        $data = Excel::import($file_path . $file, 
+        [
+            'setFirstRecordAsKeys' => true,
+        ]);
+        
         $usuario_nome = Yii::$app->user->identity->nome;
         
         $this->salvarLog($usuario_nome, 'Iniciando Importação');
@@ -104,8 +109,13 @@ class BalanceteImportForm extends yii\base\Model
         $balancete->ano = $this->ano;
         $balancete->status = StatusBalanceteMagic::STATUS_SENT;
         $balancete->save();
+
+        if($this->file->extension == 'ods')
+        {
+            $data = $data[0];
+        }
         
-        foreach($data[0] as $value)
+        foreach($data as $value)
         {
             $codigo = $this->alteraCategoria(str_replace([',', '.'], '', trim($value['Conta Contábil'])));
             

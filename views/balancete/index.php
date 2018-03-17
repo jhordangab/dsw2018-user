@@ -58,7 +58,7 @@ for($i = 2017; $i < 2022; $i++)
         [
             'title' => 'Importar',
             'class' => 'btn btn-success modal_import_balancete',
-            'data-link' => '/balancete/import',
+            'data-link' => '/balancete/importar-balancete',
             'data-title' => 'Importação de Balancetes',
             'style' => 'cursor:pointer;'
         ]); ?>
@@ -138,7 +138,7 @@ for($i = 2017; $i < 2022; $i++)
                     },
                     'delete' => function ($url, $model) 
                     {     
-                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['/balancete/delete-balancete', 'id' => $model->id], [
+                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['/balancete/excluir-balancete', 'id' => $model->id], [
                             'title' => Yii::t('yii', 'Excluir'),
                             'data-confirm' => Yii::t('yii', 'Tem certeza que deseja excluir esse balancete?'),
                         ]);

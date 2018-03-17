@@ -2535,7 +2535,7 @@ ul.jqtree-tree span.jqtree-dragging {
 
 /* line 16, /Users/tiagoallenoliveira/bp1/binew/src/scss/layouts/_login.scss */
 .login--sidebar {
-  background-image: url("../img/login/cta-login.jpg");
+  background-image: url("../img/login/cta-login.png");
   background-position: top center;
   background-size: cover;
   color: #ffffff;
@@ -2554,7 +2554,7 @@ ul.jqtree-tree span.jqtree-dragging {
   bottom: 0px;
   right: 0px;
   z-index: 2;
-  opacity: .5;
+  opacity: .7;
   content: "";
 }
 

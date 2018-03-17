@@ -8,7 +8,8 @@ use kartik\helpers\Html;
 use yii\helpers\ArrayHelper;
 use app\models\AdminEmpresa;
      
-$this->registerCss("     
+$this->registerCss("   
+    
     .log-error
     {
         color: red;

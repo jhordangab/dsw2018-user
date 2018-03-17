@@ -16,6 +16,7 @@ use app\models\BalanceteImportForm;
 use yii\web\UploadedFile;
 use app\models\AdminEmpresa;
 use app\models\LogImportacao;
+use app\models\SaldoInicial;
 
 class BalanceteController extends Controller
 {
@@ -31,8 +32,11 @@ class BalanceteController extends Controller
                     [
                         'actions' => 
                         [
-                            'index', 'view', 'create', 'update', 'import',
-                            'delete', 'validate', 'get-views', 'delete-balancete'],
+                            'index', 'view', 'get-views',
+                            'importar-balancete', 'validar-balancete', 'excluir-balancete',
+                            'inserir-valor', 'alterar-valor',
+                            'inserir-saldo', 'alterar-saldo'
+                        ],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) 
@@ -59,46 +63,36 @@ class BalanceteController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        $balancetes = CategoriaPadrao::find()->getEmpresaTree(null, $model->empresa_id);
+        $categorias = CategoriaPadrao::find()->getEmpresaTree(null, $model->empresa_id);
+        $saldos = SaldoInicial::find()->andWhere(
+        [
+            'is_ativo' => TRUE,
+            'is_excluido' => FALSE,
+            'mes' => $model->mes,
+            'ano' => $model->ano,
+            'empresa_id' => $model->empresa_id
+        ])->exists();
 
         return $this->render('view', [
             'model' => $model,
-            'balancetes' => $balancetes
+            'categorias' => $categorias,
+            'saldos' => $saldos
         ]);
     }
     
     public function actionGetViews($id)
     {
         $model = $this->findModel($id);
-        $balancetes = CategoriaPadrao::find()->getEmpresaTree(null, $model->empresa_id);
+        $categorias = CategoriaPadrao::find()->getEmpresaTree(null, $model->empresa_id);
         
         return Json::encode([
             'info' => $this->renderAjax('_partials/_info', compact('model')),
-            'table' => $this->renderAjax('_partials/_table', compact('model', 'balancetes')),
+            'valor' => $this->renderAjax('_partials/_valor', compact('model', 'categorias')),
+            'saldo' => $this->renderAjax('_partials/_saldo-inicial', compact('model', 'categorias')),
         ]);
     }
     
-    public function actionValidate($id)
-    {
-        $this->layout = '//_layout_modal';
-        $model = $this->findModel($id);
-        $model->setScenario(Balancete::SCENARIO_VALIDATION);
-        $model->status = StatusBalanceteMagic::STATUS_VALIDATED;
-        
-        if ($model->load(Yii::$app->request->post()) && $model->save())
-        {
-            \Yii::$app->getSession()->setFlash('success','O balancete foi validado com sucesso.');
-            $this->refresh();
-        }
-        else 
-        {
-            return $this->render('_form-validate', [
-                'model' => $model,
-            ]);
-        }
-    }
-    
-    public function actionImport()
+    public function actionImportarBalancete()
     {
         $this->layout = '//_layout_modal';
         
@@ -121,7 +115,50 @@ class BalanceteController extends Controller
         ]);
     }
     
-    public function actionCreate($balancete_id, $categoria_id)
+    public function actionValidarBalancete($id)
+    {
+        $this->layout = '//_layout_modal';
+        $model = $this->findModel($id);
+        $model->setScenario(Balancete::SCENARIO_VALIDATION);
+        $model->status = StatusBalanceteMagic::STATUS_VALIDATED;
+        
+        if ($model->load(Yii::$app->request->post()) && $model->save())
+        {
+            \Yii::$app->getSession()->setFlash('success','O balancete foi validado com sucesso.');
+            $this->refresh();
+        }
+        else 
+        {
+            return $this->render('_form-validate', [
+                'model' => $model,
+            ]);
+        }
+    }
+    
+    public function actionExcluirBalancete($id)
+    {
+        $model = $this->findModel($id);
+        $model->is_excluido = 1;
+        $model->save(FALSE, ['is_excluido']);
+        
+        $log = new LogImportacao();
+        $log->tipo = 'A';
+        $log->empresa_nome = $model->empresa_nome;
+        $log->mes = $model->mes;
+        $log->ano = $model->ano;
+        $log->usuario = Yii::$app->user->identity->nome;
+        $log->log = "Exclusão do balancete";
+        $log->save();
+        
+        Yii::$app->db->createCommand('UPDATE balancete_valor SET is_excluido = 1 WHERE balancete_id = ' . $model->id)->execute();
+        Yii::$app->db->createCommand("UPDATE saldo_inicial SET is_excluido = 1 WHERE empresa_id = {$model->empresa_id} AND ano = {$model->ano} AND mes = {$model->mes}")->execute();
+
+        \Yii::$app->getSession()->setFlash('success','O balancete foi removido com sucesso.');
+        
+        return $this->redirect(['index']);
+    }
+    
+    public function actionInserirValor($balancete_id, $categoria_id)
     {
         $this->layout = '//_layout_modal';
         $model = new BalanceteValor();
@@ -149,13 +186,13 @@ class BalanceteController extends Controller
         }
         else 
         {
-            return $this->render('update', [
+            return $this->render('_form-valor', [
                 'model' => $model,
             ]);
         }
     }
 
-    public function actionUpdate($id)
+    public function actionAlterarValor($id)
     {
         $this->layout = '//_layout_modal';
         $model = BalanceteValor::findOne($id);
@@ -168,40 +205,67 @@ class BalanceteController extends Controller
         }
         else 
         {
-            return $this->render('update', [
+            return $this->render('_form-valor', [
                 'model' => $model,
             ]);
         }
     }
     
-    public function actionDelete($id)
+    public function actionInserirSaldo($balancete_id, $categoria_id)
     {
-        $model = BalanceteValor::findOne($id);
-        $model->is_excluido = 1;
-        $model->save(FALSE, ['is_excluido']);
-    }
-    
-    public function actionDeleteBalancete($id)
-    {
-        $model = $this->findModel($id);
-        $model->is_excluido = 1;
-        $model->save(FALSE, ['is_excluido']);
+        $this->layout = '//_layout_modal';
+        $model = new SaldoInicial();
+        $model->categoria_id = $categoria_id;
+        $balancete = Balancete::findOne($balancete_id);
+        $model->empresa_id = $balancete->empresa_id;
+        $model->empresa_nome = $balancete->empresa_nome;
+        $model->ano = $balancete->ano;
+        $model->mes = $balancete->mes;
         
-        $log = new LogImportacao();
-        $log->tipo = 'A';
-        $log->empresa_nome = $model->empresa_nome;
-        $log->mes = $model->mes;
-        $log->ano = $model->ano;
-        $log->usuario = Yii::$app->user->identity->nome;
-        $log->log = "Exclusão do balancete";
-        $log->save();
+        $categoria = CategoriaPadrao::findOne(['codigo' => $categoria_id]);
         
-        Yii::$app->db->createCommand('UPDATE balancete_valor SET is_excluido = 1 WHERE balancete_id = ' . $model->id)->execute();
-        Yii::$app->db->createCommand("UPDATE saldo_inicial SET is_excluido = 1 WHERE empresa_id = {$model->empresa_id} AND ano = {$model->ano} AND mes = {$model->mes}")->execute();
+        if(!$categoria)
+        {
+            $categoria = CategoriaEmpresa::findOne(['codigo' => $categoria_id]);
+            
+            if(!$categoria)
+            {
+                throw new NotFoundHttpException('The requested page does not exist.');
+            }
+        }    
+        
+        $model->categoria_nome = $categoria->desc_codigo . ' - ' . $categoria->descricao;
 
-        \Yii::$app->getSession()->setFlash('success','O balancete foi removido com sucesso.');
-        
-        return $this->redirect(['index']);
+        if ($model->load(Yii::$app->request->post()) && $model->save())
+        {
+            \Yii::$app->getSession()->setFlash('success','O saldo inicial foi salvo com sucesso.');
+            $this->refresh();
+        }
+        else 
+        {
+            return $this->render('_form-saldo', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionAlterarSaldo($id)
+    {
+        $this->layout = '//_layout_modal';
+        $model = SaldoInicial::findOne($id);
+        $model->categoria_nome = ($model->categoria) ? $model->categoria->desc_codigo . ' - ' . $model->categoria->descricao : $model->categoria_id;
+
+        if ($model->load(Yii::$app->request->post()) && $model->save(FALSE, ['valor'])) 
+        {
+            \Yii::$app->getSession()->setFlash('success','O saldo inicial foi alterado com sucesso.');
+            $this->refresh();
+        }
+        else 
+        {
+            return $this->render('_form-saldo', [
+                'model' => $model,
+            ]);
+        }
     }
 
     protected function findModel($id)
