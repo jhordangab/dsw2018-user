@@ -11,6 +11,7 @@ use yii\filters\AccessControl;
 use app\models\BalanceteImportForm;
 use yii\web\UploadedFile;
 use app\models\CategoriaPadrao;
+use app\models\LogImportacao;
 
 class MeusBalancetesController extends Controller
 {
@@ -24,7 +25,7 @@ class MeusBalancetesController extends Controller
                 'rules' => 
                 [
                     [
-                        'actions' => ['index', 'view', 'import'],
+                        'actions' => ['index', 'view', 'import', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) 
@@ -82,10 +83,41 @@ class MeusBalancetesController extends Controller
             'model' => $model,
         ]);
     }
+    
+    public function actionDelete($id)
+    {
+        $model = $this->findModel($id);
+        
+        if($model->status !== 'S')
+        {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+        
+        $model->is_excluido = 1;
+        $model->save(FALSE, ['is_excluido']);
+        
+        $log = new LogImportacao();
+        $log->tipo = 'A';
+        $log->empresa_nome = $model->empresa_nome;
+        $log->mes = $model->mes;
+        $log->ano = $model->ano;
+        $log->usuario = Yii::$app->user->identity->nome;
+        $log->log = "Exclusão do balancete";
+        $log->save();
+        
+        Yii::$app->db->createCommand('UPDATE balancete_valor SET is_excluido = 1 WHERE balancete_id = ' . $model->id)->execute();
+        Yii::$app->db->createCommand("UPDATE saldo_inicial SET is_excluido = 1 WHERE empresa_id = {$model->empresa_id} AND ano = {$model->ano} AND mes = {$model->mes}")->execute();
+
+        \Yii::$app->getSession()->setFlash('success','O balancete foi removido com sucesso.');
+        
+        return $this->redirect(['index']);
+    }
 
     protected function findModel($id)
     {
-        if (($model = Balancete::findOne($id)) !== null) 
+        $empresa_id = Yii::$app->user->identity->empresa_id;
+        
+        if (($model = Balancete::find()->andWhere(['empresa_id' => $empresa_id, 'id' => $id])->one()) !== null) 
         {
             return $model;
         } 

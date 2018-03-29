@@ -23,6 +23,18 @@ $this->registerCss("
 
 ");
 
+$js = <<<JS
+     
+    $('#form-importar-balancete').on('beforeSubmit', function (e) 
+    {
+        $('.div-loading').addClass("loading");
+        return true;
+    });
+        
+JS;
+
+$this->registerJs($js);
+
 $meses = 
 [
     1 => 'Janeiro',
@@ -51,6 +63,7 @@ for($i = 2017; $i < 2022; $i++)
 <div class="col-lg-12">
 
     <?php $form = ActiveForm::begin([
+        'id' => 'form-importar-balancete',
         'type' => ActiveForm::TYPE_VERTICAL,
         'options' => ['enctype' => 'multipart/form-data']
     ]); ?>

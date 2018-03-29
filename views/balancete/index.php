@@ -130,7 +130,7 @@ for($i = 2017; $i < 2022; $i++)
                 'contentOptions' => ['style' => 'text-align: center;'],
                 'buttons' =>
                 [
-                    'create' => function ($url, $model) 
+                    'view' => function ($url, $model) 
                     {     
                         return Html::a('<span class="fa fa-eye"></span>', $url, [
                             'title' => Yii::t('yii', 'Visualizar'),

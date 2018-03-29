@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 use app\magic\StatusBalanceteMagic;
 
 $this->title = 'Meus Balancetes';
@@ -118,18 +118,32 @@ for($i = 2015; $i > 2022; $i++)
                 },
             ],
             [
-                'class' => 'yii\grid\ActionColumn',
-                'template' => '{view}',
+                'class' => 'kartik\grid\ActionColumn',
+                'template' => '{view} {delete}',
                 'headerOptions' => ['style' => 'width: 10%; text-align: center;'],
                 'contentOptions' => ['style' => 'text-align: center;'],
                 'buttons' =>
                 [
-                    'create' => function ($url, $model) 
+                    'view' => function ($url, $model) 
                     {     
                         return Html::a('<span class="fa fa-eye"></span>', $url, [
-                                'title' => Yii::t('yii', 'Visualizar'),
+                            'title' => Yii::t('yii', 'Visualizar'),
                         ]);                                
-                    }
+                    },
+                    'delete' => function ($url, $model) 
+                    {     
+                        if($model->status != 'S')
+                        {
+                            return '';
+                        }
+                        else
+                        {
+                            return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
+                                'title' => Yii::t('yii', 'Excluir'),
+                                'data-confirm' => Yii::t('yii', 'Tem certeza que deseja excluir esse balancete?'),
+                            ]);
+                        }
+                    }    
                 ]        
             ]
         ],
