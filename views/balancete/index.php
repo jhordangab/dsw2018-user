@@ -95,7 +95,6 @@ for($i = 2017; $i < 2022; $i++)
             [
                 'attribute' => 'empresa_nome',
             ],
-            
             [
                 'attribute' => 'mes',
                 'headerOptions' => ['style' => 'width:10%; text-align: center;'],

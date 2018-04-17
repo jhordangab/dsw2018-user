@@ -170,18 +170,19 @@ class BalanceteImportForm extends yii\base\Model
         $balancete_valor = new BalanceteValor();
         $balancete_valor->balancete_id = $balancete_id;
         $balancete_valor->categoria_id = $codigo;
-        $balancete_valor->valor = (float) $valor;
+        
+        $balancete_valor->valor = floatval(preg_replace('/[^\d\.\-]/', '', $valor));
         
         if($balancete_valor->save())
         {
-            $this->salvarLog($usuario_nome, 'Valor R$ ' . number_format((float) $valor, 2, ',', '.')
+            $this->salvarLog($usuario_nome, 'Valor R$ ' . number_format(floatval(preg_replace('/[^\d\.\-]/', '', $valor)), 2, ',', '.')
                 . ' salvo para a categoria ' .  $categoria->desc_codigo .  ' - ' . $categoria->descricao);
         }
         else
         {
             foreach($balancete_valor->getErrors() as $error)
             {
-                $this->salvarLog($usuario_nome, 'Erro ao salvar valor R$ ' . number_format((float) $valor, 2, ',', '.')
+                $this->salvarLog($usuario_nome, 'Erro ao salvar valor R$ ' . number_format(floatval(preg_replace('/[^\d\.\-]/', '', $valor)), 2, ',', '.')
                 . ' para a categoria ' .  $categoria->desc_codigo .  ' - ' . $categoria->descricao  . ' -> ' . $error[0], 'E');
             }
         }
@@ -195,18 +196,18 @@ class BalanceteImportForm extends yii\base\Model
         $saldoInicial->ano = $this->ano;
         $saldoInicial->mes = $this->mes;
         $saldoInicial->categoria_id = (integer) str_replace('.', '', $categoria_id);
-        $saldoInicial->valor = (float) $valor;
+        $saldoInicial->valor = floatval(preg_replace('/[^\d\.\-]/', '', $valor));
         
         if($saldoInicial->save())
         {
-            $this->salvarLog($usuario_nome, 'Saldo inicial de R$ ' . number_format((float) $valor, 2, ',', '.')
+            $this->salvarLog($usuario_nome, 'Saldo inicial de R$ ' . number_format(floatval(preg_replace('/[^\d\.\-]/', '', $valor)), 2, ',', '.')
                 . ' salvo para a categoria ' .  $categoria_id);
         }
         else
         {
             foreach($saldoInicial->getErrors() as $error)
             {
-                $this->salvarLog($usuario_nome, 'Erro ao salvar saldo inicial de R$ ' . number_format((float) $valor, 2, ',', '.')
+                $this->salvarLog($usuario_nome, 'Erro ao salvar saldo inicial de R$ ' . number_format(floatval(preg_replace('/[^\d\.\-]/', '', $valor)), 2, ',', '.')
                 . ' para a categoria ' .  $categoria_id  . ' -> ' . $error[0], 'E');
             }
         }
