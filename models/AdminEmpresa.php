@@ -104,4 +104,20 @@ class AdminEmpresa extends \yii\db\ActiveRecord
             'banco' => 'Banco',
         ];
     }
+    
+    public function getAnos()
+    {
+        $sql = <<<SQL
+                
+                SELECT ano 
+                    FROM balancete 
+                    WHERE empresa_id = {$this->id} 
+                    AND is_ativo = 1 AND is_excluido = 0
+                    GROUP BY ano 
+                    ORDER BY ano DESC;
+   
+SQL;
+                    
+        return Yii::$app->db->createCommand($sql)->queryAll();
+    }
 }

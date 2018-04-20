@@ -45,7 +45,7 @@ class SiteController extends Controller
         return $this->goHome();
     }
     
-    public function actionError()
+    public function actionError() 
     {
         $exception = Yii::$app->errorHandler->exception;
         
@@ -53,6 +53,39 @@ class SiteController extends Controller
 
         if ($exception !== null) 
         {
+            if (!Yii::$app->user->getIsGuest()) 
+            {
+                $message = '';
+                $message .= 'ID: <b>' . Yii::$app->user->identity->id . '</b><br>';
+                $message .= 'Nome: <b>' . Yii::$app->user->identity->nome . '</b><br>';
+                $message .= 'Eempresa: <b>' . Yii::$app->user->identity->empresa_nome . '</b><br>';
+
+                foreach ($_SERVER as $key => $data) 
+                {
+                    if (strpos($key, 'DB_') === false) 
+                    {
+                        $message .= $key . ': <b>' . $data . '</b><br>';
+                    }
+                }
+
+                $message .= "<br />--------------------------------------------<br />";
+                $message .= "EXCEPTION <br />";
+                $message .= "<pre>" . $exception . "</pre>";
+                $message .= 'IP: <b>' . IPUSER . '</b><br>';
+                $message .= 'URL: <b>' . Yii::$app->request->getUrl() . '</b><br>';
+                $message .= 'Mensagem: <b>' . $exception->getMessage() . '</b>';
+
+                if(!preg_match('#\b(assets|apple)\b#', Yii::$app->request->getUrl(), $matches))
+                {                   
+                    Yii::$app->mailer->compose()
+                    ->setFrom('bp1@bpone.com.br')
+                    ->setTo('matheus.junior@bp1.com.br')
+                    ->setSubject('Erro no BPUP')
+                    ->setHtmlBody($message)
+                    ->send();
+                }
+            }
+
             return $this->render('error', 
             [
                 'code' => $exception->statusCode,

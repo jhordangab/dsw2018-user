@@ -9,6 +9,15 @@
                     'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                     'items' => 
                     [
+                        ['label' => 'Resultados', 'icon' => 'bar-chart',
+                            'items' =>
+                            [
+                                ['label' => 'Balancete', 'icon' => 'tag', 'url' => ['/resultado-balancete/']],
+                                ['label' => 'CMV', 'icon' => 'tag', 'url' => ['/resultado-cmv']],
+                                ['label' => 'Despesas', 'icon' => 'tag', 'url' => ['/resultado-despesa']],
+                                ['label' => 'Outras Despesas', 'icon' => 'tag', 'url' => ['/resultado-outra-despesa']],
+                            ]
+                        ],
                         ['label' => 'Planos Padrões', 'icon' => 'tags', 'url' => ['/categoria']],
                         ['label' => 'Balancetes', 'icon' => 'calculator', 'url' => ['/balancete']],
                         ['label' => 'Logs', 'icon' => 'eye', 'url' => ['/log']],

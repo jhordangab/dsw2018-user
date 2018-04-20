@@ -21,7 +21,6 @@ class DefaultController extends Controller
                     [
                         'actions' => ['login'],
                         'allow' => true,
-                        'roles' => ['?'],
                     ],
                 ],
             ],
@@ -37,6 +36,11 @@ class DefaultController extends Controller
 
     public function actionLogin()
     {
+        if(!Yii::$app->user->isGuest)
+        {
+            return $this->redirect('/site/');
+        }
+        
         $errors = null;
         
         $model = $this->module->model("LoginForm");

@@ -85,7 +85,15 @@ $config = [
         'mailer' => 
         [
             'class' => 'yii\swiftmailer\Mailer',
-            'useFileTransport' => true,
+            'transport' => 
+            [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtplw.com.br',
+                'username' => 'bpone',
+                'password' => 'vdqmeezV2399',
+                'port' => '587',
+                'encryption' => 'tls',
+            ],
         ],
         'log' => 
         [
@@ -109,7 +117,7 @@ $config = [
     'params' => $params,
 ];
 
-if (false) 
+if (FALSE) 
 {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = 

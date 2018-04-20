@@ -59,7 +59,6 @@ $css = <<<CSS
         
     .modal-header 
     {
-        border-bottom-color: #237486;
         background-color: #237486;
         color: white;
     }
@@ -70,7 +69,7 @@ $css = <<<CSS
         opacity: 1;
     }
         
-    .glyphicon
+    .glyphiconssd
     {
         color: #237486;
     }
@@ -128,6 +127,12 @@ $css = <<<CSS
     {
         display: block;
     }
+        
+    .sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu>li:hover>a>span:not(.pull-right), .sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu>li:hover>.treeview-menu 
+    {
+        background-color: #22415a;
+        color: #FFF;
+    }    
 CSS;
 
 $this->registerCss($css);
@@ -162,7 +167,7 @@ if (Yii::$app->controller->action->id === 'login') {
 
         <?php $this->head() ?>
     </head>
-    <body class="hold-transition skin-blue sidebar-mini">
+    <body class="<?= isset($this->context->bodyClass) ? $this->context->bodyClass : 'hold-transition skin-blue sidebar-mini' ?>">
     <?php $this->beginBody() ?>
     <div class="wrapper">
 
@@ -187,6 +192,7 @@ if (Yii::$app->controller->action->id === 'login') {
     </div>
 
     <?php $this->endBody() ?>
+        
     </body>
     </html>
     <?php $this->endPage() ?>

@@ -2,7 +2,6 @@
 
 return 
 [
-    'adminEmail' => 'admin@example.com',
     'maskMoneyOptions' => 
     [
         'prefix' => 'R$ ',

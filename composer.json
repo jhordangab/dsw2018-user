@@ -28,7 +28,8 @@
         "kartik-v/yii2-widget-fileinput": "@dev",
         "moonlandsoft/yii2-phpexcel": "*",
         "yii2mod/yii2-sweet-alert": "*",
-        "kartik-v/yii2-money": "dev-master"
+        "kartik-v/yii2-money": "dev-master",
+        "2amigos/yii2-table-export-widget": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
