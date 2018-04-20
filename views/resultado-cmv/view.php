@@ -48,22 +48,7 @@ $js = <<<JS
                     "valueField": "value",
                     "lineColorField": "color",
                     "fillColorsField": "color"
-                },
-                {
-                    "id": "graph2",
-                    "balloonText": "[[category]]: R$[[value]]",
-                    "bullet": "round",
-                    "lineThickness": 3,
-                    "bulletSize": 7,
-                    "bulletBorderAlpha": 1,
-                    "bulletColor": "#237486",
-                    "useLineColorForBulletBorder": true,
-                    "bulletBorderThickness": 3,
-                    "fillAlphas": 0,
-                    "lineAlpha": 1,
-                    "lineColor": "#237486",
-                    "valueField": "value",
-                  }
+                }
             ],
             "guides": [],
             "valueAxes": 
