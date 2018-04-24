@@ -1,6 +1,7 @@
 <?php
 
 use yii\bootstrap\Modal;
+use kartik\helpers\Html;
 
 $this->title = 'RFs:: ' . $empresa->razaoSocial . ' / ' . $ano;
         
@@ -85,6 +86,14 @@ $js = <<<JS
         
         createBar(_data);
     });
+        
+    $("button.export-excel").click(function()
+    {
+        $(".table-balancete").table2excel({
+            name: "$this->title",
+            filename: "$this->title"
+        });
+    });
 
 JS;
 
@@ -110,6 +119,12 @@ Modal::begin([
     <i class="fa fa-calculator"></i> <?= $this->title ?>
     <small class="pull-right">Última Atualização: <?= ($indicador) ? Yii::$app->formatter->asDate($indicador->dthr_atualizacao, 'd/M/Y H:mm') : '' ?> </small>
 </h2>
+
+<?= Html::a('<i class="fa fa-arrow-left"></i>',['index'], ['class' => 'btn btn-xs btn-default pull-left', 'style' => 'margin-bottom: 10px;', 'title' => 'Clique para voltar']) ?>
+
+<?= Html::a('<i class="fa fa-file-pdf-o"></i>',['report',  'empresa_id' => $empresa->id, 'ano' => $ano], ['target' => '_blank', 'class' => 'btn btn-xs btn-success pull-right', 'style' => 'margin-bottom: 10px; margin-left: 5px;', 'title' => 'Clique para exportar para PDF']) ?>
+
+<?= Html::button('<i class="fa fa-file-excel-o"></i>', ['class' => 'btn btn-xs btn-success export-excel pull-right', 'style' => 'margin-bottom: 10px;', 'title' => 'Clique para exportar para Excel']) ?>
 
 <div class="row" style="padding: 10px;">
     <?= $this->render('_partials/_table', compact('dados')); ?>

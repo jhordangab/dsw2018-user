@@ -16,8 +16,8 @@
                                 ['label' => 'CMVs', 'icon' => 'tag', 'url' => ['/resultado-cmv']],
                                 ['label' => 'Despesas', 'icon' => 'tag', 'url' => ['/resultado-despesa']],
                                 ['label' => 'Outras Rec./Des.', 'icon' => 'tag', 'url' => ['/resultado-outra-receita-despesa']],
-                                ['label' => 'RFs', 'icon' => 'tag', 'url' => ['/resultado-outra-despesa']],
-                                ['label' => 'DREs', 'icon' => 'tag', 'url' => ['/resultado-outra-despesa']],
+                                ['label' => 'RFs', 'icon' => 'tag', 'url' => ['/resultado-rf']],
+                                ['label' => 'DREs', 'icon' => 'tag', 'url' => ['/resultado-dre']],
                             ]
                         ],
                         ['label' => 'Planos Padrões', 'icon' => 'tags', 'url' => ['/categoria']],

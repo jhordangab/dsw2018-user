@@ -329,7 +329,7 @@ $dv['total'] = 0;
             
             <?php for($i = 1; $i <= 12; $i++) : ?>
             
-                <td><?= number_format((($rv[$i] + $cmv[$i]) / 10 ), 2, ',', '.'); ?></td>
+                <td><?= number_format((($rv[$i] + $cmv[$i])), 2, ',', '.'); ?></td>
             
             <?php endfor; ?>
             
