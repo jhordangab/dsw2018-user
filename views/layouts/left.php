@@ -12,10 +12,12 @@
                         ['label' => 'Resultados', 'icon' => 'bar-chart',
                             'items' =>
                             [
-                                ['label' => 'Balancete', 'icon' => 'tag', 'url' => ['/resultado-balancete/']],
-                                ['label' => 'CMV', 'icon' => 'tag', 'url' => ['/resultado-cmv']],
+                                ['label' => 'Balancetes', 'icon' => 'tag', 'url' => ['/resultado-balancete/']],
+                                ['label' => 'CMVs', 'icon' => 'tag', 'url' => ['/resultado-cmv']],
                                 ['label' => 'Despesas', 'icon' => 'tag', 'url' => ['/resultado-despesa']],
-                                ['label' => 'Outras Despesas', 'icon' => 'tag', 'url' => ['/resultado-outra-despesa']],
+                                ['label' => 'Outras Rec./Des.', 'icon' => 'tag', 'url' => ['/resultado-outra-receita-despesa']],
+                                ['label' => 'RFs', 'icon' => 'tag', 'url' => ['/resultado-outra-despesa']],
+                                ['label' => 'DREs', 'icon' => 'tag', 'url' => ['/resultado-outra-despesa']],
                             ]
                         ],
                         ['label' => 'Planos Padrões', 'icon' => 'tags', 'url' => ['/categoria']],

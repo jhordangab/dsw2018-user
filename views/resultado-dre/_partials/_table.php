@@ -80,9 +80,7 @@ $dv['total'] = 0;
 
         <tr class="title-category" style="background-color: #237486; color: #FFF;">
 
-            <th scope="col"></th>
-            
-            <th scope="col">DEMONSTRATIVO DE CUSTO DE MERCADORIAS</th>
+            <th scope="col" colspan="2">DEMONSTRATIVO DE CUSTO DE MERCADORIAS</th>
             
             <?php 
             

@@ -1,14 +1,19 @@
 <?php
 
+use kartik\mpdf\Pdf;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 require(__DIR__ . '/config-local.php');
+setlocale(LC_ALL, null);
+setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 
 $config = [
     'id' => 'agrocontar',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'language' => 'pt-BR',
+    'timeZone' => 'America/Sao_Paulo',
     'aliases' => 
     [
         '@bower' => '@vendor/bower-asset',
@@ -26,6 +31,13 @@ $config = [
     ],
     'components' => 
     [
+        'pdf' => 
+        [
+            'class' => Pdf::classname(),
+            'format' => Pdf::FORMAT_A4,
+            'orientation' => Pdf::ORIENT_PORTRAIT,
+            'destination' => Pdf::DEST_BROWSER,
+        ],
         'formatter' => 
         [
             'class' => 'yii\i18n\formatter',

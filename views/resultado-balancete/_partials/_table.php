@@ -82,7 +82,6 @@ $meses =
 
 $sum = [];
 $sum['si'] = 0;
-$sum['total'] = 0;
       
 ?>
 
@@ -92,7 +91,9 @@ $sum['total'] = 0;
 
         <tr style="background-color: #237486; color: #FFF;">
 
-            <th scope="col" colspan="2">Receita</th>
+            <th scope="col"></th>
+            
+            <th scope="col">Receita</th>
             
             <th scope="col" class="text-center">Saldo Inicial</th>
 
@@ -107,8 +108,6 @@ $sum['total'] = 0;
                             
             <?php endforeach; ?>
                 
-            <th scope="col" class="text-center">Total</th>
-
         </tr>
 
     </thead>
@@ -134,7 +133,6 @@ $sum['total'] = 0;
                     $sum[10] += $dado["oct"];
                     $sum[11] += $dado["nov"];
                     $sum[12] += $dado["dez"];
-                    $sum['total'] += $dado["total"];
                 }
         ?>
         
@@ -144,7 +142,7 @@ $sum['total'] = 0;
 
                 <td style="text-align: left;"><?= $dado["descricao"]; ?></td>  
                 
-                <td><?= number_format($dado["saldo_inicial"], 2, ',', '.'); ?></td>
+                <td><?= number_format((float) $dado["saldo_inicial"], 2, ',', '.'); ?></td>
                 
                 <td><?= number_format($dado["jan"], 2, ',', '.'); ?></td>
                 
@@ -170,8 +168,6 @@ $sum['total'] = 0;
                 
                 <td><?= number_format($dado["dez"], 2, ',', '.'); ?></td>
                 
-                <td><b><?= number_format($dado["total"], 2, ',', '.'); ?></b></td>
-
             </tr>
 
         <?php endforeach; ?> 
@@ -187,8 +183,6 @@ $sum['total'] = 0;
                 <td><?= number_format($sum[$i], 2, ',', '.'); ?></td>
             
             <?php endfor; ?>
-
-            <td><?= number_format($sum["total"], 2, ',', '.'); ?></td>
 
         </tr>
             

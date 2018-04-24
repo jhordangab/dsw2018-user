@@ -132,7 +132,12 @@ $css = <<<CSS
     {
         background-color: #22415a;
         color: #FFF;
-    }    
+    }  
+        
+    .margin10
+    {
+        margin: 10px;
+    }
 CSS;
 
 $this->registerCss($css);

@@ -6,11 +6,11 @@ use Yii;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 use app\models\AdminEmpresa;
-use app\magic\DespesaBiMagic;
+use app\magic\OutraDespesaBiMagic;
 use app\models\Indicador;
 use kartik\mpdf\Pdf;
 
-class ResultadoDespesaController extends Controller
+class ResultadoOutraReceitaDespesaController extends Controller
 {
     public $bodyClass = 'skin-blue sidebar-mini sidebar-collapse';
     
@@ -43,15 +43,15 @@ class ResultadoDespesaController extends Controller
     public function actionIndex()
     {
         $empresas = AdminEmpresa::find()->andWhere('id not in (1, 2)')->orderBy('nomeResumo ASC')->all();
-        $indicador = Indicador::findOne(4);
+        $indicador = Indicador::findOne(5);
         return $this->render('index', compact('empresas', 'indicador'));
     }
     
     public function actionView($empresa_id, $ano)
     {
         $empresa = AdminEmpresa::findOne($empresa_id);
-        $dados = DespesaBiMagic::get($empresa->nomeResumo, $ano);
-        $indicador = Indicador::findOne(4);
+        $dados = OutraDespesaBiMagic::get($empresa->nomeResumo, $ano);
+        $indicador = Indicador::findOne(5);
 
         return $this->render('view', [
             'empresa' => $empresa,
@@ -68,9 +68,9 @@ class ResultadoDespesaController extends Controller
 	date_default_timezone_set('America/Sao_Paulo');
         
         $empresa = AdminEmpresa::findOne($empresa_id);
-        $dados = DespesaBiMagic::get($empresa->nomeResumo, $ano);
+        $dados = OutraDespesaBiMagic::get($empresa->nomeResumo, $ano);
         $content = $this->renderPartial('_partials/_table-pdf', compact('dados', 'empresa', 'ano'));
-        $title = 'Despesas:: ' . $empresa->razaoSocial . ' / ' . $ano;
+        $title = 'Outras Receitas / Despesas:: ' . $empresa->razaoSocial . ' / ' . $ano;
         $date = ucwords(strftime('%A, %d', strtotime('today'))) . ' de ' .
                 ucwords(strftime('%B', strtotime('today'))) . ' de ' .
                 ucwords(strftime('%Y', strtotime('today')));
@@ -89,7 +89,7 @@ class ResultadoDespesaController extends Controller
             'marginRight' => 5,
             'methods' => 
             [
-                'SetHeader' => ['BP1 Sistemas - Despesas||' . $date],
+                'SetHeader' => ['BP1 Sistemas - Outras Receitas / Despesas||' . $date],
                 'SetFooter' => ['|Página {PAGENO}|'],
             ]
         ]);

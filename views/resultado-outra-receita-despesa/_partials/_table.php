@@ -76,7 +76,7 @@ $sum['total'] = 0;
 
             <th scope="col"></th>
             
-            <th scope="col">DESPESAS OPERACIONAIS</th>
+            <th scope="col">OUTRAS RECEITAS / DESPESAS</th>
             
             <?php foreach($meses as $xs => $mes): $sum[$xs] = 0; ?>
             

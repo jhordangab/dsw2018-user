@@ -2,7 +2,7 @@
 
 use yii\helpers\Url;
 
-$this->title = 'CMVs';
+$this->title = 'Outras Receitas / Despesas';
 $this->params['breadcrumbs'][] = $this->title;
 
 $css = <<<CSS

@@ -2,7 +2,7 @@
 
 use yii\helpers\Url;
 
-$this->title = 'CMVs';
+$this->title = 'DREs';
 $this->params['breadcrumbs'][] = $this->title;
 
 $css = <<<CSS

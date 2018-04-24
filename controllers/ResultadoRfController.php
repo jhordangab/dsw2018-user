@@ -6,10 +6,10 @@ use Yii;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 use app\models\AdminEmpresa;
-use app\magic\OutraDespesaBiMagic;
+use app\magic\RfBiMagic;
 use app\models\Indicador;
 
-class ResultadoOutraDespesaController extends Controller
+class ResultadoRfController extends Controller
 {
     public $bodyClass = 'skin-blue sidebar-mini sidebar-collapse';
     
@@ -42,15 +42,15 @@ class ResultadoOutraDespesaController extends Controller
     public function actionIndex()
     {
         $empresas = AdminEmpresa::find()->andWhere('id not in (1, 2)')->orderBy('nomeResumo ASC')->all();
-        $indicador = Indicador::findOne(5);
+        $indicador = Indicador::findOne(1);
         return $this->render('index', compact('empresas', 'indicador'));
     }
     
     public function actionView($empresa_id, $ano)
     {
         $empresa = AdminEmpresa::findOne($empresa_id);
-        $dados = OutraDespesaBiMagic::get($empresa->nomeResumo, $ano);
-        $indicador = Indicador::findOne(5);
+        $dados = RfBiMagic::get($empresa->nomeResumo, $ano);
+        $indicador = Indicador::findOne(1);
 
         return $this->render('view', [
             'empresa' => $empresa,
