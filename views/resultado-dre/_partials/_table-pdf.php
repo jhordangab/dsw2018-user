@@ -1,59 +1,5 @@
 <?php
 
-$css = <<<CSS
-        
-    .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td 
-    {
-        padding: 2px;
-        font-size: 10px;
-    }
-        
-    .table-balancete
-    {
-        cursor: pointer;
-    }
-        
-    .table-balancete > tbody > tr:hover
-    {
-        border: 2px solid #22415a;
-    }
-        
-    .table-balancete > tbody > tr.title-category:hover
-    {
-        border: none;
-    }
-        
-    .table-balancete > tbody > tr.title-category,
-    .table-balancete > thead > tr.title-category
-    {
-        cursor: text;
-        background-color: #247388c2;
-        color: #FFF;
-    }
-        
-    .table-balancete > tbody > tr.cools,
-    .table-balancete > thead > tr.cools
-    {
-        background-color: #bed4e291;
-    }
-        
-    .body-valor tr td
-    {
-        text-align: center;
-    }
-        
-    .body-valor tr.title-category.sum 
-    {
-        font-weight: 600;
-        background-color: #237486;
-        color: #FFF;
-    }
-        
-CSS;
-
-
-$this->registerCss($css);
-
 $meses = 
 [
     1 => 'Janeiro',
@@ -79,15 +25,57 @@ $ord['total'] = 0;
 $do = [];
 $do['total'] = 0;
 
+$h_img = fopen('img/logo.png', "rb");
+$img = fread($h_img, filesize('img/logo.png'));
+fclose($h_img);
+
+$pic = 'data://text/plain;base64,' . base64_encode($img);
+
 ?>
 
-<table class="table table-condensed table-bordered table-balancete">
+<table>
+
+    <tbody>
+
+        <tr>
+
+            <td colspan="15"> </td>
+                
+        </tr>
+        
+        <tr>
+
+            <td colspan="2">
+                
+                <img width="120px" src="<?= $pic ?>">
+                
+            </td>
+            
+            <td colspan="13" style="font-size: 12px;">
+                
+                DEMONSTRATIVO DO RESULTADO DO EXERCÍCIO
+                <br>
+                EMPRESA: <?= $empresa->razaoSocial ?>
+                <br>
+                EXERCÍCIO FISCAL: <?= $ano ?>
+                
+                
+            </td>
+                
+        </tr>
+        
+        
+    </tbody>
+
+</table>
+
+<table style="font-size: 8px;">
 
     <thead>
 
-        <tr class="title-category" style="background-color: #235a69; color: #FFF;">
+        <tr style="background-color: #235a69;">
             
-            <th scope="col">DEMONSTRATIVO DO RESULTADO DO EXERCÍCIO</th>
+            <th style="color: #FFFFFF;" scope="col">DEMONSTRATIVO DO RESULTADO DO EXERCÍCIO</th>
             
             <?php 
             
@@ -99,23 +87,23 @@ $do['total'] = 0;
                     $do[$xs] = 0;
             ?>
             
-                <th scope="col" class="text-center"><?= $mes ?></th>
+                <th style="color: #FFFFFF;" scope="col" class="text-center"><?= $mes ?></th>
                             
             <?php endforeach; ?>
                 
-            <th scope="col" class="text-center">TOTAL</th>
+            <th style="color: #FFFFFF;" scope="col" class="text-center">TOTAL</th>
 
         </tr>
 
     </thead>
 
-    <tbody class="body-valor">
+    <tbody>
         
-        <tr class="title-category" style="background-color: #247388c2; color: #FFF;">
+        <tr style="background-color: #247388c2;">
 
-            <th scope="col">RECEITAS OPERACIONAIS</th>
+            <th style="color: #FFFFFF;" scope="col">RECEITAS OPERACIONAIS</th>
                 
-            <th scope="col" colspan="13" class="text-center"></th>
+            <th style="color: #FFFFFF;" scope="col" colspan="13" class="text-center"></th>
 
         </tr>
 
@@ -137,7 +125,7 @@ $do['total'] = 0;
             
         ?>
             
-            <tr class="graph" data-json='<?= json_encode($dado); ?>'>
+            <tr>
 
                 <td style="text-align: left;"><?= $dado["descricao"]; ?></td>  
                                 
@@ -171,25 +159,25 @@ $do['total'] = 0;
  
         <?php endforeach; ?>
         
-        <tr class="title-category" style="background-color: #247388; color: #FFF;">
+        <tr style="background-color: #247388;">
 
-            <th scope="col">RECEITAS OPERACIONAIS LÍQUIDAS</th>
+            <th style="color: #FFFFFF;" scope="col">RECEITAS OPERACIONAIS LÍQUIDAS</th>
             
             <?php for($i = 1; $i <= 12; $i++) : ?>
             
-                <td><?= number_format($ro[$i], 2, ',', '.'); ?></td>
+                <td style="color: #FFFFFF;"><?= number_format($ro[$i], 2, ',', '.'); ?></td>
             
             <?php endfor; ?>
                 
-            <td><?= number_format($ro["total"], 2, ',', '.'); ?></td>
+            <td style="color: #FFFFFF;"><?= number_format($ro["total"], 2, ',', '.'); ?></td>
             
         </tr>
         
-        <tr class="title-category" style="background-color: #247388c2; color: #FFF;">
+        <tr style="background-color: #247388c2;">
 
-            <th scope="col">CMV</th>
+            <th style="color: #FFFFFF;" scope="col">CMV</th>
                 
-            <th scope="col" colspan="13" class="text-center"></th>
+            <th style="color: #FFFFFF;" scope="col" colspan="13" class="text-center"></th>
 
         </tr>
         
@@ -197,7 +185,7 @@ $do['total'] = 0;
             
             ?>
             
-            <tr class="graph" data-json='<?= json_encode($dado); ?>'>
+            <tr>
 
                 <td style="text-align: left;"><?= $dado["descricao"]; ?></td>  
                                 
@@ -231,11 +219,11 @@ $do['total'] = 0;
  
         <?php endforeach; ?>
         
-        <tr class="title-category" style="background-color: #247388c2; color: #FFF;">
+        <tr style="background-color: #247388c2;">
 
-            <th scope="col">DESPESAS OPERACIONAIS</th>
+            <th style="color: #FFFFFF;" scope="col">DESPESAS OPERACIONAIS</th>
                 
-            <th scope="col" colspan="13" class="text-center"></th>
+            <th style="color: #FFFFFF;" scope="col" colspan="13" class="text-center"></th>
 
         </tr>
 
@@ -257,7 +245,7 @@ $do['total'] = 0;
             
         ?>
             
-            <tr class="graph" data-json='<?= json_encode($dado); ?>'>
+            <tr>
 
                 <td style="text-align: left;"><?= $dado["descricao"]; ?></td>  
                                 
@@ -291,39 +279,39 @@ $do['total'] = 0;
  
         <?php endforeach; ?>
         
-        <tr class="title-category" style="background-color: #247388; color: #FFF;">
+        <tr style="background-color: #247388;">
 
-            <th scope="col">TOTAL DAS DESPESAS OPERACIONAIS</th>
+            <th style="color: #FFFFFF;" scope="col">TOTAL DAS DESPESAS OPERACIONAIS</th>
             
             <?php for($i = 1; $i <= 12; $i++) : ?>
             
-                <td><?= number_format($do[$i], 2, ',', '.'); ?></td>
+                <td style="color: #FFFFFF;"><?= number_format($do[$i], 2, ',', '.'); ?></td>
             
             <?php endfor; ?>
                 
-            <td><?= number_format($do["total"], 2, ',', '.'); ?></td>
+            <td style="color: #FFFFFF;"><?= number_format($do["total"], 2, ',', '.'); ?></td>
             
         </tr>
         
-        <tr class="title-category" style="background-color: #247388; color: #FFF;">
+        <tr style="background-color: #247388;">
 
-            <th scope="col">% CUSTO OPERACIONAL</th>
+            <th style="color: #FFFFFF;" scope="col">% CUSTO OPERACIONAL</th>
             
             <?php for($i = 1; $i <= 12; $i++) : ?>
             
-                <td><?= number_format((($do[$i]/$ro[$i]) * 100), 2, ',', '.'); ?>%</td>
+                <td style="color: #FFFFFF;"><?= number_format((($do[$i]/$ro[$i]) * 100), 2, ',', '.'); ?>%</td>
             
             <?php endfor; ?>
                 
-            <td><?= number_format((($do["total"]/$ro["total"]) * 100), 2, ',', '.'); ?>%</td>
+            <td style="color: #FFFFFF;"><?= number_format((($do["total"]/$ro["total"]) * 100), 2, ',', '.'); ?>%</td>
             
         </tr>
         
-        <tr class="title-category" style="background-color: #247388c2; color: #FFF;">
+        <tr style="background-color: #247388c2;">
 
-            <th scope="col">RESULTADO FINANCEIRO</th>
+            <th style="color: #FFFFFF;" scope="col">RESULTADO FINANCEIRO</th>
                 
-            <th scope="col" colspan="13" class="text-center"></th>
+            <th style="color: #FFFFFF;" scope="col" colspan="13" class="text-center"></th>
 
         </tr>
 
@@ -345,7 +333,7 @@ $do['total'] = 0;
             
         ?>
             
-            <tr class="graph" data-json='<?= json_encode($dado); ?>'>
+            <tr>
 
                 <td style="text-align: left;"><?= $dado["descricao"]; ?></td>  
                                 
@@ -379,39 +367,39 @@ $do['total'] = 0;
  
         <?php endforeach; ?>
         
-        <tr class="title-category" style="background-color: #247388; color: #FFF;">
+        <tr style="background-color: #247388;">
 
-            <th scope="col">TOTAL DO RESULTADO FINANCEIRO</th>
+            <th style="color: #FFFFFF;" scope="col">TOTAL DO RESULTADO FINANCEIRO</th>
             
             <?php for($i = 1; $i <= 12; $i++) : ?>
             
-                <td><?= number_format($rf[$i], 2, ',', '.'); ?></td>
+                <td style="color: #FFFFFF;"><?= number_format($rf[$i], 2, ',', '.'); ?></td>
             
             <?php endfor; ?>
                 
-            <td><?= number_format($rf["total"], 2, ',', '.'); ?></td>
+            <td style="color: #FFFFFF;"><?= number_format($rf["total"], 2, ',', '.'); ?></td>
             
         </tr>
         
-        <tr class="title-category" style="background-color: #247388; color: #FFF;">
+        <tr style="background-color: #247388;">
 
-            <th scope="col">% RESULTADO FINANCEIRO</th>
+            <th style="color: #FFFFFF;" scope="col">% RESULTADO FINANCEIRO</th>
             
             <?php for($i = 1; $i <= 12; $i++) : ?>
             
-                <td><?= number_format((($rf[$i]/$ro[$i]) * 100), 2, ',', '.'); ?>%</td>
+                <td style="color: #FFFFFF;"><?= number_format((($rf[$i]/$ro[$i]) * 100), 2, ',', '.'); ?>%</td>
             
             <?php endfor; ?>
                 
-            <td><?= number_format((($rf["total"]/$ro["total"]) * 100), 2, ',', '.'); ?>%</td>
+            <td style="color: #FFFFFF;"><?= number_format((($rf["total"]/$ro["total"]) * 100), 2, ',', '.'); ?>%</td>
             
         </tr>
         
-        <tr class="title-category" style="background-color: #247388c2; color: #FFF;">
+        <tr style="background-color: #247388c2;">
 
-            <th scope="col">OUTRAS RECEITAS / DESPESAS</th>
+            <th style="color: #FFFFFF;" scope="col">OUTRAS RECEITAS / DESPESAS</th>
                 
-            <th scope="col" colspan="13" class="text-center"></th>
+            <th style="color: #FFFFFF;" scope="col" colspan="13" class="text-center"></th>
 
         </tr>
 
@@ -433,7 +421,7 @@ $do['total'] = 0;
             
         ?>
             
-            <tr class="graph" data-json='<?= json_encode($dado); ?>'>
+            <tr>
 
                 <td style="text-align: left;"><?= $dado["descricao"]; ?></td>  
                                 
@@ -467,31 +455,31 @@ $do['total'] = 0;
  
         <?php endforeach; ?>
         
-        <tr class="title-category" style="background-color: #247388; color: #FFF;">
+        <tr style="background-color: #247388;">
 
-            <th scope="col">TOTAL DE OUTRAS RECEITAS / DESPESAS</th>
+            <th style="color: #FFFFFF;" scope="col">TOTAL DE OUTRAS RECEITAS / DESPESAS</th>
             
             <?php for($i = 1; $i <= 12; $i++) : ?>
             
-                <td><?= number_format($ord[$i], 2, ',', '.'); ?></td>
+                <td style="color: #FFFFFF;"><?= number_format($ord[$i], 2, ',', '.'); ?></td>
             
             <?php endfor; ?>
                 
-            <td><?= number_format($ord["total"], 2, ',', '.'); ?></td>
+            <td style="color: #FFFFFF;"><?= number_format($ord["total"], 2, ',', '.'); ?></td>
             
         </tr>
         
-        <tr class="title-category" style="background-color: #247388; color: #FFF;">
+        <tr style="background-color: #247388;">
 
-            <th scope="col">% RESULTADO OUTRAS RECEITAS / DESPESAS</th>
+            <th style="color: #FFFFFF;" scope="col">% RESULTADO OUTRAS RECEITAS / DESPESAS</th>
             
             <?php for($i = 1; $i <= 12; $i++) : ?>
             
-                <td><?= number_format((($ord[$i]/$ro[$i]) * 100), 2, ',', '.'); ?>%</td>
+                <td style="color: #FFFFFF;"><?= number_format((($ord[$i]/$ro[$i]) * 100), 2, ',', '.'); ?>%</td>
             
             <?php endfor; ?>
                 
-            <td><?= number_format((($ord["total"]/$ro["total"]) * 100), 2, ',', '.'); ?>%</td>
+            <td style="color: #FFFFFF;"><?= number_format((($ord["total"]/$ro["total"]) * 100), 2, ',', '.'); ?>%</td>
             
         </tr>
         
