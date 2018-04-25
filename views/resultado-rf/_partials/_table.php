@@ -119,19 +119,22 @@ $rf['total'] = 0;
 
         <?php foreach($dados['DESPESAS FINANCEIRAS TOTAIS'] as $dado): 
             
-            $df[1] += $dado["jan"];
-            $df[2] += $dado["feb"];
-            $df[3] += $dado["mar"];
-            $df[4] += $dado["apr"];
-            $df[5] += $dado["may"];
-            $df[6] += $dado["jun"];
-            $df[7] += $dado["jul"];
-            $df[8] += $dado["aug"];
-            $df[9] += $dado["sep"];
-            $df[10] += $dado["oct"];
-            $df[11] += $dado["nov"];
-            $df[12] += $dado["dez"];
-            $df['total'] += $dado["total"];
+            if($dado["class"] == 'value')
+            {
+                $df[1] += $dado["jan"];
+                $df[2] += $dado["feb"];
+                $df[3] += $dado["mar"];
+                $df[4] += $dado["apr"];
+                $df[5] += $dado["may"];
+                $df[6] += $dado["jun"];
+                $df[7] += $dado["jul"];
+                $df[8] += $dado["aug"];
+                $df[9] += $dado["sep"];
+                $df[10] += $dado["oct"];
+                $df[11] += $dado["nov"];
+                $df[12] += $dado["dez"];
+                $df['total'] += $dado["total"];
+            }
             
         ?>
             
@@ -199,19 +202,22 @@ $rf['total'] = 0;
         
         <?php foreach($dados['RECEITAS FINANCEIRAS TOTAIS'] as $dado): 
             
-            $rf[1] += $dado["jan"];
-            $rf[2] += $dado["feb"];
-            $rf[3] += $dado["mar"];
-            $rf[4] += $dado["apr"];
-            $rf[5] += $dado["may"];
-            $rf[6] += $dado["jun"];
-            $rf[7] += $dado["jul"];
-            $rf[8] += $dado["aug"];
-            $rf[9] += $dado["sep"];
-            $rf[10] += $dado["oct"];
-            $rf[11] += $dado["nov"];
-            $rf[12] += $dado["dez"];
-            $rf['total'] += $dado["total"];
+            if($dado['class'] == 'value')
+            {
+                $rf[1] += $dado["jan"];
+                $rf[2] += $dado["feb"];
+                $rf[3] += $dado["mar"];
+                $rf[4] += $dado["apr"];
+                $rf[5] += $dado["may"];
+                $rf[6] += $dado["jun"];
+                $rf[7] += $dado["jul"];
+                $rf[8] += $dado["aug"];
+                $rf[9] += $dado["sep"];
+                $rf[10] += $dado["oct"];
+                $rf[11] += $dado["nov"];
+                $rf[12] += $dado["dez"];
+                $rf['total'] += $dado["total"];
+            }
             
             ?>
             

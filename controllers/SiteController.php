@@ -53,7 +53,7 @@ class SiteController extends Controller
 
         if ($exception !== null) 
         {
-            if (!Yii::$app->user->getIsGuest()) 
+            if (YII_ENV !== 'dev' && !Yii::$app->user->getIsGuest()) 
             {
                 $message = '';
                 $message .= 'ID: <b>' . Yii::$app->user->identity->id . '</b><br>';
