@@ -24,8 +24,7 @@ class AppAsset extends AssetBundle
         'https://www.amcharts.com/lib/3/amcharts.js',
         'https://www.amcharts.com/lib/3/serial.js',
         'https://www.amcharts.com/lib/3/plugins/export/export.min.js',
-        'https://www.amcharts.com/lib/3/themes/light.js',
-        'js/jquery.table2excel.js'
+        'https://www.amcharts.com/lib/3/themes/light.js'
     ];
     
     public $depends = 

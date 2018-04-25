@@ -13,7 +13,9 @@ $img = fread($h_img, filesize('img/logo.png'));
 fclose($h_img);
 
 $pic = 'data://image/png;base64,' . base64_encode($img);
-
+$date = ucwords(strftime('%A, %d', strtotime('today'))) . ' de ' .
+                ucwords(strftime('%B', strtotime('today'))) . ' de ' .
+                ucwords(strftime('%Y', strtotime('today')));
 $js = <<<JS
 
     function createBar(data)
@@ -102,14 +104,6 @@ $js = <<<JS
         createBar(_data);
     });
         
-    $("button.export-excel").click(function()
-    {
-        $(".table-balancete").table2excel({
-            name: "$this->title",
-            filename: "$this->title"
-        });
-    });
-        
     $("button.exportgraph2pdf").click(function()
     {
         var ids = ["rendergraph"];
@@ -152,10 +146,43 @@ $js = <<<JS
             var layout =
             {
                 "content": [],
+                pageSize: 'A4',
+                pageMargins: [ 40, 60, 40, 60 ],
                 images: 
                 {
                     logo: "$pic"
-                }
+                },
+                styles: 
+                {
+                    headerTitle: 
+                    {
+                        fontSize: 8,
+                        alignment: 'left'
+                    },
+                    headerDate: 
+                    {
+                        fontSize: 8,
+                        alignment: 'right'
+                    },
+                },
+                header: 
+                {
+                    columns: 
+                    [
+                        {
+                            "text": "BP1 Sistemas",
+                            "fontSize": 8,
+                            "margin": [ 45, 20, 20, 20 ],
+                            "style": ['headerTitle']
+                        }, 
+                        {
+                            "text": "$date",
+                            "fontSize": 8, 
+                            "margin": [ 20, 20, 45, 20 ],
+                            "style": ['headerDate']
+                        }
+                    ]
+                },
             };
         
             layout.content.push({
@@ -170,18 +197,21 @@ $js = <<<JS
                         "width": "*",
                         "stack": 
                         [
+                            " ",
+                            " ",    
                             "RF",
                             "Empresa: $empresa->razaoSocial",
                             "Exercício Fiscal: $ano"
                         ]
                     }
                 ],
-                "columnGap": 100
+                "columnGap": 10
             });
         
             layout.content.push({
                 "image": charts["rendergraph"].exportedImage,
-                "fit": [523, 300]
+                "fit": [523, 300],
+                "margin": [ 0, 100, 0, 0 ],
             });
 
             chart["export"].toPDF(layout, function(data) 
@@ -221,8 +251,6 @@ Modal::begin([
 <?= Html::a('<i class="fa fa-arrow-left"></i>',['index'], ['class' => 'btn btn-xs btn-default pull-left', 'style' => 'margin-bottom: 10px;', 'title' => 'Clique para voltar']) ?>
 
 <?= Html::a('<i class="fa fa-file-pdf-o"></i>',['report',  'empresa_id' => $empresa->id, 'ano' => $ano], ['target' => '_blank', 'class' => 'btn btn-xs btn-success pull-right', 'style' => 'margin-bottom: 10px; margin-left: 5px;', 'title' => 'Clique para exportar para PDF']) ?>
-
-<?= Html::button('<i class="fa fa-file-excel-o"></i>', ['class' => 'btn btn-xs btn-success export-excel pull-right', 'style' => 'margin-bottom: 10px;', 'title' => 'Clique para exportar para Excel']) ?>
 
 <div class="row" style="padding: 10px;">
     <?= $this->render('_partials/_table', compact('dados')); ?>
