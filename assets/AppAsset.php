@@ -13,7 +13,8 @@ class AppAsset extends AssetBundle
     public $css = 
     [
         'css/site.css',
-        'css/iziToast.min.css'
+        'css/iziToast.min.css',
+        'https://www.amcharts.com/lib/3/plugins/export/export.css'
     ];
     
     public $js = 

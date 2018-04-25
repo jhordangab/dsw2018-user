@@ -8,7 +8,13 @@ $this->title = 'Balancetes:: ' . $empresa->razaoSocial . ' / ' . $ano;
 $this->params['breadcrumbs'][] = ['label' => 'Balancetes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
-$js = <<<"JS"
+$h_img = fopen('img/logo.png', "rb");
+$img = fread($h_img, filesize('img/logo.png'));
+fclose($h_img);
+
+$pic = 'data://image/png;base64,' . base64_encode($img);
+
+$js = <<<JS
 
     function createBar(data)
     {
@@ -30,6 +36,13 @@ $js = <<<"JS"
         var chart = AmCharts.makeChart("rendergraph",
         {
             "hideCredits":true,
+            "titles": 
+            [
+                {
+                    "text": data.codigo + " - " + data.descricao,
+                    "bold": false
+                }
+            ],
             "type": "serial",
             "language": "pt-BR",
             "theme": "light",
@@ -39,7 +52,8 @@ $js = <<<"JS"
             "startDuration": 0.5,
             "trendLines": [],
             "showHandOnHover": true,
-            "graphs": [
+            "graphs": 
+            [
                 {
                     "id": "graph1",
                     "balloonText": "[[category]]: R$[[value]]",
@@ -56,7 +70,7 @@ $js = <<<"JS"
             [
                 {
                     "id": "ValueAxis-1",
-                    "position": "top",
+                    "position": "left",
                     "axisAlpha": 0,
                     "lineAlpha": 0.2
                 }
@@ -66,15 +80,17 @@ $js = <<<"JS"
             {
                 "fixedPosition":true
             },
-            "titles": [],
             "dataProvider": _dataprovider,
             "responsive": 
             {
                 "enabled": true
+            },
+            "export":
+            {
+                "enabled": true,
+                "menu": []
             }
         });
-        
-        $('.amcharts-chart-div a').remove();
     }
         
     $('.body-valor tr.graph').click(function () 
@@ -94,6 +110,87 @@ $js = <<<"JS"
             filename: "$this->title"
         });
     });
+        
+    $("button.exportgraph2pdf").click(function()
+    {
+        var ids = ["rendergraph"];
+
+        var charts = {},
+        charts_remaining = ids.length;
+        for (var i = 0; i < ids.length; i++) 
+        {
+            for (var x = 0; x < AmCharts.charts.length; x++) 
+            {
+                if (AmCharts.charts[x].div.id == ids[i])
+                charts[ids[i]] = AmCharts.charts[x];
+            }
+        }
+
+        for (var x in charts) 
+        {
+            if (charts.hasOwnProperty(x)) 
+            {
+                var chart = charts[x];
+                chart["export"].capture({}, function()
+                {
+                    this.toJPG({}, function(data) 
+                    {
+                        this.setup.chart.exportedImage = data;
+
+                        charts_remaining--;
+
+                        if (charts_remaining == 0)
+                        {
+                            generatePDF();
+                        }
+                    });
+                });
+            }
+        }
+
+        function generatePDF() 
+        {
+            var layout =
+            {
+                "content": [],
+                images: 
+                {
+                    logo: "$pic"
+                }
+            };
+        
+            layout.content.push({
+                "columns": 
+                [
+                    {
+                        "width": "30%",
+                        "image": "logo",
+                        "fit": [150, 150]
+                    }, 
+                    {
+                        "width": "*",
+                        "stack": 
+                        [
+                            "Balancetes",
+                            "Empresa: $empresa->razaoSocial",
+                            "Exercício Fiscal: $ano"
+                        ]
+                    }
+                ],
+                "columnGap": 100
+            });
+        
+            layout.content.push({
+                "image": charts["rendergraph"].exportedImage,
+                "fit": [523, 300]
+            });
+
+            chart["export"].toPDF(layout, function(data) 
+            {
+                this.download(data, "application/pdf", "$this->title.pdf");
+            });
+        }
+    });
 
 JS;
 
@@ -111,7 +208,9 @@ Modal::begin([
 ]);
 ?>
 
-<div id="rendergraph" class="chart-box h-100" style="height: 500px; overflow: hidden; text-align: left;"></div>
+<button class="btn btn-xs btn-success pull-right exportgraph2pdf" style="color: #FFF; cursor: pointer;" title="Exportar para PDF"><i class='fa fa-file-pdf-o'></i></button>
+
+<div id="rendergraph" class="chart-box h-100" style="height: 500px; overflow: hidden; text-align: left; margin-top: 20px;"></div>
 
 <?php Modal::end(); ?>
 

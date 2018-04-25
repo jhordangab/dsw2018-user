@@ -138,6 +138,16 @@ $css = <<<CSS
     {
         margin: 10px;
     }
+        
+    .amcharts-export-menu li > a
+    {
+        color: #FFF;
+    }
+        
+    .amcharts-export-menu li:hover > a, .amcharts-export-menu li.active > a
+    {
+        background-color: #247388;
+    }
 CSS;
 
 $this->registerCss($css);
