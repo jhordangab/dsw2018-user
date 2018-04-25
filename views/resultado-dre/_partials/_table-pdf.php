@@ -299,11 +299,11 @@ $pic = 'data://text/plain;base64,' . base64_encode($img);
             
             <?php for($i = 1; $i <= 12; $i++) : ?>
             
-                <td style="color: #FFFFFF;"><?= number_format((($do[$i]/$ro[$i]) * 100), 2, ',', '.'); ?>%</td>
+                <td style="color: #FFFFFF;"><?= ($ro[$i] != 0) ? number_format((($do[$i]/$ro[$i]) * 100), 2, ',', '.') : 0; ?>%</td>
             
             <?php endfor; ?>
                 
-            <td style="color: #FFFFFF;"><?= number_format((($do["total"]/$ro["total"]) * 100), 2, ',', '.'); ?>%</td>
+            <td style="color: #FFFFFF;"><?= ($ro["total"] != 0) ? number_format((($do["total"]/$ro["total"]) * 100), 2, ',', '.') : 0; ?>%</td>
             
         </tr>
         
@@ -387,11 +387,11 @@ $pic = 'data://text/plain;base64,' . base64_encode($img);
             
             <?php for($i = 1; $i <= 12; $i++) : ?>
             
-                <td style="color: #FFFFFF;"><?= number_format((($rf[$i]/$ro[$i]) * 100), 2, ',', '.'); ?>%</td>
+                <td style="color: #FFFFFF;"><?= ($ro[$i] != 0) ? number_format((($rf[$i]/$ro[$i]) * 100), 2, ',', '.') : 0; ?>%</td>
             
             <?php endfor; ?>
                 
-            <td style="color: #FFFFFF;"><?= number_format((($rf["total"]/$ro["total"]) * 100), 2, ',', '.'); ?>%</td>
+            <td style="color: #FFFFFF;"><?= ($ro["total"] != 0) ? number_format((($rf["total"]/$ro["total"]) * 100), 2, ',', '.') : 0; ?>%</td>
             
         </tr>
         
@@ -475,11 +475,11 @@ $pic = 'data://text/plain;base64,' . base64_encode($img);
             
             <?php for($i = 1; $i <= 12; $i++) : ?>
             
-                <td style="color: #FFFFFF;"><?= number_format((($ord[$i]/$ro[$i]) * 100), 2, ',', '.'); ?>%</td>
+                <td style="color: #FFFFFF;"><?= ($ro[$i] != 0) ? number_format((($ord[$i]/$ro[$i]) * 100), 2, ',', '.') : 0; ?>%</td>
             
             <?php endfor; ?>
                 
-            <td style="color: #FFFFFF;"><?= number_format((($ord["total"]/$ro["total"]) * 100), 2, ',', '.'); ?>%</td>
+            <td style="color: #FFFFFF;"><?= ($ro["total"] != 0) ? number_format((($ord["total"]/$ro["total"]) * 100), 2, ',', '.'): 0; ?>%</td>
             
         </tr>
         

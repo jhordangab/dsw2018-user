@@ -308,13 +308,13 @@ $pic = 'data://text/plain;base64,' . base64_encode($img);
 
             <th style="color: #FFFFFF;" colspan="2">MARGEM DE VENDAS</th>
             
-            <?php for($i = 1; $i <= 12; $i++) : $cos = $vv[$i] + $vp[$i] + $dv[$i]; ?>
+            <?php for($i = 1; $i <= 12; $i++) : $cos = $vv[$i] + $vp[$i] + $dv[$i];  $ttv = $vv['total'] + $vp['total'] + $dv['total']; ?>
             
                 <td style="color: #FFFFFF;"><?= ($cos != 0) ? number_format((($rv[$i] + $cmv[$i]) / $cos) * 100, 2, ',', '.') : 0; ?>%</td>
             
             <?php endfor; ?>
             
-            <td style="color: #FFFFFF;"><?= number_format((($rv['total'] + $cmv['total']) / ($vv['total'] + $vp['total'] + $dv['total'])) * 100, 2, ',', '.'); ?>%</td>
+            <td style="color: #FFFFFF;"><?= ($ttv != 0) ? number_format((($rv['total'] + $cmv['total']) / $ttv) * 100, 2, ',', '.') : 0; ?>%</td>
             
         </tr>
         
