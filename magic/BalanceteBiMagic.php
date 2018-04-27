@@ -32,9 +32,6 @@ class BalanceteBiMagic
                 valor16 as nov, 
                 valor17 as dez
             FROM indicador14
-                WHERE valor6 <> 0 AND valor7 <> 0 AND valor8 <> 0 AND valor9 <> 0 
-                AND valor10 <> 0 AND valor11 <> 0 AND valor12 <> 0 AND valor13 <> 0 
-                AND valor14 <> 0 AND valor15 <> 0 AND valor16 <> 0 AND valor17 <> 0 
 
             UNION ALL
 
@@ -64,10 +61,7 @@ class BalanceteBiMagic
                     valor2, 
                     valor18, 
                     valor19 
-                FROM agrocontar.indicador14 
-                WHERE valor6 <> 0 AND valor7 <> 0 AND valor8 <> 0 AND valor9 <> 0 
-                AND valor10 <> 0 AND valor11 <> 0 AND valor12 <> 0 AND valor13 <> 0 
-                AND valor14 <> 0 AND valor15 <> 0 AND valor16 <> 0 AND valor17 <> 0
+                FROM agrocontar.indicador14
                 GROUP BY valor1, valor2, valor18, valor19
             ) AS cs
 
@@ -99,10 +93,7 @@ class BalanceteBiMagic
                     valor2, 
                     valor20, 
                     valor21 
-                FROM agrocontar.indicador14 
-                WHERE valor6 <> 0 AND valor7 <> 0 AND valor8 <> 0 AND valor9 <> 0 
-                AND valor10 <> 0 AND valor11 <> 0 AND valor12 <> 0 AND valor13 <> 0 
-                AND valor14 <> 0 AND valor15 <> 0 AND valor16 <> 0 AND valor17 <> 0
+                FROM agrocontar.indicador14
                 GROUP BY valor1, valor2, valor20, valor21
             ) AS cs
 
@@ -134,10 +125,7 @@ class BalanceteBiMagic
                     valor2, 
                     valor22, 
                     valor23 
-                FROM agrocontar.indicador14 
-                WHERE valor6 <> 0 AND valor7 <> 0 AND valor8 <> 0 AND valor9 <> 0 
-                AND valor10 <> 0 AND valor11 <> 0 AND valor12 <> 0 AND valor13 <> 0 
-                AND valor14 <> 0 AND valor15 <> 0 AND valor16 <> 0 AND valor17 <> 0
+                FROM agrocontar.indicador14
                 GROUP BY valor1, valor2, valor22, valor23
             ) AS cs
 
@@ -169,10 +157,7 @@ class BalanceteBiMagic
                     valor2, 
                     valor24, 
                     valor25 
-                FROM agrocontar.indicador14 
-                WHERE valor6 <> 0 AND valor7 <> 0 AND valor8 <> 0 AND valor9 <> 0 
-                AND valor10 <> 0 AND valor11 <> 0 AND valor12 <> 0 AND valor13 <> 0 
-                AND valor14 <> 0 AND valor15 <> 0 AND valor16 <> 0 AND valor17 <> 0
+                FROM agrocontar.indicador14
                 GROUP BY valor1, valor2, valor24, valor25
             ) AS cs
 
@@ -204,10 +189,7 @@ class BalanceteBiMagic
                     valor2, 
                     valor26, 
                     valor27 
-                FROM agrocontar.indicador14 
-                WHERE valor6 <> 0 AND valor7 <> 0 AND valor8 <> 0 AND valor9 <> 0 
-                AND valor10 <> 0 AND valor11 <> 0 AND valor12 <> 0 AND valor13 <> 0 
-                AND valor14 <> 0 AND valor15 <> 0 AND valor16 <> 0 AND valor17 <> 0
+                FROM agrocontar.indicador14
                 GROUP BY valor1, valor2, valor26, valor27
             ) AS cs
         ) as sel 
