@@ -18,6 +18,7 @@
                                 ['label' => 'Outras Rec./Des.', 'icon' => 'tag', 'url' => ['/resultado-outra-receita-despesa']],
                                 ['label' => 'RFs', 'icon' => 'tag', 'url' => ['/resultado-rf']],
                                 ['label' => 'DREs', 'icon' => 'tag', 'url' => ['/resultado-dre']],
+                                ['label' => 'DFCs', 'icon' => 'tag', 'url' => ['/resultado-dfc']],
                             ]
                         ],
                         ['label' => 'Planos Padrões', 'icon' => 'tags', 'url' => ['/categoria']],

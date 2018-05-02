@@ -4,17 +4,17 @@ namespace app\models;
 
 use Yii;
 
-class Indicador14 extends \yii\db\ActiveRecord
+class Indicador13 extends \yii\db\ActiveRecord
 {
     public static function tableName()
     {
-        return 'indicador14';
+        return 'indicador13';
     }
 
     public function rules()
     {
         return [
-            [['valor0', 'valor1', 'valor2', 'valor3', 'valor4', 'valor5', 'valor6', 'valor7', 'valor8', 'valor9', 'valor10', 'valor11', 'valor12', 'valor13', 'valor14', 'valor15', 'valor16', 'valor17', 'valor18', 'valor19', 'valor20', 'valor21', 'valor22', 'valor23', 'valor24', 'valor25', 'valor26', 'valor27'], 'string', 'max' => 255],
+            [['valor0', 'valor1', 'valor2', 'valor3', 'valor4', 'valor5', 'valor6', 'valor7', 'valor8', 'valor9', 'valor10', 'valor11', 'valor12', 'valor13', 'valor14', 'valor15', 'valor16'], 'string', 'max' => 255],
         ];
     }
 
@@ -39,17 +39,6 @@ class Indicador14 extends \yii\db\ActiveRecord
             'valor14' => 'Valor14',
             'valor15' => 'Valor15',
             'valor16' => 'Valor16',
-            'valor17' => 'Valor17',
-            'valor18' => 'Valor18',
-            'valor19' => 'Valor19',
-            'valor20' => 'Valor20',
-            'valor21' => 'Valor21',
-            'valor22' => 'Valor22',
-            'valor23' => 'Valor23',
-            'valor24' => 'Valor24',
-            'valor25' => 'Valor25',
-            'valor26' => 'Valor26',
-            'valor27' => 'Valor27',
         ];
     }
 }
