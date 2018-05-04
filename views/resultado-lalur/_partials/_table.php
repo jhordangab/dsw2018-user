@@ -114,7 +114,8 @@ $sum = [];
                     $sum['LL'][$xs] = 0;
                     $sum['AD'][$xs] = 0;
                     $sum['EX'][$xs] = 0;
-                    $sum['BCCS'][$xs] = 0;
+                    $sum['BCCSB'][$xs] = 0;
+                    $sum['BCCSC'][$xs] = 0;
                     $sum['LPEIRPJ'][$xs] = 0;
                     $sum['LPECSLL'][$xs] = 0;
                     
@@ -423,7 +424,11 @@ $sum = [];
 
             <td style="text-align: left;">Contribuição Social devida  9%</td>
 
-            <?php for($i = 1; $i <= 12; $i++) : ?>
+            <?php
+            
+                $csp = [];
+            
+                for($i = 1; $i <= 12; $i++) : ?>
             
                 <?php 
                 
@@ -433,6 +438,7 @@ $sum = [];
                         
                         $cat = $sum['LL'][$j] + $sum['AD'][$j] - $sum['EX'][$j] - $dado[$months[$j]];
                         $result = ($cat > 0) ? $cat * 0.09 : 0;
+                        $csp[$i] = $result; 
 
                     endfor; 
                 ?>
@@ -444,73 +450,46 @@ $sum = [];
         </tr>
         
         <?php 
-        
             foreach($dados["BCCS"] as $i => $dado):
-                
-                foreach($meses as $xs => $mes): 
-                
-                    $sum['BCCS'][$xs] = 0;
-                
-                    for($x = 1; $x <= $xs; $x++): 
-                
-                        $sum['BCCS'][$xs] += $dado[$months[$x]];
-
-                    endfor;
-                    
-                endforeach;
-                
         ?>
         
             <tr class="graph" style="cursor: pointer;" data-json='<?= json_encode($dado); ?>'>
 
                 <td style="text-align: left;"><?= $dado['descricao'] ?></td>
                 
-                <?php 
+                <?php foreach($meses as $xs => $mes): ?>
                 
-                    if($dado['descricao'] == '(-) CSLL devida em meses anteriores')
-                    {
-                        foreach($meses as $xs => $mes): 
-                    ?>
-                
-                    <td>-</td>
-                        
-                <?php
-                        endforeach;
-                    }
-                    else
-                    {
-                        foreach($meses as $xs => $mes): 
-                    
-                        $result = 0;
-                    
-                        for($g = 1; $g <= $xs; $g++):
-                            
-                            $result += $dado[$months[$g]];
-                            
-                        endfor;
-                    
-                    ?>
-                
-                    <td><?= number_format($result, 2, ',', '.'); ?></td>
+                    <?php 
 
-                        <?php endforeach;
-                    }
-                    
-                ?>
-                    
+                        if($dado['descricao'] == '(-) CSLL devida em meses anteriores')
+                        {
+                            $result = ($xs > 1) ? $dado[$months[$xs]] + $csp[$xs - 1] : 0;
+                        }
+                        else
+                        {
+                            $result = $dado[$months[$xs]];
+                        }
+                        
+                        $csp[$xs] -= $result;
+                    ?>
+
+                        <td><?= number_format($result, 2, ',', '.'); ?></td>
+
+                <?php endforeach; ?>
+                        
             </tr>
 
         <?php endforeach; ?>
         
         <tr class="title-category" style="background-color: #237486; color: #FFF;">
 
-            <td style="text-align: left;">(=) Contribuição Social a Pagar - 2484</td>
+            <td style="text-align: left;"><b>(=) Contribuição Social a Pagar - 2484</b></td>
 
-            <?php foreach($meses as $xs => $mes): ?>
+            <?php for($i = 1; $i <= 12; $i++) : ?>
+            
+                <td><b><?= number_format(($csp[$i] > 0) ? $csp[$i] : 0, 2, ',', '.'); ?></b></td>
 
-                <td>-</td>
-
-            <?php endforeach; ?>
+            <?php endfor; ?>
 
         </tr>
         
@@ -794,7 +773,7 @@ $sum = [];
 
             <td style="text-align: left;">Total de Imposto de Renda + Adicional</td>
 
-            <?php for($i = 1; $i <= 12; $i++) : ?>
+            <?php $sirs = []; for($i = 1; $i <= 12; $i++) : ?>
             
                 <?php 
                 
@@ -807,6 +786,7 @@ $sum = [];
                         $adicional = ($cat > ($i * 20000)) ? ($cat - ($i * 20000)) * 0.1 : 0;
 
                         $result = $impostos + $adicional;
+                        $sirs[$i] = $result;
                         
                     endfor; 
                 ?>
@@ -821,53 +801,43 @@ $sum = [];
         
             foreach($dados["BCIRPJ"] as $i => $dado):
                 
-                foreach($meses as $xs => $mes): 
-                
-                    $sum['BCIRPJ'][$xs] = 0;
-                
-                    for($x = 1; $x <= $xs; $x++): 
-                
-                        $sum['BCIRPJ'][$xs] += $dado[$months[$x]];
-
-                    endfor;
-                    
-                endforeach;
-                
         ?>
         
             <tr class="graph" style="cursor: pointer;" data-json='<?= json_encode($dado); ?>'>
 
                 <td style="text-align: left;"><?= $dado['descricao'] ?></td>
                 
+                <?php foreach($meses as $xs => $mes): ?>
+                
                 <?php 
-                
-                    foreach($meses as $xs => $mes): 
-                    
-                        $result = 0;
-                    
-                        for($g = 1; $g <= $xs; $g++):
-                            
-                            $result += $dado[$months[$g]];
-                            
-                        endfor;
-                    
-                    ?>
-                
-                    <td><?= number_format($result, 2, ',', '.'); ?></td>
 
-                <?php endforeach; ?>
+                    if($dado['descricao'] == '(-) Imposto de Renda Recolhido em meses anteriores')
+                    {
+                        $result = ($xs > 1) ? $dado[$months[$xs]] + $sirs[$xs - 1] : 0;
+                    }
+                    else
+                    {
+                        $result = $dado[$months[$xs]];
+                    }
+
+                    $sirs[$xs] -= $result;
+                ?>
                     
+                    <td><?= number_format($result, 2, ',', '.'); ?></td>
+                
+                <?php endforeach; ?>
+    
             </tr>
 
         <?php endforeach; ?>
         
         <tr class="title-category" style="background-color: #237486; color: #FFF;">
 
-            <td style="text-align: left;">Saldo do Imposto de Renda a Recolher - 5993</td>
+            <td style="text-align: left;"><b>Saldo do Imposto de Renda a Recolher - 5993</b></td>
 
             <?php foreach($meses as $xs => $mes): ?>
 
-                <td>-</td>
+                <td><b><?= number_format(($sirs[$xs] > 0) ? $sirs[$xs] : 0, 2, ',', '.'); ?></b></td>
 
             <?php endforeach; ?>
 
@@ -881,11 +851,21 @@ $sum = [];
         
         <tr class="title-category" style="background-color: #237486; color: #FFF;">
 
-            <td style="text-align: left;">Total IRPJ + CSLL - Redução/Suspensão</td>
+            <td style="text-align: left;"><b>Total IRPJ + CSLL - Redução/Suspensão</b></td>
 
-            <?php foreach($meses as $xs => $mes): ?>
+            <?php 
+            
+                $oais = [];
+            
+                foreach($meses as $xs => $mes):
+            
+                $csp[$xs] = ($csp[$xs] > 0) ? $csp[$xs] : 0; 
+                $sirs[$xs] = ($sirs[$xs] > 0) ? $sirs[$xs] : 0; 
+                $oais[$xs] = $csp[$xs] + $sirs[$xs];
+                
+            ?>
 
-                <td>-</td>
+                <td><b><?= number_format($oais[$xs], 2, ',', '.'); ?></b></td>
 
             <?php endforeach; ?>
 
@@ -899,13 +879,9 @@ $sum = [];
         
         <tr class="title-category" style="background-color: #237486; color: #FFF;">
 
-            <td style="text-align: left;">Lucro Presumido / Estimativa</td>
+            <td style="text-align: left;"><b>Lucro Presumido / Estimativa</b></td>
 
-            <?php foreach($meses as $xs => $mes): ?>
-
-                <td>-</td>
-
-            <?php endforeach; ?>
+            <td scope="col" colspan="13">&nbsp;</td>
 
         </tr>
         
@@ -1072,16 +1048,17 @@ $sum = [];
         
         <tr class="title-category" style="background-color: #237486; color: #FFF;">
 
-            <td style="text-align: left;">Total a Pagar IRPJ + CSLL Estimado</td>
+            <td style="text-align: left;"><b>Total a Pagar IRPJ + CSLL Estimado</b></td>
 
-            <?php for($i = 1; $i <= 12; $i++) : 
+            <?php $tatas = []; for($i = 1; $i <= 12; $i++) : 
                 
                 $fifteen = $sum["LPEIRPJ"][$i] * 0.15;
                 $ten = (($sum["LPEIRPJ"][$i] - (20000 * 1)) > 0) ? ($sum["LPEIRPJ"][$i] - (20000 * 1)) * 0.1 : 0;
                 $nine = $sum["LPECSLL"][$i] * 0.09;
-                ?>
+                $tatas[$i] = $fifteen + $ten + $nine;
+            ?>
             
-                <td><b><?= number_format($fifteen + $ten + $nine, 2, ',', '.'); ?></b></td>
+                <td><b><?= number_format($tatas[$i], 2, ',', '.'); ?></b></td>
             
             <?php endfor; ?>
 
@@ -1095,11 +1072,11 @@ $sum = [];
         
         <tr class="title-category" style="background-color: #237486; color: #FFF;">
 
-            <td style="text-align: left;">Variação L.Real x L.Presumido</td>
+            <td style="text-align: left;"><b>Variação L.Real x L.Presumido</b></td>
 
             <?php foreach($meses as $xs => $mes): ?>
 
-                <td>-</td>
+                <td><b><?= number_format($tatas[$xs] - $oais[$xs], 2, ',', '.'); ?></b></td>
 
             <?php endforeach; ?>
 
