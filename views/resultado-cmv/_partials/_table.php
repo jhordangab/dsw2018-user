@@ -231,6 +231,7 @@ $dv['total'] = 0;
                     {
                             $value = ($xs > 1) ? $ei[$xs - 1] : $dado[$months[$xs]];
                             $cmv[$xs] += $value;
+                            $tot = $dado[$months[1]];
                         ?>
                 
                             <td><?= number_format($value, 2, ',', '.'); ?></td>
