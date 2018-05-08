@@ -225,12 +225,12 @@ $dv['total'] = 0;
         
                 <?php foreach($meses as $xs => $mes):
                     
-                    $cmv[$xs] += $dado[$months[$xs]];
                     $tot = 0;
                     
                     if($dado['descricao'] == '( + ) ESTOQUE INICIAL')
                     {
                             $value = ($xs > 1) ? $ei[$xs - 1] : $dado[$months[$xs]];
+                            $cmv[$xs] += $value;
                         ?>
                 
                             <td><?= number_format($value, 2, ',', '.'); ?></td>
@@ -240,6 +240,7 @@ $dv['total'] = 0;
                     elseif($dado['descricao'] == '( - ) ESTOQUE FINAL ')
                     {
                         $tot = $dado[$months[12]];
+                        $cmv[$xs] += $dado[$months[$xs]];
                         ?>
                 
                             <td><?= number_format($dado[$months[$xs]], 2, ',', '.'); ?></td>
@@ -249,6 +250,7 @@ $dv['total'] = 0;
                     else
                     {
                         $tot = $dado["total"];
+                        $cmv[$xs] += $dado[$months[$xs]];
                         ?>
                 
                             <td><?= number_format($dado[$months[$xs]], 2, ',', '.'); ?></td>
