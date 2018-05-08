@@ -202,7 +202,7 @@ $dv['total'] = 0;
             {
                 foreach($meses as $xs => $mes):
                     
-                    $ei[$xs] = $dado[$months[$xs]];
+                    $ei[$xs] = $dado[$months[$xs]] * -1;
                     
                 endforeach;
             }
