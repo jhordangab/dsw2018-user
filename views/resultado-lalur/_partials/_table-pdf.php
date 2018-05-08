@@ -16,13 +16,23 @@ $meses =
     12 => 'Dezembro'
 ];
 
+$months = 
+[
+    1 => 'jan',
+    2 => 'feb',
+    3 => 'mar',
+    4 => 'apr',
+    5 => 'may',
+    6 => 'jun',
+    7 => 'jul',
+    8 => 'aug',
+    9 => 'sep',
+    10 => 'oct',
+    11 => 'nov',
+    12 => 'dez'
+];
+
 $sum = [];
-$sum['ACLA']['TOTAL'] = 0;
-$sum['ARAO']['TOTAL'] = 0;
-$sum['ARPO']['TOTAL'] = 0;
-$sum['FCAI']['TOTAL'] = 0;
-$sum['FCAF']['TOTAL'] = 0;
-$sum['DFCTOT']['TOTAL'] = 0;
       
 $h_img = fopen('img/logo.png', "rb");
 $img = fread($h_img, filesize('img/logo.png'));
@@ -68,11 +78,11 @@ $pic = 'data://text/plain;base64,' . base64_encode($img);
 
 </table>
 
-<table style="font-size: 10px;">
+<table class="table table-condensed table-bordered table-balancete">
 
     <thead>
 
-        <tr style="background-color: #237486;">
+        <tr class="title-category" style="background-color: #237486; color: #FFF; cursor: text;">
 
             <th scope="col"></th>
             
@@ -80,20 +90,21 @@ $pic = 'data://text/plain;base64,' . base64_encode($img);
             
                 foreach($meses as $xs => $mes): 
                 
-                    $sum['ACLA'][$xs] = 0;
-                    $sum['ARAO'][$xs] = 0;
-                    $sum['ARPO'][$xs] = 0;
-                    $sum['FCAI'][$xs] = 0;
-                    $sum['FCAF'][$xs] = 0;
-                    $sum['DFCTOT'][$xs] = 0;
+                    $sum['LL'][$xs] = 0;
+                    $sum['AD'][$xs] = 0;
+                    $sum['EX'][$xs] = 0;
+                    $sum['BCCSB'][$xs] = 0;
+                    $sum['BCCSC'][$xs] = 0;
+                    $sum['LPEIRPJ'][$xs] = 0;
+                    $sum['LPECSLL'][$xs] = 0;
+                    
+
             ?>
             
-                <th style="color: #FFFFFFF;" scope="col" class="text-center"><?= $mes ?></th>
+                <th scope="col" class="text-center"><?= $mes ?></th>
                             
             <?php endforeach; ?>
-                
-            <th scope="col" style="color: #FFFFFFF;" class="text-center">Totais</th>
-                
+                                
         </tr>
 
     </thead>
@@ -104,24 +115,22 @@ $pic = 'data://text/plain;base64,' . base64_encode($img);
         
             foreach($dados["LL"] as $i => $dado):
                 
-                $sum['ACLA'][1] += $dado["jan"];
-                $sum['ACLA'][2] += $dado["feb"];
-                $sum['ACLA'][3] += $dado["mar"];
-                $sum['ACLA'][4] += $dado["apr"];
-                $sum['ACLA'][5] += $dado["may"];
-                $sum['ACLA'][6] += $dado["jun"];
-                $sum['ACLA'][7] += $dado["jul"];
-                $sum['ACLA'][8] += $dado["aug"];
-                $sum['ACLA'][9] += $dado["sep"];
-                $sum['ACLA'][10] += $dado["oct"];
-                $sum['ACLA'][11] += $dado["nov"];
-                $sum['ACLA'][12] += $dado["dez"];
-                $sum['ACLA']['TOTAL'] += $dado["dez"];
+                foreach($meses as $xs => $mes): 
+                
+                    $sum['LL'][$xs] = 0;
+                
+                    for($x = 1; $x <= $xs; $x++): 
+                
+                        $sum['LL'][$xs] += $dado[$months[$x]];
+
+                    endfor;
+                    
+                endforeach;
         ?>
         
-            <tr style="background-color: #a5c4d3b5">
+            <tr class="title-category" style="background-color: #237486; color: #FFF;">
 
-                <td style="text-align: left;"><b><?= $dado["descricao"]; ?></b></td>
+                <td></td>
 
                 <td><b><?= number_format($dado["jan"], 2, ',', '.'); ?></b></td>
                 
@@ -146,559 +155,324 @@ $pic = 'data://text/plain;base64,' . base64_encode($img);
                 <td><b><?= number_format($dado["nov"], 2, ',', '.'); ?></b></td>
                 
                 <td><b><?= number_format($dado["dez"], 2, ',', '.'); ?></b></td>
+                                
+            </tr>
+        
+            <tr class="title-category">
+
+                <td style="text-align: left;"><b>Resultado Antes do IR e da Contribuição Social</b></td>
                 
-                <td><b><?= number_format($dado["total"], 2, ',', '.'); ?></b></td>
+                <?php foreach($meses as $xs => $mes): ?>
+                
+                    <td><b><?= number_format($sum['LL'][$xs], 2, ',', '.'); ?></b></td>
+                
+                <?php endforeach; ?>
                 
             </tr>
 
         <?php endforeach; ?> 
             
-        <tr>
-
-            <td scope="col" colspan="14">&nbsp;</td>
-                
-        </tr>
-        
-        <tr style="background-color: #a5c4d3b5">
-
-            <td scope="col">Ajuste para conciliar o lucro antes do IR e da CSLL com o caixa líquido gerado pelas atividades operacionais</td>
-            
-            <td scope="col" colspan="13">&nbsp;</td>
-                
-        </tr>
-
         <?php 
         
-            foreach($dados["ACLA"] as $i => $dado):
+            foreach($dados["AD"] as $i => $dado):
+                                
+                foreach($meses as $xs => $mes): 
                 
-                $sum['ACLA'][1] += $dado["jan"];
-                $sum['ACLA'][2] += $dado["feb"];
-                $sum['ACLA'][3] += $dado["mar"];
-                $sum['ACLA'][4] += $dado["apr"];
-                $sum['ACLA'][5] += $dado["may"];
-                $sum['ACLA'][6] += $dado["jun"];
-                $sum['ACLA'][7] += $dado["jul"];
-                $sum['ACLA'][8] += $dado["aug"];
-                $sum['ACLA'][9] += $dado["sep"];
-                $sum['ACLA'][10] += $dado["oct"];
-                $sum['ACLA'][11] += $dado["nov"];
-                $sum['ACLA'][12] += $dado["dez"];
-                $sum['ACLA']['TOTAL'] += $dado["dez"];
-        ?>
-        
-            <tr>
+                    for($x = 1; $x <= $xs; $x++): 
+                
+                        $sum['AD'][$xs] += $dado[$months[$x]];
 
-                <td style="text-align: left;"><?= $dado["descricao"]; ?></td>
-
-                <td><?= number_format($dado["jan"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["feb"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["mar"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["apr"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["may"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["jun"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["jul"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["aug"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["sep"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["oct"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["nov"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["dez"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["total"], 2, ',', '.'); ?></td>
-                
-            </tr>
-
-        <?php endforeach; ?> 
-            
-        <tr>
-
-            <th scope="col"></th>
-            
-            <?php for($i = 1; $i <= 12; $i++) : ?>
-            
-            <td><b><?= number_format($sum["ACLA"][$i], 2, ',', '.'); ?></b></td>
-            
-            <?php endfor; ?>
-                
-            <td><b><?= number_format($sum["ACLA"]['TOTAL'], 2, ',', '.'); ?></b></td>
-            
-        </tr>
-            
-        <tr>
-
-            <td scope="col" colspan="14">&nbsp;</td>
-                
-        </tr>
-        
-        <tr style="background-color: #a5c4d3b5">
-
-            <td scope="col">(Aumento)/redução nos Ativos Operacionais</td>
-            
-            <td scope="col" colspan="13">&nbsp;</td>
-                
-        </tr>
-        
-        <?php 
-        
-            foreach($dados["ARAO"] as $i => $dado):
-                
-                $sum['ARAO'][1] += $dado["jan"];
-                $sum['ARAO'][2] += $dado["feb"];
-                $sum['ARAO'][3] += $dado["mar"];
-                $sum['ARAO'][4] += $dado["apr"];
-                $sum['ARAO'][5] += $dado["may"];
-                $sum['ARAO'][6] += $dado["jun"];
-                $sum['ARAO'][7] += $dado["jul"];
-                $sum['ARAO'][8] += $dado["aug"];
-                $sum['ARAO'][9] += $dado["sep"];
-                $sum['ARAO'][10] += $dado["oct"];
-                $sum['ARAO'][11] += $dado["nov"];
-                $sum['ARAO'][12] += $dado["dez"];
-                $sum['ARAO']['TOTAL'] += $dado["dez"];
-                
-        ?>
-        
-            <tr>
-
-                <td style="text-align: left;"><?= $dado["descricao"]; ?></td>
-
-                <td><?= number_format($dado["jan"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["feb"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["mar"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["apr"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["may"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["jun"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["jul"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["aug"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["sep"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["oct"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["nov"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["dez"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["total"], 2, ',', '.'); ?></td>
-                
-            </tr>
-
-        <?php endforeach; ?> 
-            
-        <tr>
-
-            <th scope="col"></th>
-            
-            <?php for($i = 1; $i <= 12; $i++) : ?>
-            
-            <td><b><?= number_format($sum["ARAO"][$i], 2, ',', '.'); ?></b></td>
-            
-            <?php endfor; ?>
-                
-            <td><b><?= number_format($sum["ARAO"]['TOTAL'], 2, ',', '.'); ?></b></td>
-            
-        </tr>
-            
-        <tr>
-
-            <td scope="col" colspan="14">&nbsp;</td>
-                
-        </tr>
-        
-        <tr style="background-color: #a5c4d3b5">
-
-            <td scope="col">Aumento/(redução) nos Passivos Operacionais</td>
-            
-            <td scope="col" colspan="13">&nbsp;</td>
-                
-        </tr>
-        
-        <?php 
-        
-            foreach($dados["ARPO"] as $i => $dado):
-                
-                $sum['ARPO'][1] += $dado["jan"];
-                $sum['ARPO'][2] += $dado["feb"];
-                $sum['ARPO'][3] += $dado["mar"];
-                $sum['ARPO'][4] += $dado["apr"];
-                $sum['ARPO'][5] += $dado["may"];
-                $sum['ARPO'][6] += $dado["jun"];
-                $sum['ARPO'][7] += $dado["jul"];
-                $sum['ARPO'][8] += $dado["aug"];
-                $sum['ARPO'][9] += $dado["sep"];
-                $sum['ARPO'][10] += $dado["oct"];
-                $sum['ARPO'][11] += $dado["nov"];
-                $sum['ARPO'][12] += $dado["dez"];
-                $sum['ARPO']['TOTAL'] += $dado["dez"];
-                
-        ?>
-        
-            <tr>
-
-                <td style="text-align: left;"><?= $dado["descricao"]; ?></td>
-
-                <td><?= number_format($dado["jan"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["feb"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["mar"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["apr"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["may"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["jun"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["jul"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["aug"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["sep"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["oct"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["nov"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["dez"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["total"], 2, ',', '.'); ?></td>
-                
-            </tr>
-
-        <?php endforeach; ?> 
-            
-        <tr>
-
-            <th scope="col"></th>
-            
-            <?php for($i = 1; $i <= 12; $i++) : ?>
-            
-            <td><b><?= number_format($sum["ARPO"][$i], 2, ',', '.'); ?></b></td>
-            
-            <?php endfor; ?>
-                
-            <td><b><?= number_format($sum["ARPO"]['TOTAL'], 2, ',', '.'); ?></b></td>
-            
-        </tr>
-            
-        <tr>
-
-            <td scope="col" colspan="14">&nbsp;</td>
-                
-        </tr>
-        
-        <tr style="background-color: #a5c4d3b5">
-
-            <th scope="col">Caixa líquido proveniente/utilizado nas atividades operacionais</th>
-            
-            <?php for($i = 1; $i <= 12; $i++) : ?>
-            
-            <td><b><?= number_format($sum["ACLA"][$i] + $sum["ARAO"][$i] + $sum["ARPO"][$i], 2, ',', '.'); ?></b></td>
-            
-            <?php endfor; ?>
-                
-            <td><b><?= number_format($sum["ACLA"]['TOTAL'] + $sum["ARAO"]['TOTAL'] + $sum["ARPO"]['TOTAL'], 2, ',', '.'); ?></b></td>
-            
-        </tr>
-            
-        <tr>
-
-            <td scope="col" colspan="14">&nbsp;</td>
-                
-        </tr>
-        
-        <tr style="background-color: #237486;">
-
-            <td style="color: #FFFFFFF;" scope="col">Fluxo de caixa das atividades de Investimento</td>
-            
-            <td style="color: #FFFFFFF;" scope="col" colspan="13" class="text-center"></td>
-                
-        </tr>
-            
-        <?php 
-        
-            foreach($dados["FCAI"] as $i => $dado):
-                
-                $sum['FCAI'][1] += $dado["jan"];
-                $sum['FCAI'][2] += $dado["feb"];
-                $sum['FCAI'][3] += $dado["mar"];
-                $sum['FCAI'][4] += $dado["apr"];
-                $sum['FCAI'][5] += $dado["may"];
-                $sum['FCAI'][6] += $dado["jun"];
-                $sum['FCAI'][7] += $dado["jul"];
-                $sum['FCAI'][8] += $dado["aug"];
-                $sum['FCAI'][9] += $dado["sep"];
-                $sum['FCAI'][10] += $dado["oct"];
-                $sum['FCAI'][11] += $dado["nov"];
-                $sum['FCAI'][12] += $dado["dez"];
-                $sum['FCAI']['TOTAL'] += $dado["dez"];
-                
-        ?>
-        
-            <tr>
-
-                <td style="text-align: left;"><?= $dado["descricao"]; ?></td>
-
-                <td><?= number_format($dado["jan"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["feb"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["mar"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["apr"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["may"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["jun"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["jul"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["aug"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["sep"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["oct"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["nov"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["dez"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["total"], 2, ',', '.'); ?></td>
-                
-            </tr>
-
-        <?php endforeach; ?> 
-
-        <tr>
-
-            <td scope="col" colspan="14">&nbsp;</td>
-                
-        </tr>
-            
-        <tr style="background-color: #a5c4d3b5">
-
-            <th scope="col">Caixa líquido utilizado nas atividades de investimentos</th>
-            
-            <?php for($i = 1; $i <= 12; $i++) : ?>
-            
-                <td><?= number_format($sum["FCAI"][$i], 2, ',', '.'); ?></td>
-            
-            <?php endfor; ?>
-                
-            <td><?= number_format($sum["FCAI"]['TOTAL'], 2, ',', '.'); ?></td>
-            
-        </tr>
-        
-        <tr>
-
-            <td scope="col" colspan="14">&nbsp;</td>
-                
-        </tr>
-        
-        <tr style="background-color: #237486;">
-
-            <td style="color: #FFF;" scope="col">Fluxo de caixa das atividades de Financiamento</td>
-            
-            <td style="color: #FFF;" scope="col" colspan="13" class="text-center"></td>
-                
-        </tr>
-            
-        <?php 
-        
-            foreach($dados["FCAF"] as $i => $dado):
-                
-                $sum['FCAF'][1] += $dado["jan"];
-                $sum['FCAF'][2] += $dado["feb"];
-                $sum['FCAF'][3] += $dado["mar"];
-                $sum['FCAF'][4] += $dado["apr"];
-                $sum['FCAF'][5] += $dado["may"];
-                $sum['FCAF'][6] += $dado["jun"];
-                $sum['FCAF'][7] += $dado["jul"];
-                $sum['FCAF'][8] += $dado["aug"];
-                $sum['FCAF'][9] += $dado["sep"];
-                $sum['FCAF'][10] += $dado["oct"];
-                $sum['FCAF'][11] += $dado["nov"];
-                $sum['FCAF'][12] += $dado["dez"];
-                $sum['FCAF']['TOTAL'] += $dado["dez"];
-                
-        ?>
-        
-            <tr>
-
-                <td style="text-align: left;"><?= $dado["descricao"]; ?></td>
-
-                <td><?= number_format($dado["jan"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["feb"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["mar"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["apr"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["may"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["jun"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["jul"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["aug"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["sep"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["oct"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["nov"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["dez"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["total"], 2, ',', '.'); ?></td>
-                
-            </tr>
-
-        <?php endforeach; ?> 
-            
-        <tr>
-
-            <td scope="col" colspan="14">&nbsp;</td>
-                
-        </tr>
-            
-        <tr style="background-color: #a5c4d3b5;">
-
-            <th scope="col">Caixa líquido utilizado/proveniente nas atividades de financiamentos</th>
-            
-            <?php for($i = 1; $i <= 12; $i++) : ?>
-            
-            <td><b><?= number_format($sum["FCAF"][$i], 2, ',', '.'); ?></b></td>
-            
-            <?php endfor; ?>
-                
-            <td><b><?= number_format($sum["FCAF"]['TOTAL'], 2, ',', '.'); ?></b></td>
-            
-        </tr>
-        
-        <tr>
-
-            <td scope="col" colspan="14">&nbsp;</td>
-                
-        </tr>
-        
-        <tr style="background-color: #a5c4d3b5;">
-
-            <th scope="col">Acréscimo/(redução) líquido no Caixa e Equivalentes de Caixa</th>
-            
-            <?php for($i = 1; $i <= 12; $i++) : ?>
-            
-            <td><b><?= number_format($sum["ACLA"][$i] + $sum["ARAO"][$i] + $sum["ARPO"][$i] + $sum["FCAI"][$i] + $sum["FCAF"][$i], 2, ',', '.'); ?></b></td>
-            
-            <?php endfor; ?>
-                
-            <td><b><?= number_format($sum["ACLA"]['TOTAL'] + $sum["ARAO"]['TOTAL'] + $sum["ARPO"]['TOTAL'] + $sum["FCAI"]['TOTAL'] + $sum["FCAF"]['TOTAL'], 2, ',', '.'); ?></b></td>
-            
-        </tr>
-        
-        <tr>
-
-            <td scope="col" colspan="14">&nbsp;</td>
-                
-        </tr>
-        
-        <?php 
-        
-            foreach($dados["DFCTOT"] as $i => $dado):
-                
-                if($dado['descricao'] == 'Caixa e equivalentes de caixa no final do exercicio'):
-                
-                
-        ?>
-        
-            <tr>
-
-                <td style="text-align: left;">Caixa e equivalentes de caixa no início do exercicio</td>
-
-                <td><?= number_format($dado["jan"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["feb"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["mar"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["apr"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["may"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["jun"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["jul"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["aug"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["sep"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["oct"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["nov"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["dez"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["total"], 2, ',', '.'); ?></td>
-                
-            </tr>
-
-        <?php endif; endforeach; ?> 
-            
-        <?php 
-        
-            foreach($dados["DFCTOT"] as $i => $dado):
-                
-                $sum['DFCTOT'][1] += $dado["jan"];
-                $sum['DFCTOT'][2] += $dado["feb"];
-                $sum['DFCTOT'][3] += $dado["mar"];
-                $sum['DFCTOT'][4] += $dado["apr"];
-                $sum['DFCTOT'][5] += $dado["may"];
-                $sum['DFCTOT'][6] += $dado["jun"];
-                $sum['DFCTOT'][7] += $dado["jul"];
-                $sum['DFCTOT'][8] += $dado["aug"];
-                $sum['DFCTOT'][9] += $dado["sep"];
-                $sum['DFCTOT'][10] += $dado["oct"];
-                $sum['DFCTOT'][11] += $dado["nov"];
-                $sum['DFCTOT'][12] += $dado["dez"];
-                $sum['DFCTOT']['TOTAL'] += $dado["dez"];
+                    endfor;
+                    
+                endforeach;
                 
             endforeach;
+                
         ?>
+            
+        <tr class="title-category">
+
+            <td style="text-align: left;"><b>(+) Adições</b></td>
+            
+            <?php foreach($meses as $xs => $mes): ?>
+                
+                <td><b><?= number_format($sum['AD'][$xs], 2, ',', '.'); ?></b></td>
+
+            <?php endforeach; ?>
+            
+        </tr>    
+        
+        <?php 
+        
+            foreach($dados["AD"] as $i => $dado):
+                
+        ?>
+        
+            <tr class="graph" style="cursor: pointer;" data-json='<?= json_encode($dado); ?>'>
+
+                <td style="text-align: left;"><?= $dado['descricao'] ?></td>
+                
+                <?php 
+                
+                    foreach($meses as $xs => $mes): 
+                    
+                        $result = 0;
+                    
+                        for($g = 1; $g <= $xs; $g++):
+                            
+                            $result += $dado[$months[$g]];
+                            
+                        endfor;
+                    
+                    ?>
+                
+                    <td><?= number_format($result, 2, ',', '.'); ?></td>
+
+                <?php endforeach; ?>
+
+            </tr>
+
+        <?php endforeach; ?> 
+            
+        <?php 
+        
+            foreach($dados["EX"] as $i => $dado):
+                                
+                foreach($meses as $xs => $mes): 
+                
+                    for($x = 1; $x <= $xs; $x++): 
+                
+                        $sum['EX'][$xs] += $dado[$months[$x]];
+
+                    endfor;
+                    
+                endforeach;
+                
+            endforeach;
+                
+        ?>
+        
+        <tr class="title-category">
+
+            <td style="text-align: left;"><b>(-) Exclusões</b></td>
+            
+            <?php foreach($meses as $xs => $mes): ?>
+                
+                <td><b><?= number_format($sum['EX'][$xs], 2, ',', '.'); ?></b></td>
+
+            <?php endforeach; ?>
+
+        </tr>
+        
+        <?php 
+        
+            foreach($dados["EX"] as $i => $dado):
+                
+        ?>
+        
+            <tr class="graph" style="cursor: pointer;" data-json='<?= json_encode($dado); ?>'>
+
+                <td style="text-align: left;"><?= $dado['descricao'] ?></td>
+                
+                <?php 
+                
+                    foreach($meses as $xs => $mes): 
+                    
+                        $result = 0;
+                    
+                        for($g = 1; $g <= $xs; $g++):
+                            
+                            $result += $dado[$months[$g]];
+                            
+                        endfor;
+                    
+                    ?>
+                
+                    <td><?= number_format($result, 2, ',', '.'); ?></td>
+
+                <?php endforeach; ?>
+                    
+            </tr>
+
+        <?php endforeach; ?> 
+        
+        <tr class="title-category">
+
+            <td style="text-align: left;"><b>Sub-total</b></td>
+
+            <?php for($i = 1; $i <= 12; $i++) : ?>
+            
+                <?php 
+                
+                    $result = 0;
+                
+                    for($j = 1; $j <= $i; $j++) : 
+                    
+                        $result = $sum['LL'][$j] + $sum['AD'][$j] - $sum['EX'][$j];
+
+                    endfor; 
+                ?>
+
+                <td><b><?= number_format($result, 2, ',', '.'); ?></b></td>
+
+            <?php endfor; ?>
+
+        </tr>
+        
+        <?php 
+        
+            foreach($dados["COMPCS"] as $i => $dado):
+                
+        ?>
+        
+            <tr class="title-category">
+
+                <td style="text-align: left;"><b>Compensações</b></td>
+
+                <?php 
+                
+                    foreach($meses as $xs => $mes): 
+                    
+                        $result = 0;
+                    
+                        for($g = 1; $g <= $xs; $g++):
+                            
+                            $result += $dado[$months[$g]];
+                            
+                        endfor;
+                    
+                    ?>
+                
+                    <td><b><?= number_format($result, 2, ',', '.'); ?></b></td>
+
+                <?php endforeach; ?>
+
+            </tr>
+        
+        
+            <tr class="graph" style="cursor: pointer;" data-json='<?= json_encode($dado); ?>'>
+
+                <td style="text-align: left;"><?= $dado['descricao'] ?></td>
+
+                <?php 
+                
+                    foreach($meses as $xs => $mes): 
+                    
+                        $result = 0;
+                    
+                        for($g = 1; $g <= $xs; $g++):
+                            
+                            $result += $dado[$months[$g]];
+                            
+                        endfor;
+                    
+                    ?>
+                
+                    <td><?= number_format($result, 2, ',', '.'); ?></td>
+
+                <?php endforeach; ?>
+                
+            </tr>
+
+        <?php endforeach; ?>
+        
+        <tr class="title-category">
+
+            <td style="text-align: left;"><b>Base de cálculo da Contribuição Social</b></td>
+
+            <?php for($i = 1; $i <= 12; $i++) : ?>
+            
+                <?php 
+                
+                    $result = 0;
+                
+                    for($j = 1; $j <= $i; $j++) : 
+                    
+                        $result = $sum['LL'][$j] + $sum['AD'][$j] - $sum['EX'][$j] - $dado[$months[$j]];
+
+                    endfor; 
+                ?>
+
+                <td><b><?= number_format($result, 2, ',', '.'); ?></b></td>
+
+            <?php endfor; ?>
+
+        </tr>
         
         <tr>
 
-            <td style="text-align: left;" scope="col">Caixa e equivalentes de caixa no final do exercicio</td>
+            <td style="text-align: left;">Contribuição Social devida  9%</td>
+
+            <?php
             
+                $csp = [];
+            
+                for($i = 1; $i <= 12; $i++) : ?>
+            
+                <?php 
+                
+                    $result = 0;
+                
+                    for($j = 1; $j <= $i; $j++) : 
+                        
+                        $cat = $sum['LL'][$j] + $sum['AD'][$j] - $sum['EX'][$j] - $dado[$months[$j]];
+                        $result = ($cat > 0) ? $cat * 0.09 : 0;
+                        $csp[$i] = $result; 
+
+                    endfor; 
+                ?>
+
+                <td><?= number_format($result, 2, ',', '.'); ?></td>
+
+            <?php endfor; ?>
+
+        </tr>
+        
+        <?php 
+            foreach($dados["BCCS"] as $i => $dado):
+        ?>
+        
+            <tr class="graph" style="cursor: pointer;" data-json='<?= json_encode($dado); ?>'>
+
+                <td style="text-align: left;"><?= $dado['descricao'] ?></td>
+                
+                <?php foreach($meses as $xs => $mes): ?>
+                
+                    <?php 
+
+                        if($dado['descricao'] == '(-) CSLL devida em meses anteriores')
+                        {
+                            $result = ($xs > 1) ? $dado[$months[$xs]] + $csp[$xs - 1] : 0;
+                        }
+                        else
+                        {
+                            $result = $dado[$months[$xs]];
+                        }
+                        
+                        $csp[$xs] -= $result;
+                    ?>
+
+                        <td><?= number_format($result, 2, ',', '.'); ?></td>
+
+                <?php endforeach; ?>
+                        
+            </tr>
+
+        <?php endforeach; ?>
+        
+        <tr class="title-category" style="background-color: #237486; color: #FFF;">
+
+            <td style="text-align: left;"><b>(=) Contribuição Social a Pagar - 2484</b></td>
+
             <?php for($i = 1; $i <= 12; $i++) : ?>
             
-                <td><?= number_format($sum["DFCTOT"][$i], 2, ',', '.'); ?></td>
-            
+                <td><b><?= number_format(($csp[$i] > 0) ? $csp[$i] : 0, 2, ',', '.'); ?></b></td>
+
             <?php endfor; ?>
-                
-            <td><?= number_format($sum["DFCTOT"]['TOTAL'], 2, ',', '.'); ?></td>
-            
+
         </tr>
-            
-        <tr>
+        
+        <tr class="empty-tr">
 
             <td scope="col" colspan="14">&nbsp;</td>
                 
@@ -706,46 +480,586 @@ $pic = 'data://text/plain;base64,' . base64_encode($img);
         
         <?php 
         
-            foreach($dados["DFCTOT"] as $i => $dado):
+            foreach($dados["LL"] as $i => $dado):
                 
-                if($dado['descricao'] == 'Caixa e equivalentes de caixa no inicio do exercicio'):
+                foreach($meses as $xs => $mes): 
                 
+                    $sum['LL'][$xs] = 0;
                 
+                    for($x = 1; $x <= $xs; $x++): 
+                
+                        $sum['LL'][$xs] += $dado[$months[$x]];
+
+                    endfor;
+                    
+                endforeach;
         ?>
         
-            <tr style="background-color: #a5c4d3b5;">
+            <tr class="title-category">
 
-                <th><b>Acréscimo/(redução) líquido no caixa e equivalentes de caixa</th>
-
-                <td><b><?= number_format($dado["jan"], 2, ',', '.'); ?></b></td>
+                <td style="text-align: left;"><b>Resultado Antes do Imposto de Renda</b></td>
                 
-                <td><b><?= number_format($dado["feb"], 2, ',', '.'); ?></b></td>
+                <?php foreach($meses as $xs => $mes): ?>
                 
-                <td><b><?= number_format($dado["mar"], 2, ',', '.'); ?></b></td>
+                    <td><b><?= number_format($sum['LL'][$xs], 2, ',', '.'); ?></b></td>
                 
-                <td><b><?= number_format($dado["apr"], 2, ',', '.'); ?></b></td>
-                
-                <td><b><?= number_format($dado["may"], 2, ',', '.'); ?></b></td>
-                
-                <td><b><?= number_format($dado["jun"], 2, ',', '.'); ?></b></td>
-                
-                <td><b><?= number_format($dado["jul"], 2, ',', '.'); ?></b></td>
-                
-                <td><b><?= number_format($dado["aug"], 2, ',', '.'); ?></b></td>
-                
-                <td><b><?= number_format($dado["sep"], 2, ',', '.'); ?></b></td>
-                
-                <td><b><?= number_format($dado["oct"], 2, ',', '.'); ?></b></td>
-                
-                <td><b><?= number_format($dado["nov"], 2, ',', '.'); ?></b></td>
-                
-                <td><b><?= number_format($dado["dez"], 2, ',', '.'); ?></b></td>
-                
-                <td><b><?= number_format($dado["total"], 2, ',', '.'); ?></b></td>
+                <?php endforeach; ?>
                 
             </tr>
 
-        <?php endif; endforeach; ?> 
+        <?php endforeach; ?> 
+            
+        <tr class="title-category">
+
+            <td style="text-align: left;"><b>(+) Adições</b></td>
+            
+            <?php foreach($meses as $xs => $mes): ?>
+                
+                <td><b><?= number_format($sum['AD'][$xs], 2, ',', '.'); ?></b></td>
+
+            <?php endforeach; ?>
+            
+        </tr>    
+        
+        <?php 
+        
+            foreach($dados["AD"] as $i => $dado):
+                
+        ?>
+        
+            <tr class="graph" style="cursor: pointer;" data-json='<?= json_encode($dado); ?>'>
+
+                <td style="text-align: left;"><?= $dado['descricao'] ?></td>
+                
+                <?php 
+                
+                    foreach($meses as $xs => $mes): 
+                    
+                        $result = 0;
+                    
+                        for($g = 1; $g <= $xs; $g++):
+                            
+                            $result += $dado[$months[$g]];
+                            
+                        endfor;
+                    
+                    ?>
+                
+                    <td><?= number_format($result, 2, ',', '.'); ?></td>
+
+                <?php endforeach; ?>
+
+            </tr>
+
+        <?php endforeach; ?> 
+            
+        <tr class="title-category">
+
+            <td style="text-align: left;"><b>(-) Exclusões</b></td>
+            
+            <?php foreach($meses as $xs => $mes): ?>
+                
+                <td><b><?= number_format($sum['EX'][$xs], 2, ',', '.'); ?></b></td>
+
+            <?php endforeach; ?>
+
+        </tr>
+        
+        <?php 
+        
+            foreach($dados["EX"] as $i => $dado):
+                
+        ?>
+        
+            <tr class="graph" style="cursor: pointer;" data-json='<?= json_encode($dado); ?>'>
+
+                <td style="text-align: left;"><?= $dado['descricao'] ?></td>
+                
+                <?php 
+                
+                    foreach($meses as $xs => $mes): 
+                    
+                        $result = 0;
+                    
+                        for($g = 1; $g <= $xs; $g++):
+                            
+                            $result += $dado[$months[$g]];
+                            
+                        endfor;
+                    
+                    ?>
+                
+                    <td><?= number_format($result, 2, ',', '.'); ?></td>
+
+                <?php endforeach; ?>
+                    
+            </tr>
+
+        <?php endforeach; ?> 
+        
+        <tr class="title-category">
+
+            <td style="text-align: left;"><b>Sub-total</b></td>
+
+            <?php for($i = 1; $i <= 12; $i++) : ?>
+            
+                <?php 
+                
+                    $result = 0;
+                
+                    for($j = 1; $j <= $i; $j++) : 
+                    
+                        $result = $sum['LL'][$j] + $sum['AD'][$j] - $sum['EX'][$j];
+
+                    endfor; 
+                ?>
+
+                <td><b><?= number_format($result, 2, ',', '.'); ?></b></td>
+
+            <?php endfor; ?>
+
+        </tr>
+        
+        <?php 
+        
+            foreach($dados["COMPIR"] as $i => $dado):
+                
+        ?>
+        
+            <tr class="title-category">
+
+                <td style="text-align: left;"><b>Compensações</b></td>
+
+                <?php 
+                
+                    foreach($meses as $xs => $mes): 
+                    
+                        $result = 0;
+                    
+                        for($g = 1; $g <= $xs; $g++):
+                            
+                            $result += $dado[$months[$g]];
+                            
+                        endfor;
+                    
+                    ?>
+                
+                    <td><b><?= number_format($result, 2, ',', '.'); ?></b></td>
+
+                <?php endforeach; ?>
+
+            </tr>
+        
+        
+            <tr class="graph" style="cursor: pointer;" data-json='<?= json_encode($dado); ?>'>
+
+                <td style="text-align: left;"><?= $dado['descricao'] ?></td>
+
+                <?php 
+                
+                    foreach($meses as $xs => $mes): 
+                    
+                        $result = 0;
+                    
+                        for($g = 1; $g <= $xs; $g++):
+                            
+                            $result += $dado[$months[$g]];
+                            
+                        endfor;
+                    
+                    ?>
+                
+                    <td><?= number_format($result, 2, ',', '.'); ?></td>
+
+                <?php endforeach; ?>
+                
+            </tr>
+
+        <?php endforeach; ?>
+        
+        <tr class="title-category">
+
+            <td style="text-align: left;"><b>Base de Cálculo do IRPJ</b></td>
+
+            <?php for($i = 1; $i <= 12; $i++) : ?>
+            
+                <?php 
+                
+                    $result = 0;
+                
+                    for($j = 1; $j <= $i; $j++) : 
+                    
+                        $result = $sum['LL'][$j] + $sum['AD'][$j] - $sum['EX'][$j] - $dado[$months[$j]];
+
+                    endfor; 
+                ?>
+
+                <td><b><?= number_format($result, 2, ',', '.'); ?></b></td>
+
+            <?php endfor; ?>
+
+        </tr>
+        
+        <tr>
+
+            <td style="text-align: left;">Imposto de Renda Devido 15%</td>
+
+            <?php for($i = 1; $i <= 12; $i++) : ?>
+            
+                <?php 
+                
+                    $result = 0;
+                
+                    for($j = 1; $j <= $i; $j++) : 
+                        
+                        $cat = $sum['LL'][$j] + $sum['AD'][$j] - $sum['EX'][$j] - $dado[$months[$j]];
+                        $result = ($cat > 0) ? $cat * 0.15 : 0;
+
+                    endfor; 
+                ?>
+
+                <td><?= number_format($result, 2, ',', '.'); ?></td>
+
+            <?php endfor; ?>
+
+        </tr>
+        
+        <tr>
+
+            <td style="text-align: left;">Adicional do Imposto de Renda</td>
+
+            <?php for($i = 1; $i <= 12; $i++) : ?>
+            
+                <?php 
+                
+                    $result = 0;
+                
+                    for($j = 1; $j <= $i; $j++) : 
+                        
+                        $cat = $sum['LL'][$j] + $sum['AD'][$j] - $sum['EX'][$j] - $dado[$months[$j]];
+                        $result = ($cat > ($i * 20000)) ? ($cat - ($i * 20000)) * 0.1 : 0;
+
+                    endfor; 
+                ?>
+
+                <td><?= number_format($result, 2, ',', '.'); ?></td>
+
+            <?php endfor; ?>
+
+        </tr>
+        
+        <tr>
+
+            <td style="text-align: left;">Total de Imposto de Renda + Adicional</td>
+
+            <?php $sirs = []; for($i = 1; $i <= 12; $i++) : ?>
+            
+                <?php 
+                
+                    $result = 0;
+                
+                    for($j = 1; $j <= $i; $j++) : 
+                        
+                        $cat = $sum['LL'][$j] + $sum['AD'][$j] - $sum['EX'][$j] - $dado[$months[$j]];
+                        $impostos = ($cat > 0) ? $cat * 0.15 : 0;
+                        $adicional = ($cat > ($i * 20000)) ? ($cat - ($i * 20000)) * 0.1 : 0;
+
+                        $result = $impostos + $adicional;
+                        $sirs[$i] = $result;
+                        
+                    endfor; 
+                ?>
+
+                <td><?= number_format($result, 2, ',', '.'); ?></td>
+
+            <?php endfor; ?>
+
+        </tr>
+        
+        <?php 
+        
+            foreach($dados["BCIRPJ"] as $i => $dado):
+                
+        ?>
+        
+            <tr class="graph" style="cursor: pointer;" data-json='<?= json_encode($dado); ?>'>
+
+                <td style="text-align: left;"><?= $dado['descricao'] ?></td>
+                
+                <?php foreach($meses as $xs => $mes): ?>
+                
+                <?php 
+
+                    if($dado['descricao'] == '(-) Imposto de Renda Recolhido em meses anteriores')
+                    {
+                        $result = ($xs > 1) ? $dado[$months[$xs]] + $sirs[$xs - 1] : 0;
+                    }
+                    else
+                    {
+                        $result = $dado[$months[$xs]];
+                    }
+
+                    $sirs[$xs] -= $result;
+                ?>
+                    
+                    <td><?= number_format($result, 2, ',', '.'); ?></td>
+                
+                <?php endforeach; ?>
+    
+            </tr>
+
+        <?php endforeach; ?>
+        
+        <tr class="title-category" style="background-color: #237486; color: #FFF;">
+
+            <td style="text-align: left;"><b>Saldo do Imposto de Renda a Recolher - 5993</b></td>
+
+            <?php foreach($meses as $xs => $mes): ?>
+
+                <td><b><?= number_format(($sirs[$xs] > 0) ? $sirs[$xs] : 0, 2, ',', '.'); ?></b></td>
+
+            <?php endforeach; ?>
+
+        </tr>
+        
+        <tr class="empty-tr">
+
+            <td scope="col" colspan="14">&nbsp;</td>
+                
+        </tr>
+        
+        <tr class="title-category" style="background-color: #237486; color: #FFF;">
+
+            <td style="text-align: left;"><b>Total IRPJ + CSLL - Redução/Suspensão</b></td>
+
+            <?php 
+            
+                $oais = [];
+            
+                foreach($meses as $xs => $mes):
+            
+                $csp[$xs] = ($csp[$xs] > 0) ? $csp[$xs] : 0; 
+                $sirs[$xs] = ($sirs[$xs] > 0) ? $sirs[$xs] : 0; 
+                $oais[$xs] = $csp[$xs] + $sirs[$xs];
+                
+            ?>
+
+                <td><b><?= number_format($oais[$xs], 2, ',', '.'); ?></b></td>
+
+            <?php endforeach; ?>
+
+        </tr>
+        
+        <tr class="empty-tr">
+
+            <td scope="col" colspan="14">&nbsp;</td>
+                
+        </tr>
+        
+        <tr class="title-category" style="background-color: #237486; color: #FFF;">
+
+            <td style="text-align: left;"><b>Lucro Presumido / Estimativa</b></td>
+
+            <td scope="col" colspan="13">&nbsp;</td>
+
+        </tr>
+        
+        <?php 
+        
+            foreach($dados["LPEIRPJ"] as $i => $dado):
+
+        ?>
+        
+            <tr class="graph" style="cursor: pointer;" data-json='<?= json_encode($dado); ?>'>
+
+                <td style="text-align: left;"><?= $dado['descricao'] ?></td>
+                
+                <?php 
+                
+                    foreach($meses as $xs => $mes): 
+                    
+                        $result = $dado[$months[$xs]];
+                        $sum['LPEIRPJ'][$xs] += $dado[$months[$xs]];
+                    ?>
+                
+                    <td><?= number_format($result, 2, ',', '.'); ?></td>
+
+                <?php endforeach; ?>
+                    
+            </tr>
+
+        <?php endforeach; ?>
+        
+        <tr>
+
+            <td style="title-category" style="text-align: left;"><b>Total Base IRPJ</b></td>
+
+            <?php for($i = 1; $i <= 12; $i++) : ?>
+            
+                <td><b><?= number_format($sum["LPEIRPJ"][$i], 2, ',', '.'); ?></b></td>
+            
+            <?php endfor; ?>
+
+        </tr>
+            
+
+        </tr>
+        
+        <tr class="empty-tr">
+
+            <td scope="col" colspan="14">&nbsp;</td>
+                
+        </tr>
+        
+        <tr>
+
+            <td style="text-align: left;">IRPJ Estimativa - 15%</td>
+
+            <?php for($i = 1; $i <= 12; $i++) : ?>
+            
+                <td><?= number_format($sum["LPEIRPJ"][$i] * 0.15, 2, ',', '.'); ?></td>
+            
+            <?php endfor; ?>
+
+        </tr>
+        
+        <tr>
+
+            <td style="text-align: left;">Adicional IR Estimativa - 10%</td>
+
+            <?php for($i = 1; $i <= 12; $i++) : 
+                
+                
+                $result = (($sum["LPEIRPJ"][$i] - (20000 * 1)) > 0) ? ($sum["LPEIRPJ"][$i] - (20000 * 1)) * 0.1 : 0;
+                
+                ?>
+            
+                <td><?= number_format($result, 2, ',', '.'); ?></td>
+            
+            <?php endfor; ?>
+
+        </tr>
+        
+        <tr class="title-category">
+
+            <td style="text-align: left;"><b>Total IRPJ - 15% + 10%</b></td>
+
+            <?php for($i = 1; $i <= 12; $i++) : 
+                
+                $fifteen = $sum["LPEIRPJ"][$i] * 0.15;
+                $ten = (($sum["LPEIRPJ"][$i] - (20000 * 1)) > 0) ? ($sum["LPEIRPJ"][$i] - (20000 * 1)) * 0.1 : 0;
+                
+                ?>
+            
+                <td><b><?= number_format($fifteen + $ten, 2, ',', '.'); ?></b></td>
+            
+            <?php endfor; ?>
+
+        </tr>
+        
+        <tr class="empty-tr">
+
+            <td scope="col" colspan="14">&nbsp;</td>
+                
+        </tr>
+        
+        <?php 
+        
+            foreach($dados["LPECSLL"] as $i => $dado):
+                
+        ?>
+        
+            <tr class="graph" style="cursor: pointer;" data-json='<?= json_encode($dado); ?>'>
+
+                <td style="text-align: left;"><?= $dado['descricao'] ?></td>
+                
+                <?php 
+                
+                    foreach($meses as $xs => $mes): 
+                    
+                        $result = $dado[$months[$xs]];
+                        $sum['LPECSLL'][$xs] += $dado[$months[$xs]];
+                    ?>
+                
+                    <td><?= number_format($result, 2, ',', '.'); ?></td>
+
+                <?php endforeach; ?>
+                    
+            </tr>
+
+        <?php endforeach; ?>
+        
+        <tr>
+
+            <td style="text-align: left;"><b>Total Base CSLL</b></td>
+
+            <?php for($i = 1; $i <= 12; $i++) : ?>
+            
+                <td><b><?= number_format($sum["LPECSLL"][$i], 2, ',', '.'); ?></b></td>
+            
+            <?php endfor; ?>
+                
+        </tr>
+        
+        <tr class="empty-tr">
+
+            <td scope="col" colspan="14">&nbsp;</td>
+                
+        </tr>
+        
+        <tr class="title-category">
+
+            <td style="text-align: left;"><b>CSLL Estimativa - 9%</b></td>
+
+            <?php for($i = 1; $i <= 12; $i++) : ?>
+            
+                <td><b><?= number_format($sum["LPECSLL"][$i] * 0.09, 2, ',', '.'); ?></b></td>
+            
+            <?php endfor; ?>
+
+        </tr>
+        
+        <tr class="empty-tr">
+
+            <td scope="col" colspan="14">&nbsp;</td>
+                
+        </tr>
+        
+        <tr class="title-category" style="background-color: #237486; color: #FFF;">
+
+            <td style="text-align: left;"><b>Total a Pagar IRPJ + CSLL Estimado</b></td>
+
+            <?php $tatas = []; for($i = 1; $i <= 12; $i++) : 
+                
+                $fifteen = $sum["LPEIRPJ"][$i] * 0.15;
+                $ten = (($sum["LPEIRPJ"][$i] - (20000 * 1)) > 0) ? ($sum["LPEIRPJ"][$i] - (20000 * 1)) * 0.1 : 0;
+                $nine = $sum["LPECSLL"][$i] * 0.09;
+                $tatas[$i] = $fifteen + $ten + $nine;
+            ?>
+            
+                <td><b><?= number_format($tatas[$i], 2, ',', '.'); ?></b></td>
+            
+            <?php endfor; ?>
+
+        </tr>
+
+        <tr class="empty-tr">
+
+            <td scope="col" colspan="14">&nbsp;</td>
+                
+        </tr>
+        
+        <tr class="title-category" style="background-color: #237486; color: #FFF;">
+
+            <td style="text-align: left;"><b>Variação L.Real x L.Presumido</b></td>
+
+            <?php foreach($meses as $xs => $mes): ?>
+
+                <td><b><?= number_format($tatas[$xs] - $oais[$xs], 2, ',', '.'); ?></b></td>
+
+            <?php endforeach; ?>
+
+        </tr>
         
     </tbody>
 

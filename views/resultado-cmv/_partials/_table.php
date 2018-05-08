@@ -61,6 +61,22 @@ $meses =
     12 => 'Dezembro'
 ];
 
+$months = 
+[
+    1 => 'jan',
+    2 => 'feb',
+    3 => 'mar',
+    4 => 'apr',
+    5 => 'may',
+    6 => 'jun',
+    7 => 'jul',
+    8 => 'aug',
+    9 => 'sep',
+    10 => 'oct',
+    11 => 'nov',
+    12 => 'dez'
+];
+
 $rv = [];
 $rv['total'] = 0;
 $cmv = [];
@@ -117,107 +133,47 @@ $dv['total'] = 0;
 
         <?php foreach($dados['RECEITA COM VENDAS'] as $dado): 
             
-            $rv[1] += $dado["jan"];
-            $rv[2] += $dado["feb"];
-            $rv[3] += $dado["mar"];
-            $rv[4] += $dado["apr"];
-            $rv[5] += $dado["may"];
-            $rv[6] += $dado["jun"];
-            $rv[7] += $dado["jul"];
-            $rv[8] += $dado["aug"];
-            $rv[9] += $dado["sep"];
-            $rv[10] += $dado["oct"];
-            $rv[11] += $dado["nov"];
-            $rv[12] += $dado["dez"];
             $rv['total'] += $dado["total"];
-            
-            if($dado['descricao'] == 'VENDAS A VISTA')
-            {
-                $vv[1] += $dado["jan"];
-                $vv[2] += $dado["feb"];
-                $vv[3] += $dado["mar"];
-                $vv[4] += $dado["apr"];
-                $vv[5] += $dado["may"];
-                $vv[6] += $dado["jun"];
-                $vv[7] += $dado["jul"];
-                $vv[8] += $dado["aug"];
-                $vv[9] += $dado["sep"];
-                $vv[10] += $dado["oct"];
-                $vv[11] += $dado["nov"];
-                $vv[12] += $dado["dez"];
-                $vv['total'] += $dado["total"];
-            }
-            elseif($dado['descricao'] == 'VENDAS A PRAZO')
-            {
-                $vp[1] += $dado["jan"];
-                $vp[2] += $dado["feb"];
-                $vp[3] += $dado["mar"];
-                $vp[4] += $dado["apr"];
-                $vp[5] += $dado["may"];
-                $vp[6] += $dado["jun"];
-                $vp[7] += $dado["jul"];
-                $vp[8] += $dado["aug"];
-                $vp[9] += $dado["sep"];
-                $vp[10] += $dado["oct"];
-                $vp[11] += $dado["nov"];
-                $vp[12] += $dado["dez"];
-                $vp['total'] += $dado["total"];
-            }
-            elseif($dado['descricao'] == 'DEVOLUCAO DE VENDAS')
-            {
-                $dv[1] += $dado["jan"];
-                $dv[2] += $dado["feb"];
-                $dv[3] += $dado["mar"];
-                $dv[4] += $dado["apr"];
-                $dv[5] += $dado["may"];
-                $dv[6] += $dado["jun"];
-                $dv[7] += $dado["jul"];
-                $dv[8] += $dado["aug"];
-                $dv[9] += $dado["sep"];
-                $dv[10] += $dado["oct"];
-                $dv[11] += $dado["nov"];
-                $dv[12] += $dado["dez"];
-                $dv['total'] += $dado["total"];
-            }
+            $vv['total'] += $dado["total"];
+            $dv['total'] += $dado["total"];
             
         ?>
-            
+        
             <tr class="graph" data-json='<?= json_encode($dado); ?>'>
 
                 <td style="text-align: left;"><?= $dado["codigo"]; ?></td>
 
                 <td style="text-align: left;"><?= $dado["descricao"]; ?></td>  
-                                
-                <td><?= number_format($dado["jan"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["feb"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["mar"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["apr"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["may"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["jun"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["jul"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["aug"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["sep"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["oct"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["nov"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["dez"], 2, ',', '.'); ?></td>
-                
-                <td><b><?= number_format($dado["total"], 2, ',', '.'); ?></b></td>
-
-            </tr>
- 
-        <?php endforeach; ?>
         
+                <?php foreach($meses as $xs => $mes):
+
+                    $rv[$xs] += $dado[$months[$xs]];
+
+                    if($dado['descricao'] == 'VENDAS A VISTA')
+                    {
+                        $vv[$xs] += $dado[$months[$xs]];
+                    }
+                    elseif($dado['descricao'] == 'VENDAS A PRAZO')
+                    {
+                        $vp[$xs] += $dado[$months[$xs]];
+                    }
+                    elseif($dado['descricao'] == 'DEVOLUCAO DE VENDAS')
+                    {
+                        $dv[$xs] += $dado[$months[$xs]];
+                    } 
+
+                ?>
+
+                    <td><?= number_format($dado[$months[$xs]], 2, ',', '.'); ?></td>
+
+                <?php endforeach; ?>
+                    
+                <td><?= number_format($dado["total"], 2, ',', '.'); ?></td>
+                
+            </tr>        
+                
+        <?php endforeach; ?>
+            
         <tr class="title-category" style="background-color: #235a69; color: #FFF;">
 
             <th scope="col" colspan="2">RECEITA COM VENDAS</th>
@@ -240,60 +196,75 @@ $dv['total'] = 0;
 
         </tr>
         
+        <?php $ei = []; foreach($dados['CUSTO DAS MERCADORIAS VENDIDAS'] as $dado): 
+            
+            if($dado['descricao'] == '( - ) ESTOQUE FINAL ')
+            {
+                foreach($meses as $xs => $mes):
+                    
+                    $ei[$xs] = $dado[$months[$xs]] * -1;
+                    
+                endforeach;
+            }
+                        
+            endforeach;
+            
+        ?>
+        
         <?php foreach($dados['CUSTO DAS MERCADORIAS VENDIDAS'] as $dado): 
             
-            $cmv[1] += $dado["jan"];
-            $cmv[2] += $dado["feb"];
-            $cmv[3] += $dado["mar"];
-            $cmv[4] += $dado["apr"];
-            $cmv[5] += $dado["may"];
-            $cmv[6] += $dado["jun"];
-            $cmv[7] += $dado["jul"];
-            $cmv[8] += $dado["aug"];
-            $cmv[9] += $dado["sep"];
-            $cmv[10] += $dado["oct"];
-            $cmv[11] += $dado["nov"];
-            $cmv[12] += $dado["dez"];
             $cmv['total'] += $dado["total"];
             
-            ?>
-            
+        ?>
+        
             <tr class="graph" data-json='<?= json_encode($dado); ?>'>
 
                 <td style="text-align: left;"><?= $dado["codigo"]; ?></td>
 
                 <td style="text-align: left;"><?= $dado["descricao"]; ?></td>  
-                                
-                <td><?= number_format($dado["jan"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["feb"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["mar"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["apr"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["may"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["jun"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["jul"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["aug"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["sep"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["oct"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["nov"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["dez"], 2, ',', '.'); ?></td>
-                
-                <td><b><?= number_format($dado["total"], 2, ',', '.'); ?></b></td>
-
-            </tr>
- 
-        <?php endforeach; ?>
         
+                <?php foreach($meses as $xs => $mes):
+                    
+                    $cmv[$xs] += $dado[$months[$xs]];
+                    $tot = 0;
+                    
+                    if($dado['descricao'] == '( + ) ESTOQUE INICIAL')
+                    {
+                            $value = ($xs > 1) ? $ei[$xs - 1] : $dado[$months[$xs]];
+                        ?>
+                
+                            <td><?= number_format($value, 2, ',', '.'); ?></td>
+                            
+                        <?php
+                    }
+                    elseif($dado['descricao'] == '( - ) ESTOQUE FINAL ')
+                    {
+                        $tot = $dado[$months[12]];
+                        ?>
+                
+                            <td><?= number_format($dado[$months[$xs]], 2, ',', '.'); ?></td>
+                            
+                        <?php
+                    }
+                    else
+                    {
+                        $tot = $dado["total"];
+                        ?>
+                
+                            <td><?= number_format($dado[$months[$xs]], 2, ',', '.'); ?></td>
+                            
+                        <?php
+                    }
+                
+                ?>
+                                
+                <?php endforeach; ?>
+                    
+                <td><?= number_format($tot, 2, ',', '.'); ?></td>
+                
+            </tr>        
+                
+        <?php endforeach; ?>
         
         <tr class="title-category" style="background-color: #235a69; color: #FFF;">
 

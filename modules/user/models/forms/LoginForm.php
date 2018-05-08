@@ -36,7 +36,7 @@ class LoginForm extends Model
     {
         return
         [
-            "email" => 'Email',
+            "email" => 'Usuário',
             "password" => "Senha",
         ];
     }

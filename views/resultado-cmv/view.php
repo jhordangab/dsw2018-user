@@ -253,7 +253,7 @@ Modal::begin([
 
 <?php if($dados): ?>
 
-    <?= Html::a('<i class="fa fa-file-pdf-o"></i>',['report',  'empresa_id' => $empresa->id, 'ano' => $ano], ['target' => '_blank', 'class' => 'btn btn-xs btn-success pull-right', 'style' => 'margin-bottom: 10px; margin-left: 5px;', 'title' => 'Clique para exportar para PDF']) ?>
+    <?php //echo Html::a('<i class="fa fa-file-pdf-o"></i>',['report',  'empresa_id' => $empresa->id, 'ano' => $ano], ['target' => '_blank', 'class' => 'btn btn-xs btn-success pull-right', 'style' => 'margin-bottom: 10px; margin-left: 5px;', 'title' => 'Clique para exportar para PDF']) ?>
 
     <div class="row" style="padding: 10px;">
         <?= $this->render('_partials/_table', compact('dados')); ?>

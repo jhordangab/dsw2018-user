@@ -23,13 +23,6 @@ $css = <<<CSS
         text-align: center;
     }
         
-    .body-valor tr.sum 
-    {
-        font-weight: 600;
-        background-color: #237486;
-        color: #FFF;
-    }
-        
     .table-balancete > tbody > tr.title-category:hover,
     .table-balancete > tbody > tr.empty-tr:hover
     {
@@ -103,7 +96,7 @@ $sum = [];
 
     <thead>
 
-        <tr style="background-color: #237486; color: #FFF;">
+        <tr class="title-category" style="background-color: #237486; color: #FFF; cursor: text;">
 
             <th scope="col"></th>
             
@@ -149,7 +142,7 @@ $sum = [];
                 endforeach;
         ?>
         
-            <tr style="background-color: #237486; color: #FFF;">
+            <tr class="title-category" style="background-color: #237486; color: #FFF;">
 
                 <td></td>
 
@@ -179,7 +172,7 @@ $sum = [];
                                 
             </tr>
         
-            <tr class="title-category graph" style="cursor: pointer;" data-json='<?= json_encode($dado); ?>'>
+            <tr class="title-category">
 
                 <td style="text-align: left;"><b>Resultado Antes do IR e da Contribuição Social</b></td>
                 
@@ -516,7 +509,7 @@ $sum = [];
                 endforeach;
         ?>
         
-            <tr class="title-category graph" style="cursor: pointer;" data-json='<?= json_encode($dado); ?>'>
+            <tr class="title-category">
 
                 <td style="text-align: left;"><b>Resultado Antes do Imposto de Renda</b></td>
                 
@@ -913,7 +906,7 @@ $sum = [];
         
         <tr>
 
-            <td style="text-align: left;"><b>Total Base IRPJ</b></td>
+            <td style="title-category" style="text-align: left;"><b>Total Base IRPJ</b></td>
 
             <?php for($i = 1; $i <= 12; $i++) : ?>
             
