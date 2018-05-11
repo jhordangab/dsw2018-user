@@ -20,6 +20,7 @@
                                 ['label' => 'DREs', 'icon' => 'tag', 'url' => ['/resultado-dre']],
                                 ['label' => 'DFCs', 'icon' => 'tag', 'url' => ['/resultado-dfc']],
                                 ['label' => 'LALUR', 'icon' => 'tag', 'url' => ['/resultado-lalur']],
+                                ['label' => 'Confronto', 'icon' => 'tag', 'url' => ['/resultado-confronto']],
                             ]
                         ],
                         ['label' => 'Planos Padrões', 'icon' => 'tags', 'url' => ['/categoria']],
