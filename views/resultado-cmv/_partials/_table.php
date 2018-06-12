@@ -129,49 +129,53 @@ $dv['total'] = 0;
 
         </tr>
 
-        <?php foreach($dados['RECEITA COM VENDAS'] as $dado): 
-            
-            $rv['total'] += $dado["total"];
-            $vv['total'] += $dado["total"];
-            $dv['total'] += $dado["total"];
-            
-        ?>
+        <?php if(isset($dados['RECEITA COM VENDAS'])) : ?>
         
-            <tr class="graph" data-json='<?= json_encode($dado); ?>'>
+            <?php foreach($dados['RECEITA COM VENDAS'] as $dado): 
 
-                <!-- <td style="text-align: left;"><?= $dado["codigo"]; ?></td> -->
+                $rv['total'] += $dado["total"];
+                $vv['total'] += $dado["total"];
+                $dv['total'] += $dado["total"];
 
-                <td style="text-align: left;"><?= $dado["descricao"]; ?></td>  
-        
-                <?php foreach($meses as $xs => $mes):
+            ?>
 
-                    $rv[$xs] += $dado[$months[$xs]];
+                <tr class="graph" data-json='<?= json_encode($dado); ?>'>
 
-                    if($dado['descricao'] == 'VENDAS A VISTA')
-                    {
-                        $vv[$xs] += $dado[$months[$xs]];
-                    }
-                    elseif($dado['descricao'] == 'VENDAS A PRAZO')
-                    {
-                        $vp[$xs] += $dado[$months[$xs]];
-                    }
-                    elseif($dado['descricao'] == 'DEVOLUCAO DE VENDAS')
-                    {
-                        $dv[$xs] += $dado[$months[$xs]];
-                    } 
+                    <!-- <td style="text-align: left;"><?= $dado["codigo"]; ?></td> -->
 
-                ?>
+                    <td style="text-align: left;"><?= $dado["descricao"]; ?></td>  
 
-                    <td><?= number_format($dado[$months[$xs]], 2, ',', '.'); ?></td>
+                    <?php foreach($meses as $xs => $mes):
 
-                <?php endforeach; ?>
-                    
-                <td><?= number_format($dado["total"], 2, ',', '.'); ?></td>
+                        $rv[$xs] += $dado[$months[$xs]];
+
+                        if($dado['descricao'] == 'VENDAS A VISTA')
+                        {
+                            $vv[$xs] += $dado[$months[$xs]];
+                        }
+                        elseif($dado['descricao'] == 'VENDAS A PRAZO')
+                        {
+                            $vp[$xs] += $dado[$months[$xs]];
+                        }
+                        elseif($dado['descricao'] == 'DEVOLUCAO DE VENDAS')
+                        {
+                            $dv[$xs] += $dado[$months[$xs]];
+                        } 
+
+                    ?>
+
+                        <td><?= number_format($dado[$months[$xs]], 2, ',', '.'); ?></td>
+
+                    <?php endforeach; ?>
+
+                    <td><?= number_format($dado["total"], 2, ',', '.'); ?></td>
+
+                </tr>        
+
+            <?php endforeach; ?>
                 
-            </tr>        
-                
-        <?php endforeach; ?>
-            
+        <?php endif; ?>
+
         <tr class="title-category" style="background-color: #235a69; color: #FFF;">
 
             <th scope="col" colspan="1">RECEITA COM VENDAS</th>
@@ -194,78 +198,82 @@ $dv['total'] = 0;
 
         </tr>
         
-        <?php $ei = []; foreach($dados['CUSTO DAS MERCADORIAS VENDIDAS'] as $dado): 
-            
-            if($dado['descricao'] == '( - ) ESTOQUE FINAL ')
-            {
-                foreach($meses as $xs => $mes):
-                    
-                    $ei[$xs] = $dado[$months[$xs]] * -1;
-                    
+        <?php if(isset($dados['CUSTO DAS MERCADORIAS VENDIDAS'])) : ?>
+        
+            <?php $ei = []; foreach($dados['CUSTO DAS MERCADORIAS VENDIDAS'] as $dado): 
+
+                if($dado['descricao'] == '( - ) ESTOQUE FINAL ')
+                {
+                    foreach($meses as $xs => $mes):
+
+                        $ei[$xs] = $dado[$months[$xs]] * -1;
+
+                    endforeach;
+                }
+
                 endforeach;
-            }
-                        
-            endforeach;
-            
-        ?>
-        
-        <?php foreach($dados['CUSTO DAS MERCADORIAS VENDIDAS'] as $dado): 
-            
-            $cmv['total'] += $dado["total"];
-            
-        ?>
-        
-            <tr class="graph" data-json='<?= json_encode($dado); ?>'>
 
-                <!-- <td style="text-align: left;"><?= $dado["codigo"]; ?></td> -->
-
-                <td style="text-align: left;"><?= $dado["descricao"]; ?></td>  
+            ?>
         
-                <?php foreach($meses as $xs => $mes):
-                    
-                    $tot = 0;
-                    
-                    if($dado['descricao'] == '( + ) ESTOQUE INICIAL')
-                    {
-                            $value = ($xs > 1) ? $ei[$xs - 1] : $dado[$months[$xs]];
-                            $cmv[$xs] += $value;
-                            $tot = $dado[$months[1]];
-                        ?>
+            <?php foreach($dados['CUSTO DAS MERCADORIAS VENDIDAS'] as $dado): 
+
+                $cmv['total'] += $dado["total"];
+
+            ?>
+
+                <tr class="graph" data-json='<?= json_encode($dado); ?>'>
+
+                    <!-- <td style="text-align: left;"><?= $dado["codigo"]; ?></td> -->
+
+                    <td style="text-align: left;"><?= $dado["descricao"]; ?></td>  
+
+                    <?php foreach($meses as $xs => $mes):
+
+                        $tot = 0;
+
+                        if($dado['descricao'] == '( + ) ESTOQUE INICIAL')
+                        {
+                                $value = ($xs > 1) ? $ei[$xs - 1] : $dado[$months[$xs]];
+                                $cmv[$xs] += $value;
+                                $tot = $dado[$months[1]];
+                            ?>
+
+                                <td><?= number_format(($value * -1), 2, ',', '.'); ?></td>
+
+                            <?php
+                        }
+                        elseif($dado['descricao'] == '( - ) ESTOQUE FINAL ')
+                        {
+                            $tot = $dado[$months[12]];
+                            $cmv[$xs] += $dado[$months[$xs]];
+                            ?>
+
+                                <td><?= number_format(($dado[$months[$xs]] * -1), 2, ',', '.'); ?></td>
+
+                            <?php
+                        }
+                        else
+                        {
+                            $tot = $dado["total"];
+                            $cmv[$xs] += $dado[$months[$xs]];
+                            ?>
+
+                                <td><?= number_format(($dado[$months[$xs]] * -1), 2, ',', '.'); ?></td>
+
+                            <?php
+                        }
+
+                    ?>
+
+                    <?php endforeach; ?>
+
+                    <td><?= number_format(($tot * -1), 2, ',', '.'); ?></td>
+
+                </tr>        
+
+            <?php endforeach; ?>
                 
-                            <td><?= number_format(($value * -1), 2, ',', '.'); ?></td>
-                            
-                        <?php
-                    }
-                    elseif($dado['descricao'] == '( - ) ESTOQUE FINAL ')
-                    {
-                        $tot = $dado[$months[12]];
-                        $cmv[$xs] += $dado[$months[$xs]];
-                        ?>
-                
-                            <td><?= number_format(($dado[$months[$xs]] * -1), 2, ',', '.'); ?></td>
-                            
-                        <?php
-                    }
-                    else
-                    {
-                        $tot = $dado["total"];
-                        $cmv[$xs] += $dado[$months[$xs]];
-                        ?>
-                
-                            <td><?= number_format(($dado[$months[$xs]] * -1), 2, ',', '.'); ?></td>
-                            
-                        <?php
-                    }
-                
-                ?>
-                                
-                <?php endforeach; ?>
-                    
-                <td><?= number_format(($tot * -1), 2, ',', '.'); ?></td>
-                
-            </tr>        
-                
-        <?php endforeach; ?>
+        <?php endif; ?>
         
         <tr class="title-category" style="background-color: #235a69; color: #FFF;">
 
