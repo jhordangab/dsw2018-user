@@ -32,7 +32,7 @@ class CmvBiMagic
                 valor18 as dez, 
                 valor19 as total
             FROM indicador3
-            UNION
+            UNION ALL
             SELECT
                 valor1 as empresa,
                 valor2 as ano,
