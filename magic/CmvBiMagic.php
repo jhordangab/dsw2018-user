@@ -36,7 +36,7 @@ class CmvBiMagic
         ) as sel
         WHERE sel.ano = {$ano}
         AND sel.empresa = {$empresa_id}
-        ORDER BY sel.categoria DESC, sel.ordem ASC, sel.codigo ASC, sel.descricao ASC;        
+        ORDER BY sel.categoria DESC, cast(sel.ordem as int) ASC, sel.codigo ASC, sel.descricao ASC;        
 SQL;
         
         $dados = [];
