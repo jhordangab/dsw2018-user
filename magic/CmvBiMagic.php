@@ -13,24 +13,24 @@ class CmvBiMagic
         SELECT * FROM
         (
             SELECT 
-                valor1 as empresa, 
-                valor2 as ano, 
-                valor3 as categoria,
-                valor4 as codigo, 
-                valor5 as descricao, 
-                valor6 as jan, 
-                valor7 as feb, 
-                valor8 as mar, 
-                valor9 as apr, 
-                valor10 as may, 
-                valor11 as jun, 
-                valor12 as jul, 
-                valor13 as aug,
-                valor14 as sep, 
-                valor15 as oct, 
-                valor16 as nov, 
-                valor17 as dez, 
-                valor18 as total
+                valor2 as empresa, 
+                valor3 as ano, 
+                valor4 as categoria,
+                valor5 as codigo, 
+                valor6 as descricao, 
+                valor7 as jan, 
+                valor8 as feb, 
+                valor9 as mar, 
+                valor10 as apr, 
+                valor11 as may, 
+                valor12 as jun, 
+                valor13 as jul, 
+                valor14 as aug,
+                valor15 as sep, 
+                valor16 as oct, 
+                valor17 as nov, 
+                valor18 as dez, 
+                valor19 as total
             FROM indicador3
             UNION
             SELECT
