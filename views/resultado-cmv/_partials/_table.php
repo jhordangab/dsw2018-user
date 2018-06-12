@@ -87,7 +87,7 @@ $vp = [];
 $vp['total'] = 0;
 $dv = [];
 $dv['total'] = 0;
-      
+
 ?>
 
 <table class="table table-condensed table-bordered table-balancete">
@@ -95,9 +95,7 @@ $dv['total'] = 0;
     <thead>
 
         <tr class="title-category" style="background-color: #237486; color: #FFF;">
-
-            <th scope="col"></th>
-            
+ 
             <th scope="col">DEMONSTRATIVO DE CUSTO DE MERCADORIAS</th>
             
             <?php 
@@ -125,7 +123,7 @@ $dv['total'] = 0;
         
         <tr class="title-category" style="background-color: #247388c2; color: #FFF;">
 
-            <th scope="col" colspan="2">REVENDA GERAL</th>
+            <th scope="col" colspan="1">REVENDA GERAL</th>
                 
             <th scope="col" colspan="13" class="text-center"></th>
 
@@ -141,7 +139,7 @@ $dv['total'] = 0;
         
             <tr class="graph" data-json='<?= json_encode($dado); ?>'>
 
-                <td style="text-align: left;"><?= $dado["codigo"]; ?></td>
+                <!-- <td style="text-align: left;"><?= $dado["codigo"]; ?></td> -->
 
                 <td style="text-align: left;"><?= $dado["descricao"]; ?></td>  
         
@@ -176,7 +174,7 @@ $dv['total'] = 0;
             
         <tr class="title-category" style="background-color: #235a69; color: #FFF;">
 
-            <th scope="col" colspan="2">RECEITA COM VENDAS</th>
+            <th scope="col" colspan="1">RECEITA COM VENDAS</th>
             
             <?php for($i = 1; $i <= 12; $i++) : ?>
             
@@ -190,7 +188,7 @@ $dv['total'] = 0;
         
         <tr class="title-category" style="background-color: #247388c2; color: #FFF;">
 
-            <th scope="col" colspan="2">CMV</th>
+            <th scope="col" colspan="1">CMV</th>
                 
             <th scope="col" colspan="13" class="text-center"></th>
 
@@ -219,7 +217,7 @@ $dv['total'] = 0;
         
             <tr class="graph" data-json='<?= json_encode($dado); ?>'>
 
-                <td style="text-align: left;"><?= $dado["codigo"]; ?></td>
+                <!-- <td style="text-align: left;"><?= $dado["codigo"]; ?></td> -->
 
                 <td style="text-align: left;"><?= $dado["descricao"]; ?></td>  
         
@@ -234,7 +232,7 @@ $dv['total'] = 0;
                             $tot = $dado[$months[1]];
                         ?>
                 
-                            <td><?= number_format($value, 2, ',', '.'); ?></td>
+                            <td><?= number_format(($value * -1), 2, ',', '.'); ?></td>
                             
                         <?php
                     }
@@ -244,7 +242,7 @@ $dv['total'] = 0;
                         $cmv[$xs] += $dado[$months[$xs]];
                         ?>
                 
-                            <td><?= number_format($dado[$months[$xs]], 2, ',', '.'); ?></td>
+                            <td><?= number_format(($dado[$months[$xs]] * -1), 2, ',', '.'); ?></td>
                             
                         <?php
                     }
@@ -254,7 +252,7 @@ $dv['total'] = 0;
                         $cmv[$xs] += $dado[$months[$xs]];
                         ?>
                 
-                            <td><?= number_format($dado[$months[$xs]], 2, ',', '.'); ?></td>
+                            <td><?= number_format(($dado[$months[$xs]] * -1), 2, ',', '.'); ?></td>
                             
                         <?php
                     }
@@ -263,7 +261,7 @@ $dv['total'] = 0;
                                 
                 <?php endforeach; ?>
                     
-                <td><?= number_format($tot, 2, ',', '.'); ?></td>
+                <td><?= number_format(($tot * -1), 2, ',', '.'); ?></td>
                 
             </tr>        
                 
@@ -271,21 +269,21 @@ $dv['total'] = 0;
         
         <tr class="title-category" style="background-color: #235a69; color: #FFF;">
 
-            <th scope="col" colspan="2">CUSTO DAS MERCADORIAS VENDIDAS</th>
+            <th scope="col" colspan="1">CUSTO DAS MERCADORIAS VENDIDAS</th>
             
             <?php for($i = 1; $i <= 12; $i++) : ?>
             
-                <td><?= number_format($cmv[$i], 2, ',', '.'); ?></td>
+                <td><?= number_format(($cmv[$i] * -1), 2, ',', '.'); ?></td>
             
             <?php endfor; ?>
                 
-            <td><?= number_format($cmv["total"], 2, ',', '.'); ?></td>
+            <td><?= number_format(($cmv["total"] * -1), 2, ',', '.'); ?></td>
             
         </tr>
         
         <tr class="title-category" style="background-color: #1f90a9e3; color: #FFF;">
 
-            <th scope="col" colspan="2">MARGEM DE VENDAS</th>
+            <th scope="col" colspan="1">MARGEM DE VENDAS</th>
             
             <?php for($i = 1; $i <= 12; $i++) : $cos = $vv[$i] + $vp[$i] + $dv[$i];  $ttv = $vv['total'] + $vp['total'] + $dv['total']; ?>
             
@@ -299,7 +297,7 @@ $dv['total'] = 0;
         
         <tr class="title-category" style="background-color: #247388; color: #FFF;">
 
-            <th scope="col" colspan="2">RESULTADO</th>
+            <th scope="col" colspan="1">RESULTADO</th>
             
             <?php for($i = 1; $i <= 12; $i++) : ?>
             
@@ -309,6 +307,14 @@ $dv['total'] = 0;
             
             <td><?= number_format(($rv["total"] + $cmv["total"]), 2, ',', '.'); ?></td>
             
+        </tr>
+
+        <tr class="title-category" style="background-color: #247388c2; color: #FFF;">
+
+            <th scope="col" colspan="1">INDICADORES SOBRE ESTOQUE</th>
+
+            <th scope="col" colspan="13" class="text-center"></th>
+
         </tr>
             
     </tbody>

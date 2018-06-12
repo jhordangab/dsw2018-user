@@ -138,6 +138,7 @@ $sum['si'] = 0;
         
             <tr class="graph <?= $dado["class"]; ?>" data-json='<?= json_encode($dado); ?>'>
 
+                
                 <td style="text-align: left;"><?= $dado["codigo"]; ?></td>
 
                 <td style="text-align: left;"><?= $dado["descricao"]; ?></td>  

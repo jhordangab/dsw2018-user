@@ -12,7 +12,7 @@ class DreBiMagic
          
         SELECT * FROM 
         (
-            SELECT 
+            SELECT
                 valor1 as empresa, 
                 valor2 as ano, 
                 valor3 as categoria,
@@ -29,7 +29,7 @@ class DreBiMagic
                 valor14 as oct, 
                 valor15 as nov, 
                 valor16 as dez, 
-                valor17 as total
+                valor17 as total              
             FROM indicador6
         ) as sel
         WHERE sel.ano = {$ano} 

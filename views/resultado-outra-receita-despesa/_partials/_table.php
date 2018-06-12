@@ -119,47 +119,47 @@ $sum['total'] = 0;
 
                 <td style="text-align: left;"><?= $dado["descricao"]; ?></td>  
                                 
-                <td><?= number_format($dado["jan"], 2, ',', '.'); ?></td>
+                <td><?= number_format(($dado["jan"] * -1), 2, ',', '.'); ?></td>
                 
-                <td><?= number_format($dado["feb"], 2, ',', '.'); ?></td>
+                <td><?= number_format(($dado["feb"] * -1), 2, ',', '.'); ?></td>
                 
-                <td><?= number_format($dado["mar"], 2, ',', '.'); ?></td>
+                <td><?= number_format(($dado["mar"] * -1), 2, ',', '.'); ?></td>
                 
-                <td><?= number_format($dado["apr"], 2, ',', '.'); ?></td>
+                <td><?= number_format(($dado["apr"] * -1), 2, ',', '.'); ?></td>
                 
-                <td><?= number_format($dado["may"], 2, ',', '.'); ?></td>
+                <td><?= number_format(($dado["may"] * -1), 2, ',', '.'); ?></td>
                 
-                <td><?= number_format($dado["jun"], 2, ',', '.'); ?></td>
+                <td><?= number_format(($dado["jun"] * -1), 2, ',', '.'); ?></td>
                 
-                <td><?= number_format($dado["jul"], 2, ',', '.'); ?></td>
+                <td><?= number_format(($dado["jul"] * -1), 2, ',', '.'); ?></td>
                 
-                <td><?= number_format($dado["aug"], 2, ',', '.'); ?></td>
+                <td><?= number_format(($dado["aug"] * -1), 2, ',', '.'); ?></td>
                 
-                <td><?= number_format($dado["sep"], 2, ',', '.'); ?></td>
+                <td><?= number_format(($dado["sep"] * -1), 2, ',', '.'); ?></td>
                 
-                <td><?= number_format($dado["oct"], 2, ',', '.'); ?></td>
+                <td><?= number_format(($dado["oct"] * -1), 2, ',', '.'); ?></td>
                 
-                <td><?= number_format($dado["nov"], 2, ',', '.'); ?></td>
+                <td><?= number_format(($dado["nov"] * -1), 2, ',', '.'); ?></td>
                 
-                <td><?= number_format($dado["dez"], 2, ',', '.'); ?></td>
+                <td><?= number_format(($dado["dez"] * -1), 2, ',', '.'); ?></td>
                 
-                <td><b><?= number_format($dado["total"], 2, ',', '.'); ?></b></td>
+                <td><b><?= number_format(($dado["total"] * -1), 2, ',', '.'); ?></b></td>
 
             </tr>
  
         <?php endforeach; ?>
             
-         <tr class="title-category sum">
+        <tr class="title-category sum">
 
             <td colspan="2" style="text-align: left;"><b>TOTAL</b></td>  
             
             <?php for($i = 1; $i <= 12; $i++) : ?>
             
-                <td><?= number_format($sum[$i], 2, ',', '.'); ?></td>
+                <td><?= number_format(($sum[$i] * -1), 2, ',', '.'); ?></td>
             
             <?php endfor; ?>
 
-            <td><?= number_format($sum["total"], 2, ',', '.'); ?></td>
+            <td><?= number_format(($sum["total"] * -1), 2, ',', '.'); ?></td>
 
         </tr>
             

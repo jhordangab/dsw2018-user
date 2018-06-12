@@ -28,11 +28,12 @@ class LalurBiMagic
                 valor12 as sep, 
                 valor13 as oct, 
                 valor14 as nov, 
-                valor15 as dez
-            FROM indicador7
-                
-            UNION
-                
+                valor15 as dez,
+                '' as ordem
+            FROM indicador7               
+            
+            UNION                
+            
             SELECT 
                 'ACLA' as categoria,
                 valor1 as empresa, 
@@ -49,13 +50,14 @@ class LalurBiMagic
                 SUM(valor13) as sep, 
                 SUM(valor14) as oct, 
                 SUM(valor15) as nov, 
-                SUM(valor16) as dez
+                SUM(valor16) as dez,
+                '' as ordem
             FROM indicador8
             WHERE valor4 <> 'Lucro Liquido do Exercicio'
-            GROUP BY valor1, valor2, valor4
-                
-            UNION
-                
+            GROUP BY valor1, valor2, valor4                
+            
+            UNION                
+            
             SELECT 
                 valor1 as empresa, 
                 valor2 as ano, 
@@ -72,11 +74,12 @@ class LalurBiMagic
                 valor13 as sep, 
                 valor14 as oct, 
                 valor15 as nov, 
-                valor16 as dez 
-            FROM indicador16
-                
-            UNION 
-                
+                valor16 as dez,
+                '' as ordem
+            FROM indicador16                
+            
+            UNION                 
+            
             SELECT 
                     valor1 as empresa, 
                     valor2 as ano, 
@@ -93,13 +96,14 @@ class LalurBiMagic
                     sum(valor13) * 0.08 as sep, 
                     sum(valor14) * 0.08 as oct, 
                     sum(valor15) * 0.08 as nov, 
-                    sum(valor16) * 0.08 as dez
+                    sum(valor16) * 0.08 as dez,
+                    '01' as ordem
             FROM indicador6
             WHERE valor3 = 'RECEITAS OPERACIONAIS' AND (valor4 = 'Devolucao de Vendas' OR valor4 = 'Vendas / Remessa ')
-            GROUP BY valor1, valor2, valor3
-        
+            GROUP BY valor1, valor2, valor3        
+            
             UNION
-
+            
             SELECT 
                     valor1 as empresa, 
                     valor2 as ano, 
@@ -116,13 +120,14 @@ class LalurBiMagic
                     sum(valor13) * 0.32 as sep, 
                     sum(valor14) * 0.32 as oct, 
                     sum(valor15) * 0.32 as nov, 
-                    sum(valor16) * 0.32 as dez
+                    sum(valor16) * 0.32 as dez,
+                    '02' as ordem
             FROM indicador6
             WHERE valor3 = 'RECEITAS OPERACIONAIS' AND valor4 = 'Receitas Servicos '
             GROUP BY valor1, valor2, valor3
-
+            
             UNION
-
+            
             SELECT 
                     valor1 as empresa, 
                     valor2 as ano, 
@@ -139,13 +144,14 @@ class LalurBiMagic
                     sum(valor13) as sep, 
                     sum(valor14) as oct, 
                     sum(valor15) as nov, 
-                    sum(valor16) as dez
+                    sum(valor16) as dez,
+                    '04' as ordem
             FROM indicador6
             WHERE valor3 = 'OUTRAS RECEITAS / DESPESAS'
             GROUP BY valor1, valor2, valor3
-
+            
             UNION
-
+            
             SELECT 
                     valor1 as empresa, 
                     valor2 as ano, 
@@ -162,13 +168,14 @@ class LalurBiMagic
                     sum(valor16) * -1 as sep, 
                     sum(valor17) * -1 as oct, 
                     sum(valor18) * -1 as nov, 
-                    sum(valor19) * -1 as dez
+                    sum(valor19) * -1 as dez,
+                    '03' as ordem
             FROM indicador1
             WHERE valor3 = 'RECEITAS FINANCEIRAS TOTAIS'
-            GROUP BY valor1, valor2
-                
-            UNION 
-                
+            GROUP BY valor1, valor2               
+            
+            UNION                
+            
             SELECT 
                     valor1 as empresa, 
                     valor2 as ano, 
@@ -185,13 +192,14 @@ class LalurBiMagic
                     sum(valor13) * 0.12 as sep, 
                     sum(valor14) * 0.12 as oct, 
                     sum(valor15) * 0.12 as nov, 
-                    sum(valor16) * 0.12 as dez
+                    sum(valor16) * 0.12 as dez,
+                    '01' as ordem
             FROM indicador6
             WHERE valor3 = 'RECEITAS OPERACIONAIS' AND (valor4 = 'Devolucao de Vendas' OR valor4 = 'Vendas / Remessa ')
-            GROUP BY valor1, valor2, valor3
-        
+            GROUP BY valor1, valor2, valor3       
+            
             UNION
-
+            
             SELECT 
                     valor1 as empresa, 
                     valor2 as ano, 
@@ -208,13 +216,14 @@ class LalurBiMagic
                     sum(valor13) * 0.32 as sep, 
                     sum(valor14) * 0.32 as oct, 
                     sum(valor15) * 0.32 as nov, 
-                    sum(valor16) * 0.32 as dez
+                    sum(valor16) * 0.32 as dez,
+                    '02' as ordem
             FROM indicador6
             WHERE valor3 = 'RECEITAS OPERACIONAIS' AND valor4 = 'Receitas Servicos '
             GROUP BY valor1, valor2, valor3
-
+            
             UNION
-
+            
             SELECT 
                     valor1 as empresa, 
                     valor2 as ano, 
@@ -231,13 +240,14 @@ class LalurBiMagic
                     sum(valor13) as sep, 
                     sum(valor14) as oct, 
                     sum(valor15) as nov, 
-                    sum(valor16) as dez
+                    sum(valor16) as dez,
+                    '04' as ordem
             FROM indicador6
             WHERE valor3 = 'OUTRAS RECEITAS / DESPESAS'
             GROUP BY valor1, valor2, valor3
-
+            
             UNION
-
+            
             SELECT 
                     valor1 as empresa, 
                     valor2 as ano, 
@@ -254,15 +264,15 @@ class LalurBiMagic
                     sum(valor16) * -1 as sep, 
                     sum(valor17) * -1 as oct, 
                     sum(valor18) * -1 as nov, 
-                    sum(valor19) * -1 as dez
+                    sum(valor19) * -1 as dez,
+                    '03' as ordem
             FROM indicador1
             WHERE valor3 = 'RECEITAS FINANCEIRAS TOTAIS'
             GROUP BY valor1, valor2
-
         ) as sel
         WHERE sel.ano = {$ano} 
             AND sel.empresa = {$empresa_id}
-        ORDER BY sel.categoria, sel.descricao ASC;
+        ORDER BY sel.categoria, sel.ordem, sel.descricao ASC;
                 
 SQL;
         

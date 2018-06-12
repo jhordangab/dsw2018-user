@@ -192,9 +192,10 @@ class BalanceteBiMagic
                 FROM agrocontar.indicador14
                 GROUP BY valor1, valor2, valor26, valor27
             ) AS cs
-        ) as sel 
+        ) AS sel 
         WHERE sel.ano = {$ano} 
-            AND sel.empresa = {$empresa_id}
+        AND sel.empresa = {$empresa_id}
+        AND (saldo_inicial + jan + feb + mar + apr + may + jun + jul + aug + sep + oct + nov + dez) != 0
         ORDER BY sel.codigo ASC, sel.descricao ASC
                 
 SQL;
