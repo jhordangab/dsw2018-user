@@ -30,12 +30,13 @@ class CmvBiMagic
                 valor15 as oct, 
                 valor16 as nov, 
                 valor17 as dez, 
-                valor18 as total
+                valor18 as total,
+                valor19 as ordem
             FROM indicador3
         ) as sel
         WHERE sel.ano = {$ano}
         AND sel.empresa = {$empresa_id}
-        ORDER BY sel.categoria DESC, sel.codigo ASC, sel.descricao ASC;        
+        ORDER BY sel.categoria DESC, sel.ordem ASC, sel.codigo ASC, sel.descricao ASC;        
 SQL;
         
         $dados = [];
