@@ -65,20 +65,7 @@ class DespesaBiMagic
         ) as sel 
         WHERE sel.ano = {$ano} 
             AND sel.empresa = {$empresa_id}
-            AND sel.descricao <> 'FERRAMENTAS E UTENSILIOS'
-            AND sel.descricao <> 'COPA COZINHA'
-            AND sel.descricao <> 'MANUTENCAO SOFTWARE'
-            AND sel.descricao <> 'REFEICOES - VIAGEM'
-            AND sel.descricao <> 'REFEICOES'
-            AND sel.descricao <> 'IMPRESSOS GRAFICOS'
-            AND sel.descricao <> 'REFEICOES/ COPA E COZINHA ADM'
-            AND sel.descricao <> 'DESPESA C0M PEDAGIO/ ESTACIONAMENTO'
-            AND sel.descricao <> 'COMBUSTIVEIS ADM'
-            AND sel.descricao <> 'IMPOSTOS E TAXAS DIVERSAS'
-            AND sel.descricao <> 'CONTRIBUICAO SINDICAL URBANA'
-            AND sel.descricao <> 'ALUGUEL DE MAQUINAS E EQUIPAMENTOS'
-            AND sel.descricao <> 'TAXA ABERTURA DE CREDITO - TAC'
-            AND sel.descricao <> 'MULTAS AMBIENTAIS NAO DEDUTIVEIS'
+        GROUP BY sel.codigo, sel.descricao
         ORDER BY sel.codigo ASC, sel.descricao ASC;
 SQL;
         

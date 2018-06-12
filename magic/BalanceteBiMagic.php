@@ -195,7 +195,7 @@ class BalanceteBiMagic
         ) AS sel 
         WHERE sel.ano = {$ano} 
         AND sel.empresa = {$empresa_id}
-        AND (saldo_inicial + jan + feb + mar + apr + may + jun + jul + aug + sep + oct + nov + dez) != 0
+        AND (sel.saldo_inicial + sel.jan + sel.feb + sel.mar + sel.apr + sel.may + sel.jun + sel.jul + sel.aug + sel.sep + sel.oct + sel.nov + sel.dez) != 0
         ORDER BY sel.codigo ASC, sel.descricao ASC
                 
 SQL;
