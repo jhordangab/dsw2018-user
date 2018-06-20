@@ -21,6 +21,7 @@
                                 ['label' => 'DFCs', 'icon' => 'tag', 'url' => ['/resultado-dfc']],
                                 ['label' => 'LALUR', 'icon' => 'tag', 'url' => ['/resultado-lalur']],
                                 ['label' => 'Confronto', 'icon' => 'tag', 'url' => ['/resultado-confronto']],
+                                ['label' => 'Indicadores', 'icon' => 'tag', 'url' => ['/resultado-indicador']],
                             ]
                         ],
                         ['label' => 'Planos Padrões', 'icon' => 'tags', 'url' => ['/categoria']],
