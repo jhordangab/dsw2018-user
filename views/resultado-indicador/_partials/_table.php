@@ -366,7 +366,7 @@ foreach($dados['Passivo'] as $ativo)
 
         </table>
         
-<!--        <table class="table table-indicador table-condensed">
+        <table class="table table-indicador table-condensed">
 
             <tbody>
 
@@ -386,20 +386,33 @@ foreach($dados['Passivo'] as $ativo)
                 <tr>
 
                     <th scope="col" colspan="4">ATIVO TOTAL</th>
-                    <th scope="col">R$ <?= number_format($valor_passivo_circulante, 2, ',', '.') ?></th>
+                    <th scope="col"><b>R$ <?= number_format($valor_ativo, 2, ',', '.') ?></b></th>
 
                 </tr>
                 
-                <?php foreach($dados_passivo_circulante as $dpc) : ?>
+                <?php
                 
-                    <tr>
+                    $total = 0;
+                    
+                    foreach($dados_passivo_circulante as $index => $dpc) : ?>
+                
+                    <?php if($dpc['nome'] != "Empréstimos/Financiam.") : 
+                    
+                        $total += $dpc['valor'];
+                        
+                    ?>
+                    
+                        <tr>
 
-                        <th scope="col"></th>
-                        <th scope="col" colspan="2"><?= $dpc['nome'] ?></th>
-                        <th scope="col">R$ <?= number_format($dpc['valor'], 2, ',', '.') ?></th>
-                        <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col" colspan="2"><?= $dpc['nome'] ?></th>
+                            <th scope="col">R$ <?= number_format($dpc['valor'], 2, ',', '.') ?></th>
+                            <th scope="col"><?= ($index == sizeof($dados_passivo_circulante) - 1) ? 'R$' . number_format($total, 2, ',', '.') : '' ?></th>
+                            <th scope="col"></th>
 
-                    </tr>
+                        </tr>
+                    
+                    <?php endif; ?>
                 
                 <?php endforeach; ?>
                 
@@ -411,10 +424,10 @@ foreach($dados['Passivo'] as $ativo)
                 
                 <tr>
 
-                    <th scope="col" colspan="2">Investimento</th>
+                    <th scope="col" colspan="2">INVESTIMENTO</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
-                    <th scope="col">R$ <?= number_format($patrimonio_liquido['valor'], 2, ',', '.') ?></th>
+                    <th scope="col">R$ <?= number_format(($valor_ativo - $total), 2, ',', '.') ?></th>
                     
                 </tr>
                 
@@ -435,7 +448,7 @@ foreach($dados['Passivo'] as $ativo)
                 
             </tbody>
 
-        </table>-->
+        </table>
         
     </div>
     
