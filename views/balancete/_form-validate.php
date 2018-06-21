@@ -87,37 +87,6 @@ use kartik\money\MaskMoney;
             ],
         ],
     ]); ?>
-    
-    <legend>Indicadores</legend>
-    
-    <?= Form::widget(
-    [
-        'model' => $model,
-        'form' => $form,
-        'columns' => 2,
-        'attributes' =>
-        [
-            'valuation_metodo_ebitda' => 
-            [
-                'type' => Form::INPUT_TEXT,
-                'options' =>
-                [
-                    'type' => 'number'
-                ],
-                'columnOptions' => ['colspan' => 1],
-            ],
-            'custo_capital_proprio' => 
-            [
-                'label' => 'Custo capital próprio (%)',
-                'type' => Form::INPUT_TEXT,
-                'options' =>
-                [
-                    'type' => 'number'
-                ],
-                'columnOptions' => ['colspan' => 1],
-            ]
-        ],
-    ]); ?>
 
     <?= Html::submitButton('Salvar', 
     [

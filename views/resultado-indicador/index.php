@@ -2,7 +2,7 @@
 
 use yii\helpers\Url;
 
-$this->title = 'RFs';
+$this->title = 'Indicadores';
 $this->params['breadcrumbs'][] = $this->title;
 
 $css = <<<CSS

@@ -6,7 +6,7 @@ use Yii;
 
 class IndicadorBiMagic
 {
-    public static function get($empresa_id, $ano)
+    public static function getDados($empresa_id, $ano)
     {
         $sql = <<<SQL
          
@@ -359,6 +359,136 @@ SQL;
             $dados[$result['categoria']][] = $result;
         }
                 
+        return $dados;
+    }
+    
+    public static function getDre($empresa_id, $ano)
+    {
+        $sql = <<<SQL
+         
+        SELECT * FROM 
+        (
+            SELECT 
+                'E' as local,
+                1 as tipo,
+                1 as ordem,
+                'Receita Operacional Bruta' as descricao,
+                SUM(valor17) as valor
+            FROM agrocontar_atualizado.indicador6 
+            WHERE valor3 = 'RECEITAS OPERACIONAIS'
+                AND valor1 = {$empresa_id}
+                AND valor2 = {$ano}
+                AND trim(valor4) IN ('Vendas / Remessa', 'Receitas Servicos')
+                
+            UNION ALL
+                
+            SELECT 
+                'E' as local,
+                2 as tipo,
+                2 as ordem,
+                'Deduções sobre Vendas' as descricao,
+                SUM(valor17) as valor
+            FROM agrocontar_atualizado.indicador6 
+            WHERE valor3 = 'RECEITAS OPERACIONAIS'
+                AND valor1 = {$empresa_id}
+                AND valor2 = {$ano}
+                AND trim(valor4) IN ('Devolucao de Vendas', 'Impostos s/ Vendas/Remessas', 'Impostos s/ Servicos')
+                
+            UNION ALL
+                
+            SELECT 
+                'E' as local,
+                2 as tipo,
+                3 as ordem,
+                'Custos de Mercadorias Vendidas' as descricao,
+                SUM(valor17) as valor
+            FROM agrocontar_atualizado.indicador6 
+            WHERE valor3 = 'CMV'
+                AND valor1 = {$empresa_id}
+                AND valor2 = {$ano}
+                AND trim(valor4) = 'Custo das Mercadorias Vendidas'
+                
+            UNION ALL
+                
+            SELECT 
+                'D' as local,
+                1 as tipo,
+                1 as ordem,
+                'Depreciação' as descricao,
+                SUM(valor17) as valor
+            FROM agrocontar_atualizado.indicador6 
+            WHERE valor3 = 'RECEITAS OPERACIONAIS'
+                AND valor1 = {$empresa_id}
+                AND valor2 = {$ano}
+                AND trim(valor4) = 'Impostos s/ Servicos'
+                
+            UNION ALL
+                
+            SELECT 
+                'E' as local,
+                2 as tipo,
+                4 as ordem,
+                'Despesas Administrativas' as descricao,
+                SUM(valor17) as valor
+            FROM agrocontar_atualizado.indicador6 
+            WHERE valor3 = 'DESPESAS OPERACIONAIS'
+                AND valor1 = {$empresa_id}
+                AND valor2 = {$ano}
+                
+            UNION ALL
+                
+            SELECT 
+                'E' as local,
+                2 as tipo,
+                5 as ordem,
+                'Despesas Financeiras' as descricao,
+                SUM(valor17) as valor
+            FROM agrocontar_atualizado.indicador6 
+            WHERE valor3 = 'RESULTADO FINANCEIRO'
+                AND valor1 = {$empresa_id}
+                AND valor2 = {$ano}
+                AND trim(valor4) = 'Despesas Financeiras'
+                
+            UNION ALL
+                
+            SELECT 
+                'E' as local,
+                2 as tipo,
+                6 as ordem,
+                'Receitas Financeiras' as descricao,
+                SUM(valor17) as valor
+            FROM agrocontar_atualizado.indicador6 
+            WHERE valor3 = 'RESULTADO FINANCEIRO'
+                AND valor1 = {$empresa_id}
+                AND valor2 = {$ano}
+                AND trim(valor4) = 'Receitas Financeiras'
+                
+            UNION ALL
+                
+            SELECT 
+                'E' as local,
+                2 as tipo,
+                7 as ordem,
+                'Outras Receitas/Despesas' as descricao,
+                SUM(valor17) as valor
+            FROM agrocontar_atualizado.indicador6 
+            WHERE valor3 = 'OUTRAS RECEITAS / DESPESAS'
+                AND valor1 = {$empresa_id}
+                AND valor2 = {$ano}
+                
+        ) as sel 
+        ORDER BY sel.local, sel.ordem;
+             
+SQL;
+        
+        $dados = [];
+        $results = Yii::$app->db->createCommand($sql)->QueryAll();
+        
+        foreach($results as $result)
+        {
+            $dados[$result['local']][$result['ordem']] = $result;
+        }
+                        
         return $dados;
     }
 }

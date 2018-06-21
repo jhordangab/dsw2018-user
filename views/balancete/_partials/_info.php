@@ -84,15 +84,7 @@ $this->registerJs($js);
             [
                 'attribute' => 'irrf_mes',
                 'value' => ($model->irrf_mes) ? 'R$ ' . number_format($model->irrf_mes, 2, ',', '.') : 'R$ 0,00'
-            ],
-            [
-                'attribute' => 'valuation_metodo_ebitda',
-                'value' => ($model->valuation_metodo_ebitda) ? $model->valuation_metodo_ebitda : '0'
-            ],
-            [
-                'attribute' => 'custo_capital_proprio',
-                'value' => $model->custo_capital_proprio . '%'
-            ],
+            ]
         ],
     ]) ?>
 

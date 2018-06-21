@@ -21,10 +21,10 @@ class Balancete extends \yii\db\ActiveRecord
             [['empresa_id', 'mes', 'ano', 'status', 'empresa_nome'], 'required'],
             [['empresa_id', 'mes', 'ano', 'status', 'empresa_nome'], 'required', 'on' => self::SCENARIO_IMPORTATION],
             [['status', 'outras_adicoes', 'outras_exclusoes', 'base_negativa',
-                'csll_retida', 'prejuizo_anterior_compensar', 'base_negativa_irpj', 'irrf_mes', 'valuation_metodo_ebitda', 'custo_capital_proprio'], 'safe', 'on' => self::SCENARIO_VALIDATION],
-            [['empresa_id', 'mes', 'ano', 'is_ativo', 'is_excluido', 'created_by', 'updated_by', 'valuation_metodo_ebitda', 'custo_capital_proprio'], 'integer'],
+                'csll_retida', 'prejuizo_anterior_compensar', 'base_negativa_irpj', 'irrf_mes'], 'safe', 'on' => self::SCENARIO_VALIDATION],
+            [['empresa_id', 'mes', 'ano', 'is_ativo', 'is_excluido', 'created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at', 'outras_adicoes', 'outras_exclusoes', 'base_negativa',
-                'csll_retida', 'prejuizo_anterior_compensar', 'base_negativa_irpj', 'irrf_mes', 'valuation_metodo_ebitda', 'custo_capital_proprio'], 'safe'],
+                'csll_retida', 'prejuizo_anterior_compensar', 'base_negativa_irpj', 'irrf_mes'], 'safe'],
         ];
     }
 
@@ -46,9 +46,7 @@ class Balancete extends \yii\db\ActiveRecord
             'csll_retida' => 'CSLL retida no mês',
             'prejuizo_anterior_compensar' => 'Prejuízo anterior a compensar',
             'base_negativa_irpj' => 'Base Negativa do IRPJ (Lim.30%)',
-            'irrf_mes' => 'IRRF no mês',
-            'valuation_metodo_ebitda' => 'Valuation Método EBITDA',
-            'custo_capital_proprio' => 'Custo capital próprio'
+            'irrf_mes' => 'IRRF no mês'
         ];
     }
     
@@ -72,7 +70,6 @@ class Balancete extends \yii\db\ActiveRecord
             [
                 'status', 'is_ativo', 'outras_adicoes', 'outras_exclusoes', 'base_negativa',
                 'csll_retida', 'prejuizo_anterior_compensar', 'base_negativa_irpj', 'irrf_mes',
-                'valuation_metodo_ebitda', 'custo_capital_proprio',
                 'is_excluido', 'created_at', 'updated_by', 'created_at', 'updated_at'
             ],
         ];

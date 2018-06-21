@@ -8,7 +8,7 @@ use yii\filters\AccessControl;
 use app\models\AdminEmpresa;
 use app\magic\IndicadorBiMagic;
 use app\models\Indicador;
-use kartik\mpdf\Pdf;
+use app\models\ResultadoIndicador;
 
 class ResultadoIndicadorController extends Controller
 {
@@ -26,7 +26,7 @@ class ResultadoIndicadorController extends Controller
                     [
                         'actions' => 
                         [
-                            'index', 'view',// 'report'
+                            'index', 'view', 'configurar'
                         ],
                         'allow' => true,
                         'roles' => ['@'],
@@ -50,50 +50,54 @@ class ResultadoIndicadorController extends Controller
     public function actionView($empresa_id, $ano)
     {
         $empresa = AdminEmpresa::findOne($empresa_id);
-        $dados = IndicadorBiMagic::get($empresa->nomeResumo, $ano);
+        $dados = IndicadorBiMagic::getDados($empresa->nomeResumo, $ano);
+        $dre = IndicadorBiMagic::getDre($empresa->nomeResumo, $ano);
         $indicador = Indicador::findOne(1);
-
+        $configuracao = ResultadoIndicador::find()->andWhere([
+            'empresa_id' => $empresa_id,
+            'ano' => $ano,
+            'is_ativo' => 1,
+            'is_excluido' => 0
+        ])->one();
+        
         return $this->render('view', [
             'empresa' => $empresa,
             'ano' => $ano,
             'dados' => $dados,
-            'indicador' => $indicador
+            'dre' => $dre,
+            'indicador' => $indicador,
+            'configuracao' => $configuracao
         ]);
     }
     
-//    public function actionReport($empresa_id, $ano)
-//    {
-//        ini_set('memory_limit', '128M');
-//        setlocale(LC_ALL, "pt_BR", "pt_BR.iso-8859-1", "pt_BR.utf-8", "portuguese");
-//	date_default_timezone_set('America/Sao_Paulo');
-//        
-//        $empresa = AdminEmpresa::findOne($empresa_id);
-//        $dados = RfBiMagic::get($empresa->nomeResumo, $ano);
-//        $content = $this->renderPartial('_partials/_table-pdf', compact('dados', 'empresa', 'ano'));
-//        $title = 'RF:: ' . $empresa->razaoSocial . ' / ' . $ano;
-//        $date = ucwords(strftime('%A, %d', strtotime('today'))) . ' de ' .
-//                ucwords(strftime('%B', strtotime('today'))) . ' de ' .
-//                ucwords(strftime('%Y', strtotime('today')));
-//        
-//        $pdf = new Pdf([
-//            'mode' => Pdf::MODE_CORE, 
-//            'format' => Pdf::FORMAT_A4, 
-//            'orientation' => Pdf::ORIENT_PORTRAIT, 
-//            'destination' => Pdf::DEST_BROWSER, 
-//            'filename' => $title . '.pdf',
-//            'content' => $content,  
-//            'cssFile' => '',
-//            'cssInline' => '', 
-//            'options' => ['title' => $title],
-//            'marginLeft' => 5,
-//            'marginRight' => 5,
-//            'methods' => 
-//            [
-//                'SetHeader' => ['BP1 Sistemas - RF||' . $date],
-//                'SetFooter' => ['|Página {PAGENO}|'],
-//            ]
-//        ]);
-//
-//        return $pdf->render();
-//    }
+    public function actionConfigurar($empresa_id, $ano)
+    {
+        $this->layout = '//_layout_modal';
+        
+        $model = ResultadoIndicador::find()->andWhere([
+            'empresa_id' => $empresa_id,
+            'ano' => $ano,
+            'is_ativo' => 1,
+            'is_excluido' => 0
+        ])->one();
+        
+        if(!$model)
+        {
+            $model = new ResultadoIndicador();
+            $model->empresa_id = $empresa_id;
+            $model->ano = $ano;
+        }
+        
+        if ($model->load(Yii::$app->request->post()) && $model->save())
+        {
+            \Yii::$app->getSession()->setFlash('success','O indicador foi configurado com sucesso.');
+            $this->refresh();
+        }
+        else 
+        {
+            return $this->render('_form-conf', [
+                'model' => $model,
+            ]);
+        }
+    }
 }
