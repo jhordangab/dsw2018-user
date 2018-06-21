@@ -374,7 +374,7 @@ SQL;
                 1 as ordem,
                 'Receita Operacional Bruta' as descricao,
                 SUM(valor17) as valor
-            FROM agrocontar_atualizado.indicador6 
+            FROM indicador6 
             WHERE valor3 = 'RECEITAS OPERACIONAIS'
                 AND valor1 = {$empresa_id}
                 AND valor2 = {$ano}
@@ -388,7 +388,7 @@ SQL;
                 2 as ordem,
                 'Deduções sobre Vendas' as descricao,
                 SUM(valor17) as valor
-            FROM agrocontar_atualizado.indicador6 
+            FROM indicador6 
             WHERE valor3 = 'RECEITAS OPERACIONAIS'
                 AND valor1 = {$empresa_id}
                 AND valor2 = {$ano}
@@ -402,7 +402,7 @@ SQL;
                 3 as ordem,
                 'Custos de Mercadorias Vendidas' as descricao,
                 SUM(valor17) as valor
-            FROM agrocontar_atualizado.indicador6 
+            FROM indicador6 
             WHERE valor3 = 'CMV'
                 AND valor1 = {$empresa_id}
                 AND valor2 = {$ano}
@@ -416,7 +416,7 @@ SQL;
                 1 as ordem,
                 'Depreciação' as descricao,
                 SUM(valor17) as valor
-            FROM agrocontar_atualizado.indicador6 
+            FROM indicador6 
             WHERE valor3 = 'RECEITAS OPERACIONAIS'
                 AND valor1 = {$empresa_id}
                 AND valor2 = {$ano}
@@ -430,7 +430,7 @@ SQL;
                 4 as ordem,
                 'Despesas Administrativas' as descricao,
                 SUM(valor17) as valor
-            FROM agrocontar_atualizado.indicador6 
+            FROM indicador6 
             WHERE valor3 = 'DESPESAS OPERACIONAIS'
                 AND valor1 = {$empresa_id}
                 AND valor2 = {$ano}
@@ -443,7 +443,7 @@ SQL;
                 5 as ordem,
                 'Despesas Financeiras' as descricao,
                 SUM(valor17) as valor
-            FROM agrocontar_atualizado.indicador6 
+            FROM indicador6 
             WHERE valor3 = 'RESULTADO FINANCEIRO'
                 AND valor1 = {$empresa_id}
                 AND valor2 = {$ano}
@@ -457,7 +457,7 @@ SQL;
                 6 as ordem,
                 'Receitas Financeiras' as descricao,
                 SUM(valor17) as valor
-            FROM agrocontar_atualizado.indicador6 
+            FROM indicador6 
             WHERE valor3 = 'RESULTADO FINANCEIRO'
                 AND valor1 = {$empresa_id}
                 AND valor2 = {$ano}
@@ -471,7 +471,7 @@ SQL;
                 7 as ordem,
                 'Outras Receitas/Despesas' as descricao,
                 SUM(valor17) as valor
-            FROM agrocontar_atualizado.indicador6 
+            FROM indicador6 
             WHERE valor3 = 'OUTRAS RECEITAS / DESPESAS'
                 AND valor1 = {$empresa_id}
                 AND valor2 = {$ano}
