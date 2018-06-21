@@ -37,7 +37,7 @@ class m180621_120027_alteracao_indicador extends Migration
     
     public function safeDown()
     {
-        $this->createTable('{{%resultado_indicador}}');
+        $this->dropTable('{{%resultado_indicador}}');
 
         return true;
     }
