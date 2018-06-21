@@ -778,3 +778,1321 @@ foreach($dados['Passivo'] as $ativo)
     </div>
     
 </div>
+
+<div class="col-lg-12" style="padding-right: 30px; padding-left: 30px;">
+  
+    <p><b>Retorno sobre o Patrimonio Líquido / Investimento e Alavancagem Financeira</b></p>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="30%" scope="col" colspan="4">Lucro Operacional</th>
+                <th width="10%" scope="col">R$ 335.556,22</th>
+                <th width="20%" scope="col">Investimento</th>
+                <th width="20%" scope="col">Passivo Oneroso</th>
+                <th width="20%" scope="col">Despesas Financeiras</th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="30%" scope="col" colspan="4"></th>
+                <th width="10%" scope="col"></th>
+                <th width="20%" scope="col">R$ 335.556,22</th>
+                <th width="20%" scope="col">R$ 335.556,22</th>
+                <th width="20%" scope="col">R$ 335.556,22</th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="30%" scope="col" colspan="4"></th>
+                <th width="10%" scope="col"></th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">Patrimônio Líquido</th>
+                <th width="20%" scope="col">Lucro Líquido</th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="30%" scope="col" colspan="4"></th>
+                <th width="10%" scope="col"></th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">R$ 335.556,22</th>
+                <th width="20%" scope="col">R$ 335.556,22</th>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="40%" scope="col" colspan="4">Retorno sobre investimento <b>ROI</b></th>
+                <th width="20%" scope="col">Lucro Operacional</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"><b>1.83%</b></th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col" colspan="4"></th>
+                <th width="20%" scope="col">Investimento - Lucro Líquido</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="40%" scope="col" colspan="4">Retorno sobre o Patrimonio Líquido - RSPL</th>
+                <th width="20%" scope="col">Lucro Líquido</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"><b>1.83%</b></th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col" colspan="4"></th>
+                <th width="20%" scope="col">PL - Lucro Liq</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="40%" scope="col" colspan="4">Custo da Divida (ki)</th>
+                <th width="20%" scope="col">Despesas Financeiras</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"><b>1.83%</b></th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col" colspan="4"></th>
+                <th width="20%" scope="col">Passivo Oneroso</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="40%" scope="col" colspan="4">Grau de Alavancagem Financeira <b>GAF</b></th>
+                <th width="20%" scope="col">RSPL</th>
+                <th width="20%" scope="col">-5.55%</th>
+                <th width="20%" scope="col"><b>1.83</b></th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col" colspan="4"></th>
+                <th width="20%" scope="col">ROI</th>
+                <th width="20%" scope="col">1.83%</th>
+                <th width="20%" scope="col"></th>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <p><b>GIRO DO ATIVO/INVESTIMENTO EM FUNÇÃO DAS VENDAS </b></p>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="40%" scope="col" colspan="4">Giro do Ativo</th>
+                <th width="20%" scope="col">Receitas Operacionais</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"><b>1.83</b></th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col" colspan="4"></th>
+                <th width="20%" scope="col">Ativo Total</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="40%" scope="col" colspan="4">Giro do Investimento</th>
+                <th width="20%" scope="col">Receitas Operacionais</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"><b>1.83</b></th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col" colspan="4"></th>
+                <th width="20%" scope="col">Investimento - LL</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="40%" scope="col" colspan="4">Margem Operacional</th>
+                <th width="20%" scope="col">Lucro Operacional</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"><b>1.83</b></th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col" colspan="4"></th>
+                <th width="20%" scope="col">Receitas Operacionais</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th scope="col" colspan="7" style="background-color: #FFF;">Com o objetivo de se analisar melhor os resultados operacionais gerados pelos investimentos, é interessante que se decomponha o ROI da maneira seguinte:</th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col" colspan="4">ROI = margem operacional x Giro do Investimento</th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col"><b>1.83 =</b></th>
+                <th width="20%" scope="col"><b>1.83%</b></th>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <p><b>GIRO DOS RECURSOS PRÓPRIOS</b></p>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="40%" scope="col" colspan="4">Margem líquida</th>
+                <th width="20%" scope="col">LL</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"><b>1.83</b></th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col" colspan="4"></th>
+                <th width="20%" scope="col">Vendas</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="40%" scope="col" colspan="4">Giro dos Recursos Próprios</th>
+                <th width="20%" scope="col">Vendas</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"><b>1.83</b></th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col" colspan="4"></th>
+                <th width="20%" scope="col">PL-LL</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th scope="col" colspan="7" style="background-color: #FFF;">Conforme demonstrado, o Retorno sobre o Patrimônio líquido (RSPL) é expresso pela relação entre os resultados líquidos obtidos em determinado período e o capital próprio empregado</th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col" colspan="4">RSPL = margem liquida x Giro dos Recursos Próprios</th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col"><b>1.83 =</b></th>
+                <th width="20%" scope="col"><b>1.83%</b></th>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <p><b>INDICADORES DE COBERTURA DAS EXIGIBILIDADES E DOS JUROS </b></p>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="40%" scope="col" colspan="4">Cobertura de juros </th>
+                <th width="20%" scope="col">Lucro Operacional</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"><b>1.83</b></th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col" colspan="4"></th>
+                <th width="20%" scope="col">Despesas Financeiras</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th scope="col" colspan="7" style="background-color: #FFF;">EBID indica o resultado operacional antes do imposto de renda e das despesas que não representam movimentações efetivas de caixa (depreciação).  </th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col" colspan="4"><b>EBID = Lucro operacional + depreciação</b></th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"><b>R$ 1200,00</b></th>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+            
+            <tr>
+
+                <th width="40%" scope="col" colspan="4">EBITDA = Lucro Líquido + depreciação - financeiro</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col"><b>1.83%</b></th>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+            
+            <tr>
+
+                <th width="40%" scope="col" colspan="4">VALUATION MÉTODO EBITDA</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col" style="color: blue;"><b>6</b></th>
+                <th width="20%" scope="col"><b>R$ 1200,00</b></th>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <p class="text-center"><b>AVALIAÇÃO ANALITICA DE DESEMPENHO ECONÔMICO </b></p>
+    
+    <p>Formulação Analítica do Desempenho Medido pelo ROI</p>
+    
+    <table class="table table-cleaned table-condensed" style="border: 1px solid black;">
+
+        <tbody>
+            
+            <tr>
+                <th width="20%" scope="col"></th>
+                <th width="10%" scope="col"></th>
+                <th width="15%" scope="col"></th>
+                <th width="15%" scope="col"></th>
+                <th width="15%" scope="col" style="border-left: 1px solid black;">Margem Operacional</th>
+                <th width="10%" scope="col"></th>
+                <th width="15%" scope="col">0.61%</th>
+            </tr>
+            
+            <tr>
+                <th width="20%" scope="col"></th>
+                <th width="10%" scope="col"></th>
+                <th width="15%" scope="col" style="border-left: 1px solid black; border-bottom: 1px solid black; border-top: 1px solid black;">ROI</th>
+                <th width="15%" scope="col" style="border-bottom: 1px solid black; border-top: 1px solid black;">1.83%</th>
+                <th width="15%" scope="col" style="border-left: 1px solid black;"></th>
+                <th width="10%" scope="col">x</th>
+                <th width="15%" scope="col"></th>
+            </tr>
+            
+            <tr>
+                <th width="20%" scope="col"></th>
+                <th width="10%" scope="col"></th>
+                <th width="15%" scope="col"></th>
+                <th width="15%" scope="col"></th>
+                <th width="15%" scope="col" style="border-left: 1px solid black; border-bottom: 1px solid black;">Giro Investimento</th>
+                <th width="10%" scope="col" style="border-bottom: 1px solid black;"></th>
+                <th width="15%" scope="col" style="border-bottom: 1px solid black;">3.02</th>
+            </tr>
+            
+            <tr>
+                <th width="20%" scope="col"></th>
+                <th width="10%" scope="col"></th>
+                <th width="15%" scope="col">+</th>
+                <th width="15%" scope="col"></th>
+                <th width="15%" scope="col"></th>
+                <th width="10%" scope="col"></th>
+                <th width="15%" scope="col"></th>
+            </tr>
+
+            <tr>
+                <th width="20%" scope="col"></th>
+                <th width="10%" scope="col"></th>
+                <th width="15%" scope="col"></th>
+                <th width="15%" scope="col"></th>
+                <th width="15%" scope="col" style="border-top: 1px solid black; border-left: 1px solid black;">ROI</th>
+                <th width="10%" scope="col" style="border-top: 1px solid black;"></th>
+                <th width="15%" scope="col" style="border-top: 1px solid black;">3.02</th>
+            </tr>
+            
+            <tr>
+                <th width="20%" scope="col" style="border-bottom: 1px solid black; border-top: 1px solid black;"><b>RSPL</b></th>
+                <th width="10%" scope="col" style="border-bottom: 1px solid black; border-top: 1px solid black; border-right: 1px solid black;"><b>1299.95%</b></th>
+                <th width="15%" scope="col" style="border-bottom: 1px solid black; border-top: 1px solid black;">Spread</th>
+                <th width="15%" scope="col" style="border-bottom: 1px solid black; border-top: 1px solid black;">617.14%</th>
+                <th width="15%" scope="col" style="border-left: 1px solid black;"></th>
+                <th width="10%" scope="col">(-)</th>
+                <th width="15%" scope="col"></th>
+            </tr>
+            
+            <tr>
+                <th width="20%" scope="col"></th>
+                <th width="10%" scope="col"></th>
+                <th width="15%" scope="col"></th>
+                <th width="15%" scope="col"></th>
+                <th width="15%" scope="col" style="border-bottom: 1px solid black; border-left: 1px solid black;">Ki</th>
+                <th width="10%" scope="col" style="border-bottom: 1px solid black;"></th>
+                <th width="15%" scope="col" style="border-bottom: 1px solid black;">3.02</th>
+            </tr>
+            
+            <tr>
+                <th width="20%" scope="col"></th>
+                <th width="10%" scope="col"></th>
+                <th width="15%" scope="col">x</th>
+                <th width="15%" scope="col"></th>
+                <th width="15%" scope="col"></th>
+                <th width="10%" scope="col"></th>
+                <th width="15%" scope="col"></th>
+            </tr>
+            
+            <tr>
+                <th width="20%" scope="col"></th>
+                <th width="10%" scope="col"></th>
+                <th width="15%" scope="col"></th>
+                <th width="15%" scope="col"></th>
+                <th width="15%" scope="col" style="border-left: 1px solid black; border-top: 1px solid black;">Passivo</th>
+                <th width="10%" scope="col" style="border-top: 1px solid black;"></th>
+                <th width="15%" scope="col" style="border-top: 1px solid black;">R$ 199.239,92</th>
+            </tr>
+            
+            <tr>
+                <th width="20%" scope="col"></th>
+                <th width="10%" scope="col"></th>
+                <th width="15%" scope="col" style="border-left: 1px solid black; border-bottom: 1px solid black; border-top: 1px solid black;">P/PL</th>
+                <th width="15%" scope="col" style="border-bottom: 1px solid black; border-top: 1px solid black;">2.10</th>
+                <th width="15%" scope="col" style="border-left: 1px solid black;"></th>
+                <th width="10%" scope="col">/</th>
+                <th width="15%" scope="col"></th>
+            </tr>
+            
+            <tr>
+                <th width="20%" scope="col"></th>
+                <th width="10%" scope="col"></th>
+                <th width="15%" scope="col"></th>
+                <th width="15%" scope="col"></th>
+                <th width="15%" scope="col" style="border-left: 1px solid black;">PL</th>
+                <th width="10%" scope="col"></th>
+                <th width="15%" scope="col">R$ 199.239,92</th>
+            </tr>
+            
+        </tbody>
+
+    </table>
+    
+    <p><b>Retorno sobre o Ativo  - ROA</b></p>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="30%" scope="col" colspan="4">Lucro Operacional</th>
+                <th width="10%" scope="col">R$ 335.556,22</th>
+                <th width="20%" scope="col">Ativo Total</th>
+                <th width="20%" scope="col">Passivo Funcionamento</th>
+                <th width="20%" scope="col">Dívidas sem ônus</th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="30%" scope="col" colspan="4"></th>
+                <th width="10%" scope="col"></th>
+                <th width="20%" scope="col">R$ 335.556,22</th>
+                <th width="20%" scope="col">R$ 335.556,22</th>
+                <th width="20%" scope="col">R$ 335.556,22</th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="30%" scope="col" colspan="4"></th>
+                <th width="10%" scope="col"></th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">Passivo Oneroso</th>
+                <th width="20%" scope="col">Despesas Financeiras</th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="30%" scope="col" colspan="4"></th>
+                <th width="10%" scope="col"></th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">R$ 335.556,22</th>
+                <th width="20%" scope="col">R$ 335.556,22</th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="30%" scope="col" colspan="4"></th>
+                <th width="10%" scope="col"></th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">Patrimônio Líquido</th>
+                <th width="20%" scope="col">Lucro Líquido</th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="30%" scope="col" colspan="4"></th>
+                <th width="10%" scope="col"></th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">R$ 335.556,22</th>
+                <th width="20%" scope="col">R$ 335.556,22</th>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="40%" scope="col" colspan="4">Retorno sobre o Ativo - <b>ROA</b></th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">Lucro Operacional</th>
+                <th width="20%" scope="col"><b>1.83%</b></th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col" colspan="4"></th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">Ativo Total - LL</th>
+                <th width="20%" scope="col"></th>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <p>Custo de Capital equivale aos retornos exigidos pelos credores e proprietarios das empresas para que ela se torne atrativa em relação ao que o mercado paga de forma alternativa a participação na empresa, ou seja, qual o percentual  que o patrimonio da empresa deve evoluir pra que a empresa seja viável aos olhos dos sócios</p>
+    <br>
+    <p>CMPC = W¹ x Ki + W² x Ke</p>
+    <p>onde:</p>
+    <p>CMPC = custo médio ponderado de capital das várias fontes de financiamento utilizadas pela empresa</p>
+    <p>W¹ e W² = respectivamente, proporção de fundos de terceiros e próprios na estrutura de capital </p>
+    <p>Ki = custo do capital de terceiros</p>
+    <p>Ke = custo do capital próprio</p>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="80%" scope="col" colspan="6"><b>CUSTO CAPITAL PRÓPRIO</b></th>
+                <th width="20%" scope="col"><b>12%</b></th>
+
+            </tr>
+            
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="30%" scope="col" colspan="4">Lucro Operacional</th>
+                <th width="10%" scope="col">R$ 335.556,22</th>
+                <th width="20%" scope="col">Investimento</th>
+                <th width="20%" scope="col">Passivo oneroso</th>
+                <th width="20%" scope="col">Ki -615%</th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="30%" scope="col" colspan="4"></th>
+                <th width="10%" scope="col"></th>
+                <th width="20%" scope="col">R$ 335.556,22</th>
+                <th width="20%" scope="col">R$ 335.556,22</th>
+                <th width="20%" scope="col">W' 0.10</th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="30%" scope="col" colspan="4"></th>
+                <th width="10%" scope="col"></th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">Patrimônio Líquido</th>
+                <th width="20%" scope="col">Ke 12.00%</th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="30%" scope="col" colspan="4"></th>
+                <th width="10%" scope="col"></th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">R$ 335.556,22</th>
+                <th width="20%" scope="col">W2 0.90</th>
+
+            </tr>
+            
+        </tbody>
+
+    </table>
+    
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="80%" scope="col" colspan="6"><b>CMPC</b></th>
+                <th width="20%" scope="col"><b>12%</b></th>
+
+            </tr>
+            
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="100%" scope="col" colspan="7">Significa que a empresa deve ter um resultado de <b>(9,505,449.55)</b> para atingir as expectativas de retorno dos proprietários/sócios</th>
+
+            </tr>
+            
+        </tbody>
+
+    </table>
+    
+    <table class="table table-cleaned table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="80%" scope="col" colspan="6">Lucro Operacional no período</th>
+                <th width="20%" scope="col">R$ 122.223,23</th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="80%" scope="col" colspan="6">Lucro estimado para remunerar o patrimonio com o percentual informado</th>
+                <th width="20%" scope="col">R$ 122.223,23</th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="80%" scope="col" colspan="6">Valor Economico Agregado - VEA</th>
+                <th width="20%" scope="col">R$ 122.223,23</th>
+
+            </tr>
+            
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th scope="col" colspan="7" style="background-color: #FFF;">Esse valor "VEA" seria o lucro extraordinário obtido pela empresa no período </th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col" colspan="4">VEA = LUCRO OPERACIONAL - (INVESTIMENTOxCMPC)</th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col"><b>VEA =</b></th>
+                <th width="20%" scope="col"><b>R$ 122.231,23</b></th>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th scope="col" colspan="7" style="background-color: #FFF;">GOODWILL - reflete o preço que um investidor pagaria por uma empresa a mais do que ele gastaria na hipotese de construída na atual estrutura de investimento assim: </th>
+
+            </tr>
+            
+            <tr>
+
+                <th scope="col" colspan="7" style="background-color: #FFF;"><i>"Esse resultado indica a valorização do preço de mercado da empresa em relação do valor de seus ativos, determinada pela espectativa de produzir um lucro extraordinario positivo no futuro"</i></th>
+
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col" colspan="4"><b>GOODWILL = VEA</b></th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col"><b>R$ 122.231,23</b></th>
+                <th width="20%" scope="col"><b>R$ 122.231,23</b></th>
+
+            </tr>
+
+            <tr>
+
+                <th width="40%" scope="col" colspan="4">CMPC</th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">0.5192</th>
+                <th width="20%" scope="col"></th>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="40%" scope="col" colspan="4">Nessa hipótese a empresa estaria sendo avaliada ao preço</th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col"><b>AVALIAÇÃO = PL + GOODWILL</b></th>
+                <th width="20%" scope="col"><b>R$ 122.231,23</b></th>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <p class="text-center"><b>ANÁLISE DE INDICADORES DE DESEMPENHO</b></p>
+    
+    <p>Esses indicadores, tem com objetivo a análise da empresa sob o ponto de vista econômico de rentabilidade, e oferecem importantes entendimentos sobre o desempenho da empresa nos períodos considerados. </p>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="20%" scope="col"><b>MARGEM BRUTA</b></th>
+                <th width="20%" scope="col">Lucro Bruto</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"><b>1.83</b></th>
+                <th width="20%" scope="col"></th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">Receita Líquida de Vendas</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col"></th>
+                
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="20%" scope="col"><b>MARGEM LÍQUIDA</b></th>
+                <th width="20%" scope="col">Lucro Líquido</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"><b>1.83</b></th>
+                <th width="20%" scope="col"></th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">Receita Líquida de Vendas</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col"></th>
+                
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="20%" scope="col"><b>RETORNO PATRIMÔNIO</b></th>
+                <th width="20%" scope="col">Lucro Líquido</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"><b>1.83</b></th>
+                <th width="20%" scope="col"></th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">Patrimônio Líquido</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col"></th>
+                
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="20%" scope="col"><b>LIQUIDEZ CORRENTE</b></th>
+                <th width="20%" scope="col">Ativo Circulante</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"><b>1.83</b></th>
+                <th width="20%" scope="col"></th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">Passivo Circulante</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col"></th>
+                
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="20%" scope="col"><b>LIQUIDEZ SECA</b></th>
+                <th width="20%" scope="col">Ativo Circulante-estoque</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"><b>1.83</b></th>
+                <th width="20%" scope="col"></th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">Passivo Circulante</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col"></th>
+                
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="20%" scope="col"><b>LIQUIDEZ IMEDIATA</b></th>
+                <th width="20%" scope="col">Disponibidades + Aplicações Financeiras</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"><b>1.83</b></th>
+                <th width="20%" scope="col"></th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">Passivo Circulante</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col"></th>
+                
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="20%" scope="col"><b>CAPITAL CIRCULANTE LÍQUIDO</b></th>
+                <th width="20%" scope="col">Ativo Circulante</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col"><b>R$ 1200,00</b></th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">Passivo Circulante</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col"></th>
+                
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="20%" scope="col"><b>LIQUIDEZ GERAL</b></th>
+                <th width="20%" scope="col">A.C + ARLP</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"><b>1.83</b></th>
+                <th width="20%" scope="col"></th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">PC + PELP </th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col"></th>
+                
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="20%" scope="col"><b>RETORNO S/INV TOTAL</b></th>
+                <th width="20%" scope="col">LL</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"><b>1.83</b></th>
+                <th width="20%" scope="col">Lucratividade</th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">Ativo Total</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col"></th>
+                
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="20%" scope="col"><b>INDICE DE EFICIÊNCIA</b></th>
+                <th width="20%" scope="col">Despesas Operacionais</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"><b>1.83</b></th>
+                <th width="20%" scope="col">Produtividade</th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">Receita Operacional Líquida</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col"></th>
+                
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="20%" scope="col"><b>GRAU DE ENDIVIDAMENTO</b></th>
+                <th width="20%" scope="col">PC + PELP</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"><b>1.83</b></th>
+                <th width="20%" scope="col">GE</th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">PL</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col"></th>
+                
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="20%" scope="col"><b>PONTO DE EQUILIBRIO</b></th>
+                <th width="20%" scope="col">Margem Contribuição</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"><b>1.83</b></th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">Despesas Estimadas</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col"></th>
+                
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed">
+
+        <tbody>
+
+            <tr>
+
+                <th width="20%" scope="col"><b>IMOBILIZAÇÃO DO PL</b></th>
+                <th width="20%" scope="col">Imobilizado</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"><b>1.83</b></th>
+                <th width="20%" scope="col"></th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col">Patrimônio Líquido</th>
+                <th width="20%" scope="col">R$ 1200,00</th>
+                <th width="20%" scope="col"></th>
+                <th width="20%" scope="col"></th>
+                
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+    <table class="table table-indicador table-condensed" style="background-color: #80808069;">
+
+        <tbody>
+
+            <tr>
+
+                <th width="100%" class="text-center" scope="col" colspan="3"><b>INDICADOR DE INSOLVENCIA SEGUNDO KANITZ </b></th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="100%" scope="col" colspan="3"></th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col">Formula: (0,05RP+1,65LG+3,55LS) - (1,06LC + 0,33GE)</th>
+                <th width="30%" scope="col"></th>
+                <th width="30%" scope="col"></th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col">onde:</th>
+                <th width="30%" scope="col"></th>
+                <th width="30%" scope="col"></th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col">RP: Rentabilidade do Patrimonio</th>
+                <th width="30%" scope="col"></th>
+                <th width="30%" scope="col"></th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col">LG: Liquidez Geral</th>
+                <th width="30%" scope="col"></th>
+                <th width="30%" scope="col" style="background-color: orange; border: 2px solid black;"><span>Índice Kanitz:</span> <span class="text-right"><b>4.37</b></span> </th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col">LS: Liquidez Seca</th>
+                <th width="30%" scope="col"></th>
+                <th width="30%" scope="col"></th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col">LC: Liquidez Corrente</th>
+                <th width="30%" scope="col"></th>
+                <th width="30%" scope="col"></th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="40%" scope="col">GE: Grau de Endividamento</th>
+                <th width="30%" scope="col"></th>
+                <th width="30%" scope="col"></th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="100%" scope="col" colspan="3"></th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="100%" scope="col" colspan="3">O Termômetro de Insolvência do Prof Kanitz é um instrumento utilizado para prever a possibilidade de falência de empresa e após a aplicação da formula, temos a seguinte ANÁLISE:</th>
+                
+            </tr>
+            
+            <tr>
+
+                <th width="100%" scope="col" colspan="3">
+                    
+                    <p>.-3         indica que a empresa se encontra numa situação que poderá levá-la a falência.</p>
+                    <p>.-3 a 0   indica que a empresa esta na penumbra, ou seja, uma posição que demanda certa cautela</p>
+                    <p>acima 0 indica que não há razão para a Administração se preocupar com a empresa </p>
+                    
+                </th>
+                
+            </tr>
+            
+        </tbody>
+
+    </table>
+    
+</div>
