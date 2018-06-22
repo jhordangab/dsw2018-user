@@ -415,12 +415,13 @@ SQL;
                 1 as tipo,
                 1 as ordem,
                 'Depreciação' as descricao,
-                SUM(valor17) as valor
-            FROM indicador6 
-            WHERE valor3 = 'RECEITAS OPERACIONAIS'
-                AND valor1 = {$empresa_id}
-                AND valor2 = {$ano}
-                AND trim(valor4) = 'Impostos s/ Servicos'
+                SUM((valor5 + valor6 + valor7 + valor8 + valor9 + valor10 + valor11 + 
+                valor12 + valor13 + valor14 + valor15 + valor16)) as total
+            FROM indicador8
+            WHERE valor1 = {$empresa_id}
+            AND valor2 = {$ano}
+            AND valor4 = 'Depreciacao e Amortizacao'
+            GROUP BY valor1, valor2, valor4
                 
             UNION ALL
                 
