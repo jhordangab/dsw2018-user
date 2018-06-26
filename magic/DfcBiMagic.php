@@ -3,11 +3,48 @@
 namespace app\magic;
 
 use Yii;
+use app\models\AdminEmpresa;
 
 class DfcBiMagic
 {
-    public static function get($empresa_id, $ano)
+    public static function get($model)
     {
+        $array_meses = 
+        [
+            1 => 'jan', 
+            2 => 'feb', 
+            3 => 'mar', 
+            4 => 'apr', 
+            5 => 'may', 
+            6 => 'jun', 
+            7 => 'jul', 
+            8 => 'aug',
+            9 => 'sep', 
+            10 => 'oct', 
+            11 => 'nov', 
+            12 => 'dez'
+        ];
+        
+        $empresa = AdminEmpresa::findOne($model->empresa_id);
+        
+//        ----
+        
+        $ano = $model->ano;
+        $select_4 = $select_5 = "";
+        
+        foreach($model->meses as $mes)
+        {
+            $apelido = $array_meses[$mes];
+            
+            $column_4 = $mes + 3;
+            $select_4 .= "valor{$column_4} as {$apelido},";
+            
+            $column_5 = $mes + 4;
+            $select_5 .= "valor{$column_5} as {$apelido},";
+        }
+        
+//        ----
+        
         $sql = <<<SQL
          
         SELECT * FROM
@@ -17,18 +54,7 @@ class DfcBiMagic
                 valor1 as empresa, 
                 valor2 as ano, 
                 valor3 as descricao,
-                valor4 as jan, 
-                valor5 as feb, 
-                valor6 as mar, 
-                valor7 as apr, 
-                valor8 as may, 
-                valor9 as jun, 
-                valor10 as jul, 
-                valor11 as aug,
-                valor12 as sep, 
-                valor13 as oct, 
-                valor14 as nov, 
-                valor15 as dez, 
+                {$select_4}
                 (valor4 + valor5 + valor6 + valor7 + valor8 + valor9 + valor10 + 
                     valor11 + valor12 + valor13 + valor14 + valor15) as total
             FROM indicador7
@@ -40,18 +66,7 @@ class DfcBiMagic
                 valor1 as empresa, 
                 valor2 as ano, 
                 valor4 as descricao,
-                SUM(valor5) as jan, 
-                SUM(valor6) as feb, 
-                SUM(valor7) as mar, 
-                SUM(valor8) as apr, 
-                SUM(valor9) as may, 
-                SUM(valor10) as jun, 
-                SUM(valor11) as jul, 
-                SUM(valor12) as aug,
-                SUM(valor13) as sep, 
-                SUM(valor14) as oct, 
-                SUM(valor15) as nov, 
-                SUM(valor16) as dez, 
+                {$select_5}
                 SUM((valor5 + valor6 + valor7 + valor8 + valor9 + valor10 + valor11 + 
                     valor12 + valor13 + valor14 + valor15 + valor16)) as total
             FROM indicador8
@@ -65,18 +80,7 @@ class DfcBiMagic
                 valor1 as empresa, 
                 valor2 as ano, 
                 valor4 as descricao,
-                SUM(valor5) as jan, 
-                SUM(valor6) as feb, 
-                SUM(valor7) as mar, 
-                SUM(valor8) as apr, 
-                SUM(valor9) as may, 
-                SUM(valor10) as jun, 
-                SUM(valor11) as jul, 
-                SUM(valor12) as aug,
-                SUM(valor13) as sep, 
-                SUM(valor14) as oct, 
-                SUM(valor15) as nov, 
-                SUM(valor16) as dez, 
+                {$select_5}
                 SUM((valor5 + valor6 + valor7 + valor8 + valor9 + valor10 + valor11 + 
                     valor12 + valor13 + valor14 + valor15 + valor16)) as total
             FROM indicador10
@@ -89,18 +93,7 @@ class DfcBiMagic
                 valor1 as empresa, 
                 valor2 as ano, 
                 valor4 as descricao,
-                SUM(valor5) as jan, 
-                SUM(valor6) as feb, 
-                SUM(valor7) as mar, 
-                SUM(valor8) as apr, 
-                SUM(valor9) as may, 
-                SUM(valor10) as jun, 
-                SUM(valor11) as jul, 
-                SUM(valor12) as aug,
-                SUM(valor13) as sep, 
-                SUM(valor14) as oct, 
-                SUM(valor15) as nov, 
-                SUM(valor16) as dez, 
+                {$select_5}
                 SUM((valor5 + valor6 + valor7 + valor8 + valor9 + valor10 + valor11 + 
                     valor12 + valor13 + valor14 + valor15 + valor16)) as total
             FROM indicador9
@@ -113,18 +106,7 @@ class DfcBiMagic
                 valor1 as empresa, 
                 valor2 as ano, 
                 valor4 as descricao,
-                SUM(valor5) as jan, 
-                SUM(valor6) as feb, 
-                SUM(valor7) as mar, 
-                SUM(valor8) as apr, 
-                SUM(valor9) as may, 
-                SUM(valor10) as jun, 
-                SUM(valor11) as jul, 
-                SUM(valor12) as aug,
-                SUM(valor13) as sep, 
-                SUM(valor14) as oct, 
-                SUM(valor15) as nov, 
-                SUM(valor16) as dez, 
+                {$select_5}
                 SUM((valor5 + valor6 + valor7 + valor8 + valor9 + valor10 + valor11 + 
                     valor12 + valor13 + valor14 + valor15 + valor16)) as total
             FROM indicador11
@@ -137,18 +119,7 @@ class DfcBiMagic
                 valor1 as empresa, 
                 valor2 as ano, 
                 valor4 as descricao,
-                SUM(valor5) as jan, 
-                SUM(valor6) as feb, 
-                SUM(valor7) as mar, 
-                SUM(valor8) as apr, 
-                SUM(valor9) as may, 
-                SUM(valor10) as jun, 
-                SUM(valor11) as jul, 
-                SUM(valor12) as aug,
-                SUM(valor13) as sep, 
-                SUM(valor14) as oct, 
-                SUM(valor15) as nov, 
-                SUM(valor16) as dez, 
+                {$select_5}
                 SUM((valor5 + valor6 + valor7 + valor8 + valor9 + valor10 + valor11 + 
                     valor12 + valor13 + valor14 + valor15 + valor16)) as total
             FROM indicador13
@@ -161,25 +132,15 @@ class DfcBiMagic
                 valor2 as empresa, 
                 valor3 as ano, 
                 valor1 as descricao,
-                SUM(valor4) as jan, 
-                SUM(valor5) as feb, 
-                SUM(valor6) as mar, 
-                SUM(valor7) as apr, 
-                SUM(valor8) as may, 
-                SUM(valor9) as jun, 
-                SUM(valor10) as jul, 
-                SUM(valor11) as aug,
-                SUM(valor12) as sep, 
-                SUM(valor13) as oct, 
-                SUM(valor14) as nov, 
-                SUM(valor15) as dez, 
+                {$select_4}
                 SUM((valor4 + valor5 + valor6 + valor7 + valor8 + valor9 + valor10 + valor11 + 
                     valor12 + valor13 + valor14 + valor15)) as total
             FROM indicador15
             GROUP BY valor1, valor2, valor3
                 
         ) as sel 
-        WHERE sel.ano = {$ano} AND sel.empresa = {$empresa_id}
+        WHERE sel.ano = {$ano} 
+        AND sel.empresa = {$empresa->nomeResumo}
         ORDER BY sel.categoria DESC;
                 
 SQL;

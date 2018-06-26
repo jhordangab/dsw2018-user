@@ -7,21 +7,21 @@ use yii\base\Model;
 
 class ResultadoForm extends Model
 {
-    CONST RESULTADO_BALANCETE = 0;
+    CONST RESULTADO_BALANCETE = 'balancete';
     
-    CONST RESULTADO_CMV = 1;
+    CONST RESULTADO_CMV = 'cmv';
     
-    CONST RESULTADO_DESPESA = 2;
+    CONST RESULTADO_DESPESA = 'despesa';
     
-    CONST RESULTADO_DFC = 3;
+    CONST RESULTADO_DFC = 'dfc';
     
-    CONST RESULTADO_DRE = 4;
+    CONST RESULTADO_DRE = 'dre';
     
-    CONST RESULTADO_LALUR = 5;
+    CONST RESULTADO_LALUR = 'lalur';
     
-    CONST RESULTADO_OUTRAS_DESPESAS = 6;
+    CONST RESULTADO_OUTRAS_DESPESAS = 'outras_rd';
     
-    CONST RESULTADO_RF = 7;
+    CONST RESULTADO_RF = 'rf';
     
     public static $resultados = 
     [

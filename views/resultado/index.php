@@ -155,7 +155,7 @@ $this->registerJs($js);
 
                             </li>
 
-                            <li class="list-group-item" style="padding-bottom: 25px;">
+                            <li class="list-group-item" style="padding-bottom: 25px; border-bottom: none;">
 
                                 <b>Resultado:</b> <a class="pull-right">
 

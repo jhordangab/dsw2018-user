@@ -61,18 +61,18 @@ $this->registerCss($css);
 
 $meses = 
 [
-    1 => 'Janeiro',
-    2 => 'Fevereiro',
-    3 => 'Março',
-    4 => 'Abril',
-    5 => 'Maio',
-    6 => 'Junho',
-    7 => 'Julho',
-    8 => 'Agosto',
-    9 => 'Setembro',
-    10 => 'Outubro',
-    11 => 'Novembro',
-    12 => 'Dezembro'
+    1 => 'JANEIRO',
+    2 => 'FEVEREIRO',
+    3 => 'MARÇO',
+    4 => 'ABRIL',
+    5 => 'MAIO',
+    6 => 'JUNHO',
+    7 => 'JULHO',
+    8 => 'AGOSTO',
+    9 => 'SETEMBRO',
+    10 => 'OUTUBRO',
+    11 => 'NOVEMBRO',
+    12 => 'DEZEMBRO'
 ];
 
 $apelidos = 
@@ -104,9 +104,9 @@ $sum['si'] = 0;
 
             <th scope="col"></th>
             
-            <th scope="col">Receita</th>
+            <th scope="col">RECEITA</th>
             
-            <th scope="col" class="text-center">Saldo Inicial</th>
+            <th scope="col" class="text-center">SALDO INICIAL</th>
 
             <?php 
             
@@ -141,7 +141,7 @@ $sum['si'] = 0;
                 }
         ?>
         
-            <tr class="graph <?= $dado["class"]; ?>" data-json='<?= json_encode($dado); ?>'>
+            <tr class="graph <?= $dado["class"]; ?>">
 
                 
                 <td style="text-align: left;"><?= $dado["codigo"]; ?></td>

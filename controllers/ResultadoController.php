@@ -7,7 +7,7 @@ use yii\web\Controller;
 use yii\filters\AccessControl;
 use app\models\forms\ResultadoForm;
 use app\models\AdminEmpresa;
-use app\magic\BalanceteBiMagic;
+use app\magic\ResultadoMagic;
 
 class ResultadoController extends Controller
 {
@@ -53,8 +53,8 @@ class ResultadoController extends Controller
         
         if ($model->load(Yii::$app->request->post()))
         {
-            $dados = BalanceteBiMagic::get($model);
-            return $this->renderAjax('_partials/_table', compact('model', 'dados'));
+            $dados = ResultadoMagic::get($model);
+            return $this->renderAjax('_partials/' . $model->tipo . '/_table', compact('model', 'dados'));
         }
         
         return '';
