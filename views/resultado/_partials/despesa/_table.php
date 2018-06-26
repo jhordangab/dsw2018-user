@@ -95,7 +95,7 @@ $sum['total'] = 0;
                             
             <?php endforeach; ?>
                 
-            <th scope="col" class="text-center">TOTAL ANUAL</th>
+            <th scope="col" class="text-center">TOTAL (ANO)</th>
 
         </tr>
 

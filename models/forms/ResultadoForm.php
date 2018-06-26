@@ -17,7 +17,7 @@ class ResultadoForm extends Model
     
     CONST RESULTADO_DRE = 'dre';
     
-    CONST RESULTADO_LALUR = 'lalur';
+//    CONST RESULTADO_LALUR = 'lalur';
     
     CONST RESULTADO_OUTRAS_DESPESAS = 'outras_rd';
     
@@ -30,7 +30,7 @@ class ResultadoForm extends Model
         self::RESULTADO_DESPESA => 'Despesas',
         self::RESULTADO_DFC => 'DFC',
         self::RESULTADO_DRE => 'DRE',
-        self::RESULTADO_LALUR => 'LALUR',
+//        self::RESULTADO_LALUR => 'LALUR',
         self::RESULTADO_OUTRAS_DESPESAS => 'Outras Receitas/Despesas',
         self::RESULTADO_RF => 'RF '
     ];

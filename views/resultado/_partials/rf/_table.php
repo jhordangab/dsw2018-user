@@ -8,11 +8,6 @@ $css = <<<CSS
         font-size: 10px;
     }
         
-    .table-balancete
-    {
-        cursor: pointer;
-    }
-        
     .table-balancete > tbody > tr:hover
     {
         border: 2px solid #22415a;
@@ -56,18 +51,34 @@ $this->registerCss($css);
 
 $meses = 
 [
-    1 => 'Janeiro',
-    2 => 'Fevereiro',
-    3 => 'Março',
-    4 => 'Abril',
-    5 => 'Maio',
-    6 => 'Junho',
-    7 => 'Julho',
-    8 => 'Agosto',
-    9 => 'Setembro',
-    10 => 'Outubro',
-    11 => 'Novembro',
-    12 => 'Dezembro'
+    1 => 'JANEIRO',
+    2 => 'FEVEREIRO',
+    3 => 'MARÇO',
+    4 => 'ABRIL',
+    5 => 'MAIO',
+    6 => 'JUNHO',
+    7 => 'JULHO',
+    8 => 'AGOSTO',
+    9 => 'SETEMBRO',
+    10 => 'OUTUBRO',
+    11 => 'NOVEMBRO',
+    12 => 'DEZEMBRO'
+];
+
+$apelidos = 
+[
+    1 => 'jan', 
+    2 => 'feb', 
+    3 => 'mar', 
+    4 => 'apr', 
+    5 => 'may', 
+    6 => 'jun', 
+    7 => 'jul', 
+    8 => 'aug',
+    9 => 'sep', 
+    10 => 'oct', 
+    11 => 'nov', 
+    12 => 'dez'
 ];
       
 $df = [];
@@ -89,17 +100,17 @@ $rf['total'] = 0;
             
             <?php 
             
-                foreach($meses as $xs => $mes): 
+                foreach($model->meses as $mes):
                 
-                    $df[$xs] = 0;
-                    $rf[$xs] = 0;
+                    $df[$mes] = 0;
+                    $rf[$mes] = 0;
             ?>
             
-                <th scope="col" class="text-center"><?= $mes ?></th>
+                <th scope="col" class="text-center"><?= $meses[$mes] ?></th>
                             
             <?php endforeach; ?>
                 
-            <th scope="col" class="text-center">TOTAL</th>
+            <th scope="col" class="text-center">TOTAL (ANO)</th>
 
         </tr>
 
@@ -117,62 +128,47 @@ $rf['total'] = 0;
 
         </tr>
 
-        <?php foreach($dados['DESPESAS FINANCEIRAS TOTAIS'] as $dado): 
-            
-            if($dado["class"] == 'value')
-            {
-                $df[1] += $dado["jan"];
-                $df[2] += $dado["feb"];
-                $df[3] += $dado["mar"];
-                $df[4] += $dado["apr"];
-                $df[5] += $dado["may"];
-                $df[6] += $dado["jun"];
-                $df[7] += $dado["jul"];
-                $df[8] += $dado["aug"];
-                $df[9] += $dado["sep"];
-                $df[10] += $dado["oct"];
-                $df[11] += $dado["nov"];
-                $df[12] += $dado["dez"];
-                $df['total'] += $dado["total"];
-            }
-            
-        ?>
-            
-            <tr class="<?= ($dado["class"] == 'value') ? 'graph' : 'graph cools' ; ?>" data-json='<?= json_encode($dado); ?>'>
+        <?php 
+        
+            if(isset($dados['DESPESAS FINANCEIRAS TOTAIS'])) :
+        
+                foreach($dados['DESPESAS FINANCEIRAS TOTAIS'] as $dado): 
 
-                <td style="text-align: left;"><?= $dado["codigo"]; ?></td>
+                    if($dado["class"] == 'value')
+                    {
+                        foreach($model->meses as $mes)
+                        {
+                            $df[$mes] += $dado[$apelidos[$mes]];
+                        }
 
-                <td style="text-align: left;"><?= $dado["descricao"]; ?></td>  
-                                
-                <td><?= number_format($dado["jan"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["feb"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["mar"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["apr"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["may"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["jun"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["jul"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["aug"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["sep"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["oct"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["nov"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["dez"], 2, ',', '.'); ?></td>
-                
-                <td><b><?= number_format($dado["total"], 2, ',', '.'); ?></b></td>
+                        $df['total'] += $dado["total"];
+                    }
+            
+                    ?>
+            
+                    <tr class="<?= ($dado["class"] == 'value') ? 'graph' : 'graph cools' ; ?>">
 
-            </tr>
+                        <td style="text-align: left;"><?= $dado["codigo"]; ?></td>
+
+                        <td style="text-align: left;"><?= $dado["descricao"]; ?></td>  
+
+                        <?php foreach($model->meses as $mes): ?>
+
+                            <td><?= number_format($dado[$apelidos[$mes]], 2, ',', '.'); ?></td>
+
+                        <?php endforeach; ?>
+
+                        <td><b><?= number_format($dado["total"], 2, ',', '.'); ?></b></td>
+
+                    </tr>
  
-        <?php endforeach; ?>
+                    <?php
+        
+                endforeach; 
+        
+            endif;
+                
+        ?>
         
         <tr class="title-category" style="background-color: #247388; color: #FFF;">
 
@@ -180,11 +176,11 @@ $rf['total'] = 0;
 
             <th scope="col">TOTAL DAS DESPESAS FINANCEIRAS</th>
             
-            <?php for($i = 1; $i <= 12; $i++) : ?>
-            
-                <td><?= number_format($df[$i], 2, ',', '.'); ?></td>
-            
-            <?php endfor; ?>
+            <?php foreach($model->meses as $mes): ?>
+
+                <td><?= number_format($df[$mes], 2, ',', '.'); ?></td>
+
+            <?php endforeach; ?>
                 
             <td><?= number_format($df["total"], 2, ',', '.'); ?></td>
             
@@ -200,63 +196,47 @@ $rf['total'] = 0;
 
         </tr>
         
-        <?php foreach($dados['RECEITAS FINANCEIRAS TOTAIS'] as $dado): 
-            
-            if($dado['class'] == 'value')
-            {
-                $rf[1] += $dado["jan"];
-                $rf[2] += $dado["feb"];
-                $rf[3] += $dado["mar"];
-                $rf[4] += $dado["apr"];
-                $rf[5] += $dado["may"];
-                $rf[6] += $dado["jun"];
-                $rf[7] += $dado["jul"];
-                $rf[8] += $dado["aug"];
-                $rf[9] += $dado["sep"];
-                $rf[10] += $dado["oct"];
-                $rf[11] += $dado["nov"];
-                $rf[12] += $dado["dez"];
-                $rf['total'] += $dado["total"];
-            }
+        <?php 
+        
+        if(isset($dados['RECEITAS FINANCEIRAS TOTAIS'])):
+        
+            foreach($dados['RECEITAS FINANCEIRAS TOTAIS'] as $dado): 
+
+                if($dado['class'] == 'value')
+                {
+                    foreach($model->meses as $mes)
+                    {
+                        $rf[$mes] += $dado[$apelidos[$mes]];
+                    }
+                    
+                    $rf['total'] += $dado["total"];
+                }
             
             ?>
             
-            <tr class="<?= ($dado["class"] == 'value') ? 'graph' : 'graph cools' ; ?>" data-json='<?= json_encode($dado); ?>'>
+            <tr class="<?= ($dado["class"] == 'value') ? 'graph' : 'graph cools' ; ?>">
 
                 <td style="text-align: left;"><?= $dado["codigo"]; ?></td>
 
                 <td style="text-align: left;"><?= $dado["descricao"]; ?></td>  
+                
+                <?php foreach($model->meses as $mes): ?>
+
+                    <td><?= number_format($dado[$apelidos[$mes]], 2, ',', '.'); ?></td>
+
+                <?php endforeach; ?>
                                 
-                <td><?= number_format($dado["jan"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["feb"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["mar"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["apr"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["may"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["jun"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["jul"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["aug"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["sep"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["oct"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["nov"], 2, ',', '.'); ?></td>
-                
-                <td><?= number_format($dado["dez"], 2, ',', '.'); ?></td>
-                
                 <td><b><?= number_format($dado["total"], 2, ',', '.'); ?></b></td>
 
             </tr>
  
-        <?php endforeach; ?>
+            <?php
         
+            endforeach; 
+            
+        endif;
+
+        ?>
         
         <tr class="title-category" style="background-color: #247388; color: #FFF;">
 
@@ -264,11 +244,11 @@ $rf['total'] = 0;
             
             <th scope="col">TOTAL DAS RECEITAS FINANCEIRAS</th>
             
-            <?php for($i = 1; $i <= 12; $i++) : ?>
+            <?php foreach($model->meses as $mes): ?>
             
-                <td><?= number_format($rf[$i], 2, ',', '.'); ?></td>
+                <td><?= number_format($rf[$mes], 2, ',', '.'); ?></td>
             
-            <?php endfor; ?>
+            <?php endforeach; ?>
                 
             <td><?= number_format($rf["total"], 2, ',', '.'); ?></td>
             
@@ -280,11 +260,11 @@ $rf['total'] = 0;
             
             <th scope="col">RESULTADO FINANCEIRO LÍQUIDO</th>
             
-            <?php for($i = 1; $i <= 12; $i++) : ?>
+            <?php foreach($model->meses as $mes): ?>
             
-                <td><?= number_format(($rf[$i] - $df[$i]), 2, ',', '.'); ?></td>
+                <td><?= number_format(($rf[$mes] - $df[$mes]), 2, ',', '.'); ?></td>
             
-            <?php endfor; ?>
+            <?php endforeach; ?>
             
             <td><?= number_format(($rf["total"] - $df["total"]), 2, ',', '.'); ?></td>
             

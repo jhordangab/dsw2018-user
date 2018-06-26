@@ -8,11 +8,6 @@ $css = <<<CSS
         font-size: 10px;
     }
         
-    .table-balancete
-    {
-        cursor: pointer;
-    }
-        
     .table-balancete > tbody > tr:hover
     {
         border: 2px solid #22415a;
@@ -49,18 +44,34 @@ $this->registerCss($css);
 
 $meses = 
 [
-    1 => 'Janeiro',
-    2 => 'Fevereiro',
-    3 => 'Março',
-    4 => 'Abril',
-    5 => 'Maio',
-    6 => 'Junho',
-    7 => 'Julho',
-    8 => 'Agosto',
-    9 => 'Setembro',
-    10 => 'Outubro',
-    11 => 'Novembro',
-    12 => 'Dezembro'
+    1 => 'JANEIRO',
+    2 => 'FEVEREIRO',
+    3 => 'MARÇO',
+    4 => 'ABRIL',
+    5 => 'MAIO',
+    6 => 'JUNHO',
+    7 => 'JULHO',
+    8 => 'AGOSTO',
+    9 => 'SETEMBRO',
+    10 => 'OUTUBRO',
+    11 => 'NOVEMBRO',
+    12 => 'DEZEMBRO'
+];
+
+$apelidos = 
+[
+    1 => 'jan', 
+    2 => 'feb', 
+    3 => 'mar', 
+    4 => 'apr', 
+    5 => 'may', 
+    6 => 'jun', 
+    7 => 'jul', 
+    8 => 'aug',
+    9 => 'sep', 
+    10 => 'oct', 
+    11 => 'nov', 
+    12 => 'dez'
 ];
 
 $sum = [];
@@ -78,13 +89,13 @@ $sum['total'] = 0;
             
             <th scope="col">OUTRAS RECEITAS / DESPESAS</th>
             
-            <?php foreach($meses as $xs => $mes): $sum[$xs] = 0; ?>
+            <?php foreach($model->meses as $mes): $sum[$mes] = 0; ?>
             
-                <th scope="col" class="text-center"><?= $mes ?></th>
+                <th scope="col" class="text-center"><?= $meses[$mes]; ?></th>
                             
             <?php endforeach; ?>
                 
-            <th scope="col" class="text-center">TOTAL</th>
+            <th scope="col" class="text-center">TOTAL (ANO)</th>
 
         </tr>
 
@@ -96,52 +107,27 @@ $sum['total'] = 0;
             
                 if($dado['class'] == 'value')
                 {
-                    $sum[1] += $dado["jan"];
-                    $sum[2] += $dado["feb"];
-                    $sum[3] += $dado["mar"];
-                    $sum[4] += $dado["apr"];
-                    $sum[5] += $dado["may"];
-                    $sum[6] += $dado["jun"];
-                    $sum[7] += $dado["jul"];
-                    $sum[8] += $dado["aug"];
-                    $sum[9] += $dado["sep"];
-                    $sum[10] += $dado["oct"];
-                    $sum[11] += $dado["nov"];
-                    $sum[12] += $dado["dez"];
+                    foreach($model->meses as $mes)
+                    {
+                        $sum[$mes] += $dado[$apelidos[$mes]];
+                    }
+
                     $sum['total'] += $dado["total"];
                 }
                 
         ?>
             
-            <tr class="<?= ($dado["class"] == 'value') ? 'graph' : 'title-category' ; ?>" data-json='<?= json_encode($dado); ?>'>
+            <tr class="<?= ($dado["class"] == 'value') ? 'graph' : 'title-category' ; ?>">
 
                 <td style="text-align: left;"><?= $dado["codigo"]; ?></td>
 
                 <td style="text-align: left;"><?= $dado["descricao"]; ?></td>  
                                 
-                <td><?= number_format(($dado["jan"] * -1), 2, ',', '.'); ?></td>
-                
-                <td><?= number_format(($dado["feb"] * -1), 2, ',', '.'); ?></td>
-                
-                <td><?= number_format(($dado["mar"] * -1), 2, ',', '.'); ?></td>
-                
-                <td><?= number_format(($dado["apr"] * -1), 2, ',', '.'); ?></td>
-                
-                <td><?= number_format(($dado["may"] * -1), 2, ',', '.'); ?></td>
-                
-                <td><?= number_format(($dado["jun"] * -1), 2, ',', '.'); ?></td>
-                
-                <td><?= number_format(($dado["jul"] * -1), 2, ',', '.'); ?></td>
-                
-                <td><?= number_format(($dado["aug"] * -1), 2, ',', '.'); ?></td>
-                
-                <td><?= number_format(($dado["sep"] * -1), 2, ',', '.'); ?></td>
-                
-                <td><?= number_format(($dado["oct"] * -1), 2, ',', '.'); ?></td>
-                
-                <td><?= number_format(($dado["nov"] * -1), 2, ',', '.'); ?></td>
-                
-                <td><?= number_format(($dado["dez"] * -1), 2, ',', '.'); ?></td>
+                <?php foreach($model->meses as $mes): ?>
+
+                    <td><?= number_format(($dado[$apelidos[$mes]] * -1), 2, ',', '.'); ?></td>
+
+                <?php endforeach; ?>
                 
                 <td><b><?= number_format(($dado["total"] * -1), 2, ',', '.'); ?></b></td>
 
@@ -153,11 +139,11 @@ $sum['total'] = 0;
 
             <td colspan="2" style="text-align: left;"><b>TOTAL</b></td>  
             
-            <?php for($i = 1; $i <= 12; $i++) : ?>
-            
-                <td><?= number_format(($sum[$i] * -1), 2, ',', '.'); ?></td>
-            
-            <?php endfor; ?>
+            <?php foreach($model->meses as $mes): ?>
+
+                <td><?= number_format(($sum[$mes] * -1), 2, ',', '.'); ?></td>
+
+            <?php endforeach; ?>
 
             <td><?= number_format(($sum["total"] * -1), 2, ',', '.'); ?></td>
 

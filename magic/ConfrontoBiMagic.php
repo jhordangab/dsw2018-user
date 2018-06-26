@@ -186,9 +186,9 @@ class ConfrontoBiMagic
                         ab.ano,
                         'Imposto de Renda + Csll' as descricao,
                         SUM(abv.valor) as valor
-                FROM agrocontar.balancete_valor abv
-                LEFT JOIN agrocontar.balancete ab on ab.id = abv.balancete_id and ab.status = 'V'
-                LEFT JOIN agrocontar.categoria_padrao acp on acp.codigo = abv.categoria_id AND acp.is_excluido = 0 AND acp.is_ativo = 1
+                FROM balancete_valor abv
+                LEFT JOIN balancete ab on ab.id = abv.balancete_id and ab.status = 'V'
+                LEFT JOIN categoria_padrao acp on acp.codigo = abv.categoria_id AND acp.is_excluido = 0 AND acp.is_ativo = 1
                 WHERE abv.categoria_id in (1134010008, 1134010009)
                         AND abv.is_excluido = 0
                 AND ab.is_excluido = 0
@@ -207,9 +207,9 @@ class ConfrontoBiMagic
                         ab.ano,
                         'Imposto de Renda + Csll' as descricao,
                         SUM(abv.valor) as valor
-                FROM agrocontar.balancete_valor abv
-                LEFT JOIN agrocontar.balancete ab on ab.id = abv.balancete_id and ab.status = 'V'
-                LEFT JOIN agrocontar.categoria_padrao acp on acp.codigo = abv.categoria_id AND acp.is_excluido = 0 AND acp.is_ativo = 1
+                FROM balancete_valor abv
+                LEFT JOIN balancete ab on ab.id = abv.balancete_id and ab.status = 'V'
+                LEFT JOIN categoria_padrao acp on acp.codigo = abv.categoria_id AND acp.is_excluido = 0 AND acp.is_ativo = 1
                 WHERE abv.categoria_id in (1134010008, 1134010009)
                         AND abv.is_excluido = 0
                 AND ab.is_excluido = 0

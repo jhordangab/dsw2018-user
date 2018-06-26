@@ -8,11 +8,6 @@ $css = <<<CSS
         font-size: 10px;
     }
         
-    .table-balancete
-    {
-        cursor: pointer;
-    }
-        
     .table-balancete > tbody > tr:hover 
     {
         border: 2px solid #22415a;
@@ -58,21 +53,21 @@ $this->registerCss($css);
 
 $meses = 
 [
-    1 => 'Janeiro',
-    2 => 'Fevereiro',
-    3 => 'Março',
-    4 => 'Abril',
-    5 => 'Maio',
-    6 => 'Junho',
-    7 => 'Julho',
-    8 => 'Agosto',
-    9 => 'Setembro',
-    10 => 'Outubro',
-    11 => 'Novembro',
-    12 => 'Dezembro'
+    1 => 'JANEIRO',
+    2 => 'FEVEREIRO',
+    3 => 'MARÇO',
+    4 => 'ABRIL',
+    5 => 'MAIO',
+    6 => 'JUNHO',
+    7 => 'JULHO',
+    8 => 'AGOSTO',
+    9 => 'SETEMBRO',
+    10 => 'OUTUBRO',
+    11 => 'NOVEMBRO',
+    12 => 'DEZEMBRO'
 ];
 
-$months = 
+$apelidos = 
 [
     1 => 'jan',
     2 => 'feb',

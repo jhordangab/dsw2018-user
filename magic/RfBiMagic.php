@@ -3,11 +3,45 @@
 namespace app\magic;
 
 use Yii;
+use app\models\AdminEmpresa;
 
 class RfBiMagic
 {
-    public static function get($empresa_id, $ano)
+    public static function get($model)
     {
+        $array_meses = 
+        [
+            1 => 'jan', 
+            2 => 'feb', 
+            3 => 'mar', 
+            4 => 'apr', 
+            5 => 'may', 
+            6 => 'jun', 
+            7 => 'jul', 
+            8 => 'aug',
+            9 => 'sep', 
+            10 => 'oct', 
+            11 => 'nov', 
+            12 => 'dez'
+        ];
+        
+        $empresa = AdminEmpresa::findOne($model->empresa_id);
+        
+//        ----
+        
+        $ano = $model->ano;
+        $select = $sum = "";
+        
+        foreach($model->meses as $mes)
+        {
+            $apelido = $array_meses[$mes];
+            $column = $mes + 7;
+            $select .= "valor{$column} as {$apelido},";
+            $sum .= "(SELECT SUM(valor{$column}) FROM indicador1 i1 WHERE i1.valor1 = cs.valor1 AND i1.valor2 = cs.valor2 AND i1.valor3 = cs.valor3 AND i1.valor4 = cs.valor4 AND i1.valor5 = cs.valor5) as {$apelido},";
+        }
+        
+//        ----
+        
         $sql = <<<SQL
          
         SELECT * FROM 
@@ -19,18 +53,7 @@ class RfBiMagic
                 valor3 as categoria,
                 valor6 as codigo,
                 valor7 as descricao, 
-                valor8 as jan, 
-                valor9 as feb, 
-                valor10 as mar, 
-                valor11 as apr, 
-                valor12 as may, 
-                valor13 as jun, 
-                valor14 as jul, 
-                valor15 as aug,
-                valor16 as sep, 
-                valor17 as oct, 
-                valor18 as nov, 
-                valor19 as dez, 
+                {$select}
                 valor20 as total
             FROM indicador1
 
@@ -43,18 +66,7 @@ class RfBiMagic
                 valor3 as categoria,
                 valor4 as codigo, 
                 valor5 as descricao, 
-                (SELECT SUM(valor8) FROM indicador1 i1 WHERE i1.valor1 = cs.valor1 AND i1.valor2 = cs.valor2 AND i1.valor3 = cs.valor3 AND i1.valor4 = cs.valor4 AND i1.valor5 = cs.valor5) as jan,
-                (SELECT SUM(valor9) FROM indicador1 i1 WHERE i1.valor1 = cs.valor1 AND i1.valor2 = cs.valor2 AND i1.valor3 = cs.valor3 AND i1.valor4 = cs.valor4 AND i1.valor5 = cs.valor5) as feb,
-                (SELECT SUM(valor10) FROM indicador1 i1 WHERE i1.valor1 = cs.valor1 AND i1.valor2 = cs.valor2 AND i1.valor3 = cs.valor3 AND i1.valor4 = cs.valor4 AND i1.valor5 = cs.valor5) as mar,
-                (SELECT SUM(valor11) FROM indicador1 i1 WHERE i1.valor1 = cs.valor1 AND i1.valor2 = cs.valor2 AND i1.valor3 = cs.valor3 AND i1.valor4 = cs.valor4 AND i1.valor5 = cs.valor5) as apr,
-                (SELECT SUM(valor12) FROM indicador1 i1 WHERE i1.valor1 = cs.valor1 AND i1.valor2 = cs.valor2 AND i1.valor3 = cs.valor3 AND i1.valor4 = cs.valor4 AND i1.valor5 = cs.valor5) as may,
-                (SELECT SUM(valor13) FROM indicador1 i1 WHERE i1.valor1 = cs.valor1 AND i1.valor2 = cs.valor2 AND i1.valor3 = cs.valor3 AND i1.valor4 = cs.valor4 AND i1.valor5 = cs.valor5) as jun,
-                (SELECT SUM(valor14) FROM indicador1 i1 WHERE i1.valor1 = cs.valor1 AND i1.valor2 = cs.valor2 AND i1.valor3 = cs.valor3 AND i1.valor4 = cs.valor4 AND i1.valor5 = cs.valor5) as jul,
-                (SELECT SUM(valor15) FROM indicador1 i1 WHERE i1.valor1 = cs.valor1 AND i1.valor2 = cs.valor2 AND i1.valor3 = cs.valor3 AND i1.valor4 = cs.valor4 AND i1.valor5 = cs.valor5) as aug,
-                (SELECT SUM(valor16) FROM indicador1 i1 WHERE i1.valor1 = cs.valor1 AND i1.valor2 = cs.valor2 AND i1.valor3 = cs.valor3 AND i1.valor4 = cs.valor4 AND i1.valor5 = cs.valor5) as sep,
-                (SELECT SUM(valor17) FROM indicador1 i1 WHERE i1.valor1 = cs.valor1 AND i1.valor2 = cs.valor2 AND i1.valor3 = cs.valor3 AND i1.valor4 = cs.valor4 AND i1.valor5 = cs.valor5) as oct,
-                (SELECT SUM(valor18) FROM indicador1 i1 WHERE i1.valor1 = cs.valor1 AND i1.valor2 = cs.valor2 AND i1.valor3 = cs.valor3 AND i1.valor4 = cs.valor4 AND i1.valor5 = cs.valor5) as nov,
-                (SELECT SUM(valor19) FROM indicador1 i1 WHERE i1.valor1 = cs.valor1 AND i1.valor2 = cs.valor2 AND i1.valor3 = cs.valor3 AND i1.valor4 = cs.valor4 AND i1.valor5 = cs.valor5) as dez,
+                {$sum}
                 (SELECT SUM(valor20) FROM indicador1 i1 WHERE i1.valor1 = cs.valor1 AND i1.valor2 = cs.valor2 AND i1.valor3 = cs.valor3 AND i1.valor4 = cs.valor4 AND i1.valor5 = cs.valor5) as total
             FROM
             (
@@ -64,14 +76,13 @@ class RfBiMagic
                     valor3, 
                     valor4,
                     valor5
-                FROM agrocontar.indicador1
+                FROM indicador1
                 GROUP BY valor1, valor2, valor3, valor4, valor5
             ) AS cs
         ) as sel 
         WHERE sel.ano = {$ano} 
-            AND sel.empresa = {$empresa_id}
+        AND sel.empresa = {$empresa->nomeResumo}
         ORDER BY sel.categoria, sel.codigo ASC, sel.descricao ASC;
-             
                 
 SQL;
         

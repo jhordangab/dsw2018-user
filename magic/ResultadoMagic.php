@@ -33,9 +33,9 @@ class ResultadoMagic
                 $data = DreBiMagic::get($model);
                 break;
             
-            case ResultadoForm::RESULTADO_LALUR:
-                $data = LalurBiMagic::get($model);
-                break;
+//            case ResultadoForm::RESULTADO_LALUR:
+//                $data = LalurBiMagic::get($model);
+//                break;
             
             case ResultadoForm::RESULTADO_OUTRAS_DESPESAS:
                 $data = OutraDespesaBiMagic::get($model);
