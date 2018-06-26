@@ -7,8 +7,8 @@ use yii\web\Controller;
 use yii\filters\AccessControl;
 use app\models\AdminEmpresa;
 use app\magic\IndicadorBiMagic;
-use app\models\Indicador;
 use app\models\ResultadoIndicador;
+use app\models\forms\IndicadorForm;
 
 class IndicadorController extends Controller
 {
@@ -26,7 +26,7 @@ class IndicadorController extends Controller
                     [
                         'actions' => 
                         [
-                            'index', 'view', 'configurar'
+                            'index', 'get-data', 'configurar'
                         ],
                         'allow' => true,
                         'roles' => ['@'],
@@ -42,32 +42,36 @@ class IndicadorController extends Controller
 
     public function actionIndex()
     {
+        $model = new IndicadorForm();
+//        default values
+        $model->ano = (int) date("Y");
+        $model->meses = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+        
         $empresas = AdminEmpresa::find()->andWhere('id not in (1, 2)')->orderBy('nomeResumo ASC')->all();
-        $indicador = Indicador::findOne(1);
-        return $this->render('index', compact('empresas', 'indicador'));
+        
+        return $this->render('index', compact('model', 'empresas'));
     }
     
-    public function actionView($empresa_id, $ano)
+    public function actionGetData()
     {
-        $empresa = AdminEmpresa::findOne($empresa_id);
-        $dados = IndicadorBiMagic::getDados($empresa->nomeResumo, $ano);
-        $dre = IndicadorBiMagic::getDre($empresa->nomeResumo, $ano);
-        $indicador = Indicador::findOne(1);
-        $configuracao = ResultadoIndicador::find()->andWhere([
-            'empresa_id' => $empresa_id,
-            'ano' => $ano,
-            'is_ativo' => 1,
-            'is_excluido' => 0
-        ])->one();
+        $this->layout = FALSE;
+        $model = new IndicadorForm();
         
-        return $this->render('view', [
-            'empresa' => $empresa,
-            'ano' => $ano,
-            'dados' => $dados,
-            'dre' => $dre,
-            'indicador' => $indicador,
-            'configuracao' => $configuracao
-        ]);
+        if ($model->load(Yii::$app->request->post()))
+        {
+            $dados = IndicadorBiMagic::getDados($model);
+            $dre = IndicadorBiMagic::getDre($model);
+            $configuracao = ResultadoIndicador::find()->andWhere([
+                'empresa_id' => $model->empresa_id,
+                'ano' => $model->ano,
+                'is_ativo' => 1,
+                'is_excluido' => 0
+            ])->one();
+
+            return $this->renderAjax('_partials/_data', compact('model', 'dados', 'dre', 'configuracao'));
+        }
+        
+        return '';
     }
     
     public function actionConfigurar($empresa_id, $ano)

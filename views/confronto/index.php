@@ -116,139 +116,135 @@ $this->registerJs($js);
             'type' => ActiveForm::TYPE_VERTICAL,
         ]); ?>
 
-            <div class="col-md-12">
+            <div class="box box-success" style="padding: 0px;">
 
-                <div class="box box-success" style="padding: 0px;">
+                <div class="box-header with-border">
 
-                    <div class="box-header with-border">
-                        
-                        <h3 class="box-title"><i class="fa fa-search"></i> Filtros</h3>
+                    <h3 class="box-title"><i class="fa fa-search"></i> Filtros</h3>
 
-                        <div class="box-tools pull-right">
-                            
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                        
-                        </div>
-                        
+                    <div class="box-tools pull-right">
+
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+
                     </div>
-                    
-                    <div class="box-body">
 
-                        <ul class="list-group list-group-unbordered">
+                </div>
 
-                            <li class="list-group-item" style="border: none;">
+                <div class="box-body">
 
-                                <div class="col-md-12">
-                                    
-                                    <div class="col-md-2" style="padding-left: 0px;">Empresa:</div>
-                                        
-                                    <div class="col-md-2">
-                                    
-                                        <?= Form::widget(
-                                        [
-                                            'model' => $model,
-                                            'form' => $form,
-                                            'columns' => 1,
-                                            'attributes' =>
-                                            [
-                                                'empresa_id' => 
-                                                [
-                                                    'label' => FALSE,
-                                                    'type' => Form::INPUT_DROPDOWN_LIST,
-                                                    'items' => ArrayHelper::map($empresas, 'id', 'nomeResumo'),
-                                                    'options' => 
-                                                    [
-                                                        'prompt' => '',
-                                                    ],
-                                                ],
-                                            ],
-                                        ]); ?>
-                                        
-                                    </div>
-                                    
-                                </div>
-                                
-                                <div class="col-md-12">
-                                    
-                                    <?= Form::widget(
-                                    [
-                                        'model' => $model,
-                                        'form' => $form,
-                                        'columns' => 12,
-                                        'attributes' =>
-                                        [
-                                            'ano_x' => 
-                                            [
-                                                'label' => FALSE,
-                                                'type' => Form::INPUT_DROPDOWN_LIST,
-                                                'items' => $anos_x,
-                                                'options' => 
-                                                [
-                                                    'prompt' => 'Ano Principal:',
-                                                ],
-                                                'columnOptions' => ['colspan' => 2]
-                                            ],
-                                            'meses_x' => 
-                                            [
-                                                'label' => FALSE,
-                                                'type' => Form::INPUT_CHECKBOX_LIST,
-                                                'items' => $meses,
-                                                'options' => 
-                                                [
-                                                    'inline' => TRUE,
-                                                    'prompt' => ''
-                                                ],
-                                                'columnOptions' => ['colspan' => 10]
-                                            ],
-                                        ],
-                                    ]); ?>
+                    <ul class="list-group list-group-unbordered">
+
+                        <li class="list-group-item" style="border: none;">
+
+                            <div class="col-md-12">
+
+                                <div class="col-md-2" style="padding-left: 0px;">Empresa:</div>
+
+                                <div class="col-md-2">
 
                                     <?= Form::widget(
                                     [
                                         'model' => $model,
                                         'form' => $form,
-                                        'columns' => 12,
+                                        'columns' => 1,
                                         'attributes' =>
                                         [
-                                            'ano_y' => 
+                                            'empresa_id' => 
                                             [
                                                 'label' => FALSE,
                                                 'type' => Form::INPUT_DROPDOWN_LIST,
-                                                'items' => $anos_y,
+                                                'items' => ArrayHelper::map($empresas, 'id', 'nomeResumo'),
                                                 'options' => 
                                                 [
-                                                    'prompt' => 'Ano de Confronto:',
+                                                    'prompt' => '',
                                                 ],
-                                                'columnOptions' => ['colspan' => 2]
-                                            ],
-                                            'meses_y' => 
-                                            [
-                                                'label' => FALSE,
-                                                'type' => Form::INPUT_CHECKBOX_LIST,
-                                                'items' => $meses,
-                                                'options' => 
-                                                [
-                                                    'inline' => TRUE,
-                                                    'prompt' => ''
-                                                ],
-                                                'columnOptions' => ['colspan' => 10]
                                             ],
                                         ],
                                     ]); ?>
 
-                                    <?= Html::button('Pesquisar', 
-                                    [
-                                        'id' => 'btn-confronto',
-                                        'class' => 'btn btn-success pull-right'
-                                    ]); ?>
-                                    
                                 </div>
 
-                            </li>
+                            </div>
 
-                        </ul>
+                            <div class="col-md-12">
 
-                    </div>
+                                <?= Form::widget(
+                                [
+                                    'model' => $model,
+                                    'form' => $form,
+                                    'columns' => 12,
+                                    'attributes' =>
+                                    [
+                                        'ano_x' => 
+                                        [
+                                            'label' => FALSE,
+                                            'type' => Form::INPUT_DROPDOWN_LIST,
+                                            'items' => $anos_x,
+                                            'options' => 
+                                            [
+                                                'prompt' => 'Ano Principal:',
+                                            ],
+                                            'columnOptions' => ['colspan' => 2]
+                                        ],
+                                        'meses_x' => 
+                                        [
+                                            'label' => FALSE,
+                                            'type' => Form::INPUT_CHECKBOX_LIST,
+                                            'items' => $meses,
+                                            'options' => 
+                                            [
+                                                'inline' => TRUE,
+                                                'prompt' => ''
+                                            ],
+                                            'columnOptions' => ['colspan' => 10]
+                                        ],
+                                    ],
+                                ]); ?>
+
+                                <?= Form::widget(
+                                [
+                                    'model' => $model,
+                                    'form' => $form,
+                                    'columns' => 12,
+                                    'attributes' =>
+                                    [
+                                        'ano_y' => 
+                                        [
+                                            'label' => FALSE,
+                                            'type' => Form::INPUT_DROPDOWN_LIST,
+                                            'items' => $anos_y,
+                                            'options' => 
+                                            [
+                                                'prompt' => 'Ano de Confronto:',
+                                            ],
+                                            'columnOptions' => ['colspan' => 2]
+                                        ],
+                                        'meses_y' => 
+                                        [
+                                            'label' => FALSE,
+                                            'type' => Form::INPUT_CHECKBOX_LIST,
+                                            'items' => $meses,
+                                            'options' => 
+                                            [
+                                                'inline' => TRUE,
+                                                'prompt' => ''
+                                            ],
+                                            'columnOptions' => ['colspan' => 10]
+                                        ],
+                                    ],
+                                ]); ?>
+
+                                <?= Html::button('Pesquisar', 
+                                [
+                                    'id' => 'btn-confronto',
+                                    'class' => 'btn btn-success pull-right'
+                                ]); ?>
+
+                            </div>
+
+                        </li>
+
+                    </ul>
 
                 </div>
 

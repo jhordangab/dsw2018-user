@@ -1,60 +1,227 @@
 <?php
 
-use yii\helpers\Url;
+use kartik\form\ActiveForm;
+use kartik\builder\Form;
+use kartik\helpers\Html;
+use yii\helpers\ArrayHelper;
 
 $this->title = 'Indicadores';
 $this->params['breadcrumbs'][] = $this->title;
 
-$css = <<<CSS
-        
-    .bg-card-empresas
-    {
-        background-color: #237486 !important;
-    }    
-        
-CSS;
+$meses = 
+[
+    1 => 'Jan.',
+    2 => 'Fev.',
+    3 => 'Mar.',
+    4 => 'Abr.',
+    5 => 'Mai.',
+    6 => 'Jun.',
+    7 => 'Jul.',
+    8 => 'Ago.',
+    9 => 'Set.',
+    10 => 'Out.',
+    11 => 'Nov.',
+    12 => 'Dez.'
+];
 
-$this->registerCss($css);
+$anos = [];
+
+$ano_atual = (int) date('Y');
+for($i = 2016; $i <= $ano_atual; $i++)
+{
+    $anos[$i] = "{$i}";
+}
+
+$js = <<<JS
+        
+    $('input[type="checkbox"]').iCheck(
+    {
+        checkboxClass: 'icheckbox_flat-green',
+        radioClass   : 'iradio_flat-green'
+    })
+        
+    $('#btn-indicador').click(function () 
+    {
+        _error = false;
+        _message = "Os seguintes campos obrigatórios estão vazios: \\n\\n";
+        
+        if($('#indicadorform-empresa_id').val() == '')
+        {
+            _error = true;
+            _message += " - Empresa \\n";
+        }
+        
+        if($('#indicadorform-ano').val() == '')
+        {
+            _error = true;
+            _message += " - Ano \\n";
+        }
+        
+        if(_error)
+        {
+            swal({
+                title: "Erro",
+                text: _message,
+                icon: "error",
+                dangerMode: true,
+            });
+        }
+        else
+        {
+            jQuery.ajax({
+                url: '/indicador/get-data',
+                data: $('#form-indicador').serialize(),
+                type: 'POST',
+                success: function (data) 
+                {
+                    $('#render-result').html(data);
+                },
+            });
+        }
+    });
+            
+    $(document).on(
+    {
+        ajaxStart: function() { $('.div-loading').addClass("loading");},
+        ajaxStop: function() { setTimeout(function() { $('.div-loading').removeClass("loading");}, 300);}    
+    });
+        
+JS;
+
+$this->registerJs($js);
 
 ?>
 
-<h2 class="page-header">
-    <i class="fa fa-calculator"></i> <?= $this->title ?>
-    <small class="pull-right">Última Atualização: <?= ($indicador) ? Yii::$app->formatter->asDate($indicador->dthr_atualizacao, 'd/M/Y H:mm') : '' ?> </small>
-</h2>
-
 <div class="row">
+
+    <div class="col-lg-12">
         
-    <?php foreach($empresas as $empresa) : ?>
-        
-        <div class="col-lg-3 col-xs-6">
-        
-            <div class="small-box bg-green bg-card-empresas">
+        <?php $form = ActiveForm::begin([
+            'id' => 'form-indicador',
+            'type' => ActiveForm::TYPE_VERTICAL,
+        ]); ?>
 
-                <div class="inner">
+                <div class="box box-success" style="padding: 0px;">
 
-                    <h3><?= $empresa->nomeResumo; ?></h3>
+                    <div class="box-header with-border">
+                        
+                        <h3 class="box-title"><i class="fa fa-search"></i> Filtros</h3>
 
-                    <p><?= $empresa->razaoSocial; ?></p>
-
-                </div>
-                
-                <div class="icon">
-
-                    <i class="fa fa-calculator"></i>
-
-                </div>
-                
-                <?php foreach($empresa->getAnos() as $ano): ?>
-
-                    <a href="<?= Url::toRoute(['view', 'empresa_id' => $empresa->id, 'ano' => $ano['ano']]); ?>" class="small-box-footer"><?= $ano['ano'] ?> <i class="fa fa-arrow-circle-right"></i></a>
-                
-                <?php endforeach; ?>
+                        <div class="box-tools pull-right">
+                            
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        
+                        </div>
+                        
+                    </div>
                     
-            </div>
+                    <div class="box-body">
 
-        </div>
-            
-    <?php endforeach; ?>
-    
+                        <div class="col-md-3">
+                            
+                            <ul class="list-group list-group-unbordered">
+
+                                <li class="list-group-item" style="padding-bottom: 25px; border: none;">
+
+                                    Empresa:
+                                    
+                                    <a class="pull-right">
+
+                                        <?= Form::widget(
+                                        [
+                                            'model' => $model,
+                                            'form' => $form,
+                                            'columns' => 1,
+                                            'attributes' =>
+                                            [
+                                                'empresa_id' => 
+                                                [
+                                                    'label' => FALSE,
+                                                    'type' => Form::INPUT_DROPDOWN_LIST,
+                                                    'items' => ArrayHelper::map($empresas, 'id', 'nomeResumo'),
+                                                    'options' =>
+                                                    [
+                                                        'prompt' => ''
+                                                    ]
+                                                ],
+                                            ],
+                                        ]); ?>
+
+                                    </a>
+
+                                </li>
+
+                            </ul>
+                            
+                        </div>
+                        
+                        <div class="col-md-9">
+                            
+                            <ul class="list-group list-group-unbordered" style="margin-bottom: 0px;">
+
+                                <li class="list-group-item" style="border: none;">
+
+                                    <?= Form::widget(
+                                    [
+                                        'model' => $model,
+                                        'form' => $form,
+                                        'columns' => 12,
+                                        'attributes' =>
+                                        [
+                                            'ano' => 
+                                            [
+                                                'label' => FALSE,
+                                                'type' => Form::INPUT_DROPDOWN_LIST,
+                                                'items' => $anos,
+                                                'options' => 
+                                                [
+                                                    'prompt' => 'Ano:',
+                                                    'style' => 'margin-left: 20px;'
+                                                ],
+                                                'columnOptions' => ['colspan' => 2]
+                                            ],
+                                            'meses' => 
+                                            [
+                                                'label' => FALSE,
+                                                'type' => Form::INPUT_CHECKBOX_LIST,
+                                                'items' => $meses,
+                                                'options' => 
+                                                [
+                                                    'inline' => TRUE,
+                                                    'prompt' => ''
+                                                ],
+                                                'columnOptions' => ['colspan' => 12]
+                                            ],
+                                        ],
+                                    ]); ?>
+
+                                    <?= Html::button('Pesquisar', 
+                                    [
+                                        'id' => 'btn-indicador',
+                                        'class' => 'btn btn-success pull-right'
+                                    ]); ?>
+
+                                </li>
+
+                            </ul>
+                            
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        
+        <?php ActiveForm::end(); ?>
+                 
+    </div>
+
+    <div id="render-result" style="margin: 30px;">
+        
+        
+        
+    </div>
+
 </div>
+    
