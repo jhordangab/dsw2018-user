@@ -156,7 +156,7 @@ $this->registerCss($css);
 
 ?>
 
-<div class="balancete-view box">
+<div class="balancete-view box box-success">
 
     <p>
         <?= Html::a('Voltar', ['index'], ['class' => 'btn btn-default']) ?>

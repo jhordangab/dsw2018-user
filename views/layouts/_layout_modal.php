@@ -9,17 +9,17 @@ $this->beginPage();
 
 $css = <<<CSS
      
-    .btn.btn-success 
+    .btn.btn-success, .btn-success:active:hover, .btn-success.active:focus
     {
-        color: #fff;
-        background-color: #227584;
-        border-color: #227584;
+        background-color: #26808f;
+        border-color: #26808f;
     }
         
     .alert-success 
     {
         color: #FFF;
         background-color: #247388;
+        border-color: white !important;
     }
         
     .div-loading

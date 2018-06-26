@@ -79,7 +79,7 @@ $this->registerJs($js);
 
 <?= $this->render('_wf_iframe_balancete') ?>
 
-<div class="balancete-view box">
+<div class="balancete-view box box-success">
 
     <p>
         

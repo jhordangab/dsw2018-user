@@ -4,22 +4,20 @@ namespace app\models;
 
 use Yii;
 
-class CategoriaPadrao extends \yii\db\ActiveRecord
+class Bandeira extends \yii\db\ActiveRecord
 {
-    public $desc_categoria_pai;
-    
     public static function tableName()
     {
-        return 'categoria_padrao';
+        return 'bandeira';
     }
 
     public function rules()
     {
         return [
-            [['codigo_pai', 'codigo', 'is_service', 'is_ativo', 'is_excluido', 'created_by', 'updated_by'], 'integer'],
-            [['codigo', 'desc_codigo', 'descricao'], 'required'],
-            [['created_at', 'updated_at', 'desc_categoria_pai'], 'safe'],
-            [['codigo_red', 'desc_codigo', 'descricao'], 'string', 'max' => 255],
+            [['nome', 'referencia'], 'required'],
+            [['created_at', 'updated_at', 'is_ativo', 'is_excluido'], 'safe'],
+            [['created_by', 'updated_by'], 'integer'],
+            [['nome', 'referencia'], 'string', 'max' => 255],
         ];
     }
 
@@ -27,19 +25,14 @@ class CategoriaPadrao extends \yii\db\ActiveRecord
     {
         return 
         [
-            'codigo_pai' => 'Categoria Pai',
-            'codigo' => 'Código',
-            'codigo_red' => 'Código Red',
-            'desc_codigo' => 'Descrição do Código',
-            'descricao' => 'Plano de conta',
-            'is_service' => 'Serviço',
+            'nome' => 'Nome',
+            'referencia' => 'Referência',
             'is_ativo' => 'Ativo',
             'is_excluido' => 'Excluído',
             'created_at' => 'Dt. de Cadastro',
             'updated_at' => 'Dt. de Alteração',
             'created_by' => 'Usuário de Cadastro',
             'updated_by' => 'Usuário de Alteração',
-            'desc_categoria_pai' => 'Categoria Pai'
         ];
     }
 
@@ -61,8 +54,8 @@ class CategoriaPadrao extends \yii\db\ActiveRecord
         ];
     }
     
-    public static function find()
+    public function getEmpresas()
     {
-        return new \app\models\queries\CategoriaPadraoQuery(get_called_class());
+        return $this->hasMany(EmpresaDado::className(), ['bandeira_id' => 'id']);
     }
 }

@@ -50,7 +50,7 @@ for($i = 2016; $i < 2022; $i++)
 
 <?= $this->render('_wf_iframe_importacao') ?>
 
-<div class="balancete-index box">
+<div class="balancete-index box box-success">
     
     <p>
         

@@ -8,7 +8,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 
-class CategoriaController extends Controller
+class PlanoPadraoController extends Controller
 {
     public function behaviors()
     {
@@ -63,7 +63,7 @@ class CategoriaController extends Controller
                 $model->is_service = TRUE;
                 $model->save(FALSE, ['is_service']);
             }
-            \Yii::$app->getSession()->setFlash('success','A categoria foi cadastrada com sucesso.');
+            \Yii::$app->getSession()->setFlash('success','Plano de contas padrão cadastrado com sucesso.');
             $this->refresh();
         }
         else 
@@ -85,7 +85,7 @@ class CategoriaController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) 
         {
-            \Yii::$app->getSession()->setFlash('success','A categoria foi alterada com sucesso.');
+            \Yii::$app->getSession()->setFlash('success','Plano de contas padrão alterado com sucesso.');
             $this->refresh();
         }
         else 

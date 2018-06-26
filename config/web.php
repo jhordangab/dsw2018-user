@@ -10,6 +10,7 @@ setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 
 $config = [
     'id' => 'agrocontar',
+    'name' => 'Agrocontar',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'language' => 'pt-BR',

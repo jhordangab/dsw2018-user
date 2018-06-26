@@ -51,7 +51,7 @@ for($i = 2016; $i < 2022; $i++)
 
 ?>
 
-<div class="log-index box">
+<div class="log-index box box-success">
     
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

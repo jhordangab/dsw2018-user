@@ -50,11 +50,10 @@ $css = <<<CSS
         }
     }
         
-    .btn.btn-success 
+    .btn.btn-success, .btn-success:active:hover, .btn-success.active:focus
     {
-        color: #fff;
-        background-color: #227584;
-        border-color: #227584;
+        background-color: #26808f;
+        border-color: #26808f;
     }
         
     .modal-header 
@@ -89,6 +88,7 @@ $css = <<<CSS
     {
         color: #FFF;
         background-color: #247388;
+        border-color: white !important;
     }
         
     .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus 
@@ -148,6 +148,17 @@ $css = <<<CSS
     {
         background-color: #247388;
     }
+        
+    .sidebar-menu .active > .treeview-menu 
+    {
+        background-color: #26808f52;
+    }
+        
+    .box.box-success
+    {
+        border-top-color: #26808f;
+    }
+
 CSS;
 
 $this->registerCss($css);
@@ -166,7 +177,8 @@ if (Yii::$app->controller->action->id === 'login') {
     }
 
     dmstr\web\AdminLteAsset::register($this);
-
+    \app\assets\ICheckAsset::register($this);
+    
     $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/almasaeed2010-AdminLTE-b3acb63/dist');
     ?>
     <?php $this->beginPage() ?>

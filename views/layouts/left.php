@@ -18,11 +18,11 @@
                             [
                                 ['label' => 'Empresa', 'icon' => 'building', 'url' => ['/empresa']],
                                 ['label' => 'Bandeira', 'icon' => 'flag', 'url' => ['/bandeira']],
-                                ['label' => 'Faturamento', 'icon' => 'money', 'url' => ['/faturamento']],
+                                ['label' => 'Faturamento', 'icon' => 'money', 'url' => ['/faixa-faturamento']],
                                 ['label' => 'Região', 'icon' => 'map', 'url' => ['/regiao']],
                                 ['label' => 'Segmento', 'icon' => 'barcode', 'url' => ['/segmento']],
                                 ['label' => 'Planos Padrões', 'icon' => 'tags', 'url' => ['/plano-padrao']],
-                                ['label' => 'DE - PARA', 'icon' => 'retweet', 'url' => ['/de-para']],
+//                                ['label' => 'DE - PARA', 'icon' => 'retweet', 'url' => ['/de-para']],
                             ]
                         ],
                         ['label' => 'Logs', 'icon' => 'eye', 'url' => ['/log']],

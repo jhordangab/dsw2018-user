@@ -1,3 +1,4 @@
+
 <?php
 
 use kartik\form\ActiveForm;
@@ -7,7 +8,7 @@ use kartik\money\MaskMoney;
 
 ?>
 
-<div class="col-lg-12">
+<div class="row" style="padding: 10px;">
 
     <?php $form = ActiveForm::begin([
         'type' => ActiveForm::TYPE_VERTICAL,
@@ -20,18 +21,30 @@ use kartik\money\MaskMoney;
         'columns' => 12,
         'attributes' =>
         [
-            'categoria_nome' => 
+            'nome' => 
             [
-                'type' => Form::INPUT_HIDDEN_STATIC,
-                'columnOptions' => ['colspan' => 6],
+                'type' => Form::INPUT_TEXT,
+                'columnOptions' => ['colspan' => 6]
             ],
-            'valor' => 
+            'faturamento_inicial' => 
             [
                 'type' => Form::INPUT_WIDGET,
                 'widgetClass' => MaskMoney::className(),
-                'columnOptions' => ['colspan' => 6],
+                'columnOptions' => ['colspan' => 3],
+            ],
+            'faturamento_final' => 
+            [
+                'type' => Form::INPUT_WIDGET,
+                'widgetClass' => MaskMoney::className(),
+                'columnOptions' => ['colspan' => 3],
             ]
         ],
+    ]); ?>
+    
+    <?= Html::a('Voltar', ['index'], 
+    [
+        'class' => 'btn btn-default pull-right',
+        'style' => 'margin-left: 5px;'
     ]); ?>
 
     <?= Html::submitButton('Salvar', 
@@ -42,4 +55,3 @@ use kartik\money\MaskMoney;
     <?php ActiveForm::end(); ?>
 
 </div>
-    

@@ -6,6 +6,16 @@ use Yii;
 
 class AdminEmpresa extends \yii\db\ActiveRecord
 {
+    public $regiao;
+    
+    public $unidade;
+    
+    public $faixa_faturamento;
+    
+    public $bandeira;
+    
+    public $segmento;
+    
     public static function tableName()
     {
         return 'admin_empresa';
@@ -43,7 +53,8 @@ class AdminEmpresa extends \yii\db\ActiveRecord
 
     public function attributeLabels()
     {
-        return [
+        return 
+        [
             'id' => 'ID',
             'alteradoPor' => 'Alterado Por',
             'cadastradoPor' => 'Cadastrado Por',
@@ -102,7 +113,17 @@ class AdminEmpresa extends \yii\db\ActiveRecord
             'latitude' => 'Latitude',
             'longitude' => 'Longitude',
             'banco' => 'Banco',
+            'regiao' => 'Região',
+            'unidade' => 'Unidade',
+            'faixa_faturamento' => 'Faixa de Faturamento',
+            'bandeira' => 'Bandeira',
+            'segmento' => 'Segmento'
         ];
+    }
+    
+    public function getDado()
+    {
+        return $this->hasOne(EmpresaDado::className(), ['empresa_id' => 'id']);
     }
     
     public function getAnos()

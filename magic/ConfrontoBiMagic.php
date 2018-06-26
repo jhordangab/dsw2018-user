@@ -3,27 +3,61 @@
 namespace app\magic;
 
 use Yii;
+use app\models\AdminEmpresa;
 
 class ConfrontoBiMagic
 {
-    public static function get($empresa_nome, $ano)
+    public static function get($model)
     {
-        $ano_anterior = ($ano - 1);
+        $empresa = AdminEmpresa::findOne($model->empresa_id);
+        $empresa_nome = $empresa->nomeResumo;
         
+//        ----
+        
+        $ano_x = $model->ano_x;
+        $meses_x = implode(',', $model->meses_x);
+        $sum_x = "";
+        
+        foreach($model->meses_x as $index => $mx)
+        {
+            $column = $mx + 4;
+            $sum_x .= ($index > 0) ? " + " : "";
+            $sum_x .= " SUM(valor{$column}) ";
+        }
+        
+        $sum_x .= ' as valor';
+        
+//        ----
+        
+        $ano_y = $model->ano_y;
+        $meses_y = implode(',', $model->meses_x);
+        $sum_y = "";
+        
+        foreach($model->meses_y as $index => $my)
+        {
+            $column = $my + 4;
+            $sum_y .= ($index > 0) ? " + " : "";
+            $sum_y .= " SUM(valor{$column}) ";
+        }
+        
+        $sum_y .= ' as valor';
+
+//        ----
+
         $sql = <<<SQL
          
         SELECT 
             sel.categoria,
             sel.empresa,
             sel.descricao,
-            CASE WHEN sel.ano = {$ano} 
+            CASE WHEN sel.ano = {$ano_x} 
                 THEN sel.valor 
                 ELSE 0
-            END as ano_atual,
-            CASE WHEN sel.ano = {$ano_anterior} 
+            END as ano_x,
+            CASE WHEN sel.ano = {$ano_y} 
                 THEN sel.valor 
                 ELSE 0
-            END as ano_anterior
+            END as ano_y
         FROM 
         (
             	SELECT 
@@ -31,10 +65,9 @@ class ConfrontoBiMagic
                         valor1 as empresa, 
                         valor2 as ano, 
                         valor4 as descricao,
-                        SUM(valor5) + SUM(valor6) + SUM(valor7) + SUM(valor8) + SUM(valor9) + SUM(valor10) +
-                        SUM(valor11) + SUM(valor12)  + SUM(valor13)  + SUM(valor14) + SUM(valor15) + SUM(valor16) as valor
+                        {$sum_x}
                 FROM indicador6
-                WHERE valor3 = 'RECEITAS OPERACIONAIS' AND valor1 = {$empresa_nome} and valor2 = {$ano}
+                WHERE valor3 = 'RECEITAS OPERACIONAIS' AND valor1 = {$empresa_nome} and valor2 = {$ano_x}
                 GROUP BY valor1, valor2, valor3, valor4
 
             UNION
@@ -44,10 +77,9 @@ class ConfrontoBiMagic
                         valor1 as empresa, 
                         valor2 as ano, 
                         valor4 as descricao,
-                        SUM(valor5) + SUM(valor6) + SUM(valor7) + SUM(valor8) + SUM(valor9) + SUM(valor10) +
-                        SUM(valor11) + SUM(valor12)  + SUM(valor13)  + SUM(valor14) + SUM(valor15) + SUM(valor16) as valor
+                        {$sum_y}
                 FROM indicador6
-                WHERE valor3 = 'RECEITAS OPERACIONAIS' AND valor1 = {$empresa_nome} and valor2 = {$ano_anterior}
+                WHERE valor3 = 'RECEITAS OPERACIONAIS' AND valor1 = {$empresa_nome} and valor2 = {$ano_y}
                 GROUP BY valor1, valor2,  valor3, valor4
 
             UNION ALL
@@ -57,10 +89,9 @@ class ConfrontoBiMagic
                         valor1 as empresa, 
                         valor2 as ano, 
                         valor4 as descricao,
-                        SUM(valor5) + SUM(valor6) + SUM(valor7) + SUM(valor8) + SUM(valor9) + SUM(valor10) +
-                        SUM(valor11) + SUM(valor12)  + SUM(valor13)  + SUM(valor14) + SUM(valor15) + SUM(valor16) as valor
+                        {$sum_x}
                 FROM indicador6
-                WHERE valor3 = 'CMV' AND valor1 = {$empresa_nome} and valor2 = {$ano}
+                WHERE valor3 = 'CMV' AND valor1 = {$empresa_nome} and valor2 = {$ano_x}
                 GROUP BY valor1, valor2, valor3, valor4
 
             UNION
@@ -70,10 +101,9 @@ class ConfrontoBiMagic
                         valor1 as empresa, 
                         valor2 as ano, 
                         valor4 as descricao,
-                        SUM(valor5) + SUM(valor6) + SUM(valor7) + SUM(valor8) + SUM(valor9) + SUM(valor10) +
-                        SUM(valor11) + SUM(valor12)  + SUM(valor13)  + SUM(valor14) + SUM(valor15) + SUM(valor16) as valor
+                        {$sum_y}
                 FROM indicador6
-                WHERE valor3 = 'CMV' AND valor1 = {$empresa_nome} and valor2 = {$ano_anterior}
+                WHERE valor3 = 'CMV' AND valor1 = {$empresa_nome} and valor2 = {$ano_y}
                 GROUP BY valor1, valor2,  valor3, valor4
 
              UNION ALL
@@ -83,10 +113,9 @@ class ConfrontoBiMagic
                         valor1 as empresa, 
                         valor2 as ano, 
                         valor4 as descricao,
-                        SUM(valor5) + SUM(valor6) + SUM(valor7) + SUM(valor8) + SUM(valor9) + SUM(valor10) +
-                        SUM(valor11) + SUM(valor12)  + SUM(valor13)  + SUM(valor14) + SUM(valor15) + SUM(valor16) as valor
+                        {$sum_x}
                 FROM indicador6
-                WHERE valor3 = 'DESPESAS OPERACIONAIS' AND valor1 = {$empresa_nome} and valor2 = {$ano}
+                WHERE valor3 = 'DESPESAS OPERACIONAIS' AND valor1 = {$empresa_nome} and valor2 = {$ano_x}
                 GROUP BY valor1, valor2, valor3, valor4
 
             UNION
@@ -96,10 +125,9 @@ class ConfrontoBiMagic
                         valor1 as empresa, 
                         valor2 as ano, 
                         valor4 as descricao,
-                        SUM(valor5) + SUM(valor6) + SUM(valor7) + SUM(valor8) + SUM(valor9) + SUM(valor10) +
-                        SUM(valor11) + SUM(valor12)  + SUM(valor13)  + SUM(valor14) + SUM(valor15) + SUM(valor16) as valor
+                        {$sum_y}
                 FROM indicador6
-                WHERE valor3 = 'DESPESAS OPERACIONAIS' AND valor1 = {$empresa_nome} and valor2 = {$ano_anterior}
+                WHERE valor3 = 'DESPESAS OPERACIONAIS' AND valor1 = {$empresa_nome} and valor2 = {$ano_y}
                 GROUP BY valor1, valor2,  valor3, valor4
 
             UNION ALL
@@ -109,10 +137,9 @@ class ConfrontoBiMagic
                         valor1 as empresa, 
                         valor2 as ano, 
                         valor4 as descricao,
-                        SUM(valor5) + SUM(valor6) + SUM(valor7) + SUM(valor8) + SUM(valor9) + SUM(valor10) +
-                        SUM(valor11) + SUM(valor12)  + SUM(valor13)  + SUM(valor14) + SUM(valor15) + SUM(valor16) as valor
+                        {$sum_x}
                 FROM indicador6
-                WHERE valor3 = 'RESULTADO FINANCEIRO' AND valor1 = {$empresa_nome} and valor2 = {$ano}
+                WHERE valor3 = 'RESULTADO FINANCEIRO' AND valor1 = {$empresa_nome} and valor2 = {$ano_x}
                 GROUP BY valor1, valor2, valor3, valor4
 
             UNION
@@ -122,10 +149,9 @@ class ConfrontoBiMagic
                         valor1 as empresa, 
                         valor2 as ano, 
                         valor4 as descricao,
-                        SUM(valor5) + SUM(valor6) + SUM(valor7) + SUM(valor8) + SUM(valor9) + SUM(valor10) +
-                        SUM(valor11) + SUM(valor12)  + SUM(valor13)  + SUM(valor14) + SUM(valor15) + SUM(valor16) as valor
+                        {$sum_y}
                 FROM indicador6
-                WHERE valor3 = 'RESULTADO FINANCEIRO' AND valor1 = {$empresa_nome} and valor2 = {$ano_anterior}
+                WHERE valor3 = 'RESULTADO FINANCEIRO' AND valor1 = {$empresa_nome} and valor2 = {$ano_y}
                 GROUP BY valor1, valor2,  valor3, valor4
 
             UNION ALL
@@ -135,10 +161,9 @@ class ConfrontoBiMagic
                         valor1 as empresa, 
                         valor2 as ano, 
                         valor4 as descricao,
-                        SUM(valor5) + SUM(valor6) + SUM(valor7) + SUM(valor8) + SUM(valor9) + SUM(valor10) +
-                        SUM(valor11) + SUM(valor12)  + SUM(valor13)  + SUM(valor14) + SUM(valor15) + SUM(valor16) as valor
+                        {$sum_x}
                 FROM indicador6
-                WHERE valor3 = 'OUTRAS RECEITAS / DESPESAS' AND valor1 = {$empresa_nome} and valor2 = {$ano}
+                WHERE valor3 = 'OUTRAS RECEITAS / DESPESAS' AND valor1 = {$empresa_nome} and valor2 = {$ano_x}
                 GROUP BY valor1, valor2, valor3, valor4
 
             UNION
@@ -148,10 +173,9 @@ class ConfrontoBiMagic
                         valor1 as empresa, 
                         valor2 as ano, 
                         valor4 as descricao,
-                        SUM(valor5) + SUM(valor6) + SUM(valor7) + SUM(valor8) + SUM(valor9) + SUM(valor10) +
-                        SUM(valor11) + SUM(valor12)  + SUM(valor13)  + SUM(valor14) + SUM(valor15) + SUM(valor16) as valor
+                        {$sum_y}
                 FROM indicador6
-                WHERE valor3 = 'OUTRAS RECEITAS / DESPESAS' AND valor1 = {$empresa_nome} and valor2 = {$ano_anterior}
+                WHERE valor3 = 'OUTRAS RECEITAS / DESPESAS' AND valor1 = {$empresa_nome} and valor2 = {$ano_y}
                 GROUP BY valor1, valor2,  valor3, valor4
 
             UNION ALL
@@ -171,7 +195,8 @@ class ConfrontoBiMagic
                         AND ab.is_ativo = 1
                         AND abv.is_ativo = 1
                         AND ab.empresa_nome = {$empresa_nome}
-                        AND ab.ano = {$ano}
+                        AND ab.ano = {$ano_x}
+                        AND ab.mes in ({$meses_x})
                 GROUP BY ab.empresa_nome, ab.ano
 
                 UNION
@@ -190,8 +215,8 @@ class ConfrontoBiMagic
                 AND ab.is_excluido = 0
                         AND ab.is_ativo = 1
                         AND abv.is_ativo = 1
-                        AND ab.empresa_nome = {$empresa_nome}
-                        AND ab.ano = {$ano_anterior}
+                        AND ab.ano = {$ano_y}
+                        AND ab.mes in ({$meses_y})
                 GROUP BY ab.empresa_nome, ab.ano
 
         ) as sel
@@ -199,28 +224,28 @@ class ConfrontoBiMagic
 SQL;
         $dados = [];
         $results = Yii::$app->db->createCommand($sql)->QueryAll();
-        
+
         foreach($results as $result)
         {
             $dados[$result['categoria']][$result['descricao']]['categoria'] = $result['categoria'];
             $dados[$result['categoria']][$result['descricao']]['empresa'] = $result['empresa'];
             $dados[$result['categoria']][$result['descricao']]['descricao'] = $result['descricao'];
-            if(isset($dados[$result['categoria']][$result['descricao']]['ano_anterior']))
+            if(isset($dados[$result['categoria']][$result['descricao']]['ano_x']))
             {
-                $dados[$result['categoria']][$result['descricao']]['ano_anterior'] += $result['ano_anterior'];
+                $dados[$result['categoria']][$result['descricao']]['ano_x'] += $result['ano_x'];
             }
             else
             {
-                $dados[$result['categoria']][$result['descricao']]['ano_anterior'] = $result['ano_anterior'];
+                $dados[$result['categoria']][$result['descricao']]['ano_x'] = $result['ano_x'];
             }
             
-            if(isset($dados[$result['categoria']][$result['descricao']]['ano_atual']))
+            if(isset($dados[$result['categoria']][$result['descricao']]['ano_y']))
             {
-                $dados[$result['categoria']][$result['descricao']]['ano_atual'] += $result['ano_atual'];
+                $dados[$result['categoria']][$result['descricao']]['ano_y'] += $result['ano_y'];
             }
             else
             {
-                $dados[$result['categoria']][$result['descricao']]['ano_atual'] = $result['ano_atual'];
+                $dados[$result['categoria']][$result['descricao']]['ano_y'] = $result['ano_y'];
             }
         }
         

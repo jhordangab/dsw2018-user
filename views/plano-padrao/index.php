@@ -158,21 +158,21 @@ $js = <<<JS
     $('.i-cadastrar').click(function () 
     {
         var _id = $(this).data('id');
-        var url = '/categoria/create?pai_id=' + _id;
+        var url = '/plano-padrao/create?pai_id=' + _id;
         $('#iframe_modal_balancete').attr('src', url);
         $("[id^='modal_balancete']").modal("show");
         $('.modal-backdrop').removeClass('modal-backdrop');
-        $('#modal_balancete .modal-header h3').text('Cadastrar Categoria');
+        $('#modal_balancete .modal-header h3').text('Cadastrar plano de contas padrão');
     });
         
     $('.i-alterar').click(function () 
     {
         var _id = $(this).data('id');
-        var url = '/categoria/update?id=' + _id;
+        var url = '/plano-padrao/update?id=' + _id;
         $('#iframe_modal_balancete').attr('src', url);
         $("[id^='modal_balancete']").modal("show");
         $('.modal-backdrop').removeClass('modal-backdrop');
-        $('#modal_balancete .modal-header h3').text('Alterar Categoria');
+        $('#modal_balancete .modal-header h3').text('Alterar plano de contas padrão');
     });
         
     $('.i-excluir').click(function () 
@@ -180,8 +180,8 @@ $js = <<<JS
         var _id = $(this).data('id');
         
         swal({
-            title: "Exclusão de Categoria",
-            text: "Deseja excluir a categoria selecionada?",
+            title: "Exclusão de plano de contas padrão",
+            text: "Deseja excluir o plano selecionado?",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -190,7 +190,7 @@ $js = <<<JS
             if (willDelete) 
             {
                 jQuery.ajax({
-                    url: '/categoria/delete?id=' + _id,
+                    url: '/plano-padrao/delete?id=' + _id,
                     success: function (data) 
                     {
                         window.location.reload();
@@ -214,7 +214,7 @@ $this->registerJs($js);
 
 <?= $this->render('_wf_iframe_balancete') ?>
 
-<div class="categoria-padrao-index box">
+<div class="plano-padrao-index box box-success">
 
     <div class="css-treeview">
     
