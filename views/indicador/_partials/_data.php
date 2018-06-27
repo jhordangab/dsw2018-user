@@ -748,7 +748,7 @@ foreach($dados['Passivo'] as $ativo)
                         <tr>
 
                             <th scope="col"></th>
-                            <th scope="col" colspan="2"><?= $dpc['nome'] ?></th>
+                            <th scope="col"><?= $dpc['nome'] ?></th>
                             <th scope="col">R$ <?= number_format($dpc['valor'], 2, ',', '.') ?></th>
                             <th scope="col"><?= ($index == sizeof($dados_passivo_circulante) - 1) ? 'R$' . number_format($passivo_funcionamento, 2, ',', '.') : '' ?></th>
                             <th scope="col"></th>

@@ -3,11 +3,17 @@
 namespace app\magic;
 
 use Yii;
+use app\models\AdminEmpresa;
 
 class LalurBiMagic
 {
-    public static function get($empresa_id, $ano)
+    public static function get($model)
     {
+        $empresa = AdminEmpresa::findOne($model->empresa_id);
+        $empresa_id = $empresa->nomeResumo;
+        
+        $ano = $model->ano;
+        
         $sql = <<<SQL
          
         SELECT * FROM 
