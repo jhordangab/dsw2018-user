@@ -164,6 +164,40 @@ $css = <<<CSS
         margin-left: 0px;
     }
 
+    .icheckbox_flat-green, .iradio_flat-green 
+    {
+        background-image: url(/img/green2.png);
+    }
+        
+    .icheckbox_flat-green.checked
+    {
+        background-position: -29px 0;
+    }
+        
+    .icheckbox_flat-green 
+    {
+        background-position: -8px 0;
+    }
+        
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.5), not all, not all, not all
+    {
+        .icheckbox_flat-green, .iradio_flat-green 
+        {
+            background-image: url(/img/green2@2x.png);
+        }
+        
+        .icheckbox_flat-green.checked 
+        {
+            background-position: -27px 0;
+        }
+        
+        .icheckbox_flat-green 
+        {
+            background-position: -6px 0;
+        }
+    }   
+    
+        
 CSS;
 
 $this->registerCss($css);
