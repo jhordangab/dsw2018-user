@@ -9,15 +9,13 @@ class IndicadorForm extends Model
 {
     public $ano;
     
-    public $meses = [];
-    
     public $empresa_id;
     
     public function rules()
     {
         return 
         [
-            [['ano', 'meses', 'empresa_id'], 'safe'],
+            [['ano', 'empresa_id'], 'safe'],
         ];
     }
 

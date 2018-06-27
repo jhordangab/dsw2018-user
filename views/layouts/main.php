@@ -158,6 +158,11 @@ $css = <<<CSS
     {
         border-top-color: #26808f;
     }
+        
+    .radio-inline + .radio-inline, .checkbox-inline + .checkbox-inline 
+    {
+        margin-left: 0px;
+    }
 
 CSS;
 

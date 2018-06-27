@@ -21,18 +21,18 @@ $this->registerJs($js);
 
 $meses = 
 [
-    1 => 'Janeiro',
-    2 => 'Fevereiro',
-    3 => 'Março',
-    4 => 'Abril',
-    5 => 'Maio',
-    6 => 'Junho',
-    7 => 'Julho',
-    8 => 'Agosto',
-    9 => 'Setembro',
-    10 => 'Outubro',
-    11 => 'Novembro',
-    12 => 'Dezembro'
+    1 => 'Jan.',
+    2 => 'Fev.',
+    3 => 'Mar.',
+    4 => 'Abr.',
+    5 => 'Mai.',
+    6 => 'Jun.',
+    7 => 'Jul.',
+    8 => 'Ago.',
+    9 => 'Set.',
+    10 => 'Out.',
+    11 => 'Nov.',
+    12 => 'Dez.'
 ];
 
 $anos_x = $anos_y = [];
@@ -136,111 +136,100 @@ $this->registerJs($js);
 
                         <li class="list-group-item" style="border: none;">
 
-                            <div class="col-md-12">
-
-                                <div class="col-md-2" style="padding-left: 0px;">Empresa:</div>
-
-                                <div class="col-md-2">
-
-                                    <?= Form::widget(
-                                    [
-                                        'model' => $model,
-                                        'form' => $form,
-                                        'columns' => 1,
-                                        'attributes' =>
-                                        [
-                                            'empresa_id' => 
-                                            [
-                                                'label' => FALSE,
-                                                'type' => Form::INPUT_DROPDOWN_LIST,
-                                                'items' => ArrayHelper::map($empresas, 'id', 'nomeResumo'),
-                                                'options' => 
-                                                [
-                                                    'prompt' => '',
-                                                ],
-                                            ],
-                                        ],
-                                    ]); ?>
-
-                                </div>
-
-                            </div>
-
-                            <div class="col-md-12">
-
-                                <?= Form::widget(
+                            <?= Form::widget(
+                            [
+                                'model' => $model,
+                                'form' => $form,
+                                'columns' => 6,
+                                'attributes' =>
                                 [
-                                    'model' => $model,
-                                    'form' => $form,
-                                    'columns' => 12,
-                                    'attributes' =>
+                                    'empresa_id' => 
                                     [
-                                        'ano_x' => 
+                                        'label' => 'Empresa',
+                                        'type' => Form::INPUT_DROPDOWN_LIST,
+                                        'items' => ArrayHelper::map($empresas, 'id', 'nomeResumo'),
+                                        'options' => 
                                         [
-                                            'label' => FALSE,
-                                            'type' => Form::INPUT_DROPDOWN_LIST,
-                                            'items' => $anos_x,
-                                            'options' => 
-                                            [
-                                                'prompt' => 'Ano Principal:',
-                                            ],
-                                            'columnOptions' => ['colspan' => 2]
+                                            'prompt' => '',
                                         ],
-                                        'meses_x' => 
+                                        'columnOptions' => ['colspan' => 2]
+                                    ]
+                                ],
+                            ]); ?>
+
+                            <?= Form::widget(
+                            [
+                                'model' => $model,
+                                'form' => $form,
+                                'columns' => 12,
+                                'attributes' =>
+                                [
+                                    'ano_x' => 
+                                    [
+                                        'label' => FALSE,
+                                        'type' => Form::INPUT_DROPDOWN_LIST,
+                                        'items' => $anos_x,
+                                        'options' => 
                                         [
-                                            'label' => FALSE,
-                                            'type' => Form::INPUT_CHECKBOX_LIST,
-                                            'items' => $meses,
-                                            'options' => 
-                                            [
-                                                'inline' => TRUE,
-                                                'prompt' => ''
-                                            ],
-                                            'columnOptions' => ['colspan' => 10]
+                                            'prompt' => 'Ano',
                                         ],
+                                        'columnOptions' => ['colspan' => 2]
                                     ],
-                                ]); ?>
-
-                                <?= Form::widget(
-                                [
-                                    'model' => $model,
-                                    'form' => $form,
-                                    'columns' => 12,
-                                    'attributes' =>
+                                    'meses_x' => 
                                     [
-                                        'ano_y' => 
+                                        'label' => FALSE,
+                                        'type' => Form::INPUT_CHECKBOX_LIST,
+                                        'items' => $meses,
+                                        'options' => 
                                         [
-                                            'label' => FALSE,
-                                            'type' => Form::INPUT_DROPDOWN_LIST,
-                                            'items' => $anos_y,
-                                            'options' => 
-                                            [
-                                                'prompt' => 'Ano de Confronto:',
-                                            ],
-                                            'columnOptions' => ['colspan' => 2]
+                                            'inline' => TRUE,
+                                            'prompt' => '',
+                                            'style' => 'padding-top: 10px;'
                                         ],
-                                        'meses_y' => 
-                                        [
-                                            'label' => FALSE,
-                                            'type' => Form::INPUT_CHECKBOX_LIST,
-                                            'items' => $meses,
-                                            'options' => 
-                                            [
-                                                'inline' => TRUE,
-                                                'prompt' => ''
-                                            ],
-                                            'columnOptions' => ['colspan' => 10]
-                                        ],
+                                        'columnOptions' => ['colspan' => 10]
                                     ],
-                                ]); ?>
+                                ],
+                            ]); ?>
 
-                                <?= Html::button('Pesquisar', 
+                            <?= Form::widget(
+                            [
+                                'model' => $model,
+                                'form' => $form,
+                                'columns' => 12,
+                                'attributes' =>
                                 [
-                                    'id' => 'btn-confronto',
-                                    'class' => 'btn btn-success pull-right'
-                                ]); ?>
+                                    'ano_y' => 
+                                    [
+                                        'label' => FALSE,
+                                        'type' => Form::INPUT_DROPDOWN_LIST,
+                                        'items' => $anos_y,
+                                        'options' => 
+                                        [
+                                            'prompt' => 'Ano',
+                                        ],
+                                        'columnOptions' => ['colspan' => 2]
+                                    ],
+                                    'meses_y' => 
+                                    [
+                                        'label' => FALSE,
+                                        'type' => Form::INPUT_CHECKBOX_LIST,
+                                        'items' => $meses,
+                                        'options' => 
+                                        [
+                                            'inline' => TRUE,
+                                            'prompt' => '',
+                                            'style' => 'padding-top: 10px;'
+                                        ],
+                                        'columnOptions' => ['colspan' => 10]
+                                    ],
+                                ],
+                            ]); ?>
 
-                            </div>
+                            <?= Html::button('Pesquisar', 
+                            [
+                                'id' => 'btn-confronto',
+                                'class' => 'btn btn-success pull-right'
+                            ]); ?>
 
                         </li>
 
@@ -251,14 +240,14 @@ $this->registerJs($js);
             </div>
         
         <?php ActiveForm::end(); ?>
-                 
+          
+        <div id="render-result">
+        
+        
+        
+        </div>
+        
     </div>
-
-    <div id="render-result" style="margin: 30px;">
-        
-        
-        
-    </div>
-
+    
 </div>
     

@@ -8,37 +8,26 @@ use yii\helpers\ArrayHelper;
 $this->title = 'Indicadores';
 $this->params['breadcrumbs'][] = $this->title;
 
-$meses = 
-[
-    1 => 'Jan.',
-    2 => 'Fev.',
-    3 => 'Mar.',
-    4 => 'Abr.',
-    5 => 'Mai.',
-    6 => 'Jun.',
-    7 => 'Jul.',
-    8 => 'Ago.',
-    9 => 'Set.',
-    10 => 'Out.',
-    11 => 'Nov.',
-    12 => 'Dez.'
-];
+$js = <<<JS
+        
+    $('input[type="checkbox"]').iCheck({
+        checkboxClass: 'icheckbox_flat-green',
+        radioClass   : 'iradio_flat-green'
+    })
+        
+JS;
+
+$this->registerJs($js);
 
 $anos = [];
-
 $ano_atual = (int) date('Y');
+
 for($i = 2016; $i <= $ano_atual; $i++)
 {
     $anos[$i] = "{$i}";
 }
 
 $js = <<<JS
-        
-    $('input[type="checkbox"]').iCheck(
-    {
-        checkboxClass: 'icheckbox_flat-green',
-        radioClass   : 'iradio_flat-green'
-    })
         
     $('#btn-indicador').click(function () 
     {
@@ -54,7 +43,7 @@ $js = <<<JS
         if($('#indicadorform-ano').val() == '')
         {
             _error = true;
-            _message += " - Ano \\n";
+            _message += " - Ano Principal \\n";
         }
         
         if(_error)
@@ -92,6 +81,8 @@ $this->registerJs($js);
 
 ?>
 
+<?= $this->render('_wf_iframe_indicadores') ?>
+
 <div class="row">
 
     <div class="col-lg-12">
@@ -101,127 +92,81 @@ $this->registerJs($js);
             'type' => ActiveForm::TYPE_VERTICAL,
         ]); ?>
 
-                <div class="box box-success" style="padding: 0px;">
+            <div class="box box-success" style="padding: 0px;">
 
-                    <div class="box-header with-border">
-                        
-                        <h3 class="box-title"><i class="fa fa-search"></i> Filtros</h3>
+                <div class="box-header with-border">
 
-                        <div class="box-tools pull-right">
-                            
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                        
-                        </div>
-                        
+                    <h3 class="box-title"><i class="fa fa-search"></i> Filtros</h3>
+
+                    <div class="box-tools pull-right">
+
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+
                     </div>
-                    
-                    <div class="box-body">
 
-                        <div class="col-md-3">
-                            
-                            <ul class="list-group list-group-unbordered">
+                </div>
 
-                                <li class="list-group-item" style="padding-bottom: 25px; border: none;">
+                <div class="box-body">
 
-                                    Empresa:
-                                    
-                                    <a class="pull-right">
+                    <ul class="list-group list-group-unbordered">
 
-                                        <?= Form::widget(
-                                        [
-                                            'model' => $model,
-                                            'form' => $form,
-                                            'columns' => 1,
-                                            'attributes' =>
-                                            [
-                                                'empresa_id' => 
-                                                [
-                                                    'label' => FALSE,
-                                                    'type' => Form::INPUT_DROPDOWN_LIST,
-                                                    'items' => ArrayHelper::map($empresas, 'id', 'nomeResumo'),
-                                                    'options' =>
-                                                    [
-                                                        'prompt' => ''
-                                                    ]
-                                                ],
-                                            ],
-                                        ]); ?>
+                        <li class="list-group-item" style="border: none;">
 
-                                    </a>
-
-                                </li>
-
-                            </ul>
-                            
-                        </div>
-                        
-                        <div class="col-md-9">
-                            
-                            <ul class="list-group list-group-unbordered" style="margin-bottom: 0px;">
-
-                                <li class="list-group-item" style="border: none;">
-
-                                    <?= Form::widget(
+                            <?= Form::widget(
+                            [
+                                'model' => $model,
+                                'form' => $form,
+                                'columns' => 6,
+                                'attributes' =>
+                                [
+                                    'empresa_id' => 
                                     [
-                                        'model' => $model,
-                                        'form' => $form,
-                                        'columns' => 12,
-                                        'attributes' =>
+                                        'label' => 'Empresa',
+                                        'type' => Form::INPUT_DROPDOWN_LIST,
+                                        'items' => ArrayHelper::map($empresas, 'id', 'nomeResumo'),
+                                        'options' => 
                                         [
-                                            'ano' => 
-                                            [
-                                                'label' => FALSE,
-                                                'type' => Form::INPUT_DROPDOWN_LIST,
-                                                'items' => $anos,
-                                                'options' => 
-                                                [
-                                                    'prompt' => 'Ano:',
-                                                    'style' => 'margin-left: 20px;'
-                                                ],
-                                                'columnOptions' => ['colspan' => 2]
-                                            ],
-                                            'meses' => 
-                                            [
-                                                'label' => FALSE,
-                                                'type' => Form::INPUT_CHECKBOX_LIST,
-                                                'items' => $meses,
-                                                'options' => 
-                                                [
-                                                    'inline' => TRUE,
-                                                    'prompt' => ''
-                                                ],
-                                                'columnOptions' => ['colspan' => 12]
-                                            ],
+                                            'prompt' => '',
                                         ],
-                                    ]); ?>
-
-                                    <?= Html::button('Pesquisar', 
+                                        'columnOptions' => ['colspan' => 2]
+                                    ],
+                                    'ano' => 
                                     [
-                                        'id' => 'btn-indicador',
-                                        'class' => 'btn btn-success pull-right'
-                                    ]); ?>
+                                        'label' => 'Ano',
+                                        'type' => Form::INPUT_DROPDOWN_LIST,
+                                        'items' => $anos,
+                                        'options' => 
+                                        [
+                                            'prompt' => '',
+                                        ],
+                                        'columnOptions' => ['colspan' => 2]
+                                    ],
+                                ],
+                            ]); ?>
 
-                                </li>
+                            <?= Html::button('Pesquisar', 
+                            [
+                                'id' => 'btn-indicador',
+                                'class' => 'btn btn-success pull-right'
+                            ]); ?>
 
-                            </ul>
-                            
-                        </div>
+                        </li>
 
-                    </div>
+                    </ul>
 
                 </div>
 
             </div>
         
         <?php ActiveForm::end(); ?>
-                 
+          
+        <div id="render-result">
+        
+        
+        
+        </div>
+        
     </div>
-
-    <div id="render-result" style="margin: 30px;">
-        
-        
-        
-    </div>
-
+    
 </div>
     

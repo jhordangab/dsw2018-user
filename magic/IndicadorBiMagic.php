@@ -3,11 +3,17 @@
 namespace app\magic;
 
 use Yii;
+use app\models\AdminEmpresa;
 
 class IndicadorBiMagic
 {
-    public static function getDados($empresa_id, $ano)
+    public static function getDados($model)
     {
+        $empresa = AdminEmpresa::findOne($model->empresa_id);
+        $empresa_id = $empresa->nomeResumo;
+        
+        $ano = $model->ano;
+
         $sql = <<<SQL
          
         SELECT * FROM 
@@ -362,8 +368,13 @@ SQL;
         return $dados;
     }
     
-    public static function getDre($empresa_id, $ano)
+    public static function getDre($model)
     {
+        $empresa = AdminEmpresa::findOne($model->empresa_id);
+        $empresa_id = $empresa->nomeResumo;
+        
+        $ano = $model->ano;
+        
         $sql = <<<SQL
          
         SELECT * FROM 
