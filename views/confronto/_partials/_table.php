@@ -8,12 +8,18 @@ $css = <<<CSS
         font-size: 10px;
     }
         
+    .table-balancete > tbody > tr:hover 
+    {
+        border: 2px solid #22415a;
+    }
+        
     .table-balancete > tbody > tr.title-category,
     .table-balancete > thead > tr.title-category
     {
         cursor: text;
         background-color: #247388c2;
         color: #FFF;
+        border: none;
     }
         
     .table-balancete > tbody > tr.sum,
