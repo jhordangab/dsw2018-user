@@ -11,7 +11,7 @@ use app\models\AdminEmpresa;
 
 class ConfrontoController extends Controller
 {
-    public $bodyClass = 'skin-blue sidebar-mini sidebar-collapse';
+//    public $bodyClass = 'skin-blue sidebar-mini sidebar-collapse';
     
     public function behaviors()
     {

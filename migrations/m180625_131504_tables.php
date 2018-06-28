@@ -14,6 +14,20 @@ class m180625_131504_tables extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
         
+        $sql_index = <<<SQL
+                
+            CREATE INDEX `idx_balancete_empresa_id`  ON `balancete` (empresa_id);
+            CREATE INDEX `idx_balancete_valor_categoria_id`  ON `balancete_valor` (categoria_id);
+            CREATE INDEX `idx_categoria_empresa_codigo_pai`  ON `categoria_empresa` (codigo_pai);
+            CREATE INDEX `idx_categoria_empresa_empresa_id`  ON `categoria_empresa` (empresa_id);
+            CREATE INDEX `idx_categoria_padrao_codigo_pai`  ON `categoria_padrao` (codigo_pai);
+            CREATE INDEX `idx_categoria_padrao_codigo`  ON `categoria_padrao` (codigo);
+            CREATE INDEX `idx_saldo_inicial_empresa_id_mes_ano_categoria_id`  ON `saldo_inicial` (empresa_id,mes,ano,categoria_id);
+                
+SQL;
+        
+        $this->execute($sql_index);
+        
         $this->createTable('{{%estado_regiao}}', 
         [
             'id' => Schema::TYPE_PK,

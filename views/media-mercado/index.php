@@ -13,17 +13,6 @@ use app\models\AdminEmpresa;
 $this->title = 'Média de Mercado';
 $this->params['breadcrumbs'][] = $this->title;
 
-$js = <<<JS
-        
-    $('input[type="checkbox"]').iCheck({
-        checkboxClass: 'icheckbox_flat-green',
-        radioClass   : 'iradio_flat-green'
-    })
-        
-JS;
-
-$this->registerJs($js);
-
 $meses = 
 [
     1 => 'Janeiro',
@@ -42,12 +31,77 @@ $meses =
 
 $anos = [];
 
-for($i = 2016; $i < 2022; $i++)
+$ano_atual = (int) date('Y');
+
+for($i = 2016; $i <= $ano_atual; $i++)
 {
     $anos[$i] = "{$i}";
 }
 
-$empresas = AdminEmpresa::find()->andWhere('id not in (1, 2)')->orderBy('nomeResumo ASC')->all();
+$js = <<<JS
+        
+    $('input[type="checkbox"]').iCheck(
+    {
+        checkboxClass: 'icheckbox_flat-green',
+        radioClass   : 'iradio_flat-green'
+    })
+        
+    $('#btn-mediamercado').click(function () 
+    {
+        _error = false;
+        _message = "Os seguintes campos obrigatórios estão vazios: \\n\\n";
+        
+        if($('#mediamercadoform-empresa_id').val() == '')
+        {
+            _error = true;
+            _message += " - Empresa \\n";
+        }
+        
+        if($('#mediamercadoform-mes').val() == '')
+        {
+            _error = true;
+            _message += " - Mês \\n";
+        }
+        
+        if($('#mediamercadoform-ano').val() == '')
+        {
+            _error = true;
+            _message += " - Ano \\n";
+        }
+        
+        if(_error)
+        {
+            swal({
+                title: "Erro",
+                text: _message,
+                icon: "error",
+                dangerMode: true,
+            });
+        }
+        else
+        {
+            jQuery.ajax({
+                url: '/media-mercado/get-data',
+                data: $('#form-mediamercado').serialize(),
+                type: 'POST',
+                success: function (data) 
+                {
+                    $('#render-result').html(data);
+                },
+            });
+        }
+    });
+            
+    $(document).on(
+    {
+        ajaxStart: function() { $('.div-loading').addClass("loading");},
+        ajaxStop: function() { setTimeout(function() { $('.div-loading').removeClass("loading");}, 300);}    
+    });
+        
+JS;
+
+$this->registerJs($js);
+
 
 ?>
 
@@ -56,20 +110,32 @@ $empresas = AdminEmpresa::find()->andWhere('id not in (1, 2)')->orderBy('nomeRes
     <div class="col-lg-12">
         
         <?php $form = ActiveForm::begin([
+            'id' => 'form-mediamercado',
             'type' => ActiveForm::TYPE_VERTICAL,
         ]); ?>
 
-            <div class="col-md-3">
+            <div class="box box-success" style="padding: 0px;">
+                
+                <div class="box-header with-border">
 
-                <div class="box box-success">
+                    <h3 class="box-title"><i class="fa fa-search"></i> Filtros</h3>
 
-                    <div class="box-body">
+                    <div class="box-tools pull-right">
 
-                        <h3 class="profile-username text-center">Dados:</h3>
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="box-body">
+
+                    <div class="col-md-3">
 
                         <ul class="list-group list-group-unbordered">
 
-                            <li class="list-group-item" style="padding-bottom: 25px;">
+                            <li class="list-group-item" style="padding-bottom: 25px; border: none;">
 
                                 <b>Empresa:</b> <a class="pull-right">
 
@@ -85,6 +151,10 @@ $empresas = AdminEmpresa::find()->andWhere('id not in (1, 2)')->orderBy('nomeRes
                                                 'label' => FALSE,
                                                 'type' => Form::INPUT_DROPDOWN_LIST,
                                                 'items' => ArrayHelper::map($empresas, 'id', 'nomeResumo'),
+                                                'options' =>
+                                                [
+                                                    'prompt' => ''
+                                                ]
                                             ],
                                         ],
                                     ]); ?>
@@ -152,22 +222,12 @@ $empresas = AdminEmpresa::find()->andWhere('id not in (1, 2)')->orderBy('nomeRes
                         </ul>
 
                     </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-9">
-
-                <div class="box box-success">
-
-                    <div class="box-body" style="padding-bottom: 3px;">
-
-                        <h3 class="profile-username text-center">Geral:</h3>
+                    
+                    <div class="col-md-9">
 
                         <ul class="list-group list-group-unbordered" style="margin-bottom: 0px;">
 
-                            <li class="list-group-item" style="border-bottom: none;">
+                            <li class="list-group-item" style="border: none;">
 
                                 <?= Form::widget(
                                 [
@@ -215,16 +275,16 @@ $empresas = AdminEmpresa::find()->andWhere('id not in (1, 2)')->orderBy('nomeRes
                                     ],
                                 ]); ?>
 
-                                <?= Html::submitButton('Pesquisar', 
+                                <?= Html::button('Pesquisar', 
                                 [
-                                    'class' => 'btn btn-success pull-right',
-                                    'style' => 'margin-top: -40px;'
+                                    'id' => 'btn-mediamercado',
+                                    'class' => 'btn btn-success pull-right'
                                 ]); ?>
 
                             </li>
 
                         </ul>
-
+                        
                     </div>
 
                 </div>
@@ -233,20 +293,13 @@ $empresas = AdminEmpresa::find()->andWhere('id not in (1, 2)')->orderBy('nomeRes
         
         <?php ActiveForm::end(); ?>
                  
-    </div>
-
-<!--    <div class="col-lg-12">
+        <div id="render-result" class="table-responsive">
         
-        <div class="box box-success">
-
-            <div class="box-body">
-
-                        
-            </div>
-
+        
+        
         </div>
         
-    </div>-->
+    </div>
 
 </div>
     

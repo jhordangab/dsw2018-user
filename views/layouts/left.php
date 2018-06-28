@@ -12,7 +12,7 @@
                         ['label' => 'Resultados', 'icon' => 'line-chart', 'url' => ['/resultado']],
                         ['label' => 'Confronto', 'icon' => 'bar-chart', 'url' => ['/confronto']],
                         ['label' => 'Indicadores', 'icon' => 'dashboard', 'url' => ['/indicador']],
-//                        ['label' => 'Média de Mercado', 'icon' => 'trophy', 'url' => ['/media-mercado']],
+                        ['label' => 'Média de Mercado', 'icon' => 'trophy', 'url' => ['/media-mercado']],
                         ['label' => 'Balancetes', 'icon' => 'calculator', 'url' => ['/balancete']],
                         ['label' => 'Cadastros', 'icon' => 'edit',
                             'items' =>
