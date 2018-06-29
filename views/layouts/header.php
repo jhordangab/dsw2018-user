@@ -5,7 +5,7 @@ use yii\helpers\Html;
 
 <header class="main-header">
 
-    <?= Html::a('<span class="logo-mini">' . Html::img('@web/img/logo-mini.png', ['alt' => Yii::$app->name, 'class' => 'img-responsive']) . '</span><span class="logo-lg">' . Html::img('@web/img/agrocontar_white.png', ['alt' => Yii::$app->name, 'style' => 'width: 90px; margin-left: auto; margin-right: auto;', 'class' => 'img-responsive']) . '</span>', Yii::$app->homeUrl, ['class' => 'logo', 'style' => 'background-color: #233746']) ?>
+    <?= Html::a('<span class="logo-mini">' . Html::img('@web/img/logo-mini_white.png', ['alt' => Yii::$app->name, 'class' => 'img-responsive']) . '</span><span class="logo-lg">' . Html::img('@web/img/agrocontar_white.png', ['alt' => Yii::$app->name, 'style' => 'width: 90px; margin-left: auto; margin-right: auto;', 'class' => 'img-responsive']) . '</span>', Yii::$app->homeUrl, ['class' => 'logo', 'style' => 'background-color: #233746']) ?>
 
     <nav class="navbar navbar-static-top" style="background-color: #227584;"role="navigation">
 

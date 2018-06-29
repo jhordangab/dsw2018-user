@@ -196,7 +196,20 @@ $css = <<<CSS
             background-position: -6px 0;
         }
     }   
-    
+        
+    .box-filter
+    {
+        padding: 0px;
+        box-shadow: 0 10px 10px rgba(125,125,125,0.5);
+    }
+        
+    .box-filter .box-body .list-group .list-group-item
+    {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 25px; 
+        border: none;    
+    }
         
 CSS;
 

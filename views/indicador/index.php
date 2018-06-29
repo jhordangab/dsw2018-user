@@ -92,7 +92,7 @@ $this->registerJs($js);
             'type' => ActiveForm::TYPE_VERTICAL,
         ]); ?>
 
-            <div class="box box-success" style="padding: 0px;">
+            <div class="box box-success box-filter">
 
                 <div class="box-header with-border">
 
@@ -135,10 +135,6 @@ $this->registerJs($js);
                                         'label' => 'Ano',
                                         'type' => Form::INPUT_DROPDOWN_LIST,
                                         'items' => $anos,
-                                        'options' => 
-                                        [
-                                            'prompt' => '',
-                                        ],
                                         'columnOptions' => ['colspan' => 2]
                                     ],
                                 ],

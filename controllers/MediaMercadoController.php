@@ -38,8 +38,8 @@ class MediaMercadoController extends Controller
     {
         $model = new MediaMercadoForm();
 //        default values
-        $model->ano = (int) date("Y");
-        $model->mes = (int) date("m") - 1;
+        $model->ano = (int) date("Y") - 1;
+        $model->mes = ((int) date("m") > 1) ? (int) date("m") - 1 : 1;
         
         $empresas = AdminEmpresa::find()->andWhere('id not in (1, 2)')->orderBy('nomeResumo ASC')->all();
         

@@ -44,7 +44,7 @@ class IndicadorController extends Controller
     {
         $model = new IndicadorForm();
 //        default values
-        $model->ano = (int) date("Y");
+        $model->ano = (int) date("Y") - 1;
         
         $empresas = AdminEmpresa::find()->andWhere('id not in (1, 2)')->orderBy('nomeResumo ASC')->all();
         
@@ -60,6 +60,7 @@ class IndicadorController extends Controller
         {
             $dados = IndicadorBiMagic::getDados($model);
             $dre = IndicadorBiMagic::getDre($model);
+            $provisao = IndicadorBiMagic::getProvisao($model);
             $configuracao = ResultadoIndicador::find()->andWhere([
                 'empresa_id' => $model->empresa_id,
                 'ano' => $model->ano,
@@ -67,7 +68,7 @@ class IndicadorController extends Controller
                 'is_excluido' => 0
             ])->one();
 
-            return $this->renderAjax('_partials/_data', compact('model', 'dados', 'dre', 'configuracao'));
+            return $this->renderAjax('_partials/_data', compact('model', 'dados', 'dre', 'configuracao', 'provisao'));
         }
         
         return '';

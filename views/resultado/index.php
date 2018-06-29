@@ -107,7 +107,7 @@ $this->registerJs($js);
             'type' => ActiveForm::TYPE_VERTICAL,
         ]); ?>
 
-            <div class="box box-success" style="padding: 0px;">
+            <div class="box box-success box-filter">
 
                 <div class="box-header with-border">
 
@@ -125,7 +125,7 @@ $this->registerJs($js);
 
                     <ul class="list-group list-group-unbordered">
 
-                        <li class="list-group-item" style="padding-bottom: 25px; border: none;">
+                        <li class="list-group-item">
 
                             <?= Form::widget(
                             [
@@ -169,10 +169,6 @@ $this->registerJs($js);
                                         'label' => FALSE,
                                         'type' => Form::INPUT_DROPDOWN_LIST,
                                         'items' => $anos,
-                                        'options' => 
-                                        [
-                                            'prompt' => 'Ano:',
-                                        ],
                                         'columnOptions' => ['colspan' => 2]
                                     ],
                                     'meses' => 

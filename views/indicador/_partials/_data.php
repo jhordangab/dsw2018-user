@@ -347,7 +347,7 @@ foreach($dados['Passivo'] as $ativo)
                 
                 <tr>
                     
-                    <?php $provisao_cs = isset($dre['E']['8']['valor']) ? $dre['E']['8']['valor'] : 0; ?>
+                    <?php $provisao_cs = isset($provisao['provisao_cs']) ? $provisao['provisao_cs'] : 0; ?>
 
                     <th scope="col" style="padding-left: 30px;">Provisão CS</th>
                     <th scope="col"></th>
@@ -372,7 +372,7 @@ foreach($dados['Passivo'] as $ativo)
                 
                 <tr>
                     
-                    <?php $provisao_ir = isset($dre['E']['9']['valor']) ? $dre['E']['9']['valor'] : 0; ?>
+                    <?php $provisao_ir = isset($provisao['provisao_irpj']) ? $provisao['provisao_irpj'] : 0; ?>
 
                     <th scope="col" style="padding-left: 30px;">Provisão IR</th>
                     <th scope="col"></th>

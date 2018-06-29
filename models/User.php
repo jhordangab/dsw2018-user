@@ -14,13 +14,7 @@ class User extends Model implements IdentityInterface
     
     public $perfil_id;
     
-    public $perfil_nome;
-    
     public $nome;
-    
-    public $empresa_id;
-    
-    public $empresa_nome;
     
     public $version;
     
@@ -28,7 +22,7 @@ class User extends Model implements IdentityInterface
     {
         $rules = 
         [
-            [['id', 'desc_uid', 'perfil_id', 'perfil_nome', 'nome', 'empresa_id', 'empresa_nome', 'version'], 'safe'],
+            [['id', 'desc_uid', 'perfil_id', 'nome', 'version'], 'safe'],
         ];
 
         return $rules;
@@ -41,10 +35,7 @@ class User extends Model implements IdentityInterface
             'id' => 'ID',
             'desc_uid' => 'UID',
             'perfil_id' => 'Perfil',
-            'perfil_nome' => 'Perfil',
             'nome' => 'Nome',
-            'empresa_id' => 'Empresa',
-            'empresa_nome' => 'Empresa',
             'version' => 'Versão'
         ];
     }
@@ -63,10 +54,7 @@ class User extends Model implements IdentityInterface
 
     public static function findIdentity($id): IdentityInterface 
     {
-        $model = new User();
-        $model->setAttributes(Yii::$app->session['user']);
-         
-        return $model;
+        return new User();
     }
 
     public static function findIdentityByAccessToken($token, $type = null): IdentityInterface {

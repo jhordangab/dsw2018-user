@@ -19,9 +19,9 @@ CSS;
 
 $this->registerCss($css);
 
-if($errors)
+if($model->getErrors())
 {
-    foreach($errors as $error)
+    foreach($model->getErrors() as $error)
     {
         $str_error = (is_array($error)) ? $error[0] : $error;
         $js = <<<JS
@@ -49,7 +49,7 @@ JS;
     <div class="col-md-10 col-lg-10 col-xl-8 align-self-center login--form">
 
         <div class="col-lg-10 push-lg-1 col-xl-8 push-xl-2">
-            
+        
             <h1 class="text-center "><?= Html::encode($this->title) ?></h1>
 
             <?php $form = ActiveForm::begin(['id' => 'form-login-bi', 'options' => ['class' => 'col-form'], 'enableClientValidation' => false]); ?>
@@ -58,7 +58,7 @@ JS;
 
                     <?= $form->field($model, 'email', [
                         'template' => '<div class="input-group input-group-lg"><span class="input-group-addon col-2" id="sizing-addon1 ">{label}</span>{input}</div>'
-                    ])->textInput(['aria-describedby' => 'sizing-addon1']); ?>
+                    ])->textInput(['placeholder' => $model->getAttributeLabel('email'), 'aria-describedby' => 'sizing-addon1']); ?>
 
                 </div>
 

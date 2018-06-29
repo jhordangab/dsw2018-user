@@ -8,7 +8,6 @@ use app\models\EstadoRegiao;
 use app\models\FaixaFaturamento;
 use app\models\Bandeira;
 use app\models\Segmento;
-use app\models\AdminEmpresa;
 
 $this->title = 'Média de Mercado';
 $this->params['breadcrumbs'][] = $this->title;
@@ -114,7 +113,7 @@ $this->registerJs($js);
             'type' => ActiveForm::TYPE_VERTICAL,
         ]); ?>
 
-            <div class="box box-success" style="padding: 0px;">
+            <div class="box box-success box-filter">
                 
                 <div class="box-header with-border">
 
@@ -135,7 +134,7 @@ $this->registerJs($js);
 
                         <ul class="list-group list-group-unbordered">
 
-                            <li class="list-group-item" style="padding-bottom: 25px; border: none;">
+                            <li class="list-group-item">
 
                                 <b>Empresa:</b> <a class="pull-right">
 
@@ -163,7 +162,7 @@ $this->registerJs($js);
 
                             </li>
 
-                            <li class="list-group-item" style="padding-bottom: 25px;">
+                            <li class="list-group-item">
 
                                 <b>Mês:</b> <a class="pull-right">
 
@@ -179,10 +178,6 @@ $this->registerJs($js);
                                                 'label' => FALSE,
                                                 'type' => Form::INPUT_DROPDOWN_LIST,
                                                 'items' => $meses,
-                                                'options' => 
-                                                [
-                                                    'prompt' => ''
-                                                ]
                                             ],
                                         ],
                                     ]); ?>
@@ -191,7 +186,7 @@ $this->registerJs($js);
 
                             </li>
 
-                            <li class="list-group-item" style="padding-bottom: 25px;">
+                            <li class="list-group-item">
 
                                 <b>Ano:</b> <a class="pull-right">
 
@@ -207,11 +202,7 @@ $this->registerJs($js);
                                                 'label' => FALSE,
                                                 'type' => Form::INPUT_DROPDOWN_LIST,
                                                 'items' => $anos,
-                                                'options' => 
-                                                [
-                                                    'prompt' => ''
-                                                ]
-                                            ],
+                                             ],
                                         ],
                                     ]); ?>
 
@@ -225,7 +216,7 @@ $this->registerJs($js);
                     
                     <div class="col-md-9">
 
-                        <ul class="list-group list-group-unbordered" style="margin-bottom: 0px;">
+                        <ul class="list-group list-group-unbordered">
 
                             <li class="list-group-item" style="border: none;">
 

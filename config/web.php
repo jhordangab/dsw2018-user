@@ -76,12 +76,12 @@ $config = [
         [
             'loginUrl' => '/user/login',
             'class' => 'app\modules\user\components\User',
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\AdminUsuario',
             'enableAutoLogin' => false,
             'enableSession' => true,
             'identityCookie' => 
             [
-                'name' => '_agrocontarUser'
+                'name' => '_backendUser'
             ]
         ],
         'session' => 

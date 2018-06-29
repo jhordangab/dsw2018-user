@@ -40,8 +40,8 @@ class ConfrontoController extends Controller
     {
         $model = new ConfrontoForm();
 //        default values
-        $model->ano_x = (int) date("Y") - 1;
-        $model->ano_y = (int) date("Y");
+        $model->ano_x = (int) date("Y") - 2;
+        $model->ano_y = (int) date("Y") - 1;
         $model->meses_y = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
         $model->meses_x = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
         
